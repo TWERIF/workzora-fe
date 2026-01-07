@@ -19,7 +19,7 @@ export default function Modal(props: ModalI) {
         <div className="fixed inset-0 bg-black/75 flex items-center justify-center z-50">
             <div
                 className="bg-bg dark:bg-bg-dark text-text dark:text-text-dark rounded-[20px] p-[20px]"
-                style={{ width: maxWidth > 409 ? "409px" : "320px" }}
+                style={{ width: maxWidth > 409 ? "409px" : "100%", height: maxWidth > 409 ? "auto" : "100%" }}
             >
                 <div className="w-full flex justify-end">
                     <ButtonClose text={''} onClick={() => setIsOpen(false)} />
