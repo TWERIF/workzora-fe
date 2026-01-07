@@ -1,14 +1,14 @@
+import { $api } from "@/componenst/http";
 import { InputI } from "@/types";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import Input from "./Input";
-import { $api } from "@/componenst/http";
 
 interface ConfirmI extends InputI {
     sendMail: () => void;
     setMailConfirmed: (s: boolean) => void;
     email: string;
-    mailConfirmed:boolean;
+    mailConfirmed: boolean;
 }
 
 export default function ConfirmEmail(props: ConfirmI) {
@@ -31,11 +31,7 @@ export default function ConfirmEmail(props: ConfirmI) {
         })
         setMailConfirmed(status.data.success);
     }
-
-    useEffect(() => {
-        if(mailConfirmed) setCooldown(0)
-    }, [mailConfirmed]);
-
+    const effectiveCooldown = mailConfirmed ? 0 : cooldown;
 
     useEffect(() => {
         if (value.length < 5) return;
@@ -57,7 +53,7 @@ export default function ConfirmEmail(props: ConfirmI) {
     }, [i18n]);
 
     const handleSendMail = () => {
-        if (cooldown > 0) return;
+        if (effectiveCooldown > 0) return;
         sendMail();
         setCooldown(120);
     };
@@ -75,13 +71,13 @@ export default function ConfirmEmail(props: ConfirmI) {
 
                 <span
                     onClick={handleSendMail}
-                    className={`cursor-pointer ${cooldown > 0 ? "text-text-muted cursor-not-allowed" : "text-success"
-                        }`}
+                    className={`cursor-pointer ${effectiveCooldown > 0 ? "text-text-muted cursor-not-allowed" : "text-success"}`}
                 >
-                    {cooldown > 0
-                        ? `${t("auth.confirmEmail.button")} (${cooldown}s)`
+                    {effectiveCooldown > 0
+                        ? `${t("auth.confirmEmail.button")} (${effectiveCooldown}s)`
                         : t("auth.confirmEmail.button")}
                 </span>
+
             </div>
         </div>
     );

@@ -12,11 +12,7 @@ export default function ButtonSocial(props: ButtonI) {
     const { t } = useTranslation("common");
 
 
-    const [mounted, setMounted] = useState(false);
-
-    useEffect(() => {
-        setMounted(true);
-    }, []);
+    const [mounted, setMounted] = useState(() => typeof window !== 'undefined');
 
     if (!mounted) return null;
     return (
@@ -24,8 +20,8 @@ export default function ButtonSocial(props: ButtonI) {
             className="w-full rounded-[20px] bg-bg-header dark:bg-bg-modalDark p-[15px]"
             onClick={onClick}
             style={{
-                boxShadow: theme==="dark" ? "0px 0px 20px #00000040" : "none",
-                border: theme==="dark" ? "0" : "1px solid #C8C7C7",
+                boxShadow: theme === "dark" ? "0px 0px 20px #00000040" : "none",
+                border: theme === "dark" ? "0" : "1px solid #C8C7C7",
             }}
         >
             {text}

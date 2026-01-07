@@ -18,14 +18,12 @@ export default function Header() {
     const router = useRouter();
     const locale = router.locale || "en";
 
-    const [mounted, setMounted] = useState(false);
     const [isOpenReg, setIsOpenReg] = useState(false);
 
-    useEffect(() => {
-        setMounted(true);
-    }, []);
+    const [mounted, setMounted] = useState(() => typeof window !== 'undefined');
 
     if (!mounted) return null;
+
     return (
         <>
             <header className="w-full py-[17px] bg-bg-header dark:bg-bg-dark box z-10" style={{ boxShadow: "0px 0px 20px #7EA310" }}>
