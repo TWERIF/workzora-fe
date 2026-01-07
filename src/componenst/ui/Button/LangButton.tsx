@@ -12,12 +12,7 @@ export default function LangButton() {
     const toggleLang = async () => {
         const nextLocale = locale === "en" ? "uk" : "en";
 
-        await router.push(
-            router.pathname,
-            router.asPath,
-            { locale: nextLocale }
-        );
-
+        await router.push(router.pathname, router.asPath, { locale: nextLocale });
         i18n.changeLanguage(nextLocale);
     };
 
@@ -25,9 +20,15 @@ export default function LangButton() {
         <button
             type="button"
             onClick={toggleLang}
-            className="p-[1px] rounded-full bg-gradient-to-b from-[#216B52] to-[#7EA310]"
+            className="
+                w-[22px] h-[22px]          /* фіксовані розміри */
+                rounded-full       /* круглий бордер */
+                p-[1px]            /* невеликий паддінг для градієнту */
+                bg-gradient-to-b from-[#216B52] to-[#7EA310]
+                flex items-center justify-center
+            "
         >
-            <span className="flex items-center justify-center bg-white dark:bg-bg-dark rounded-full p-[2px]">
+            <span className="w-full h-full flex items-center justify-center rounded-full bg-white dark:bg-bg-dark">
                 {locale === "en" ? <IconUsa /> : <IconUa />}
             </span>
         </button>
