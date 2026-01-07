@@ -1,0 +1,60 @@
+{
+    "auth": {
+        "placeholders": {
+            "name": "First Name",
+            "surname": "Last Name",
+            "username": "Enter your user name",
+            "email": "Email",
+            "password": "Password",
+            "confirmPassword": "Confirm Password",
+            "code": "Code"
+        },
+        "buttons": {
+            "next": "Next Step",
+            "join": "Join Workzora"
+        },
+        "confirmEmail": {
+            "text": "Enter confirmation code from Email",
+            "button": "Send code"
+        },
+        "texts": {
+            "welcome": "Welcome",
+            "welcomeText": "Please supply a backup email. We'll make sure you don't create duplicate accounts and will use this email to let you know if there's an issue with your account.",
+            "agree": "I agree to the Workzora",
+            "and": "and",
+            "user": "User Agreement",
+            "privacy": "Privacy Policy",
+            "select": "Select account type",
+            "dontWorry": "Don't worry, this can be changed later."
+        },
+        "cards": {
+            "earn": "Earn money",
+            "hire": "Hire a freelancer"
+        },
+        "errors": {
+            "required": "Required",
+            "confirmed": "Passwords do not match",
+            "passwordLength": "Password must be at least 8 characters",
+            "passwordLetter": "Password must contain a letter",
+            "passwordNumber": "Password must contain a number",
+            "email": "Invalid email format",
+            "submitRules": "Please confirm that you have read the items above"
+        }
+    },
+    "profile": {
+        "headers": {
+            "topFreelancers": "Top freelancers",
+            "findWork": "Find work",
+            "aboutUs": "About us",
+            "faq": "FAQ",
+            "payments": "Payments",
+            "contacts": "Contacts",
+            "login": "Log in",
+            "signup": "Sign up",
+            "postProject": "Post a Project"
+        }
+    },
+    "separators":{
+        "or":"or"
+    }
+}
