@@ -54,7 +54,7 @@ export default function Header() {
                     <ThemeButton />
                 </div>
             </header>
-            {isOpenReg && <RegModal maxWidth={1040} setIsOpen={setIsOpenReg} />}
+            {isOpenReg && <RegModal maxWidth={width} setIsOpen={setIsOpenReg} />}
         </>
     );
 }
