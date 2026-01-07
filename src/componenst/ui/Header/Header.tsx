@@ -22,14 +22,21 @@ export default function Header() {
 
     const [burgerOpen, setBurgerOpen] = useState(false); // стан бургер-меню
 
+
     useEffect(() => {
-        setMounted(true);
-        setWidth(window.innerWidth);
+        // встановлюємо mounted і width при першому рендері
+        const init = () => {
+            setMounted(true);
+            setWidth(window.innerWidth);
+        };
+
+        init();
 
         const handleResize = () => setWidth(window.innerWidth);
         window.addEventListener("resize", handleResize);
+
         return () => window.removeEventListener("resize", handleResize);
-    }, []);
+    }, []); // залежностей немає
 
     if (!mounted) return null;
 
