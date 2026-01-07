@@ -14,15 +14,24 @@ import RegModal from "../Modal/RegModal";
 export default function Header() {
     const { theme } = useTheme();
     const { t } = useTranslation("common");
-    const width = useWindowWidth();
     const router = useRouter();
-    const locale = router.locale || "en";
 
     const [isOpenReg, setIsOpenReg] = useState(false);
+    const [mounted, setMounted] = useState(false);
+    const [width, setWidth] = useState(0);
 
-    const [mounted, setMounted] = useState(() => typeof window !== 'undefined');
+    useEffect(() => {
+        setMounted(true);
+        setWidth(window.innerWidth);
 
-    if (!mounted) return null;
+        const handleResize = () => setWidth(window.innerWidth);
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
+    if (!mounted) return null; // чекаємо клієнт
+
+    const locale = router.locale || "en";
 
     return (
         <>
