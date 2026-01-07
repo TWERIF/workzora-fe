@@ -17,7 +17,7 @@ export default function Modal(props: ModalI) {
                 className="
                     bg-bg dark:bg-bg-dark text-text dark:text-text-dark
                     w-full h-full rounded-none p-4
-                    sm:rounded-[20px] sm:max-w-[500px] sm:h-auto sm:p-6
+                    sm:rounded-[20px] sm:max-w-[100%] sm:h-auto sm:p-6
                     overflow-y-auto
                     flex flex-col
                 "
