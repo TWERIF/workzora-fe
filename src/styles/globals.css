@@ -10,3 +10,15 @@ body {
     font-size: 14px;
     overflow-x: hidden;
 }
+
+html,
+body {
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    scrollbar-width: none;
+
+    -ms-overflow-style: none;
+}

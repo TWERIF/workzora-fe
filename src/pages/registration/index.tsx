@@ -1,12 +1,12 @@
 'use client';
 
-import { $api } from "@/componenst/http";
-import Logo from "@/componenst/svg/Logo";
-import LogoRegWhite from "@/componenst/svg/LogoRegWhite";
-import ButtonGradient from "@/componenst/ui/Button/ButtonGradient";
-import ConfirmEmail from "@/componenst/ui/Input/ConfirmEmail";
-import Input from "@/componenst/ui/Input/Input";
-import AuthLayout from "@/componenst/ui/Layout/AuthLayout";
+import { $api } from "@/components/http";
+import Logo from "@/components/svg/Logo";
+import LogoRegWhite from "@/components/svg/LogoRegWhite";
+import ButtonGradient from "@/components/ui/Button/ButtonGradient";
+import ConfirmEmail from "@/components/ui/Input/ConfirmEmail";
+import Input from "@/components/ui/Input/Input";
+import AuthLayout from "@/components/ui/Layout/AuthLayout";
 import { validateConfirmPassword, validateEmail, validatePassword } from "@/utils/validators";
 import { useTranslation } from "next-i18next";
 import { useTheme } from "next-themes";

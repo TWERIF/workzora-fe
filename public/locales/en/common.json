@@ -35,8 +35,8 @@
             "dontWorry": "Don't worry, this can be changed later.",
             "protected": "This site is protected by reCAPTCHA and the Google",
             "apply": "apply",
-            "remember":"Remember me",
-            "forgot":"Forgot Password?"
+            "remember": "Remember me",
+            "forgot": "Forgot Password?"
         },
         "cards": {
             "earn": "Earn money",
@@ -71,5 +71,70 @@
         "haveAnAccountLink": "Log in",
         "donthaveAnAccountText": "Don’t have an Account?",
         "donthaveAnAccountLink": "Sign up"
-    }
+    },
+    "hero": {
+        "title": "Hire the best freelancers for any job,online",
+        "title-list": {
+            "0": "World's largest freelance marketplace",
+            "1": "Any job you can possibly think of",
+            "2": "Save up to 90 & get quotes for free",
+            "3": "Pay only when you're 100% happy"
+        },
+        "HireFreelancerBtn1": "Hire a Freelancer",
+        "HireFreelancerBtn2": "Hire a Freelancer",
+        "ThisBannerCost": "This banner design cost $60 USDT and took 2 days, by  webanned",
+        "asUsedBy": "As used by"
+    },
+    "makeItReal": {
+        "title": {
+            "1": "Make it real with ",
+            "2": "WorkZora"
+        },
+        "grid": {
+            "0": {
+                "title": "The best talent",
+                "content": "Discover reliable professionals by exploring their portfolios and immersing yourself in the feedback shared on their profiles."
+            },
+            "1": {
+                "title": "Fast bids",
+                "content": "Get quick, no-obligation quotes from skilled freelancers. 80% of jobs receive bids within 60 seconds. Your idea is just moments from reality."
+            },
+            "2": {
+                "title": "Quality work ",
+                "content": "With Freelancer's talent pool of over 60 million professionals at your fingertips, you'll find quality talent to get what you need done."
+            },
+            "3": {
+                "title": "Be in control ",
+                "content": "Stay in the loop while on the move. Chat with your freelancers and get real time updates with our mobile app. Anytime, anywhere. "
+            }
+        },
+        "makeDreamsReality": "Make your dreams a reality."
+    },
+    "globalNetwork": {
+        "title": {
+            "1": "Tap into a",
+            "2": "global talent network"
+        },
+        "sameStyle": "I need the same style",
+        "grid": {
+            "0": {
+                "title": "Post your job",
+                "content": "It's free and easy! Get lots of competitive bids that suit your budget in minutes. Start making your dreams reality."
+            },
+            "1": {
+                "title": "Choose freelancers",
+                "content": "No job is too big or complex. We've got freelancers for jobs of any size or budget, across 2700+ skills. Let our talent bring your ideas to life."
+            },
+            "2": {
+                "title": "Pay safely",
+                "content": "Only pay for work when you are 100% satisfied with the outcome. Our milestone payment system protects you every step of the way. "
+            },
+            "3": {
+                "title": "We're here to help ",
+                "content": "Your time is precious. Let our team of expert recruiters and co-pilots save you time finding talent, even managing your job if needed. "
+            }
+        },
+        "createFuture": "Create the future"
+    },
+    "getStarted": "Get started now"
 }

@@ -1,4 +1,4 @@
-import Header from '@/componenst/ui/Header/Header';
+import Header from '@/components/ui/Header/Header';
 import '@/styles/globals.css';
 import { appWithTranslation } from 'next-i18next';
 import { ThemeProvider } from 'next-themes';

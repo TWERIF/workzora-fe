@@ -1,11 +1,11 @@
 'use client';
 
-import { $api } from "@/componenst/http";
-import IconDoc from "@/componenst/svg/IconDoc";
-import IconLaptop from "@/componenst/svg/IconLaptop";
-import AccountTypeCard from "@/componenst/ui/Card/AccountTypeCard";
-import AuthHeader from "@/componenst/ui/Header/AuthHeader";
-import AuthLayout from "@/componenst/ui/Layout/AuthLayout";
+import { $api } from "@/components/http";
+import IconDoc from "@/components/svg/IconDoc";
+import IconLaptop from "@/components/svg/IconLaptop";
+import AccountTypeCard from "@/components/ui/Card/AccountTypeCard";
+import AuthHeader from "@/components/ui/Header/AuthHeader";
+import AuthLayout from "@/components/ui/Layout/AuthLayout";
 import { useTranslation } from "next-i18next";
 import Head from "next/head";
 import { useRouter } from "next/navigation";

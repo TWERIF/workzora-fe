@@ -1,12 +1,12 @@
 'use client';
 
-import { $api } from "@/componenst/http";
-import ButtonGradient from "@/componenst/ui/Button/ButtonGradient";
-import AuthHeader from "@/componenst/ui/Header/AuthHeader";
-import Input from "@/componenst/ui/Input/Input";
-import Submit from "@/componenst/ui/Input/Submit";
-import AuthLayout from "@/componenst/ui/Layout/AuthLayout";
-import Link from "@/componenst/ui/Link/Link";
+import { $api } from "@/components/http";
+import ButtonGradient from "@/components/ui/Button/ButtonGradient";
+import AuthHeader from "@/components/ui/Header/AuthHeader";
+import Input from "@/components/ui/Input/Input";
+import Submit from "@/components/ui/Input/Submit";
+import AuthLayout from "@/components/ui/Layout/AuthLayout";
+import Link from "@/components/ui/Link/Link";
 import { validateEmail } from "@/utils/validators";
 import { useTranslation } from "next-i18next";
 import Head from "next/head";
@@ -25,7 +25,6 @@ export default function ReserveEmail() {
   const locale = i18n.language;
 
   const router = useRouter();
-  
   const validate = () => {
     const tmpErrors: string[] = [];
 
