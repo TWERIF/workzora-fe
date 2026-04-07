@@ -1,5 +1,4 @@
-import Header from "@/components/ui/Header/Header";
-import { Html, Head, hero, NextScript } from "next/document";
+import { Head, Html, Main, NextScript } from "next/document";
 
 export default function Document() {
   return (
@@ -12,7 +11,7 @@ export default function Document() {
         />
       </Head>
       <body>
-        <hero />
+        <Main />
         <NextScript />
       </body>
     </Html>
