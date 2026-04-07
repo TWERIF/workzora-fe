@@ -74,7 +74,7 @@ export default function Registration() {
     };
 
     const register = async () => {
-        if (!validate() && isActive) return;
+        if (!validate() && !isActive) return;
 
         const res = await $api.post('/auth/register', {
             firstName,

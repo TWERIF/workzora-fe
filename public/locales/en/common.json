@@ -7,11 +7,18 @@
             "email": "Email",
             "password": "Password",
             "confirmPassword": "Confirm Password",
-            "code": "Code"
+            "code": "Code",
+            "signIn": "Sign up",
+            "login": "Login",
+            "welcome": "Welcome back",
+            "usernameoremail": "Email or Username"
         },
         "buttons": {
             "next": "Next Step",
-            "join": "Join Workzora"
+            "join": "Join Workzora",
+            "google": "Continue with Google",
+            "facebook": "Continue with Facebook",
+            "apple": "Continue with Apple"
         },
         "confirmEmail": {
             "text": "Enter confirmation code from Email",
@@ -25,7 +32,11 @@
             "user": "User Agreement",
             "privacy": "Privacy Policy",
             "select": "Select account type",
-            "dontWorry": "Don't worry, this can be changed later."
+            "dontWorry": "Don't worry, this can be changed later.",
+            "protected": "This site is protected by reCAPTCHA and the Google",
+            "apply": "apply",
+            "remember":"Remember me",
+            "forgot":"Forgot Password?"
         },
         "cards": {
             "earn": "Earn money",
@@ -54,7 +65,11 @@
             "postProject": "Post a Project"
         }
     },
-    "separators":{
-        "or":"or"
+    "separators": {
+        "or": "or",
+        "haveAnAccountText": "Already have an Account?",
+        "haveAnAccountLink": "Log in",
+        "donthaveAnAccountText": "Don’t have an Account?",
+        "donthaveAnAccountLink": "Sign up"
     }
 }

@@ -1,6 +1,6 @@
 import { ButtonI } from "@/types";
 import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 export default function ButtonSocial(props: ButtonI) {

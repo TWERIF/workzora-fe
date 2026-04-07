@@ -7,11 +7,18 @@
             "email": "Ел. пошта",
             "password": "Пароль",
             "confirmPassword": "Підтвердити Пароль",
-            "code": "Код"
+            "code": "Код",
+            "signIn": "Зареєструватися",
+            "login": "Увійти",
+            "welcome": "Ласкаво просимо назад",
+            "usernameoremail": "Електронна пошта або ім'я користувача"
         },
         "buttons": {
             "next": "Наступний Крок",
-            "join": "Приєднатись до Workzora"
+            "join": "Приєднатись до Workzora",
+            "google": "Продовжити з Google",
+            "facebook": "Продовжити з Facebook",
+            "apple": "Продовжити з Apple"
         },
         "confirmEmail": {
             "text": "Введіть код підтвердження з електронної пошти",
@@ -25,7 +32,11 @@
             "user": "Угодою користувача",
             "privacy": "Політикою конфіденційності",
             "select": "Виберіть тип облікового запису",
-            "dontWorry": "Не хвилюйтеся, це можна змінити пізніше."
+            "dontWorry": "Не хвилюйтеся, це можна змінити пізніше.",
+            "protected": "Цей сайт захищений reCAPTCHA та Google",
+            "apply": "",
+            "remember": "Запам'ятати мене",
+            "forgot": "Забули пароль?"
         },
         "cards": {
             "earn": "Заробляти гроші",
@@ -55,6 +66,10 @@
         }
     },
     "separators": {
-        "or": "або"
+        "or": "або",
+        "haveAnAccountText": "Вже маєте обліковий запис?",
+        "haveAnAccountLink": "Увійти",
+        "donthaveAnAccountText": "Немає облікового запису?",
+        "donthaveAnAccountLink": "Зареєструватися"
     }
 }
