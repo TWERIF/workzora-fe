@@ -1,140 +1,314 @@
 {
-    "auth": {
-        "placeholders": {
-            "name": "First Name",
-            "surname": "Last Name",
-            "username": "Enter your user name",
-            "email": "Email",
-            "password": "Password",
-            "confirmPassword": "Confirm Password",
-            "code": "Code",
-            "signIn": "Sign up",
-            "login": "Login",
-            "welcome": "Welcome back",
-            "usernameoremail": "Email or Username"
-        },
-        "buttons": {
-            "next": "Next Step",
-            "join": "Join Workzora",
-            "google": "Continue with Google",
-            "facebook": "Continue with Facebook",
-            "apple": "Continue with Apple"
-        },
-        "confirmEmail": {
-            "text": "Enter confirmation code from Email",
-            "button": "Send code"
-        },
-        "texts": {
-            "welcome": "Welcome",
-            "welcomeText": "Please supply a backup email. We'll make sure you don't create duplicate accounts and will use this email to let you know if there's an issue with your account.",
-            "agree": "I agree to the Workzora",
-            "and": "and",
-            "user": "User Agreement",
-            "privacy": "Privacy Policy",
-            "select": "Select account type",
-            "dontWorry": "Don't worry, this can be changed later.",
-            "protected": "This site is protected by reCAPTCHA and the Google",
-            "apply": "apply",
-            "remember": "Remember me",
-            "forgot": "Forgot Password?"
-        },
-        "cards": {
-            "earn": "Earn money",
-            "hire": "Hire a freelancer"
-        },
-        "errors": {
-            "required": "Required",
-            "confirmed": "Passwords do not match",
-            "passwordLength": "Password must be at least 8 characters",
-            "passwordLetter": "Password must contain a letter",
-            "passwordNumber": "Password must contain a number",
-            "email": "Invalid email format",
-            "submitRules": "Please confirm that you have read the items above"
-        }
+  "auth": {
+    "placeholders": {
+      "name": "First Name",
+      "surname": "Last Name",
+      "username": "Enter your user name",
+      "email": "Email",
+      "password": "Password",
+      "confirmPassword": "Confirm Password",
+      "code": "Code",
+      "signIn": "Sign up",
+      "login": "Login",
+      "welcome": "Welcome back",
+      "usernameoremail": "Email or Username"
     },
-    "profile": {
-        "headers": {
-            "topFreelancers": "Top freelancers",
-            "findWork": "Find work",
-            "aboutUs": "About us",
-            "faq": "FAQ",
-            "payments": "Payments",
-            "contacts": "Contacts",
-            "login": "Log in",
-            "signup": "Sign up",
-            "postProject": "Post a Project"
-        }
+    "buttons": {
+      "next": "Next Step",
+      "join": "Join Workzora",
+      "google": "Continue with Google",
+      "facebook": "Continue with Facebook",
+      "apple": "Continue with Apple"
     },
-    "separators": {
-        "or": "or",
-        "haveAnAccountText": "Already have an Account?",
-        "haveAnAccountLink": "Log in",
-        "donthaveAnAccountText": "Don’t have an Account?",
-        "donthaveAnAccountLink": "Sign up"
+    "confirmEmail": {
+      "text": "Enter confirmation code from Email",
+      "button": "Send code"
     },
-    "hero": {
-        "title": "Hire the best freelancers for any job,online",
-        "title-list": {
-            "0": "World's largest freelance marketplace",
-            "1": "Any job you can possibly think of",
-            "2": "Save up to 90 & get quotes for free",
-            "3": "Pay only when you're 100% happy"
-        },
-        "HireFreelancerBtn1": "Hire a Freelancer",
-        "HireFreelancerBtn2": "Hire a Freelancer",
-        "ThisBannerCost": "This banner design cost $60 USDT and took 2 days, by  webanned",
-        "asUsedBy": "As used by"
+    "texts": {
+      "welcome": "Welcome",
+      "welcomeText": "Please supply a backup email. We'll make sure you don't create duplicate accounts and will use this email to let you know if there's an issue with your account.",
+      "agree": "I agree to the Workzora",
+      "and": "and",
+      "user": "User Agreement",
+      "privacy": "Privacy Policy",
+      "select": "Select account type",
+      "dontWorry": "Don't worry, this can be changed later.",
+      "protected": "This site is protected by reCAPTCHA and the Google",
+      "apply": "apply",
+      "remember": "Remember me",
+      "forgot": "Forgot Password?"
     },
-    "makeItReal": {
-        "title": {
-            "1": "Make it real with ",
-            "2": "WorkZora"
-        },
-        "grid": {
-            "0": {
-                "title": "The best talent",
-                "content": "Discover reliable professionals by exploring their portfolios and immersing yourself in the feedback shared on their profiles."
-            },
-            "1": {
-                "title": "Fast bids",
-                "content": "Get quick, no-obligation quotes from skilled freelancers. 80% of jobs receive bids within 60 seconds. Your idea is just moments from reality."
-            },
-            "2": {
-                "title": "Quality work ",
-                "content": "With Freelancer's talent pool of over 60 million professionals at your fingertips, you'll find quality talent to get what you need done."
-            },
-            "3": {
-                "title": "Be in control ",
-                "content": "Stay in the loop while on the move. Chat with your freelancers and get real time updates with our mobile app. Anytime, anywhere. "
-            }
-        },
-        "makeDreamsReality": "Make your dreams a reality."
+    "cards": {
+      "earn": "Earn money",
+      "hire": "Hire a freelancer"
     },
-    "globalNetwork": {
-        "title": {
-            "1": "Tap into a",
-            "2": "global talent network"
-        },
-        "sameStyle": "I need the same style",
-        "grid": {
-            "0": {
-                "title": "Post your job",
-                "content": "It's free and easy! Get lots of competitive bids that suit your budget in minutes. Start making your dreams reality."
-            },
-            "1": {
-                "title": "Choose freelancers",
-                "content": "No job is too big or complex. We've got freelancers for jobs of any size or budget, across 2700+ skills. Let our talent bring your ideas to life."
-            },
-            "2": {
-                "title": "Pay safely",
-                "content": "Only pay for work when you are 100% satisfied with the outcome. Our milestone payment system protects you every step of the way. "
-            },
-            "3": {
-                "title": "We're here to help ",
-                "content": "Your time is precious. Let our team of expert recruiters and co-pilots save you time finding talent, even managing your job if needed. "
-            }
-        },
-        "createFuture": "Create the future"
+    "errors": {
+      "required": "Required",
+      "confirmed": "Passwords do not match",
+      "passwordLength": "Password must be at least 8 characters",
+      "passwordLetter": "Password must contain a letter",
+      "passwordNumber": "Password must contain a number",
+      "email": "Invalid email format",
+      "submitRules": "Please confirm that you have read the items above"
+    }
+  },
+  "profile": {
+    "headers": {
+      "topFreelancers": "Top freelancers",
+      "findWork": "Find work",
+      "aboutUs": "About us",
+      "faq": "FAQ",
+      "payments": "Payments",
+      "contacts": "Contacts",
+      "login": "Log in",
+      "signup": "Sign up",
+      "postProject": "Post a Project"
+    }
+  },
+  "separators": {
+    "or": "or",
+    "haveAnAccountText": "Already have an Account?",
+    "haveAnAccountLink": "Log in",
+    "donthaveAnAccountText": "Don’t have an Account?",
+    "donthaveAnAccountLink": "Sign up"
+  },
+  "hero": {
+    "title": "Hire the best freelancers for any job,online",
+    "title-list": {
+      "0": "World's largest freelance marketplace",
+      "1": "Any job you can possibly think of",
+      "2": "Save up to 90 & get quotes for free",
+      "3": "Pay only when you're 100% happy"
     },
-    "getStarted": "Get started now"
+    "HireFreelancerBtn1": "Hire a Freelancer",
+    "HireFreelancerBtn2": "Hire a Freelancer",
+    "ThisBannerCost": "This banner design cost $60 USDT and took 2 days, by  webanned",
+    "asUsedBy": "As used by"
+  },
+  "makeItReal": {
+    "title": {
+      "1": "Make it real with ",
+      "2": "WorkZora"
+    },
+    "grid": {
+      "0": {
+        "title": "The best talent",
+        "content": "Discover reliable professionals by exploring their portfolios and immersing yourself in the feedback shared on their profiles."
+      },
+      "1": {
+        "title": "Fast bids",
+        "content": "Get quick, no-obligation quotes from skilled freelancers. 80% of jobs receive bids within 60 seconds. Your idea is just moments from reality."
+      },
+      "2": {
+        "title": "Quality work ",
+        "content": "With Freelancer's talent pool of over 60 million professionals at your fingertips, you'll find quality talent to get what you need done."
+      },
+      "3": {
+        "title": "Be in control ",
+        "content": "Stay in the loop while on the move. Chat with your freelancers and get real time updates with our mobile app. Anytime, anywhere. "
+      }
+    },
+    "makeDreamsReality": "Make your dreams a reality."
+  },
+  "globalNetwork": {
+    "title": {
+      "1": "Tap into a",
+      "2": "global talent network"
+    },
+    "sameStyle": "I need the same style",
+    "grid": {
+      "0": {
+        "title": "Post your job",
+        "content": "It's free and easy! Get lots of competitive bids that suit your budget in minutes. Start making your dreams reality."
+      },
+      "1": {
+        "title": "Choose freelancers",
+        "content": "No job is too big or complex. We've got freelancers for jobs of any size or budget, across 2700+ skills. Let our talent bring your ideas to life."
+      },
+      "2": {
+        "title": "Pay safely",
+        "content": "Only pay for work when you are 100% satisfied with the outcome. Our milestone payment system protects you every step of the way. "
+      },
+      "3": {
+        "title": "We're here to help ",
+        "content": "Your time is precious. Let our team of expert recruiters and co-pilots save you time finding talent, even managing your job if needed. "
+      }
+    },
+    "createFuture": "Create the future"
+  },
+  "getWorkDone": {
+    "title": {
+      "1": "Get work done in",
+      "2": "over 2700",
+      "3": "different categories"
+    },
+
+    "category": {
+      "website_design": "Website Design",
+      "mobile_apps": "Mobile Apps",
+      "android_apps": "Android Apps",
+      "iphone_apps": "iPhone Apps",
+      "software_architecture": "Software Architecture",
+      "graphic_design": "Graphic Design",
+      "logo_design": "Logo Design",
+      "public_relations": "Public Relations",
+      "logistics": "Logistics",
+      "proofreading": "Proofreading",
+      "translation": "Translation",
+      "research": "Research",
+      "research_writing": "Research Writing",
+      "article_writing": "Article Writing",
+      "web_scraping": "Web Scraping",
+      "css": "CSS",
+      "html_5": "HTML 5",
+      "javascript": "Javascript",
+      "data_processing": "Data Processing",
+      "python": "Python"
+    },
+    "showAllBtn": "Show all"
+  },
+  "getStarted": "Get started now",
+  "topProjects": {
+    "title": {
+      "topPosted": "Top posted",
+      "projects": "projects"
+    },
+    "items": [
+      {
+        "title": "Innovation Challenges",
+        "description": "It's free and easy! Get lots of competitive bids that suit your budget in minutes. Start making your dreams reality.",
+        "skills": ["webdesign", "web", "innovation"],
+        "author": { "name": "Misha", "avatar": "/avatars/user1.png" },
+        "createdAt": "2 hours ago",
+        "views": "1,240"
+      },
+      {
+        "title": "E-commerce Website Redesign",
+        "description": "Looking for an expert to revamp our online store. Focus on user experience and mobile responsiveness.",
+        "skills": ["react", "nextjs", "tailwind"],
+        "author": { "name": "Anna", "avatar": "/avatars/user2.png" },
+        "createdAt": "5 hours ago",
+        "views": "850"
+      }
+    ]
+  },
+
+  "community": {
+    "topFreelancers": { "top": "Top", "role": "Freelancers" },
+    "topClients": { "top": "Top", "role": "Clients" },
+    "showAll": "Show All",
+    "freelancers": [
+      { "id": 1, "name": "Misha", "avatar": "/avatars/f1.png" },
+      { "id": 2, "name": "Anna", "avatar": "/avatars/f2.png" },
+      { "id": 14, "name": "Ivan", "avatar": "/avatars/f14.png" }
+    ],
+    "clients": [
+      { "id": 1, "name": "Google", "avatar": "/avatars/c1.png" },
+      { "id": 2, "name": "Nike", "avatar": "/avatars/c2.png" },
+      { "id": 14, "name": "Apple", "avatar": "/avatars/c14.png" }
+    ]
+  },
+  "faq": {
+    "title": {
+      "part_1": "Top user",
+      "part_2": "questions"
+    },
+    "content": [
+      {
+        "id": "q1",
+        "question": "It's free and easy! Get lots of competitive bids that suit your budget.",
+        "answer": "No job is too big or complex. We've got freelancers for jobs of any size or budget, across 2700+ skills. Let our talent bring your ideas to life."
+      }
+    ]
+  },
+  "imagine-text": "Imagine you can get AI to answer the phone, make sales, set appointments, and generally make your life way easier. It'll cost you less than building a website, and it's the next big thing for businesses in 2025. Thanks to our extensive global talent network, Freelancer is your best bet for finding AI experts to take your business to the next level.",
+  "footer": {
+    "freelancer": {
+      "title": "Freelancer",
+      "links": [
+        "Categories",
+        "Projects",
+        "Contests",
+        "Freelancers",
+        "Enterprise",
+        "Innovation Challenges",
+        "AI Development",
+        "Membership",
+        "Preferred Freelancer Program",
+        "Project Management",
+        "Local Jobs",
+        "Photo Anywhere",
+        "Showcase",
+        "API for Developers",
+        "Get Verified",
+        "Desktop App"
+      ]
+    },
+    "about": {
+      "title": "About",
+      "links": [
+        "About us",
+        "How it works",
+        "Security",
+        "Investors",
+        "Sitemap",
+        "Stories",
+        "News",
+        "Team",
+        "Awards",
+        "Program",
+        "Press releases",
+        "Careers"
+      ]
+    },
+    "terms": {
+      "title": "Terms",
+      "links": [
+        "Privacy Policy",
+        "Terms and Conditions",
+        "Copyright Policy",
+        "Code of Conduct",
+        "Fees and Charges"
+      ]
+    },
+    "clients": {
+      "title": "Clients",
+      "links": [
+        "Privacy Policy",
+        "Terms and Conditions",
+        "Copyright Policy",
+        "Code of Conduct",
+        "Fees and Charges"
+      ]
+    },
+    "information": {
+      "title": "Information",
+      "links": [
+        "Categories",
+        "Projects",
+        "Contests",
+        "Freelancers",
+        "Enterprise",
+        "Innovation Challenges",
+        "AI Development",
+        "Membership",
+        "Preferred Freelancer Program",
+        "Project Management",
+        "Local Jobs",
+        "Photo Anywhere",
+        "Showcase",
+        "API for Developers",
+        "Get Verified",
+        "Desktop App"
+      ]
+    },
+    "copyrightInfo": {
+      "registeredUsers": "82,741,914",
+      "registeredUsersText": "Registered Users",
+      "totalJobs": "24,897,510",
+      "totalJobsText": "Total Jobs Posted",
+      "trademark": "WorkZora ® is a registered Trademark",
+      "copyright": "Copyright © 2025 WorkZora"
+    }
+  }
 }

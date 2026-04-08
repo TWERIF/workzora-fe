@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Head from "next/head";
 import { useTranslation } from "react-i18next";
 import Iphones from '../../public/iphones.png'
@@ -11,6 +11,16 @@ import IconM9cow from "@/components/svg/IconM9cow";
 import IconTesla from "@/components/svg/IconTesla";
 import Image from 'next/image';
 import ButtonGradientSmall from '@/components/ui/Button/ButtonGradientSmall';
+import DogImage from '@/components/svg/DogImage';
+import ProjectCard from '@/components/ui/Card/ProjectCard';
+import ProfileCard from '@/components/ui/Card/ProfileCard';
+import ProfileGrid from '@/components/ui/Layout/ProfileGrid';
+import Cubes from '@/components/svg/CubesTop';
+import CubesTop from '@/components/svg/CubesTop';
+import CubesBottom from '@/components/svg/CubesBottom';
+import IconArrow from '@/components/svg/IconArrow';
+import { FAQItem } from '@/components/ui/FAQitem';
+import { FAQSection } from '@/components/ui/Main-section/FAQsection';
 
 const LOGOS = [
   IconM9cow, IconAdidas, IconBmw, IconIbm,
@@ -18,7 +28,14 @@ const LOGOS = [
 ];
 
 export default function Home() {
+
   const { t } = useTranslation("common");
+  const categoriesObj = t("getWorkDone.category", { returnObjects: true });
+  // Перетворюємо об'єкт у масив значень (назв категорій)
+  const categoryNames = Object.values(categoriesObj);
+  const projects = t("topProjects.items", { returnObjects: true });
+  const freelancers = t("community.freelancers", { returnObjects: true });
+  const clients = t("community.clients", { returnObjects: true });
 
   return (
     <>
@@ -28,7 +45,7 @@ export default function Home() {
       </Head>
 
       {/* hero Section */}
-      <section className="text-white bg-[url('/bg-main.png')] bg-cover bg-center min-h-[750px] flex pt-24">
+      <section className=" text-white bg-[url('/bg-main.png')] bg-cover bg-center min-h-[750px] flex pt-24">
         <div className="container mx-auto flex flex-col">
           <div className="max-w-[550px]">
             <h1 className="font-bold text-5xl md:text-[55px] leading-tight pb-4">
@@ -259,7 +276,131 @@ export default function Home() {
 
         </div>
       </section>
+      <section className="relative bg-[url('/bg-main4.png')] bg-cover bg-center py-20 overflow-hidden ">
+        <div className="container mx-auto">
 
+          <div className="grid grid-cols-1 lg:grid-cols-[3fr,4fr] gap-16 items-start">
+
+            <div className="flex flex-col gap-12 lg:gap-16">
+
+              <div className="max-w-[600px]">
+                <h2 className="text-[65px] font-bold leading-[1.15] tracking-tight">
+                  {t("getWorkDone.title.1")}<br />
+                  <span className="text-white">
+                    {t("getWorkDone.title.2")}
+                  </span>{' '}
+                  {t("getWorkDone.title.3")}
+                </h2>
+              </div>
+
+              <div className="w-full max-w-[450px] self-start ml-auto lg:self-auto">
+                <DogImage />
+              </div>
+            </div>
+
+            {/* ПРАВА ЧАСТИНА (Категорії) */}
+            <div className="flex flex-col gap-10 ">
+
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-x-16 gap-y-4">
+
+                {/* Перші дві повні колонки */}
+                {[0, 1].map((colIndex) => (
+                  <div key={colIndex} className="flex flex-col gap-4">
+                    {categoryNames.map((name, i) => (
+                      <div key={i} className="text-lg opacity-80 hover:opacity-100 cursor-pointer whitespace-nowrap">
+                        {name}
+                      </div>
+                    ))}
+                  </div>
+                ))}
+
+                {/* Остання третя колонка */}
+                <div className="flex flex-col gap-4">
+                  {/* Виводимо всі категорії крім останніх трьох */}
+                  {categoryNames.slice(0, -3).map((name, i) => (
+                    <div key={i} className="text-lg opacity-80 hover:opacity-100 cursor-pointer whitespace-nowrap">
+                      {name}
+                    </div>
+                  ))}
+
+                  {/* Кнопка Show All замість останніх 3-х елементів */}
+                  <div className="pt-2">
+                    <ButtonGradientSmall
+                      text={t("getWorkDone.showAllBtn")}
+                      onClick={() => console.log("Show all")}
+                    />
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+      <section className="py-20 ">
+        <div className="container mx-auto px-4 flex  gap-24">
+
+          <ProfileGrid items={freelancers} title={t("community.topFreelancers", { returnObjects: true })} />
+          <ProfileGrid items={clients} title={t("community.topClients", { returnObjects: true })} />
+
+
+        </div>
+      </section>
+
+      <section className="py-24 bg-[#F8F9FA] relative">
+        <>
+          <div className="absolute top-0 left-0">
+            <CubesTop />
+          </div>
+          <div className="absolute bottom-0 right-0">
+            <CubesBottom />
+          </div>
+          <div className="container mx-auto px-4 relative">
+
+            {/* ЗАГОЛОВОК СЕКЦІЇ */}
+            <div className="mb-12">
+              <h2 className="text-4xl md:text-5xl font-bold text-black relative inline-block">
+                {t("topProjects.title.topPosted")}<br />
+                <span className=" text-[#7EA310] " >
+                  {t("topProjects.title.projects")}
+
+                </span>
+              </h2>
+            </div>
+
+            {/* СІТКА КАРТОК (2 на 3 = 6 карток, або 2 на 6 = 12 карток) */}
+            <div className="grid grid-cols-1 sm:grid-cols-2  gap-8">
+              {Array.isArray(projects) && [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map((index) => (
+                <ProjectCard
+                  key={index}
+                  project={projects.at(0)}
+                />
+              ))}
+            </div>
+            <div className="flex flex-col items-center justify-center gap-3">
+              <button className="w-24 h-24  flex flex-col items-center justify-center  gap-2 p-2">
+                <span className="text-[12px] text-success font-bold uppercase tracking-tighter text-center leading-tight">
+                  {t("community.showAll")}
+                </span>
+                <IconArrow />
+              </button>
+            </div>
+          </div>
+        </>
+
+      </section>
+      <FAQSection />
+      <section className=''>
+        <div className="container py-10 mx-auto px-4 relative">
+
+          <div className='text-base text-[#333333] text-center max-w-[1300px]'>
+
+            {t("imagine-text")}
+          </div>
+        </div>
+      </section>
 
     </>
   );

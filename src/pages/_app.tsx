@@ -7,6 +7,7 @@ import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import '../i18n';
 import i18n from '../i18n';
+import Footer from '@/components/ui/Footer/Footer';
 
 function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
@@ -26,6 +27,7 @@ function App({ Component, pageProps }: AppProps) {
     <ThemeProvider attribute="class" defaultTheme="light">
       {showHeader && <Header />}
       <Component {...pageProps} />
+      <Footer />
     </ThemeProvider>
   );
 }
