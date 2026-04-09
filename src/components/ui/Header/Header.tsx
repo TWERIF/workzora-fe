@@ -45,7 +45,7 @@ export default function Header() {
 
     return (
         <>
-            <header className="w-full bg-bg-header dark:bg-bg-dark box z-10" style={{ boxShadow: "0px 0px 20px #7EA310" }}>
+            <header className="w-full bg-bg-header dark:bg-bg-dark box z-100" style={{ boxShadow: "0px 0px 20px #7EA310" }}>
                 <div className="w-full flex items-center justify-between px-2 py-4">
                     {/* Logo */}
                     {theme === "dark" ? <LogoRegWhite /> : <Logo />}

@@ -310,5 +310,11 @@
       "trademark": "WorkZora ® is a registered Trademark",
       "copyright": "Copyright © 2025 WorkZora"
     }
+  },
+  "profilePage": {},
+  "breadcrumbs": {
+    "home": "Workzora",
+    "profile": "Profile",
+    "settings": "Settings"
   }
 }

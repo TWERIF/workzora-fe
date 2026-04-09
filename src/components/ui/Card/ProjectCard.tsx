@@ -1,26 +1,45 @@
 import React from 'react';
-import Image from 'next/image';
 import { useTranslation } from 'react-i18next';
 import PersonIcon from '@/components/svg/PersonIcon';
 import IconCalendar from '@/components/svg/IconCalendar';
 import IconViews from '@/components/svg/IconViews';
+import { useTheme } from 'next-themes';
+import UsdtIcon from '@/components/svg/UsdtIcon';
 
 export default function ProjectCard({ project }) {
     const { t } = useTranslation("common");
+    const { theme } = useTheme();
+    const isDark = theme === "dark";
 
-    // Припускаємо, що дані приходять через props
-    const { title, description, skills, author, createdAt, views } = project;
+    // Додаємо price до деструктуризації (припускаємо, що воно є в об'єкті)
+    const { title, description, skills, author, createdAt, views, price } = project;
 
     return (
-        <div className="bg-white rounded-3xl p-6 shadow-[0px_10px_30px_rgba(0,0,0,0.05)] hover:shadow-xl transition-shadow duration-300 flex flex-col gap-5 border border-gray-100">
+        <div className={`
+            relative rounded-3xl p-6 transition-all duration-300 flex flex-col gap-5 shadow-[0px_10px_30px_rgba(0,0,0,0.05)] hover:shadow-xl
+            ${isDark
+                ? "bg-[#2A2A2A] text-white border border-white/10"
+                : "bg-white text-[#333333] border border-gray-100"}
+        `}>
+
+            {/* ЦІНА: Правий верхній кут */}
+            {100 && (
+                <div className={`
+                    absolute top-6 flex items-center gap-2 right-6 px-4 py-1.5 rounded-xl font-bold text-lg
+                `}>
+                    <UsdtIcon />
+                    {100}
+                </div>
+            )}
 
             {/* HEADER: Title & Skills */}
             <div className="flex flex-col gap-3">
-                <h3 className="text-2xl font-bold text-black leading-tight">
+                {/* Додаємо pr-20, щоб текст не налізав на ціну */}
+                <h3 className={`text-2xl font-bold leading-tight pr-20 ${isDark ? "text-white" : "text-[#333333]"}`}>
                     {title}
                 </h3>
-                {/* BODY: Description */}
-                <p className="text-gray-600 leading-relaxed text-base line-clamp-3">
+
+                <p className={`leading-relaxed text-base line-clamp-3 ${isDark ? "text-gray-400" : "text-gray-600"}`}>
                     {description}
                 </p>
 
@@ -28,7 +47,10 @@ export default function ProjectCard({ project }) {
                     {skills.map((skill, index) => (
                         <span
                             key={index}
-                            className="px-3 py-1 bg-gray-100 text-[#7EA310] rounded-full text-sm font-medium"
+                            className={`px-3 py-1 rounded-full text-sm font-medium transition-colors
+                                ${isDark
+                                    ? "bg-[#333333] text-success border border-success/20"
+                                    : "bg-gray-100 text-gray-700"}`}
                         >
                             #{skill}
                         </span>
@@ -36,37 +58,34 @@ export default function ProjectCard({ project }) {
                 </div>
             </div>
 
-
             {/* FOOTER: Author, Date, Views */}
-            <div className="pt-5 border-t border-gray-100 flex items-center justify-between text-sm text-[rgba(51,51,51,1)]">
+            <div className={`pt-5 border-t flex items-center justify-between text-sm 
+                ${isDark ? "border-white/10" : "border-gray-100"}`}>
 
-                {/* ЛІВА ЧАСТИНА: Автор та Дата в один ряд */}
+                {/* ЛІВА ЧАСТИНА: Автор та Дата */}
                 <div className="flex items-center gap-6">
-
-                    {/* Author (тепер теж flex) */}
                     <div className="flex items-center gap-2">
-                        <PersonIcon />
-                        <span className="  whitespace-nowrap">
+                        <PersonIcon className={isDark ? "fill-white/70" : "fill-[#333333]"} />
+                        <span className={`whitespace-nowrap ${isDark ? "text-gray-300" : "text-[#333333]"}`}>
                             {author.name}
                         </span>
                     </div>
 
-                    {/* Date */}
                     <div className="flex items-center gap-1.5">
-                        <IconCalendar />
-                        <span className="whitespace-nowrap">{createdAt}</span>
+                        <IconCalendar className={isDark ? "fill-white/70" : "fill-[#333333]"} />
+                        <span className={`whitespace-nowrap ${isDark ? "text-gray-400" : "text-gray-500"}`}>
+                            {createdAt}
+                        </span>
                     </div>
-
                 </div>
 
                 {/* ПРАВА ЧАСТИНА: Views */}
-                <div className="flex items-center gap-1.5 bg-gray-50 px-3 py-1 rounded-lg">
-                    <IconViews />
-                    <span className="font-medium text-gray-700">{views}</span>
+                <div className={`flex items-center gap-1.5 px-3 py-1 rounded-lg transition-colors
+                    ${isDark ? "bg-[#333333] text-white" : "bg-gray-50 text-gray-700"}`}>
+                    <IconViews className={isDark ? "fill-white" : "fill-gray-700"} />
+                    <span className="font-medium">{views}</span>
                 </div>
-
             </div>
-
-        </div >
+        </div>
     );
 }

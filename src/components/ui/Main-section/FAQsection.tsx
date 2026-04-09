@@ -1,17 +1,20 @@
 import { useState } from "react";
-import { FAQItem } from "../FAQitem";
+import { FAQItem } from "./FAQitem";
 import { useTranslation } from "react-i18next";
+import { useTheme } from "next-themes";
 
 export const FAQSection = () => {
     const [openId, setOpenId] = useState<number | null>(null);
     const { t } = useTranslation("common");
 
     const toggleItem = (i: number) => setOpenId(openId === i ? null : i);
-    const faqData = t("faq", { returnObjects: true });
+    const faqData = t("faq", { returnObjects: true }) as any;
 
     // Розділяємо дані на парні та непарні, щоб вони не залежали одне від одного
     const leftCol = [0, 2, 4, 6];
     const rightCol = [1, 3, 5, 7];
+    const { theme } = useTheme();
+
 
     return (
         <section className="bg-success py-16 px-6">

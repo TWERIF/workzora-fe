@@ -1,15 +1,12 @@
-import React from 'react';
-import { useTranslation } from 'react-i18next';
-import Image from 'next/image';
-import IconInstagramSmall from '@/components/svg/IconInstagramSmall';
-import IconFacebookSmall from '@/components/svg/IconFacebookSmall';
-import IconTelegramSmall from '@/components/svg/IconTelegramSmall';
-import IconYoutubeSmall from '@/components/svg/IconYoutubeSmall';
 import AvalibleApplestoreIcon from '@/components/svg/AvalibleApplestoreIcon';
 import AvalibleGoogleplayIcon from '@/components/svg/AvalibleGoogleplayIcon';
-import Logo from '@/components/svg/Logo';
-import LogoWhite from '@/components/svg/LogoWhite';
+import IconFacebookSmall from '@/components/svg/IconFacebookSmall';
+import IconInstagramSmall from '@/components/svg/IconInstagramSmall';
+import IconTelegramSmall from '@/components/svg/IconTelegramSmall';
+import IconYoutubeSmall from '@/components/svg/IconYoutubeSmall';
 import LogoGreenStripes from '@/components/svg/LogoGreenStripes';
+import { useTranslation } from 'react-i18next';
+import FooterMeta from './FooterMeta';
 
 const icons = [
     IconFacebookSmall,
@@ -25,8 +22,8 @@ export default function Footer() {
     const info = footerData.copyrightInfo;
     return (
         <>
-            <footer className="bg-[rgba(51,51,51,1)] text-white py-16">
-                <div className="container mx-auto px-4">
+            <footer className="bg-[#3B3B3B] text-white py-16">
+                <div className="container mx-auto pb-2">
                     <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-64">
 
                         {/* ЛІВА ЧАСТИНА: Лого, Стори, Соцмережі */}
@@ -74,40 +71,9 @@ export default function Footer() {
                     </div>
 
                 </div>
+                <FooterMeta info={info} />
 
             </footer>
-            <section className="bg-white text-[rgba(51,51,51,1)] py-10 border-t border-gray-200">
-                <div className="container mx-auto px-4 flex  justify-between gap-8">
-
-                    {/* Статистика (чорні числа на білому фоні) */}
-                    <div className="flex flex-wrap  gap-12 md:gap-24 text-center">
-                        <div className="flex flex-col gap-1">
-                            <span className="text-2xl md:text-3xl font-medium tracking-tight ">
-                                {info.registeredUsers}
-                            </span>
-                            <span className="text-xs md:text-sm font-medium  uppercase tracking-widest">
-                                {info.registeredUsersText}
-                            </span>
-                        </div>
-
-                        <div className="flex flex-col gap-1">
-                            <span className="text-2xl md:text-3xl font-medium tracking-tight ">
-                                {info.totalJobs}
-                            </span>
-                            <span className="text-xs md:text-sm font-medium  uppercase tracking-widest">
-                                {info.totalJobsText}
-                            </span>
-                        </div>
-
-                    </div>
-                    {/* Юридичний текст */}
-                    <div className="flex flex-col items-center gap-1 text-center  text-base ">
-                        <p className="font-medium">{info.trademark}</p>
-                        <p>{info.copyright}</p>
-                    </div>
-
-                </div>
-            </section>
         </>
 
     );

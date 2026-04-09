@@ -19,8 +19,9 @@ import Cubes from '@/components/svg/CubesTop';
 import CubesTop from '@/components/svg/CubesTop';
 import CubesBottom from '@/components/svg/CubesBottom';
 import IconArrow from '@/components/svg/IconArrow';
-import { FAQItem } from '@/components/ui/FAQitem';
+import { FAQItem } from '@/components/ui/Main-section/FAQitem';
 import { FAQSection } from '@/components/ui/Main-section/FAQsection';
+import { useTheme } from 'next-themes';
 
 const LOGOS = [
   IconM9cow, IconAdidas, IconBmw, IconIbm,
@@ -36,6 +37,9 @@ export default function Home() {
   const projects = t("topProjects.items", { returnObjects: true });
   const freelancers = t("community.freelancers", { returnObjects: true });
   const clients = t("community.clients", { returnObjects: true });
+  const { theme } = useTheme();
+  const isDark = theme == 'dark'
+
 
   return (
     <>
@@ -80,7 +84,7 @@ export default function Home() {
       <section className="bg-[#333333] text-white py-6">
         <div className="container mx-auto flex flex-wrap items-center justify-evenly  gap-8 md:gap-10">
           <span className="whitespace-nowrap opacity-70 uppercase tracking-wider text-sm font-semibold">
-            {t("makeItReal.asUsedBy")}
+            {t("hero.asUsedBy")}
           </span>
 
           <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12">
@@ -94,7 +98,7 @@ export default function Home() {
       </section>
 
       {/* Make It Real Section */}
-      <section className="relative bg-[url('/bg-main1.png')] bg-cover bg-center py-20 overflow-hidden">
+      <section className={`relative ${isDark ? "bg-[#333333]" : "bg-[url('/bg-main1.png')]"} bg-cover bg-center py-20 overflow-hidden`}>
         <div className="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
 
           {/* ЛІВА ЧАСТИНА: Заголовок + Зображення */}
@@ -130,7 +134,7 @@ export default function Home() {
                 </p>
               </div>
             ))}
-            <div className='rounded-2xl shadow-[0px_0px_20px_0px_rgba(0,0,0,0.25)] flex w-[550px] p-6 bg-white justify-center items-center gap-14'>
+            <div className={`rounded-2xl shadow-[0px_0px_20px_0px_rgba(0,0,0,0.25)]  ${theme == "dark" ? "bg-[#333333]" : "bg-white"}  flex w-[550px] p-6  justify-center items-center gap-14`}>
               <div className='text-[30px]  font-bold'>{t("makeItReal.makeDreamsReality")}</div>
               <ButtonGradientSmall text={t("getStarted")} onClick={() => { }} />
 
@@ -139,7 +143,7 @@ export default function Home() {
 
         </div>
       </section>
-      <section className="relative bg-[url('/bg-main2.png')] bg-cover bg-center py-20 overflow-hidden text-white">
+      <section className={`relative ${isDark ? "bg-[url('/bg-main2dark.png')]" : "bg-[url('/bg-main2.png')]"}   bg-cover bg-center py-20 overflow-hidden text-white`}>
         <div className="container mx-auto">
 
 
@@ -176,7 +180,7 @@ export default function Home() {
 
         </div>
       </section>
-      <section className="relative bg-[url('/bg-main3.png')] bg-cover bg-center py-20 overflow-hidden">
+      <section className={`relative ${isDark ? "bg-[#333333]" : "bg-[url('/bg-main3.png')]"}   bg-cover bg-center py-20 overflow-hidden`}>
         <div className="container mx-auto flex flex-col gap-20">
 
           {/* ВЕРХНЯ ЧАСТИНА: ТЕКСТ ЗЛІВА + ГАЛЕРЕЯ СПРАВА */}
@@ -339,7 +343,7 @@ export default function Home() {
 
         </div>
       </section>
-      <section className="py-20 ">
+      <section className={`py-20 ${isDark ? "bg-[#333333]" : "bg-white"}`} >
         <div className="container mx-auto px-4 flex  gap-24">
 
           <ProfileGrid items={freelancers} title={t("community.topFreelancers", { returnObjects: true })} />
@@ -349,7 +353,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-24 bg-[#F8F9FA] relative">
+      <section className={`py-24 relative ${isDark ? "bg-[#333333]" : "bg-white"} `}>
         <>
           <div className="absolute top-0 left-0">
             <CubesTop />
@@ -361,7 +365,7 @@ export default function Home() {
 
             {/* ЗАГОЛОВОК СЕКЦІЇ */}
             <div className="mb-12">
-              <h2 className="text-4xl md:text-5xl font-bold text-black relative inline-block">
+              <h2 className="text-4xl md:text-5xl font-bold  relative inline-block">
                 {t("topProjects.title.topPosted")}<br />
                 <span className=" text-[#7EA310] " >
                   {t("topProjects.title.projects")}
@@ -392,10 +396,10 @@ export default function Home() {
 
       </section>
       <FAQSection />
-      <section className=''>
+      <section className={` ${isDark ? "bg-[#333333] text-white" : "bg-white text-[#333333]"}`}>
         <div className="container py-10 mx-auto px-4 relative">
 
-          <div className='text-base text-[#333333] text-center max-w-[1300px]'>
+          <div className='text-base  text-center max-w-[1300px]'>
 
             {t("imagine-text")}
           </div>
