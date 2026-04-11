@@ -29,26 +29,20 @@ const Breadcrumbs = () => {
 
                 {pathSegments.map((segment, index) => {
                     const href = `/${pathSegments.slice(0, index + 1).join('/')}`;
-                    const isLast = index === pathSegments.length - 1;
+                    // const isLast = index === pathSegments.length - 1;
                     console.log(href)
 
                     return (
                         <li key={href} className="flex items-center space-x-2">
-                            {/* Розділювач - ваша іконка стрілки, повернута праворуч */}
                             <IconArrowSmall />
 
-                            {isLast ? (
-                                <span className="font-bold text-[#333333] dark:text-white capitalize">
-                                    {t(`breadcrumbs.${segment}`) || segment}
-                                </span>
-                            ) : (
-                                <Link
-                                    href={href}
-                                    className="text-gray-500 text-sm hover:text-[#7EA310] dark:text-gray-400 dark:hover:text-success transition-colors capitalize"
-                                >
-                                    {t(`breadcrumbs.${segment}`) || segment}
-                                </Link>
-                            )}
+                            <Link
+                                href={href}
+                                className="text-gray-500 text-sm hover:text-[#7EA310] dark:text-gray-400 dark:hover:text-success transition-colors capitalize"
+                            >
+                                {t(`breadcrumbs.${segment}`) || segment}
+                            </Link>
+
                         </li>
                     );
                 })}

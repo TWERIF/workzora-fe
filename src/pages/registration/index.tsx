@@ -13,6 +13,7 @@ import { useTheme } from "next-themes";
 import Head from "next/head";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { registration } from "./api";
 
 
 export default function Registration() {
@@ -76,7 +77,7 @@ export default function Registration() {
     const register = async () => {
         if (!validate() && !isActive) return;
 
-        const res = await $api.post('/auth/register', {
+        const res = await registration({
             firstName,
             lastName,
             password,
@@ -84,7 +85,8 @@ export default function Registration() {
             userName,
             locale,
             isActive
-        });
+        })
+        console.log(res)
 
         if (res) router.push(`/${locale}/reserve-email`);
     }

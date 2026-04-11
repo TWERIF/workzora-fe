@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import ButtonGradient from '../Button/ButtonGradient';
+import { useTheme } from 'next-themes';
 
 const BankVerification = () => {
     const [selectedBank, setSelectedBank] = useState('Payoneer');
+    const { theme } = useTheme();
 
     const banks = [
         { name: 'Wise', logo: 'https://placehold.co/100x40/transparent/000?text=WISE' },

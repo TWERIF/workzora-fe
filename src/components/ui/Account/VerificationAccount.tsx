@@ -1,7 +1,12 @@
 import React from 'react';
 import ButtonGradient from '../Button/ButtonGradient';
+import ImageIcon from '@/components/svg/ImageIcon';
+import IdIcon from '@/components/svg/IdIcon';
+import { useTheme } from 'next-themes';
 
 const VerificationAccount = () => {
+    const { theme } = useTheme();
+
     return (
         <div className="max-w-5xl mx-auto bg-[#F9F9F9] rounded-[40px] p-12 shadow-sm font-sans text-[#333]">
             <h1 className="text-4xl font-bold mb-10">Verification Account</h1>
@@ -24,8 +29,7 @@ const VerificationAccount = () => {
                                     readOnly
                                 />
                                 <div className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400">
-                                    {/* Placeholder для іконки картинки */}
-                                    <div className="w-6 h-6 border-2 border-gray-300 rounded-md" />
+                                    <ImageIcon />
                                 </div>
                             </div>
                             <ButtonGradient text="Upload" onClick={() => { }} />
@@ -35,7 +39,7 @@ const VerificationAccount = () => {
                     {/* Секція 2: Селфі */}
                     <div className="space-y-3">
                         <label className="block text-lg font-medium ml-2">
-                            Make selfie with id's
+                            {` Make selfie with id's`}
                         </label>
                         <div className="flex items-center gap-4">
                             <div className="relative flex-grow">
@@ -46,10 +50,7 @@ const VerificationAccount = () => {
                                     readOnly
                                 />
                                 <div className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400">
-                                    {/* Placeholder для іконки камери/телефона */}
-                                    <div className="w-5 h-8 border-2 border-gray-300 rounded-lg relative">
-                                        <div className="absolute top-1 left-1/2 -translate-x-1/2 w-1 h-1 bg-gray-300 rounded-full" />
-                                    </div>
+                                    <IdIcon />
                                 </div>
                             </div>
                             <ButtonGradient text="Make foto" onClick={() => { }} />
