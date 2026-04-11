@@ -53,16 +53,15 @@ export default function LoginModal(props: ModalI) {
 
 
         setErrors(tmpErrors);
-
         return tmpErrors.every(e => !e);
     };
 
     const login = async () => {
         if (!validate()) return;
-
+        console.log(password, userName)
         const res = await $api.post('/auth/login', {
             password,
-            userName,
+            email: userName,
         });
 
         if (res) router.push(`/${locale}/profile`);

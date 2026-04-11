@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import ButtonGradient from '../Button/ButtonGradient';
-import { useTheme } from 'next-themes';
 
 const BankVerification = () => {
+    const { t } = useTranslation("common");
     const [selectedBank, setSelectedBank] = useState('Payoneer');
-    const { theme } = useTheme();
-
     const banks = [
         { name: 'Wise', logo: 'https://placehold.co/100x40/transparent/000?text=WISE' },
         { name: 'Payoneer', logo: 'https://placehold.co/100x40/transparent/000?text=Payoneer' },
@@ -14,25 +13,19 @@ const BankVerification = () => {
         { name: 'monobank', logo: 'https://placehold.co/100x40/transparent/000?text=monobank' },
         { name: 'KredoBank', logo: 'https://placehold.co/100x40/transparent/000?text=KredoBank' },
     ];
-
     return (
-        <div className="max-w-5xl mx-auto bg-white rounded-[40px] p-10 shadow-sm font-sans text-[#333]">
-            <h1 className="text-3xl font-bold mb-8">Bank Verification</h1>
+        <div className="max-w-5xl mx-auto bg-white dark:bg-[#1A1A1A] rounded-[40px] p-10 shadow-sm font-sans text-[#333] dark:text-white">
+            <h1 className="text-3xl font-bold mb-8">{t('profilePage.bank.title')}</h1>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                {/* Ліва колонка */}
                 <div className="space-y-10">
-
-                    {/* Секція Test Payment */}
                     <div className="space-y-4">
-                        <h3 className="text-xl font-medium px-2">Make terest payment</h3>
-                        <ButtonGradient text="Test Payment" onClick={() => { }} />
-
+                        <h3 className="text-xl font-medium px-2">{t('profilePage.bank.test_payment_title')}</h3>
+                        <ButtonGradient text={t('profilePage.bank.test_payment_btn')} onClick={() => { }} />
                     </div>
 
-                    {/* Секція Bank API (Сітка банків) */}
                     <div className="space-y-4">
-                        <h3 className="text-xl font-medium px-2">Use bank api</h3>
+                        <h3 className="text-xl font-medium px-2">{t('profilePage.bank.use_api_title')}</h3>
                         <div className="grid grid-cols-3 gap-4">
                             {banks.map((bank) => (
                                 <div
@@ -63,22 +56,12 @@ const BankVerification = () => {
                     </div>
                 </div>
 
-                {/* Права колонка (Тексти) */}
                 <div className="flex flex-col space-y-20 pt-2">
-                    <p className="text-gray-600 text-lg leading-relaxed">
-                        All data after verification is automatically transferred from our server.
-                        All data after verification is automatically transferred from our server.
-                        from our server.
+                    <p className="text-gray-600 dark:text-gray-400 text-lg leading-relaxed">
+                        {t('profilePage.bank.info_text_short')}
                     </p>
-
-                    <p className="text-gray-600 text-lg leading-relaxed">
-                        All data after verification is automatically transferred from our server.
-                        All data after verification is automatically transferred from our server.
-                        All data after verification is automatically transferred from our server.
-                        All data after verification is automatically transferred from our server.
-                        All data after verification is automatically transferred from our server.
-                        All data after verification is automatically transferred from our server.
-                        All data after verification is automatically transferred from our server.
+                    <p className="text-gray-600 dark:text-gray-400 text-lg leading-relaxed">
+                        {t('profilePage.bank.info_text_long')}
                     </p>
                 </div>
             </div>

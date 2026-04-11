@@ -311,7 +311,57 @@
       "copyright": "Copyright © 2025 WorkZora"
     }
   },
-  "profilePage": {},
+  "profilePage": {
+    "title": "My Account",
+    "form": {
+      "firstname": "Firstname",
+      "firstname_placeholder": "Enter firstname",
+      "lastname": "Lastname",
+      "lastname_placeholder": "Enter lastname",
+      "nickname": "Nickname",
+      "nickname_placeholder": "Gromotey",
+      "email": "Email",
+      "email_placeholder": "example@mail.com",
+      "confirm_email": "Confirm email",
+      "security_code": "Enter security code from Email",
+      "security_code_placeholder": "Enter code..."
+    },
+    "verification": {
+      "title": "Verification Account",
+      "passport_label": "Upload your passport/ID card",
+      "selfie_label": "Make selfie with id's",
+      "select_file": "Select file",
+      "upload_btn": "Upload",
+      "make_photo_btn": "Make photo",
+      "info_text": "All data after verification is automatically transferred from our server."
+    },
+    "bank": {
+      "title": "Bank Verification",
+      "test_payment_title": "Make test payment",
+      "test_payment_btn": "Test Payment",
+      "use_api_title": "Use bank api",
+      "info_text_short": "All data after verification is automatically transferred from our server.",
+      "info_text_long": "All data after verification is automatically transferred from our server. This ensures the reliability and security of your transactions through our system."
+    },
+    "settings_menu": {
+      "title": "Account settings",
+      "cabinet": "Cabinet",
+      "correspondence": "Correspondence",
+      "bids": "Bids",
+      "competitions": "Competitions",
+      "reviews": "Reviews",
+      "finances": "Finances",
+      "portfolio": "Portfolio",
+      "statistics": "Statistics",
+      "profile_desc": "Profile Description",
+      "performer_profile": "Performer Profile",
+      "customer_profile": "Customer Profile",
+      "settings": "Settings",
+      "pro_account": "Pro Account",
+      "support": "Support",
+      "news": "News"
+    }
+  },
   "breadcrumbs": {
     "home": "Workzora",
     "profile": "Profile",

@@ -8,6 +8,7 @@ import { useEffect } from 'react';
 import '../i18n';
 import i18n from '../i18n';
 import Footer from '@/components/ui/Footer/Footer';
+import ReactQueryProvider from '@/utils/providers/QueryClientProvider';
 
 function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
@@ -24,11 +25,14 @@ function App({ Component, pageProps }: AppProps) {
   const showHeader = !noHeaderRoutes.includes(pathname);
 
   return (
-    <ThemeProvider attribute="class" defaultTheme="light">
-      {showHeader && <Header />}
-      <Component {...pageProps} />
-      <Footer />
-    </ThemeProvider>
+    <ReactQueryProvider>
+
+      <ThemeProvider attribute="class" defaultTheme="light">
+        {showHeader && <Header />}
+        <Component {...pageProps} />
+        <Footer />
+      </ThemeProvider>
+    </ReactQueryProvider>
   );
 }
 
