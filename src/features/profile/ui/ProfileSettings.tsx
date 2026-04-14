@@ -1,14 +1,14 @@
 
-import AccountSettings from '@/features/profile/ui/AccountSettings';
-import BankVerification from '@/features/profile/ui/BankVerification';
-import VerificationAccount from '@/features/profile/ui/VerificationAccount';
+import { useTheme } from 'next-themes';
+import { useTranslation } from 'react-i18next';
+import AccountSettings from './AccountSettings';
+import BankVerification from './BankVerification';
+import VerificationAccount from './VerificationAccount';
 import IconEdit from '@/shared/components/svg/IconEdit';
 import Breadcrumbs from '@/shared/components/ui/BreadCrumbs';
 import InputEdit from '@/shared/components/ui/Input/InputEdit';
-import { useTheme } from 'next-themes';
-import { useTranslation } from 'react-i18next';
 
-export default function ProfilePage() {
+export default function ProfileSettings() {
     const { t } = useTranslation("common");
     const { theme } = useTheme();
     const isDark = theme === 'dark';

@@ -62,7 +62,8 @@
       "contacts": "Contacts",
       "login": "Log in",
       "signup": "Sign up",
-      "postProject": "Post a Project"
+      "postProject": "Post a Project",
+      "logout": "logout"
     }
   },
   "separators": {

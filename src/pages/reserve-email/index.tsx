@@ -1,15 +1,16 @@
 'use client';
 
-import { $api } from "@/components/http";
-import ButtonGradient from "@/components/ui/Button/ButtonGradient";
-import AuthHeader from "@/components/ui/Header/AuthHeader";
-import Input from "@/components/ui/Input/Input";
-import Submit from "@/components/ui/Input/Submit";
-import AuthLayout from "@/components/ui/Layout/AuthLayout";
-import Link from "@/components/ui/Link/Link";
+
+import { $api } from "@/shared/components/http";
+import ButtonGradient from "@/shared/components/ui/Button/ButtonGradientSmall";
+import AuthHeader from "@/shared/components/ui/Header/AuthHeader";
+import Input from "@/shared/components/ui/Input/Input";
+import Submit from "@/shared/components/ui/Input/Submit";
+import AuthLayout from "@/shared/components/ui/Layout/AuthLayout";
 import { validateEmail } from "@/utils/validators";
 import { useTranslation } from "next-i18next";
 import Head from "next/head";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 

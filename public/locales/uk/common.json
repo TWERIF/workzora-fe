@@ -62,7 +62,8 @@
       "contacts": "Контакти",
       "login": "Увійти",
       "signup": "Реєстрація",
-      "postProject": "Опублікувати проєкт"
+      "postProject": "Опублікувати проєкт",
+      "logout": "вийти"
     }
   },
   "separators": {

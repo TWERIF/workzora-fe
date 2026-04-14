@@ -1,12 +1,6 @@
 'use client';
 
-import { $api } from "@/components/http";
-import Logo from "@/components/svg/Logo";
-import LogoRegWhite from "@/components/svg/LogoRegWhite";
-import ButtonGradient from "@/components/ui/Button/ButtonGradient";
-import ConfirmEmail from "@/components/ui/Input/ConfirmEmail";
-import Input from "@/components/ui/Input/Input";
-import AuthLayout from "@/components/ui/Layout/AuthLayout";
+
 import { validateConfirmPassword, validateEmail, validatePassword } from "@/utils/validators";
 import { useTranslation } from "next-i18next";
 import { useTheme } from "next-themes";
@@ -14,6 +8,13 @@ import Head from "next/head";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { registration } from "./api";
+import { $api } from "@/shared/components/http";
+import Logo from "@/shared/components/svg/Logo";
+import LogoRegWhite from "@/shared/components/svg/LogoRegWhite";
+import ButtonGradient from "@/shared/components/ui/Button/ButtonGradientSmall";
+import ConfirmEmail from "@/shared/components/ui/Input/ConfirmEmail";
+import Input from "@/shared/components/ui/Input/Input";
+import AuthLayout from "@/shared/components/ui/Layout/AuthLayout";
 
 
 export default function Registration() {
