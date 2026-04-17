@@ -1,24 +1,14 @@
 import { useTheme } from 'next-themes';
-import { useTranslation } from 'react-i18next';
 import Image from 'next/image';
-// Заміни на свої реальні шляхи
-import UsdtIcon from '../../svg/UsdtIcon';
+import { User } from '@/features/auth/model/types';
+import mock_avatar from "../../../../../public/images/profileIcon.png";
 import StarIcon from '../../svg/StarIcon';
-
-export default function ProfileCard({ profile }) {
-    const { t } = useTranslation("common");
+import UsdtIcon from '../../svg/UsdtIcon';
+export default function ProfileCard({ profile }: { profile: User }) {
     const { theme } = useTheme();
     const isDark = theme === "dark";
 
-    const {
-        name,
-        role,
-        avatar,
-        rating,
-        jobsCount,
-        skills,
-        pricePerHour
-    } = profile;
+
 
     return (
         <div className={`
@@ -34,8 +24,8 @@ export default function ProfileCard({ profile }) {
             <div className="relative flex-shrink-0">
                 <div className="w-[100px] h-[100px] md:w-[115px] md:h-[115px]  overflow-hidden  ">
                     <Image
-                        src={avatar || "/images/default-avatar.png"}
-                        alt={name}
+                        src={mock_avatar}
+                        alt={profile.firstName}
                         width={115}
                         height={115}
                         className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110"
@@ -51,16 +41,16 @@ export default function ProfileCard({ profile }) {
             <div className="flex-1 flex flex-col min-w-0 text-center sm:text-left">
                 <div className="mb-2">
                     <h3 className="text-2xl md:text-2xl font-bold text-[#7EA310] truncate">
-                        {name || "Untitled"}
+                        {profile.firstName + " " + profile.lastName}
                     </h3>
                     <p className="text-lg font-medium opacity-80 truncate leading-tight">
-                        {role}
+                        {profile.role}
                     </p>
                 </div>
 
                 {/* ТЕГИ/СКІЛИ */}
                 <div className="flex flex-nowrap justify-center sm:justify-start gap-1.5 mt-1">
-                    {skills?.slice(0, 3)?.map((skill, index) => (
+                    {profile.skills?.slice(0, 3)?.map((skill, index) => (
                         <span
                             key={index}
                             className={`px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider
@@ -69,20 +59,20 @@ export default function ProfileCard({ profile }) {
                             {skill}
                         </span>
                     ))}
-                    {skills?.length > 3 && (
-                        <span className="text-gray-400 text-xs self-center ml-1">+{skills.length - 3}</span>
+                    {profile.skills?.length > 3 && (
+                        <span className="text-gray-400 text-xs self-center ml-1">+{profile.skills.length - 3}</span>
                     )}
                 </div>
 
                 {/* РЕЙТИНГ */}
                 <div className="flex items-center justify-center sm:justify-start gap-2 mt-auto pt-4">
                     <div className="flex items-center gap-1 bg-[#7EA310]/10 px-2 py-1 rounded-lg">
-                        <StarIcon className="text-[#7EA310] w-4 h-4 fill-current" />
-                        <span className="font-bold text-[#7EA310]">{rating || '5.0'}</span>
+                        <StarIcon />
+                        <span className="font-bold text-[#7EA310]">{profile.ratings || '0'}</span>
                     </div>
-                    <span className="text-sm opacity-50 whitespace-nowrap">
+                    {/* <span className="text-sm opacity-50 whitespace-nowrap">
                         ({jobsCount || 0} {t('jobs') || 'jobs'})
-                    </span>
+                    </span> */}
                 </div>
             </div>
 
@@ -90,8 +80,8 @@ export default function ProfileCard({ profile }) {
             <div className="flex flex-col items-center sm:items-end justify-between border-t sm:border-t-0  border-gray-100 dark:border-gray-700 pt-4 sm:pt-0 sm:pl-6 min-w-[160px]">
                 {/* Блок ціни в один рядок */}
                 <div className="flex items-baseline gap-1 text-[#333] dark:text-white">
-                    <span className="text-xl font-black">{pricePerHour}</span>
-                    <UsdtIcon className="w-5 h-5 self-center" />
+                    <span className="text-xl font-black">{profile.rates}</span>
+                    <UsdtIcon />
                     <span className="text-sm uppercase font-bold opacity-40 tracking-wider ml-1">
                         / Per Hour
                     </span>

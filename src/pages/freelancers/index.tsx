@@ -14,43 +14,9 @@ import DogImage from "@/shared/components/svg/DogImage";
 import ButtonGradientSmall from "@/shared/components/ui/Button/ButtonGradientSmall";
 import { useTranslation } from "react-i18next";
 import ButtonGradient from "@/shared/components/ui/Button/ButtonGradientSmall";
+import { useUsers } from "@/features/main/model/useUsers";
 
-export const mockProfiles = [
-  {
-    id: '1',
-    name: 'Kochubey Andy',
-    role: 'Graphic Designer',
-    avatar: '/images/profileIcon.png',
-    rating: 4.8,
-    jobsCount: 9658,
-    pricePerHour: 15,
-    skills: ['webdesign', 'design', 'web', 'uiux', 'branding'],
-    isVerified: true,
-  },
-  {
-    id: '2',
-    name: 'Misha Lvivskyi',
-    role: 'Fullstack Developer',
-    rating: 5.0,
-    avatar: '/images/profileIcon.png',
-    jobsCount: 124,
-    pricePerHour: 25,
-    skills: ['react', 'nextjs', 'fastapi', 'typescript', 'tailwind'],
-    isVerified: true,
-  },
-  {
-    id: '3',
-    name: 'Olena Art',
-    role: 'Illustrator',
-    avatar: '/images/profileIcon.png',
 
-    rating: 4.9,
-    jobsCount: 450,
-    pricePerHour: 20,
-    skills: ['illustration', 'procreate', 'vector', 'character-design'],
-    isVerified: false,
-  }
-];
 
 export default function Freelancers() {
   const { theme } = useTheme();
@@ -58,6 +24,8 @@ export default function Freelancers() {
   const categoriesObj = t("getWorkDone.category", { returnObjects: true });
   const categoryNames = Object.values(categoriesObj);
 
+  const { topFreelancers } = useUsers()
+  console.log(topFreelancers)
   return (
     <div className="bg-white text-[#333] dark:bg-[#333333] dark:text-white transition-colors duration-300">
 
@@ -99,7 +67,7 @@ export default function Freelancers() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20">
             <div className="flex flex-col gap-10 lg:gap-12">
               <div className="flex flex-col gap-6">
-                {mockProfiles.map((p) => (
+                {topFreelancers?.slice(0, 3).map((p) => (
                   <ProfileCard profile={p} key={p.id} />
                 ))}
               </div>
@@ -140,7 +108,7 @@ export default function Freelancers() {
                 </div>
               </div>
               <div className="flex flex-col gap-6">
-                {mockProfiles.slice(0, 3).map((p, idx) => (
+                {topFreelancers?.slice(3, 5).map((p, idx) => (
                   <ProfileCard profile={p} key={`right-${idx}`} />
                 ))}
               </div>

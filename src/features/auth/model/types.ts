@@ -16,10 +16,25 @@ export enum UserRole {
 export interface User {
   id: string;
   email: string;
-  reserveEmail?: string | null;
-  password: string;
+  reserveEmail: string;
   firstName: string;
   lastName: string;
   role: UserRole;
   isActive: boolean;
+  skills: string[];
+  ratings: number;
+  position: string;
+  rates: number;
 }
+
+export type UserPreview = Pick<
+  User,
+  | "id"
+  | "firstName"
+  | "lastName"
+  | "role"
+  | "ratings"
+  | "position"
+  | "rates"
+  | "skills"
+>;

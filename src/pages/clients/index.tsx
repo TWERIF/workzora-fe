@@ -1,21 +1,18 @@
 'use client';
 
-import React from 'react';
-import Image from 'next/image';
 import TrustedBy from "@/features/main/ui/TrustedBy";
-import Breadcrumbs from "@/shared/components/ui/BreadCrumbs";
-import ProfileCard from "@/shared/components/ui/Card/ProfileCard";
+import DogImage from "@/shared/components/svg/DogImage";
 import IconArrow from "@/shared/components/svg/IconArrow";
 import StarIcon from "@/shared/components/svg/StarIcon";
+import Breadcrumbs from "@/shared/components/ui/BreadCrumbs";
 import InfoCard from "@/shared/components/ui/Card/InfoCard";
-import DogImage from "@/shared/components/svg/DogImage";
-import ButtonGradientSmall from "@/shared/components/ui/Button/ButtonGradientSmall";
-import ButtonGradient from "@/shared/components/ui/Button/ButtonGradientSmall";
+import ProfileCard from "@/shared/components/ui/Card/ProfileCard";
+import Image from 'next/image';
 
 // Використовуємо оригінальні зображення
-import OBJECTS_Image from '../../../public/images/OBJECTS.png'
-import OBJECTS1_Image from '../../../public/images/OBJECTS (1).png'
-import DESIGN_Image from '../../../public/images/design-example.png'
+import OBJECTS1_Image from '../../../public/images/OBJECTS (1).png';
+import OBJECTS_Image from '../../../public/images/OBJECTS.png';
+import DESIGN_Image from '../../../public/images/design-example.png';
 
 export const mockClients = [
     {
@@ -71,7 +68,7 @@ export default function ClientsPage() {
                 <div className="relative container mx-auto px-4 flex flex-col justify-center h-full z-10">
                     <div className="max-w-[650px] flex flex-col gap-5 md:gap-6 text-center md:text-left mt-8 md:mt-12">
                         <h1 className="text-3xl sm:text-4xl md:text-[55px] leading-tight md:leading-[1.15] font-bold">
-                            Work with the world's most reputable clients
+                            {" Work with the world's most reputable clients"}
                         </h1>
                         <p className="text-sm sm:text-base md:text-lg opacity-90 leading-relaxed max-w-[520px] mx-auto md:mx-0">
                             Find reliable partners for your freelance career. We connect top talent with clients who value quality work and timely payments.
@@ -191,7 +188,7 @@ export default function ClientsPage() {
                             <li>Comprehensive project briefs with clear goals;</li>
                             <li>Responsive communication and feedback loops;</li>
                             <li>Realistic budgets and deadlines;</li>
-                            <li>Respect for the freelancer's professional expertise;</li>
+                            <li>{"Respect for the freelancer's professional expertise;"}</li>
                             <li>Consistent payment history.</li>
                         </ul>
 

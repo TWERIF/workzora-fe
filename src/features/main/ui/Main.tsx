@@ -13,6 +13,7 @@ import Image from 'next/image';
 import { useTranslation } from "react-i18next";
 import Iphones from '../../../../public/images/Iphones.png';
 import TrustedBy from './TrustedBy';
+import { useUsers } from '../model/useUsers';
 
 
 export default function Main() {
@@ -23,7 +24,7 @@ export default function Main() {
     const freelancers = t("community.freelancers", { returnObjects: true });
     const clients = t("community.clients", { returnObjects: true });
     const { theme } = useTheme();
-
+    const { topFreelancers } = useUsers()
     const isDark = theme == 'dark';
 
     return (
