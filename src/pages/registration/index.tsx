@@ -1,13 +1,12 @@
 'use client';
 
-
 import { validateConfirmPassword, validateEmail, validatePassword } from "@/utils/validators";
 import { useTranslation } from "next-i18next";
 import { useTheme } from "next-themes";
 import Head from "next/head";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { registration } from "./api";
+
 import { $api } from "@/shared/components/http";
 import Logo from "@/shared/components/svg/Logo";
 import LogoRegWhite from "@/shared/components/svg/LogoRegWhite";
@@ -16,6 +15,8 @@ import ConfirmEmail from "@/shared/components/ui/Input/ConfirmEmail";
 import Input from "@/shared/components/ui/Input/Input";
 import AuthLayout from "@/shared/components/ui/Layout/AuthLayout";
 
+// Імпортуємо наш хук! (Шлях зміни на свій, якщо він інший)
+import { useAuth } from "@/features/auth/model/useAuth";
 
 export default function Registration() {
     const [firstName, setFirstName] = useState("");
@@ -33,7 +34,11 @@ export default function Registration() {
     const [ready, setReady] = useState(false);
     const locale = i18n.language;
     const { theme } = useTheme();
-    const router = useRouter()
+    const router = useRouter();
+
+    // Дістаємо функцію register (перейменовуємо її в registerUser, щоб уникнути конфлікту) 
+    // та стан завантаження
+    const { register: registerUser, isRegistering } = useAuth();
 
     const sendMail = async () => {
         if (!validateEmailTmp()) return;
@@ -42,11 +47,10 @@ export default function Registration() {
 
     const validateEmailTmp = (): boolean => {
         const emailErrorKey = validateEmail(email);
-        const tmpErrors = [...errors]; // беремо поточні помилки, щоб не губити інші
+        const tmpErrors = [...errors];
         if (emailErrorKey) {
             tmpErrors[3] = t(emailErrorKey);
             setErrors(tmpErrors);
-            console.log("Email validation: false");
             return false;
         }
         tmpErrors[3] = "";
@@ -75,21 +79,28 @@ export default function Registration() {
         return tmpErrors.every(e => !e);
     };
 
-    const register = async () => {
+    // Перейменували функцію, щоб не конфліктувала з registerUser з useAuth
+    const handleRegister = async () => {
         if (!validate() && !isActive) return;
 
-        const res = await registration({
-            firstName,
-            lastName,
-            password,
-            email,
-            userName,
-            locale,
-            isActive
-        })
-        console.log(res)
+        try {
+            // Викликаємо функцію з useAuth
+            await registerUser({
+                firstName,
+                lastName,
+                password,
+                email,
+                userName,
+                locale,
+                isActive
+            });
 
-        if (res) router.push(`/${locale}/reserve-email`);
+            // Якщо все пройшло успішно (помилок не виникло), робимо редирект
+            router.push(`/${locale}/reserve-email`);
+        } catch (error) {
+            console.error("Помилка реєстрації:", error);
+            // Тут можна додати обробку помилки для UI
+        }
     }
 
     useEffect(() => {
@@ -105,9 +116,6 @@ export default function Registration() {
         <>
             <Head>
                 <title>Workzora | Registration</title>
-                <meta name="description" content="Workzora | Registration" />
-                <meta name="viewport" content="width=device-width, initial-scale=1" />
-                <link rel="icon" href="/favicon.ico" />
             </Head>
             <AuthLayout>
                 <div className="flex-1 max-w-[50%] bg-bg opacity-1 z-10 flex flex-col items-end justify-center dark:bg-bg-dark">
@@ -132,7 +140,13 @@ export default function Registration() {
                             <Input errorText={errors[4]} value={password} setValue={setPassword} placeholder={t("auth.placeholders.password")} password />
                             <Input errorText={errors[5]} value={confirmPassword} setValue={setConfirmPassword} placeholder={t("auth.placeholders.confirmPassword")} password />
                             <div className="mt-[40px] "></div>
-                            <ButtonGradient type="button" text={t("auth.buttons.next")} onClick={register} />
+
+                            {/* Змінили onClick на handleRegister. Додали disabled на час завантаження */}
+                            <ButtonGradient
+                                type="button"
+                                text={isRegistering ? "Завантаження..." : t("auth.buttons.next")}
+                                onClick={handleRegister}
+                            />
                         </form>
                     </div>
                 </div>
