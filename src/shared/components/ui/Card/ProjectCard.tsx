@@ -5,6 +5,7 @@ import IconCalendar from '../../svg/IconCalendar';
 import IconViews from '../../svg/IconViews';
 import PersonIcon from '../../svg/PersonIcon';
 import UsdtIcon from '../../svg/UsdtIcon';
+import SkillPin from '../SkillPin';
 
 export default function ProjectCard({ project }) {
     const { t } = useTranslation("common");
@@ -45,15 +46,7 @@ export default function ProjectCard({ project }) {
 
                 <div className="flex flex-wrap gap-2">
                     {skills.map((skill, index) => (
-                        <span
-                            key={index}
-                            className={`px-3 py-1 rounded-full text-sm font-medium transition-colors
-                                ${isDark
-                                    ? "bg-[#333333] text-success border border-success/20"
-                                    : "bg-gray-100 text-gray-700"}`}
-                        >
-                            #{skill}
-                        </span>
+                        <SkillPin skill={skill} key={index} />
                     ))}
                 </div>
             </div>

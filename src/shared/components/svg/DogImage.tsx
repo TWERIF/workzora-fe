@@ -1,8 +1,8 @@
 import React from 'react'
 
-export default function DogImage() {
+export default function DogImage({ w = 360, h = 540 }) {
     return (
-        <svg width="360" height="540" viewBox="0 0 360 540" fill="none" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
+        <svg width={w} height={h} viewBox="0 0 360 540" fill="none" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
             <rect width="360" height="540" fill="url(#pattern0_540_18810)" />
             <defs>
                 <pattern id="pattern0_540_18810" patternContentUnits="objectBoundingBox" width="1" height="1">

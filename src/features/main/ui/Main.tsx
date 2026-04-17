@@ -1,28 +1,19 @@
 
 import { FAQSection } from '@/features/main/ui/FAQsection';
+import CubesBottom from '@/shared/components/svg/CubesBottom';
+import CubesTop from '@/shared/components/svg/CubesTop';
+import DogImage from '@/shared/components/svg/DogImage';
+import IconArrow from '@/shared/components/svg/IconArrow';
+import ButtonGradientSmall from '@/shared/components/ui/Button/ButtonGradientSmall';
+import ProjectCard from '@/shared/components/ui/Card/ProjectCard';
+import ProfileGrid from '@/shared/components/ui/Layout/ProfileGrid';
 import { useTheme } from 'next-themes';
 import Head from "next/head";
 import Image from 'next/image';
 import { useTranslation } from "react-i18next";
-import CubesBottom from '@/shared/components/svg/CubesBottom';
-import CubesTop from '@/shared/components/svg/CubesTop';
-import DogImage from '@/shared/components/svg/DogImage';
-import IconAdidas from '@/shared/components/svg/IconAdidas';
-import IconApple from '@/shared/components/svg/IconApple';
-import IconArrow from '@/shared/components/svg/IconArrow';
-import IconBmw from '@/shared/components/svg/IconBmw';
-import IconIbm from '@/shared/components/svg/IconIbm';
-import IconM9cow from '@/shared/components/svg/IconM9cow';
-import IconTesla from '@/shared/components/svg/IconTesla';
-import ButtonGradientSmall from '@/shared/components/ui/Button/ButtonGradientSmall';
-import ProfileGrid from '@/shared/components/ui/Layout/ProfileGrid';
-import Iphones from '../../../../public/Iphones.png'
-import ProjectCard from '@/shared/components/ui/Card/ProjectCard';
+import Iphones from '../../../../public/images/Iphones.png';
+import TrustedBy from './TrustedBy';
 
-const LOGOS = [
-    IconM9cow, IconAdidas, IconBmw, IconIbm,
-    IconApple, IconTesla, IconM9cow, IconAdidas
-];
 
 export default function Main() {
     const { t } = useTranslation("common");
@@ -32,6 +23,7 @@ export default function Main() {
     const freelancers = t("community.freelancers", { returnObjects: true });
     const clients = t("community.clients", { returnObjects: true });
     const { theme } = useTheme();
+
     const isDark = theme == 'dark';
 
     return (
@@ -42,7 +34,7 @@ export default function Main() {
             </Head>
 
             {/* Hero Section */}
-            <section className="text-white bg-[url('/bg-main.png')] bg-cover bg-center min-h-[600px] md:min-h-[750px] flex pt-20 md:pt-24">
+            <section className="text-white bg-[url('/images/bg-main.png')] bg-cover bg-center min-h-[600px] md:min-h-[750px] flex pt-20 md:pt-24">
                 <div className="container mx-auto px-4 flex flex-col">
                     <div className="max-w-[550px] text-center md:text-left">
                         <h1 className="font-bold text-4xl md:text-[55px] leading-tight pb-6">
@@ -74,20 +66,7 @@ export default function Main() {
             </section>
 
             {/* Trusted By Section */}
-            <section className="bg-[#333333] text-white py-8">
-                <div className="container mx-auto px-4 flex flex-col md:flex-row items-center justify-center gap-8 md:gap-10">
-                    <span className="opacity-70 uppercase tracking-wider text-xs font-semibold">
-                        {t("hero.asUsedBy")}
-                    </span>
-                    <div className="grid grid-cols-4 md:flex md:flex-wrap items-center justify-center gap-6 md:gap-12">
-                        {LOGOS.map((Icon, idx) => (
-                            <div key={idx} className="grayscale hover:grayscale-0 transition-all duration-300 scale-75 md:scale-100">
-                                <Icon />
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
+            <TrustedBy />
 
             {/* Make It Real Section */}
             <section className={`relative ${isDark ? "bg-[#333333]" : "bg-[url('/bg-main1.png')]"} bg-cover bg-center py-16 md:py-20 overflow-hidden`}>
@@ -139,7 +118,7 @@ export default function Main() {
             </section>
 
             {/* Get Work Done Section */}
-            <section className="relative bg-[url('/bg-main4.png')] bg-cover bg-center py-16 md:py-20 text-white">
+            <section className="relative bg-[url('/images/bg-main4.png')] bg-cover bg-center py-16 md:py-20 text-white">
                 <div className="container mx-auto px-4">
                     <div className="grid grid-cols-1 lg:grid-cols-[1fr,1fr] gap-12">
                         <div className="text-center lg:text-left">

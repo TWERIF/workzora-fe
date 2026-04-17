@@ -9,6 +9,7 @@ import i18n from '../i18n';
 import Header from '@/shared/components/ui/Header/Header';
 import Footer from '@/shared/components/ui/Footer/Footer';
 import '@/styles/globals.css'
+import ThemeProviderGuard from '@/utils/providers/ThemeProviderGuard';
 function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
   const { locale, pathname } = router;
@@ -27,9 +28,12 @@ function App({ Component, pageProps }: AppProps) {
     <ReactQueryProvider>
 
       <ThemeProvider attribute="class" defaultTheme="light">
-        {showHeader && <Header />}
-        <Component {...pageProps} />
-        <Footer />
+        <ThemeProviderGuard>
+
+          {showHeader && <Header />}
+          <Component {...pageProps} />
+          <Footer />
+        </ThemeProviderGuard>
       </ThemeProvider>
     </ReactQueryProvider>
   );

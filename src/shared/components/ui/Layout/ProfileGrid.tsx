@@ -1,5 +1,5 @@
 import React from 'react'
-import ProfileCard from '../Card/ProfileCard'
+import ProfileCardSmall from '../Card/ProfileCardSmall'
 import { useTranslation } from 'react-i18next';
 import IconArrow from '../../svg/IconArrow';
 
@@ -22,7 +22,7 @@ export default function ProfileGrid({ items, title }) {
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-y-10 gap-x-6">
                 {/* Рендеримо 14 карток */}
                 {[...Array(14)].map((_, i) => (
-                    <ProfileCard
+                    <ProfileCardSmall
                         profile={Array.isArray(freelancers) ? freelancers[0] : {}}
                         key={i}
                     />

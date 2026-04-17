@@ -366,6 +366,113 @@
   "breadcrumbs": {
     "home": "Workzora",
     "profile": "Profile",
-    "settings": "Settings"
+    "settings": "Settings",
+    "freelancers": "Top freelancers"
+  },
+  "chat": {
+    "title": "Chat",
+    "searchPlaceholder": "Search for message",
+    "searchBtn": "Search",
+    "inviteSupport": "Invite support for chat",
+    "emptyMessages": "No messages yet",
+    "inputPlaceholder": "Type a message..."
+  },
+  "graphicDesignPage": {
+    "hero": {
+      "title": "Hire expert Graphic Designers for any job",
+      "subtitle": "Millions of people use Freelancer to turn their ideas into reality.",
+      "cta": "Hire a top Graphic Designer now"
+    },
+
+    "trustedBy": {},
+
+    "hireSection": {
+      "title": "Hire graphic designer",
+      "cardTitle": "Hire a Graphic Designer",
+      "cardText": "On Workzora, you can hire a Graphic Artist to design a website, photoshop an image, theme your wordpress blog, typeset your annual report and more!",
+      "whatIsTitle": "What is Graphic Design?",
+      "whatIsText": "Graphic design refers to the planning and projection of visual communication through the use of imagery, words, space, typography or fonts and color palettes. Graphic design is a critical element in the process of communication or product design and creation."
+    },
+
+    "seeMore": {
+      "designers": "See more Graphic designers"
+    },
+
+    "rating": {
+      "title": "Clients rate our Graphic Designers",
+      "outOf": "out of 5",
+      "reviews": "from 1,124,396 reviews"
+    },
+
+    "article": {
+      "title": "How to hire a great freelance ",
+      "highlight": "Graphic Designer",
+      "sections": {
+        "intro": "Frequently a company is critiqued based on its visual presence, often in advance of any business interaction.",
+        "applicationsTitle": "The application of graphic design is extensive and can encompass the following areas:",
+        "applications": [
+          "Simple logos or various different types of logos",
+          "Publications both printed and digitalized",
+          "Promotional advertising such as posters, billboards or digital banners",
+          "Creating entire website design, the best homepage designs or individual graphical elements",
+          "Product design, packaging and more"
+        ],
+        "techIntro": "In order to deliver a quality visual impact, and to exceed the brief of a client, a wide range of techniques are employed. If you are looking to translate your business idea into a logo, brand or other graphic design output then searching the global talent pool at Workzora is a great place to start. Workzora is home to highly talented graphic designers with a wide range of skills, located throughout the world.",
+        "skillsTitle": "Skills that are central to a successful graphic designer include:",
+        "skills": [
+          "First class knowledge of design technology",
+          "Creativity",
+          "Judgement",
+          "Analytical thinking",
+          "Industry experience",
+          "Ability to interpret and deliver against a brief"
+        ],
+        "valueAdded": "An operator simply following given instructions to implement a visual outcome is not considered a designer. A quality graphical expert should add incremental value to the creative process and production of effective visual communications, through increased sales, enhanced visual storytelling or eye-catching and memorable branding.",
+        "software": "Many graphic designers readily use traditional design methods such as sketches to explore creative territories or to garner client approval whilst minimizing time investment. Nevertheless, modern design experts are accomplished in a range of software applications, most of which hail from the Adobe Systems suite of products. Adobe Photoshop is a popular choice of photo editing software leveraged by a vast segment of designers. For the creation of vector-based drawings, Adobe Illustrator is a favored choice, and during the final stages of graphic production, Adobe InDesign is one of a number of page layout programs available. It is essential any graphic designer you employ is well versed in several of these design technologies.",
+        "decision": "Engaging a high-caliber graphic designer that is smart, creative and responsive is hands-down one of the most important decisions your business will make. A top class designer will ensure your brand, communications or products stand out from the crowd, clearly articulating messaging and imploring your audience to take action.",
+        "market": "The market is flooded with graphic designers. Some are highly talented. Some are not. The challenge is sourcing top design talent. At Workzora we make it easy for you. With a community of thousands of experienced graphic designers highly proficient in the popular Adobe product suite, alongside hundreds of other specialist design technologies, finding an expert for your graphic design job couldn't be simpler!",
+        "hireNow": "If you need a graphic designer to take your business or visual communications to the next level, then hire them through the community at Workzora. Post a project, and kickstart your next graphic design project today!"
+      },
+      "whatDoes": {
+        "title": "What does a Graphic Designer do?",
+        "text": "Put simply, a Graphic Designer conveys ideas visually. From product packaging to concert posters to book covers, from the websites we surf to the billboards we see, from the ads we watch on TV to the menus we order from, graphic designers are used everywhere. They combine their artistic talent with their knowledge of design principles and their software skills to create effective designs for clients across all kinds of industries."
+      },
+      "whyHire": {
+        "title": "Why should I hire a freelance Graphic Designer?",
+        "text1": "If a picture tells a thousand words, then you shouldn't rely on cookie-cutter designs to tell your story. With the help of professional Graphic Designers, you can create a powerful visual impact for your marketing campaigns and business communications. Freelance Graphic Designers have expertise in a variety of fields and can provide a wide range of services, from print to web media, based on your specific requirements. With their experience using Photoshop, InDesign, Illustrator and other tools, they can help you develop your business's logo, business cards, website banners, social media images, and more.",
+        "text2": "Typically, you can hire professional freelance graphic designers on Workzora for anywhere between $5 and $100 per hour. It depends on the number of design assets, project complexity and the skill set needed to do the job. Location of the freelancer is also a significant factor. Having said that, Graphic Design is one of the most in-demand and competitive skills on Workzora, which means you can easily find high-quality designers within any budget range you may have."
+      },
+      "rights": {
+        "title": "Do I own the rights to work completed by a freelance Graphic Designer?",
+        "text": "A graphic designer could try to claim ownership of work that they complete, especially if their designs are original designs that don't contain a lot of your original brand or company assets. However, you can avoid any confusion and retain full rights to any work the designer completes by upgrading your project with an IP Agreement that you and the designer can sign before the project starts. You can also ask freelancers to sign a Non-Disclosure Agreement (NDA), another upgrade, before working with them."
+      }
+    },
+
+    "cta": {
+      "title": "So what are you waiting for?",
+      "highlight": "waiting for",
+      "subtitle": "Post a project today and get bids from talented freelancers",
+      "button": "Hire a top Graphic Designer now"
+    },
+
+    "showcase": {
+      "title": "Showcased work from our freelancers",
+      "subtitle": "Get some inspiration from Graphic Design projects",
+      "category": "Graphic design",
+      "cta": "Discover more work from freelancers"
+    },
+
+    "marketplace": {
+      "title": "The world's largest marketplace",
+      "subtitle": "Millions of users, from small businesses to large enterprises, use Freelancer to turn their ideas into reality.",
+      "stats": {
+        "users": "REGISTERED USERS"
+      }
+    },
+
+    "categories": {
+      "title": "Looking for freelancers for other types of work?",
+      "button": "Show all"
+    }
   }
 }

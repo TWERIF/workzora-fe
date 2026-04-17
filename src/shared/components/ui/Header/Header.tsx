@@ -12,6 +12,7 @@ import Logo from "../../svg/Logo";
 import LogoRegWhite from "../../svg/LogoRegWhite";
 import RegModal from "@/features/auth/ui/RegModal";
 import LoginModal from "@/features/auth/ui/LoginModal";
+import Link from "next/link";
 
 export default function Header() {
     const { theme } = useTheme();
@@ -49,14 +50,15 @@ export default function Header() {
             <header className="w-full bg-bg-header dark:bg-bg-dark box z-100" style={{ boxShadow: "0px 0px 20px #7EA310" }}>
                 <div className="w-full flex items-center justify-between px-2 py-4">
                     {/* Logo */}
-                    {theme === "dark" ? <LogoRegWhite /> : <Logo />}
+                    <Link href="/">
+                        {theme === "dark" ? <LogoRegWhite /> : <Logo />}
+                    </Link>
 
-                    {/* Якщо не мобільний, повне меню */}
                     {!isMobile && (
                         <>
                             <nav className="mx-[40px] flex gap-2.5">
-                                <LinkHeader href="#">{t("profile.headers.topFreelancers")}</LinkHeader>
-                                <LinkHeader href="#">{t("profile.headers.findWork")}</LinkHeader>
+                                <LinkHeader href="/freelancers">{t("profile.headers.topFreelancers")}</LinkHeader>
+                                <LinkHeader href="/clients">{t("profile.headers.findWork")}</LinkHeader>
                                 <LinkHeader href="#">{t("profile.headers.aboutUs")}</LinkHeader>
                                 <LinkHeader href="#">{t("profile.headers.faq")}</LinkHeader>
                                 <LinkHeader href="#">{t("profile.headers.payments")}</LinkHeader>

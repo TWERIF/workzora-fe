@@ -23,7 +23,7 @@ export default function Footer() {
     const info = footerData.copyrightInfo;
     return (
         <>
-            <footer className="bg-[#3B3B3B] text-white py-16">
+            <footer className="bg-[#3B3B3B] text-white pt-16">
                 <div className="container mx-auto pb-2">
                     <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-64">
 
