@@ -28,7 +28,7 @@ export default function Home() {
       </Head>
 
       {/* hero Section */}
-      <section className="text-white bg-[url('/bg-main.png')] bg-cover bg-center min-h-[750px] flex pt-24">
+      <section className="text-white bg-[url('/bg-main.png')] bg-cover bg-center h-auto w-full min-h-[100vh] flex pt-24 px-8">
         <div className="container mx-auto flex flex-col">
           <div className="max-w-[550px]">
             <h1 className="font-bold text-5xl md:text-[55px] leading-tight pb-4">
