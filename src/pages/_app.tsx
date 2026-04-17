@@ -1,5 +1,4 @@
-import Header from '@/components/ui/Header/Header';
-import '@/styles/globals.css';
+import ReactQueryProvider from '@/utils/providers/QueryClientProvider';
 import { appWithTranslation } from 'next-i18next';
 import { ThemeProvider } from 'next-themes';
 import type { AppProps } from 'next/app';
@@ -7,7 +6,10 @@ import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import '../i18n';
 import i18n from '../i18n';
-
+import Header from '@/shared/components/ui/Header/Header';
+import Footer from '@/shared/components/ui/Footer/Footer';
+import '@/styles/globals.css'
+import ThemeProviderGuard from '@/utils/providers/ThemeProviderGuard';
 function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
   const { locale, pathname } = router;
@@ -23,10 +25,17 @@ function App({ Component, pageProps }: AppProps) {
   const showHeader = !noHeaderRoutes.includes(pathname);
 
   return (
-    <ThemeProvider attribute="class" defaultTheme="light">
-      {showHeader && <Header />}
-      <Component {...pageProps} />
-    </ThemeProvider>
+    <ReactQueryProvider>
+
+      <ThemeProvider attribute="class" defaultTheme="light">
+        <ThemeProviderGuard>
+
+          {showHeader && <Header />}
+          <Component {...pageProps} />
+          <Footer />
+        </ThemeProviderGuard>
+      </ThemeProvider>
+    </ReactQueryProvider>
   );
 }
 

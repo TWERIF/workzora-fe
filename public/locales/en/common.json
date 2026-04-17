@@ -1,140 +1,478 @@
 {
-    "auth": {
-        "placeholders": {
-            "name": "First Name",
-            "surname": "Last Name",
-            "username": "Enter your user name",
-            "email": "Email",
-            "password": "Password",
-            "confirmPassword": "Confirm Password",
-            "code": "Code",
-            "signIn": "Sign up",
-            "login": "Login",
-            "welcome": "Welcome back",
-            "usernameoremail": "Email or Username"
-        },
-        "buttons": {
-            "next": "Next Step",
-            "join": "Join Workzora",
-            "google": "Continue with Google",
-            "facebook": "Continue with Facebook",
-            "apple": "Continue with Apple"
-        },
-        "confirmEmail": {
-            "text": "Enter confirmation code from Email",
-            "button": "Send code"
-        },
-        "texts": {
-            "welcome": "Welcome",
-            "welcomeText": "Please supply a backup email. We'll make sure you don't create duplicate accounts and will use this email to let you know if there's an issue with your account.",
-            "agree": "I agree to the Workzora",
-            "and": "and",
-            "user": "User Agreement",
-            "privacy": "Privacy Policy",
-            "select": "Select account type",
-            "dontWorry": "Don't worry, this can be changed later.",
-            "protected": "This site is protected by reCAPTCHA and the Google",
-            "apply": "apply",
-            "remember": "Remember me",
-            "forgot": "Forgot Password?"
-        },
-        "cards": {
-            "earn": "Earn money",
-            "hire": "Hire a freelancer"
-        },
-        "errors": {
-            "required": "Required",
-            "confirmed": "Passwords do not match",
-            "passwordLength": "Password must be at least 8 characters",
-            "passwordLetter": "Password must contain a letter",
-            "passwordNumber": "Password must contain a number",
-            "email": "Invalid email format",
-            "submitRules": "Please confirm that you have read the items above"
-        }
+  "auth": {
+    "placeholders": {
+      "name": "First Name",
+      "surname": "Last Name",
+      "username": "Enter your user name",
+      "email": "Email",
+      "password": "Password",
+      "confirmPassword": "Confirm Password",
+      "code": "Code",
+      "signIn": "Sign up",
+      "login": "Login",
+      "welcome": "Welcome back",
+      "usernameoremail": "Email or Username"
     },
-    "profile": {
-        "headers": {
-            "topFreelancers": "Top freelancers",
-            "findWork": "Find work",
-            "aboutUs": "About us",
-            "faq": "FAQ",
-            "payments": "Payments",
-            "contacts": "Contacts",
-            "login": "Log in",
-            "signup": "Sign up",
-            "postProject": "Post a Project"
-        }
+    "buttons": {
+      "next": "Next Step",
+      "join": "Join Workzora",
+      "google": "Continue with Google",
+      "facebook": "Continue with Facebook",
+      "apple": "Continue with Apple"
     },
-    "separators": {
-        "or": "or",
-        "haveAnAccountText": "Already have an Account?",
-        "haveAnAccountLink": "Log in",
-        "donthaveAnAccountText": "Don’t have an Account?",
-        "donthaveAnAccountLink": "Sign up"
+    "confirmEmail": {
+      "text": "Enter confirmation code from Email",
+      "button": "Send code"
     },
+    "texts": {
+      "welcome": "Welcome",
+      "welcomeText": "Please supply a backup email. We'll make sure you don't create duplicate accounts and will use this email to let you know if there's an issue with your account.",
+      "agree": "I agree to the Workzora",
+      "and": "and",
+      "user": "User Agreement",
+      "privacy": "Privacy Policy",
+      "select": "Select account type",
+      "dontWorry": "Don't worry, this can be changed later.",
+      "protected": "This site is protected by reCAPTCHA and the Google",
+      "apply": "apply",
+      "remember": "Remember me",
+      "forgot": "Forgot Password?"
+    },
+    "cards": {
+      "earn": "Earn money",
+      "hire": "Hire a freelancer"
+    },
+    "errors": {
+      "required": "Required",
+      "confirmed": "Passwords do not match",
+      "passwordLength": "Password must be at least 8 characters",
+      "passwordLetter": "Password must contain a letter",
+      "passwordNumber": "Password must contain a number",
+      "email": "Invalid email format",
+      "submitRules": "Please confirm that you have read the items above"
+    }
+  },
+  "profile": {
+    "headers": {
+      "topFreelancers": "Top freelancers",
+      "findWork": "Find work",
+      "aboutUs": "About us",
+      "faq": "FAQ",
+      "payments": "Payments",
+      "contacts": "Contacts",
+      "login": "Log in",
+      "signup": "Sign up",
+      "postProject": "Post a Project",
+      "logout": "logout"
+    }
+  },
+  "separators": {
+    "or": "or",
+    "haveAnAccountText": "Already have an Account?",
+    "haveAnAccountLink": "Log in",
+    "donthaveAnAccountText": "Don’t have an Account?",
+    "donthaveAnAccountLink": "Sign up"
+  },
+  "hero": {
+    "title": "Hire the best freelancers for any job,online",
+    "title-list": {
+      "0": "World's largest freelance marketplace",
+      "1": "Any job you can possibly think of",
+      "2": "Save up to 90 & get quotes for free",
+      "3": "Pay only when you're 100% happy"
+    },
+    "HireFreelancerBtn1": "Hire a Freelancer",
+    "HireFreelancerBtn2": "Hire a Freelancer",
+    "ThisBannerCost": "This banner design cost $60 USDT and took 2 days, by  webanned",
+    "asUsedBy": "As used by"
+  },
+  "makeItReal": {
+    "title": {
+      "1": "Make it real with ",
+      "2": "WorkZora"
+    },
+    "grid": {
+      "0": {
+        "title": "The best talent",
+        "content": "Discover reliable professionals by exploring their portfolios and immersing yourself in the feedback shared on their profiles."
+      },
+      "1": {
+        "title": "Fast bids",
+        "content": "Get quick, no-obligation quotes from skilled freelancers. 80% of jobs receive bids within 60 seconds. Your idea is just moments from reality."
+      },
+      "2": {
+        "title": "Quality work ",
+        "content": "With Freelancer's talent pool of over 60 million professionals at your fingertips, you'll find quality talent to get what you need done."
+      },
+      "3": {
+        "title": "Be in control ",
+        "content": "Stay in the loop while on the move. Chat with your freelancers and get real time updates with our mobile app. Anytime, anywhere. "
+      }
+    },
+    "makeDreamsReality": "Make your dreams a reality."
+  },
+  "globalNetwork": {
+    "title": {
+      "1": "Tap into a",
+      "2": "global talent network"
+    },
+    "sameStyle": "I need the same style",
+    "grid": {
+      "0": {
+        "title": "Post your job",
+        "content": "It's free and easy! Get lots of competitive bids that suit your budget in minutes. Start making your dreams reality."
+      },
+      "1": {
+        "title": "Choose freelancers",
+        "content": "No job is too big or complex. We've got freelancers for jobs of any size or budget, across 2700+ skills. Let our talent bring your ideas to life."
+      },
+      "2": {
+        "title": "Pay safely",
+        "content": "Only pay for work when you are 100% satisfied with the outcome. Our milestone payment system protects you every step of the way. "
+      },
+      "3": {
+        "title": "We're here to help ",
+        "content": "Your time is precious. Let our team of expert recruiters and co-pilots save you time finding talent, even managing your job if needed. "
+      }
+    },
+    "createFuture": "Create the future"
+  },
+  "getWorkDone": {
+    "title": {
+      "1": "Get work done in",
+      "2": "over 2700",
+      "3": "different categories"
+    },
+
+    "category": {
+      "website_design": "Website Design",
+      "mobile_apps": "Mobile Apps",
+      "android_apps": "Android Apps",
+      "iphone_apps": "iPhone Apps",
+      "software_architecture": "Software Architecture",
+      "graphic_design": "Graphic Design",
+      "logo_design": "Logo Design",
+      "public_relations": "Public Relations",
+      "logistics": "Logistics",
+      "proofreading": "Proofreading",
+      "translation": "Translation",
+      "research": "Research",
+      "research_writing": "Research Writing",
+      "article_writing": "Article Writing",
+      "web_scraping": "Web Scraping",
+      "css": "CSS",
+      "html_5": "HTML 5",
+      "javascript": "Javascript",
+      "data_processing": "Data Processing",
+      "python": "Python"
+    },
+    "showAllBtn": "Show all"
+  },
+  "getStarted": "Get started now",
+  "topProjects": {
+    "title": {
+      "topPosted": "Top posted",
+      "projects": "projects"
+    },
+    "items": [
+      {
+        "title": "Innovation Challenges",
+        "description": "It's free and easy! Get lots of competitive bids that suit your budget in minutes. Start making your dreams reality.",
+        "skills": ["webdesign", "web", "innovation"],
+        "author": { "name": "Misha", "avatar": "/avatars/user1.png" },
+        "createdAt": "2 hours ago",
+        "views": "1,240"
+      },
+      {
+        "title": "E-commerce Website Redesign",
+        "description": "Looking for an expert to revamp our online store. Focus on user experience and mobile responsiveness.",
+        "skills": ["react", "nextjs", "tailwind"],
+        "author": { "name": "Anna", "avatar": "/avatars/user2.png" },
+        "createdAt": "5 hours ago",
+        "views": "850"
+      }
+    ]
+  },
+
+  "community": {
+    "topFreelancers": { "top": "Top", "role": "Freelancers" },
+    "topClients": { "top": "Top", "role": "Clients" },
+    "showAll": "Show All",
+    "freelancers": [
+      { "id": 1, "name": "Misha", "avatar": "/avatars/f1.png" },
+      { "id": 2, "name": "Anna", "avatar": "/avatars/f2.png" },
+      { "id": 14, "name": "Ivan", "avatar": "/avatars/f14.png" }
+    ],
+    "clients": [
+      { "id": 1, "name": "Google", "avatar": "/avatars/c1.png" },
+      { "id": 2, "name": "Nike", "avatar": "/avatars/c2.png" },
+      { "id": 14, "name": "Apple", "avatar": "/avatars/c14.png" }
+    ]
+  },
+  "faq": {
+    "title": {
+      "part_1": "Top user",
+      "part_2": "questions"
+    },
+    "content": [
+      {
+        "id": "q1",
+        "question": "It's free and easy! Get lots of competitive bids that suit your budget.",
+        "answer": "No job is too big or complex. We've got freelancers for jobs of any size or budget, across 2700+ skills. Let our talent bring your ideas to life."
+      }
+    ]
+  },
+  "imagine-text": "Imagine you can get AI to answer the phone, make sales, set appointments, and generally make your life way easier. It'll cost you less than building a website, and it's the next big thing for businesses in 2025. Thanks to our extensive global talent network, Freelancer is your best bet for finding AI experts to take your business to the next level.",
+  "footer": {
+    "freelancer": {
+      "title": "Freelancer",
+      "links": [
+        "Categories",
+        "Projects",
+        "Contests",
+        "Freelancers",
+        "Enterprise",
+        "Innovation Challenges",
+        "AI Development",
+        "Membership",
+        "Preferred Freelancer Program",
+        "Project Management",
+        "Local Jobs",
+        "Photo Anywhere",
+        "Showcase",
+        "API for Developers",
+        "Get Verified",
+        "Desktop App"
+      ]
+    },
+    "about": {
+      "title": "About",
+      "links": [
+        "About us",
+        "How it works",
+        "Security",
+        "Investors",
+        "Sitemap",
+        "Stories",
+        "News",
+        "Team",
+        "Awards",
+        "Program",
+        "Press releases",
+        "Careers"
+      ]
+    },
+    "terms": {
+      "title": "Terms",
+      "links": [
+        "Privacy Policy",
+        "Terms and Conditions",
+        "Copyright Policy",
+        "Code of Conduct",
+        "Fees and Charges"
+      ]
+    },
+    "clients": {
+      "title": "Clients",
+      "links": [
+        "Privacy Policy",
+        "Terms and Conditions",
+        "Copyright Policy",
+        "Code of Conduct",
+        "Fees and Charges"
+      ]
+    },
+    "information": {
+      "title": "Information",
+      "links": [
+        "Categories",
+        "Projects",
+        "Contests",
+        "Freelancers",
+        "Enterprise",
+        "Innovation Challenges",
+        "AI Development",
+        "Membership",
+        "Preferred Freelancer Program",
+        "Project Management",
+        "Local Jobs",
+        "Photo Anywhere",
+        "Showcase",
+        "API for Developers",
+        "Get Verified",
+        "Desktop App"
+      ]
+    },
+    "copyrightInfo": {
+      "registeredUsers": "82,741,914",
+      "registeredUsersText": "Registered Users",
+      "totalJobs": "24,897,510",
+      "totalJobsText": "Total Jobs Posted",
+      "trademark": "WorkZora ® is a registered Trademark",
+      "copyright": "Copyright © 2025 WorkZora"
+    }
+  },
+  "profilePage": {
+    "title": "My Account",
+    "form": {
+      "firstname": "Firstname",
+      "firstname_placeholder": "Enter firstname",
+      "lastname": "Lastname",
+      "lastname_placeholder": "Enter lastname",
+      "nickname": "Nickname",
+      "nickname_placeholder": "Gromotey",
+      "email": "Email",
+      "email_placeholder": "example@mail.com",
+      "confirm_email": "Confirm email",
+      "security_code": "Enter security code from Email",
+      "security_code_placeholder": "Enter code..."
+    },
+    "verification": {
+      "title": "Verification Account",
+      "passport_label": "Upload your passport/ID card",
+      "selfie_label": "Make selfie with id's",
+      "select_file": "Select file",
+      "upload_btn": "Upload",
+      "make_photo_btn": "Make photo",
+      "info_text": "All data after verification is automatically transferred from our server."
+    },
+    "bank": {
+      "title": "Bank Verification",
+      "test_payment_title": "Make test payment",
+      "test_payment_btn": "Test Payment",
+      "use_api_title": "Use bank api",
+      "info_text_short": "All data after verification is automatically transferred from our server.",
+      "info_text_long": "All data after verification is automatically transferred from our server. This ensures the reliability and security of your transactions through our system."
+    },
+    "settings_menu": {
+      "title": "Account settings",
+      "cabinet": "Cabinet",
+      "correspondence": "Correspondence",
+      "bids": "Bids",
+      "competitions": "Competitions",
+      "reviews": "Reviews",
+      "finances": "Finances",
+      "portfolio": "Portfolio",
+      "statistics": "Statistics",
+      "profile_desc": "Profile Description",
+      "performer_profile": "Performer Profile",
+      "customer_profile": "Customer Profile",
+      "settings": "Settings",
+      "pro_account": "Pro Account",
+      "support": "Support",
+      "news": "News"
+    }
+  },
+  "breadcrumbs": {
+    "home": "Workzora",
+    "profile": "Profile",
+    "settings": "Settings",
+    "freelancers": "Top freelancers"
+  },
+  "chat": {
+    "title": "Chat",
+    "searchPlaceholder": "Search for message",
+    "searchBtn": "Search",
+    "inviteSupport": "Invite support for chat",
+    "emptyMessages": "No messages yet",
+    "inputPlaceholder": "Type a message..."
+  },
+  "graphicDesignPage": {
     "hero": {
-        "title": "Hire the best freelancers for any job,online",
-        "title-list": {
-            "0": "World's largest freelance marketplace",
-            "1": "Any job you can possibly think of",
-            "2": "Save up to 90 & get quotes for free",
-            "3": "Pay only when you're 100% happy"
-        },
-        "HireFreelancerBtn1": "Hire a Freelancer",
-        "HireFreelancerBtn2": "Hire a Freelancer",
-        "ThisBannerCost": "This banner design cost $60 USDT and took 2 days, by  webanned",
-        "asUsedBy": "As used by"
+      "title": "Hire expert Graphic Designers for any job",
+      "subtitle": "Millions of people use Freelancer to turn their ideas into reality.",
+      "cta": "Hire a top Graphic Designer now"
     },
-    "makeItReal": {
-        "title": {
-            "1": "Make it real with ",
-            "2": "WorkZora"
-        },
-        "grid": {
-            "0": {
-                "title": "The best talent",
-                "content": "Discover reliable professionals by exploring their portfolios and immersing yourself in the feedback shared on their profiles."
-            },
-            "1": {
-                "title": "Fast bids",
-                "content": "Get quick, no-obligation quotes from skilled freelancers. 80% of jobs receive bids within 60 seconds. Your idea is just moments from reality."
-            },
-            "2": {
-                "title": "Quality work ",
-                "content": "With Freelancer's talent pool of over 60 million professionals at your fingertips, you'll find quality talent to get what you need done."
-            },
-            "3": {
-                "title": "Be in control ",
-                "content": "Stay in the loop while on the move. Chat with your freelancers and get real time updates with our mobile app. Anytime, anywhere. "
-            }
-        },
-        "makeDreamsReality": "Make your dreams a reality."
+
+    "trustedBy": {},
+
+    "hireSection": {
+      "title": "Hire graphic designer",
+      "cardTitle": "Hire a Graphic Designer",
+      "cardText": "On Workzora, you can hire a Graphic Artist to design a website, photoshop an image, theme your wordpress blog, typeset your annual report and more!",
+      "whatIsTitle": "What is Graphic Design?",
+      "whatIsText": "Graphic design refers to the planning and projection of visual communication through the use of imagery, words, space, typography or fonts and color palettes. Graphic design is a critical element in the process of communication or product design and creation."
     },
-    "globalNetwork": {
-        "title": {
-            "1": "Tap into a",
-            "2": "global talent network"
-        },
-        "sameStyle": "I need the same style",
-        "grid": {
-            "0": {
-                "title": "Post your job",
-                "content": "It's free and easy! Get lots of competitive bids that suit your budget in minutes. Start making your dreams reality."
-            },
-            "1": {
-                "title": "Choose freelancers",
-                "content": "No job is too big or complex. We've got freelancers for jobs of any size or budget, across 2700+ skills. Let our talent bring your ideas to life."
-            },
-            "2": {
-                "title": "Pay safely",
-                "content": "Only pay for work when you are 100% satisfied with the outcome. Our milestone payment system protects you every step of the way. "
-            },
-            "3": {
-                "title": "We're here to help ",
-                "content": "Your time is precious. Let our team of expert recruiters and co-pilots save you time finding talent, even managing your job if needed. "
-            }
-        },
-        "createFuture": "Create the future"
+
+    "seeMore": {
+      "designers": "See more Graphic designers"
     },
-    "getStarted": "Get started now"
+
+    "rating": {
+      "title": "Clients rate our Graphic Designers",
+      "outOf": "out of 5",
+      "reviews": "from 1,124,396 reviews"
+    },
+
+    "article": {
+      "title": "How to hire a great freelance ",
+      "highlight": "Graphic Designer",
+      "sections": {
+        "intro": "Frequently a company is critiqued based on its visual presence, often in advance of any business interaction.",
+        "applicationsTitle": "The application of graphic design is extensive and can encompass the following areas:",
+        "applications": [
+          "Simple logos or various different types of logos",
+          "Publications both printed and digitalized",
+          "Promotional advertising such as posters, billboards or digital banners",
+          "Creating entire website design, the best homepage designs or individual graphical elements",
+          "Product design, packaging and more"
+        ],
+        "techIntro": "In order to deliver a quality visual impact, and to exceed the brief of a client, a wide range of techniques are employed. If you are looking to translate your business idea into a logo, brand or other graphic design output then searching the global talent pool at Workzora is a great place to start. Workzora is home to highly talented graphic designers with a wide range of skills, located throughout the world.",
+        "skillsTitle": "Skills that are central to a successful graphic designer include:",
+        "skills": [
+          "First class knowledge of design technology",
+          "Creativity",
+          "Judgement",
+          "Analytical thinking",
+          "Industry experience",
+          "Ability to interpret and deliver against a brief"
+        ],
+        "valueAdded": "An operator simply following given instructions to implement a visual outcome is not considered a designer. A quality graphical expert should add incremental value to the creative process and production of effective visual communications, through increased sales, enhanced visual storytelling or eye-catching and memorable branding.",
+        "software": "Many graphic designers readily use traditional design methods such as sketches to explore creative territories or to garner client approval whilst minimizing time investment. Nevertheless, modern design experts are accomplished in a range of software applications, most of which hail from the Adobe Systems suite of products. Adobe Photoshop is a popular choice of photo editing software leveraged by a vast segment of designers. For the creation of vector-based drawings, Adobe Illustrator is a favored choice, and during the final stages of graphic production, Adobe InDesign is one of a number of page layout programs available. It is essential any graphic designer you employ is well versed in several of these design technologies.",
+        "decision": "Engaging a high-caliber graphic designer that is smart, creative and responsive is hands-down one of the most important decisions your business will make. A top class designer will ensure your brand, communications or products stand out from the crowd, clearly articulating messaging and imploring your audience to take action.",
+        "market": "The market is flooded with graphic designers. Some are highly talented. Some are not. The challenge is sourcing top design talent. At Workzora we make it easy for you. With a community of thousands of experienced graphic designers highly proficient in the popular Adobe product suite, alongside hundreds of other specialist design technologies, finding an expert for your graphic design job couldn't be simpler!",
+        "hireNow": "If you need a graphic designer to take your business or visual communications to the next level, then hire them through the community at Workzora. Post a project, and kickstart your next graphic design project today!"
+      },
+      "whatDoes": {
+        "title": "What does a Graphic Designer do?",
+        "text": "Put simply, a Graphic Designer conveys ideas visually. From product packaging to concert posters to book covers, from the websites we surf to the billboards we see, from the ads we watch on TV to the menus we order from, graphic designers are used everywhere. They combine their artistic talent with their knowledge of design principles and their software skills to create effective designs for clients across all kinds of industries."
+      },
+      "whyHire": {
+        "title": "Why should I hire a freelance Graphic Designer?",
+        "text1": "If a picture tells a thousand words, then you shouldn't rely on cookie-cutter designs to tell your story. With the help of professional Graphic Designers, you can create a powerful visual impact for your marketing campaigns and business communications. Freelance Graphic Designers have expertise in a variety of fields and can provide a wide range of services, from print to web media, based on your specific requirements. With their experience using Photoshop, InDesign, Illustrator and other tools, they can help you develop your business's logo, business cards, website banners, social media images, and more.",
+        "text2": "Typically, you can hire professional freelance graphic designers on Workzora for anywhere between $5 and $100 per hour. It depends on the number of design assets, project complexity and the skill set needed to do the job. Location of the freelancer is also a significant factor. Having said that, Graphic Design is one of the most in-demand and competitive skills on Workzora, which means you can easily find high-quality designers within any budget range you may have."
+      },
+      "rights": {
+        "title": "Do I own the rights to work completed by a freelance Graphic Designer?",
+        "text": "A graphic designer could try to claim ownership of work that they complete, especially if their designs are original designs that don't contain a lot of your original brand or company assets. However, you can avoid any confusion and retain full rights to any work the designer completes by upgrading your project with an IP Agreement that you and the designer can sign before the project starts. You can also ask freelancers to sign a Non-Disclosure Agreement (NDA), another upgrade, before working with them."
+      }
+    },
+
+    "cta": {
+      "title": "So what are you waiting for?",
+      "highlight": "waiting for",
+      "subtitle": "Post a project today and get bids from talented freelancers",
+      "button": "Hire a top Graphic Designer now"
+    },
+
+    "showcase": {
+      "title": "Showcased work from our freelancers",
+      "subtitle": "Get some inspiration from Graphic Design projects",
+      "category": "Graphic design",
+      "cta": "Discover more work from freelancers"
+    },
+
+    "marketplace": {
+      "title": "The world's largest marketplace",
+      "subtitle": "Millions of users, from small businesses to large enterprises, use Freelancer to turn their ideas into reality.",
+      "stats": {
+        "users": "REGISTERED USERS"
+      }
+    },
+
+    "categories": {
+      "title": "Looking for freelancers for other types of work?",
+      "button": "Show all"
+    }
+  }
 }
