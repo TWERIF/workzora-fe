@@ -1,7 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { login, register, verify, logout } from "./api"; // Додай logout в api.ts
-import { User } from "./types";
-import { useRouter } from "next/navigation"; // Якщо використовуєш App Router
+import { login, register, verify, logout } from "./api";
+import { User, UserCreate } from "./types";
+import { useRouter } from "next/navigation";
 
 export const authKeys = {
   me: ["me"] as const,
@@ -33,15 +33,13 @@ export const useAuth = () => {
     queryFn: async () => {
       try {
         const response = await verify();
-        // Оскільки бекенд повертає { isValid: true, user: payload }
         return response.user as User;
       } catch (error) {
-        // Якщо токен невалідний, повертаємо null, щоб react-query не вважав це помилкою запиту
         return null;
       }
     },
     retry: false,
-    staleTime: 1000 * 60 * 5, // 5 хвилин
+    staleTime: 1000 * 60 * 5,
     refetchOnWindowFocus: true,
   });
 
@@ -49,7 +47,7 @@ export const useAuth = () => {
   const loginMutation = useMutation({
     mutationFn: (credentials: LoginCredentials) => login(credentials),
     onSuccess: (data) => {
-      // Оновлюємо кеш 'me' даними, які повернув логін (заощаджуємо на запиті verify)
+      // Бекенд повернув { success: true, user: ... }, токени вже в куках
       queryClient.setQueryData(authKeys.me, data.user);
       router.push("/profile");
     },
@@ -57,10 +55,12 @@ export const useAuth = () => {
 
   // 3. Реєстрація
   const registerMutation = useMutation({
-    mutationFn: (userData: RegisterData) => register(userData),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: authKeys.me });
-      router.push("/auth/login"); // Або відразу в кабінет
+    // Використовуємо UserCreate замість RegisterData
+    mutationFn: (userData: UserCreate) => register(userData),
+    onSuccess: async () => {
+      // Бекенд вже поставив куки, тому просто перезапитуємо дані юзера
+      await refetch(); // Переконайся, що викликаєш правильну функцію з useQuery або refetch
+      // Редирект зробимо на самій сторінці (в index.tsx)
     },
   });
 
@@ -68,7 +68,6 @@ export const useAuth = () => {
   const logoutMutation = useMutation({
     mutationFn: logout,
     onSuccess: () => {
-      // Повністю очищаємо кеш і ресетуємо стан
       queryClient.setQueryData(authKeys.me, null);
       queryClient.clear();
       router.push("/auth/login");
@@ -76,23 +75,16 @@ export const useAuth = () => {
   });
 
   return {
-    // Дані
     user,
     isAuthenticated: !!user,
-
-    // Функції
     login: loginMutation.mutateAsync,
-    register: registerMutation.mutateAsync,
+    register: registerMutation.mutateAsync, // Експортуємо функцію реєстрації
     logout: logoutMutation.mutateAsync,
     refetchMe: refetch,
-
-    // Статуси
     isLoading: isUserLoading || isFetching,
     isLoggingIn: loginMutation.isPending,
     isRegistering: registerMutation.isPending,
     isLoggingOut: logoutMutation.isPending,
-
-    // Помилки
     loginError: loginMutation.error,
     registerError: registerMutation.error,
   };
