@@ -63,7 +63,8 @@
       "login": "Log in",
       "signup": "Sign up",
       "postProject": "Post a Project",
-      "logout": "logout"
+      "logout": "logout",
+      "profile": "Profile"
     }
   },
   "separators": {
@@ -217,8 +218,53 @@
     "content": [
       {
         "id": "q1",
-        "question": "It's free and easy! Get lots of competitive bids that suit your budget.",
-        "answer": "No job is too big or complex. We've got freelancers for jobs of any size or budget, across 2700+ skills. Let our talent bring your ideas to life."
+        "question": "How do I post a project on Workzora?",
+        "answer": "It's simple! Click the 'Post a Project' button, describe your requirements, set a budget, and start receiving bids from qualified freelancers within minutes."
+      },
+      {
+        "id": "q2",
+        "question": "Is it free to use the platform?",
+        "answer": "Registration and posting projects are completely free. We only charge a small fee when you successfully award a project or complete a task."
+      },
+      {
+        "id": "q3",
+        "question": "How does the Milestone Payment system work?",
+        "answer": "Milestone Payments protect both parties. The client deposits funds, which are held securely and only released to the freelancer once the specific project goals are met."
+      },
+      {
+        "id": "q4",
+        "question": "How can I choose the best freelancer for my job?",
+        "answer": "You can review their portfolios, check their ratings, read feedback from previous clients, and even chat with them before making your final decision."
+      },
+      {
+        "id": "q5",
+        "question": "What if I'm not satisfied with the work?",
+        "answer": "We encourage open communication through our chat. If an issue cannot be resolved, our dispute resolution team is here to help mediate and find a fair outcome."
+      },
+      {
+        "id": "q6",
+        "question": "Can I hire freelancers for long-term projects?",
+        "answer": "Absolutely! Workzora is great for both quick one-off tasks and ongoing, long-term collaborations with dedicated experts."
+      },
+      {
+        "id": "q7",
+        "question": "Are the freelancers on Workzora verified?",
+        "answer": "Yes, we have a verification process for our top talent to ensure identity and skill authenticity, helping you hire with confidence."
+      },
+      {
+        "id": "q8",
+        "question": "How do I get paid as a freelancer?",
+        "answer": "Once a client releases a Milestone Payment, the funds are added to your Workzora balance. You can then withdraw them using your preferred payment method."
+      },
+      {
+        "id": "q9",
+        "question": "Can I work on the move?",
+        "answer": "Yes! Use our mobile-friendly web interface or our app to chat with clients, manage your projects, and get real-time updates anywhere, anytime."
+      },
+      {
+        "id": "q10",
+        "question": "What categories of work are available?",
+        "answer": "We have over 2700 categories, ranging from Web Design and Software Architecture to Content Writing, Logistics, and Legal services."
       }
     ]
   },
@@ -314,18 +360,24 @@
   },
   "profilePage": {
     "title": "My Account",
+    "messages": {
+      "saving": "Saving",
+      "success": "Saved successfully",
+      "error": "Error"
+    },
     "form": {
       "firstname": "Firstname",
       "firstname_placeholder": "Enter firstname",
       "lastname": "Lastname",
       "lastname_placeholder": "Enter lastname",
-      "nickname": "Nickname",
-      "nickname_placeholder": "Gromotey",
+      "username": "username",
+      "username_placeholder": "Gromotey",
       "email": "Email",
       "email_placeholder": "example@mail.com",
       "confirm_email": "Confirm email",
       "security_code": "Enter security code from Email",
-      "security_code_placeholder": "Enter code..."
+      "security_code_placeholder": "Enter code...",
+      "save": "Save changes"
     },
     "verification": {
       "title": "Verification Account",
@@ -367,7 +419,9 @@
     "home": "Workzora",
     "profile": "Profile",
     "settings": "Settings",
-    "freelancers": "Top freelancers"
+    "freelancers": "Top freelancers",
+    "clients": "Top Clients",
+    "chat": "Chat"
   },
   "chat": {
     "title": "Chat",

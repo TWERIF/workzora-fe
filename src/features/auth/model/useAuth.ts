@@ -12,11 +12,6 @@ interface LoginCredentials {
   password: string;
 }
 
-interface RegisterData extends LoginCredentials {
-  firstName: string;
-  lastName: string;
-}
-
 export const useAuth = () => {
   const queryClient = useQueryClient();
   const router = useRouter();
@@ -33,7 +28,7 @@ export const useAuth = () => {
     queryFn: async () => {
       try {
         const response = await verify();
-        return response.user as User;
+        return response;
       } catch (error) {
         return null;
       }

@@ -1,5 +1,5 @@
 import { $api } from "@/shared/components/http";
-import { UserCreate } from "./types";
+import { User, UserCreate } from "./types";
 export const login = async ({
   password,
   email,
@@ -35,7 +35,12 @@ export const register = async ({
 
   return res.data;
 };
-export const verify = async () => {
+export const verify = async (): Promise<User> => {
   const res = await $api.get("/auth/verify");
+  return res.data;
+};
+
+export const confirmEmail = async (email: string) => {
+  const res = await $api.post("/auth/confirm-email", { email });
   return res.data;
 };

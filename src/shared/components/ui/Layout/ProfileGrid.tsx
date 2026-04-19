@@ -10,7 +10,6 @@ export default function ProfileGrid({ items, title }) {
         /* Додано p-8 (padding), rounded-3xl для гарних кутів та кастомну тінь */
         <div
             className="flex flex-col gap-10 bg-white p-8 md:p-12 rounded-[40px]"
-            style={{ boxShadow: '0px 0px 20px 0px rgba(0, 0, 0, 0.25)' }}
         >
             <h2 className="text-[55px] font-bold  pl-4 text-black">
                 {title.top}<br />

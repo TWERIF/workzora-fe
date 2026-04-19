@@ -16,15 +16,19 @@ export enum UserRole {
 export interface User {
   id: string;
   email: string;
-  reserveEmail: string;
+  reserveEmail?: string; // nullable: true
+  password?: string; // зазвичай ховаємо при передачі на фронтенд
   firstName: string;
   lastName: string;
-  role: UserRole;
+  username: string;
+  role: UserRole | string;
   isActive: boolean;
   skills: string[];
   ratings: number;
   position: string;
   rates: number;
+  createdAt?: Date; // якщо додаси CreateDateColumn пізніше
+  updatedAt?: Date;
 }
 
 export type UserPreview = Pick<
