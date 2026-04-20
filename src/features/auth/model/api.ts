@@ -7,7 +7,9 @@ export const login = async ({
   password: string;
   email: string;
 }) => {
+  console.log(password, email);
   const res = await $api.post("/auth/login", { password, email });
+  console.log(res.data);
   return res.data;
 };
 export const logout = async () => {

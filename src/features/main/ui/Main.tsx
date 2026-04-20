@@ -12,19 +12,19 @@ import Image from "next/image";
 import { useTranslation } from "react-i18next";
 import Iphones from "../../../../public/images/Iphones.png";
 import TrustedBy from "./TrustedBy";
-import { useUsers } from "../model/useUsers";
+import { useProjects } from "@/features/projects/model/useProjects";
+import { Project } from "@/features/projects/model/types";
 
 export default function Main() {
   const { t } = useTranslation("common");
   const categoriesObj = t("getWorkDone.category", { returnObjects: true });
   const categoryNames = Object.values(categoriesObj);
-  const projects = t("topProjects.items", { returnObjects: true });
   const freelancers = t("community.freelancers", { returnObjects: true });
   const clients = t("community.clients", { returnObjects: true });
   const { theme } = useTheme();
-  const { topFreelancers } = useUsers();
+  const { topProjects } = useProjects();
+  console.log(topProjects);
   const isDark = theme == "dark";
-
   return (
     <>
       <Head>
@@ -245,10 +245,10 @@ export default function Main() {
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-            {Array.isArray(projects) &&
-              projects
-                .slice(0, 6)
-                .map((proj, idx) => <ProjectCard key={idx} project={proj} />)}
+            {topProjects &&
+              topProjects?.map((proj: Project, idx: number) => (
+                <ProjectCard key={idx} project={proj} />
+              ))}
           </div>
 
           <div className="flex flex-col items-center mt-12">
