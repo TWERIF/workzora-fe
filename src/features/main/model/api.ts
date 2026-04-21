@@ -9,3 +9,9 @@ export const getTopClients = async (): Promise<User[]> => {
   const res = await $api.get("/users/topClients");
   return res.data;
 };
+export const getProfilePreview = async (role: string, amount: number) => {
+  const res = await $api.get("/users/profilesPreview", {
+    params: { role, amount },
+  });
+  return res.data;
+};

@@ -10,6 +10,7 @@ export interface Project {
   updatedAt: Date;
   views: number;
   status: ProjectStatus;
+  clientName: string;
 }
 export enum ProjectStatus {
   OPEN = "open",

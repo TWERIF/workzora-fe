@@ -344,55 +344,81 @@ export default function Freelancers() {
 
       <section className="relative bg-[url('/images/bg-main4.png')] bg-cover bg-center py-16 md:py-20 text-white">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr,1.2fr] xl:grid-cols-[1fr,1fr] gap-12 items-center">
-            <div className="text-center lg:text-left flex flex-col gap-8">
-              <h2 className="text-4xl md:text-5xl lg:text-[65px] font-bold leading-tight">
-                {t("graphicDesignPage.categories.title")}
+          <div className="flex flex-col lg:grid lg:grid-cols-[1fr,1fr] gap-12">
+            <div className="order-1 text-center lg:text-left">
+              <h2 className="text-4xl md:text-[65px] font-bold leading-tight mb-0 lg:mb-8">
+                {t("getWorkDone.title.1")}
+                <br />
+                <span className="text-white/80">
+                  {t("getWorkDone.title.2")}
+                </span>{" "}
+                {t("getWorkDone.title.3")}
               </h2>
-              <div className="max-w-[200px] md:max-w-[300px] mx-auto lg:mx-0">
-                <DogImage />
-              </div>
             </div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 md:gap-8 text-sm md:text-base lg:text-lg">
-              <div className="flex flex-col gap-3 md:gap-4">
-                {categoryNames.map((name, i) => (
-                  <p
-                    key={`col1-${i}`}
-                    className="opacity-80 hover:opacity-100 cursor-pointer transition-opacity"
-                  >
-                    {name as string}
-                  </p>
-                ))}
-              </div>
-              <div className="flex flex-col gap-3 md:gap-4">
-                {categoryNames.map((name, i) => (
-                  <p
-                    key={`col2-${i}`}
-                    className="opacity-80 hover:opacity-100 cursor-pointer transition-opacity"
-                  >
-                    {name as string}
-                  </p>
-                ))}
-              </div>
-              <div className="flex flex-col gap-3 md:gap-4 col-span-2 sm:col-span-1">
-                {categoryNames.slice(0, 17).map((name, i) => (
-                  <p
-                    key={`col3-${i}`}
-                    className="opacity-80 hover:opacity-100 cursor-pointer transition-opacity"
-                  >
-                    {name as string}
-                  </p>
-                ))}
 
-                <div className=" mt-6 lg:mt-8 flex items-center flex-col  gap-2 group cursor-pointer w-fit p-2">
-                  <span className="text-sm font-semibold text-white group-hover:underline transition-all">
-                    {t("graphicDesignPage.categories.button")}
-                  </span>
-                  <div className="transform group-hover:translate-x-1 transition-transform flex items-center">
-                    <IconArrow color="white" />
+            {/* 2. КАТЕГОРІЇ ТА КНОПКА */}
+            <div className="order-2 lg:col-start-2 lg:row-span-2">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 text-sm md:text-lg">
+                {/* КОЛОНКА 1 (Видима завжди) */}
+                <div className="flex flex-col gap-4">
+                  {categoryNames.map((name, i) => (
+                    <p
+                      key={i}
+                      className="opacity-80 hover:opacity-100 cursor-pointer transition-opacity"
+                    >
+                      {name as string}
+                    </p>
+                  ))}
+                </div>
+
+                {/* КОЛОНКА 2 (Видима завжди) */}
+                <div className="flex flex-col gap-4">
+                  {categoryNames.map((name, i) => (
+                    <p
+                      key={i}
+                      className="opacity-80 hover:opacity-100 cursor-pointer transition-opacity"
+                    >
+                      {name as string}
+                    </p>
+                  ))}
+                </div>
+
+                {/* КОЛОНКА 3 (ПРИХОВАНА НА МОБІЛКАХ, видима від sm і вище) */}
+                <div className="hidden sm:flex flex-col gap-4">
+                  {categoryNames.slice(0, 17).map((name, i) => (
+                    <p
+                      key={i}
+                      className="opacity-80 hover:opacity-100 cursor-pointer transition-opacity"
+                    >
+                      {name as string}
+                    </p>
+                  ))}
+                  {/* Кнопка Show All ТІЛЬКИ ДЛЯ ДЕСКТОПУ (в кінці 3-ї колонки) */}
+                  <div className="mt-6 lg:mt-8 flex items-center flex-col justify-center gap-2 group cursor-pointer w-fit p-2">
+                    <span className="text-sm font-semibold text-white group-hover:underline transition-all">
+                      {t("getWorkDone.showAllBtn")}
+                    </span>
+                    <div className="transform group-hover:translate-x-1 transition-transform flex items-center">
+                      <IconArrow color="white" />
+                    </div>
                   </div>
                 </div>
               </div>
+
+              {/* Кнопка Show All ТІЛЬКИ ДЛЯ МОБІЛОК (з'являється під 2 колонками) */}
+              <div className="sm:hidden mt-8 flex items-center justify-center gap-2 group cursor-pointer w-full p-2">
+                <span className="text-sm font-semibold text-white group-hover:underline transition-all">
+                  {t("getWorkDone.showAllBtn")}
+                </span>
+                <div className="transform group-hover:translate-x-1 transition-transform flex items-center">
+                  <IconArrow color="white" />
+                </div>
+              </div>
+            </div>
+
+            {/* 3. СОБАКА */}
+            <div className="order-3 lg:col-start-1 max-w-[300px] mx-auto lg:mx-0 lg:mt-auto">
+              <DogImage />
             </div>
           </div>
         </div>

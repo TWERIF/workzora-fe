@@ -5,15 +5,12 @@ import IconViews from "../../svg/IconViews";
 import PersonIcon from "../../svg/PersonIcon";
 import UsdtIcon from "../../svg/UsdtIcon";
 import SkillPin from "../SkillPin";
-import { User } from "@/features/auth/model/types";
 import { Project } from "@/features/projects/model/types";
 
 export default function ProjectCard({ project }: { project: Project }) {
   const { t } = useTranslation("common");
   const { theme } = useTheme();
   const isDark = theme === "dark";
-
-  // Додаємо price до деструктуризації (припускаємо, що воно є в об'єкті)
 
   return (
     <div
@@ -27,16 +24,14 @@ export default function ProjectCard({ project }: { project: Project }) {
         `}
     >
       {/* ЦІНА: Правий верхній кут */}
-      {100 && (
-        <div
-          className={`
+      <div
+        className={`
                     absolute top-6 flex items-center gap-2 right-6 px-4 py-1.5 rounded-xl font-bold text-lg
                 `}
-        >
-          <UsdtIcon />
-          {100}
-        </div>
-      )}
+      >
+        <UsdtIcon />
+        {project.price}
+      </div>
 
       {/* HEADER: Title & Skills */}
       <div className="flex flex-col gap-3">
@@ -72,7 +67,7 @@ export default function ProjectCard({ project }: { project: Project }) {
             <span
               className={`whitespace-nowrap ${isDark ? "text-gray-300" : "text-[#333333]"}`}
             >
-              {project.clientId}
+              {project.clientName}
             </span>
           </div>
 

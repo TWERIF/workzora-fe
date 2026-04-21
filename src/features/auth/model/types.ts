@@ -29,6 +29,7 @@ export interface User {
   rates: number;
   createdAt?: Date; // якщо додаси CreateDateColumn пізніше
   updatedAt?: Date;
+  avatarUrl: string;
 }
 
 export type UserPreview = Pick<

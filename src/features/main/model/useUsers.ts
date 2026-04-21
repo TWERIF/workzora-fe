@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getTopClients, getTopFreelancers } from "./api";
+import { getProfilePreview, getTopClients, getTopFreelancers } from "./api";
 
 export const useUsers = () => {
   const { data: topClients } = useQuery({
@@ -12,4 +12,11 @@ export const useUsers = () => {
   });
 
   return { topClients, topFreelancers };
+};
+export const usePreview = (role: "client" | "freelancer", amount: number) => {
+  const { data: preview, isLoading } = useQuery({
+    queryKey: ["preview", role],
+    queryFn: () => getProfilePreview(role, amount),
+  });
+  return { preview, isLoading };
 };
