@@ -64,7 +64,9 @@
       "signup": "Реєстрація",
       "postProject": "Опублікувати проєкт",
       "logout": "вийти",
-      "profile": "Профіль"
+      "profile": "Профіль",
+      "activeProjects": "Активні проекти",
+      "chats": "Ваші чати"
     }
   },
   "separators": {
@@ -419,16 +421,10 @@
     "settings": "Налаштування",
     "freelancers": "Топ фрилансери",
     "clients": "Топ замовники",
-    "chat": "Чат"
+    "chats": "Чати",
+    "activeProjects": "Активні проекти"
   },
-  "chat": {
-    "title": "Чат",
-    "searchPlaceholder": "Пошук повідомлення",
-    "searchBtn": "Пошук",
-    "inviteSupport": "Запросити підтримку в чат",
-    "emptyMessages": "Повідомлень ще немає",
-    "inputPlaceholder": "Напишіть повідомлення..."
-  },
+
   "graphicDesignPage": {
     "hero": {
       "title": "Найміть експертів з графічного дизайну для будь-яких завдань",
@@ -526,5 +522,37 @@
       "title": "Шукаєте фрілансерів для інших видів робіт?",
       "button": "Показати всі"
     }
+  },
+  "chats": {
+    "title": "Мої чати",
+    "empty": "У вас поки немає активних чатів за проєктами.",
+    "loading": "Авторизація...",
+    "pagination": {
+      "prev": "Попередня",
+      "next": "Наступна",
+      "of": "з"
+    }
+  },
+  "chat": {
+    "loading": "Завантаження чату...",
+    "emptyMessages": "Повідомлень ще немає",
+    "inputPlaceholder": "Напишіть повідомлення...",
+    "uploading": "Завантаження файлу...",
+    "sentFile": "Надіслано файл",
+    "download": "Завантажити",
+    "edited": "змінено",
+    "deleted": "Повідомлення видалено",
+    "you": "Ви",
+    "interlocutor": "Співрозмовник"
+  },
+  "projectStatus": {
+    "open": "Відкритий",
+    "in_progress": "В роботі",
+    "completed": "Завершено",
+    "closed": "Закрито"
+  },
+  "roles": {
+    "client": "Замовник",
+    "freelancer": "Фрілансер"
   }
 }

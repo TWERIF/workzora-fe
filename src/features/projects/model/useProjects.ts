@@ -1,10 +1,10 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { Project } from "next/dist/build/swc/types";
-import { getTopProjects, update } from "./api";
+import { getOne, getTopProjects, update } from "./api";
 export const projectKeys = {
   topProjects: ["topProjects"],
 };
-export const useProjects = () => {
+export const useProjects = (id?: string) => {
   const updateMutaion = useMutation({
     mutationFn: (body: Partial<Project>) => update(),
     mutationKey: projectKeys.topProjects,
@@ -13,6 +13,11 @@ export const useProjects = () => {
     queryFn: getTopProjects,
     queryKey: projectKeys.topProjects,
   });
+  const { data: project, isLoading: isLoadingProjectData } = useQuery({
+    queryFn: () => getOne(id),
+    enabled: !!id,
+    queryKey: ["project", id],
+  });
 
-  return { updateMutaion, topProjects };
+  return { updateMutaion, topProjects, project, isLoadingProjectData };
 };

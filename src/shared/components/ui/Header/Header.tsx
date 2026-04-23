@@ -76,9 +76,12 @@ export default function Header() {
               </nav>
 
               {isAuthenticated ? (
-                <div>
+                <div className="flex gap-3">
                   <LinkHeader href={`/${locale}/profile`}>
                     {t("profile.headers.profile")}
+                  </LinkHeader>
+                  <LinkHeader href={`/${locale}/activeProjects`}>
+                    {t("profile.headers.activeProjects")}
                   </LinkHeader>
                 </div>
               ) : (
@@ -139,9 +142,12 @@ export default function Header() {
               <LinkHeader href="#">{t("profile.headers.payments")}</LinkHeader>
               <LinkHeader href="#">{t("profile.headers.contacts")}</LinkHeader>
               {isAuthenticated ? (
-                <div>
+                <div className="flex gap-2">
                   <LinkHeader href={`/${locale}/profile`}>
                     {t("profile.headers.profile")}
+                  </LinkHeader>
+                  <LinkHeader href={`/${locale}/activeProjects`}>
+                    {t("profile.headers.activeProjects")}
                   </LinkHeader>
                 </div>
               ) : (

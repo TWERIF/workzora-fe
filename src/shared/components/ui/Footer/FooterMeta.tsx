@@ -1,41 +1,45 @@
-import { useTheme } from 'next-themes'
-import React from 'react'
+import { useTheme } from "next-themes";
+import React from "react";
 
 export default function FooterMeta({ info }) {
-    const { theme } = useTheme()
-    const isDark = theme == "dark"
-    return (
-        <section className={` py-10  ${isDark ? "bg-[#333333] text-white" : "border-t border-gray-200 bg-white text-[#333333]"}`}>
-            <div className="container mx-auto px-4 flex  justify-between gap-8">
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
 
-                {/* Статистика (чорні числа на білому фоні) */}
-                <div className="flex flex-wrap  gap-12 md:gap-24 text-center">
-                    <div className="flex flex-col gap-1">
-                        <span className="text-2xl md:text-3xl font-medium tracking-tight ">
-                            {info.registeredUsers}
-                        </span>
-                        <span className="text-xs md:text-sm font-medium  uppercase tracking-widest">
-                            {info.registeredUsersText}
-                        </span>
-                    </div>
+  // Якщо дані ще не завантажилися з i18next, повертаємо null або скелетон
+  if (!info) return null;
 
-                    <div className="flex flex-col gap-1">
-                        <span className="text-2xl md:text-3xl font-medium tracking-tight ">
-                            {info.totalJobs}
-                        </span>
-                        <span className="text-xs md:text-sm font-medium  uppercase tracking-widest">
-                            {info.totalJobsText}
-                        </span>
-                    </div>
+  return (
+    <section
+      className={`py-8 md:py-10 ${isDark ? "bg-[#333333] text-white" : "border-t border-gray-200 bg-white text-[#333333]"}`}
+    >
+      <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-8 md:gap-12">
+        {/* Статистика */}
+        <div className="flex flex-row md:flex-wrap justify-center gap-10 md:gap-24 text-center">
+          <div className="flex flex-col gap-1">
+            <span className="text-2xl md:text-3xl font-bold tracking-tight">
+              {info.registeredUsers}
+            </span>
+            <span className="text-[10px] md:text-xs font-semibold uppercase tracking-widest opacity-70">
+              {info.registeredUsersText}
+            </span>
+          </div>
 
-                </div>
-                {/* Юридичний текст */}
-                <div className="flex flex-col items-center gap-1 text-center  text-base ">
-                    <p className="font-medium">{info.trademark}</p>
-                    <p>{info.copyright}</p>
-                </div>
+          <div className="flex flex-col gap-1">
+            <span className="text-2xl md:text-3xl font-bold tracking-tight">
+              {info.totalJobs}
+            </span>
+            <span className="text-[10px] md:text-xs font-semibold uppercase tracking-widest opacity-70">
+              {info.totalJobsText}
+            </span>
+          </div>
+        </div>
 
-            </div>
-        </section>
-    )
+        {/* Юридичний текст та Копірайт */}
+        <div className="flex flex-col items-center md:items-end gap-1 text-center md:text-right">
+          <p className="font-bold text-sm md:text-base">{info.trademark}</p>
+          <p className="text-xs md:text-sm opacity-60">{info.copyright}</p>
+        </div>
+      </div>
+    </section>
+  );
 }

@@ -64,7 +64,9 @@
       "signup": "Sign up",
       "postProject": "Post a Project",
       "logout": "logout",
-      "profile": "Profile"
+      "profile": "Profile",
+      "activeProjects": "Active projects",
+      "chats": "Your chats"
     }
   },
   "separators": {
@@ -421,16 +423,10 @@
     "settings": "Settings",
     "freelancers": "Top freelancers",
     "clients": "Top Clients",
-    "chat": "Chat"
+    "chats": "Chat",
+    "activeProjects": "Active projects"
   },
-  "chat": {
-    "title": "Chat",
-    "searchPlaceholder": "Search for message",
-    "searchBtn": "Search",
-    "inviteSupport": "Invite support for chat",
-    "emptyMessages": "No messages yet",
-    "inputPlaceholder": "Type a message..."
-  },
+
   "graphicDesignPage": {
     "hero": {
       "title": "Hire expert Graphic Designers for any job",
@@ -528,5 +524,37 @@
       "title": "Looking for freelancers for other types of work?",
       "button": "Show all"
     }
+  },
+  "chats": {
+    "title": "My Chats",
+    "empty": "You don't have any active project chats yet.",
+    "loading": "Authorization...",
+    "pagination": {
+      "prev": "Previous",
+      "next": "Next",
+      "of": "of"
+    }
+  },
+  "chat": {
+    "loading": "Loading chat...",
+    "emptyMessages": "No messages yet",
+    "inputPlaceholder": "Type a message...",
+    "uploading": "Uploading file...",
+    "sentFile": "Sent a file",
+    "download": "Download",
+    "edited": "edited",
+    "deleted": "Message deleted",
+    "you": "You",
+    "interlocutor": "User"
+  },
+  "projectStatus": {
+    "open": "Open",
+    "in_progress": "In Progress",
+    "completed": "Completed",
+    "closed": "Closed"
+  },
+  "roles": {
+    "client": "Client",
+    "freelancer": "Freelancer"
   }
 }
