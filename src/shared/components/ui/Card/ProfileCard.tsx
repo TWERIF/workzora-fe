@@ -3,11 +3,12 @@ import Image from "next/image";
 import { User } from "@/features/auth/model/types";
 import StarIcon from "../../svg/StarIcon";
 import UsdtIcon from "../../svg/UsdtIcon";
+import placeHolderAvatar from "../../../../../public/images/avatar_placeholder.png";
 
 export default function ProfileCard({ profile }: { profile: User }) {
   const { theme } = useTheme();
   const isDark = theme === "dark";
-
+  const avatar = profile.avatarUrl || placeHolderAvatar;
   return (
     <div
       className={`
@@ -25,7 +26,7 @@ export default function ProfileCard({ profile }: { profile: User }) {
       <div className="relative float-left mr-3 mb-1 sm:float-none sm:col-start-1 sm:row-span-3 w-fit flex-shrink-0 z-10">
         <div className="w-[75px] h-[75px] md:w-[115px] md:h-[115px] overflow-hidden rounded-xl md:rounded-2xl border border-gray-100 dark:border-gray-800">
           <Image
-            src={profile.avatarUrl}
+            src={avatar}
             alt={profile.firstName}
             width={115}
             height={115}

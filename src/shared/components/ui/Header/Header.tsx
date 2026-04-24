@@ -18,6 +18,7 @@ export default function Header() {
   const { theme } = useTheme();
   const { t } = useTranslation("common");
   const router = useRouter();
+  const { isAuthenticated, user } = useAuth(); // Отримуємо стан авторизації та дані юзера
 
   const [isOpenReg, setIsOpenReg] = useState(false);
   const [isOpenLogin, setIsOpenLogin] = useState(false);
@@ -30,21 +31,28 @@ export default function Header() {
       setMounted(true);
       setWidth(window.innerWidth);
     };
-
     init();
-
     const handleResize = () => setWidth(window.innerWidth);
     window.addEventListener("resize", handleResize);
-
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const { isAuthenticated } = useAuth();
   if (!mounted) return null;
 
   const locale = router.locale || "en";
   const isMobile = width < 1233;
-  const isVerySmall = width <= 414; // критична ширина для переносу кнопки
+  const isVerySmall = width <= 414;
+
+  // Визначаємо роль та параметри головної кнопки
+  const isFreelancer = user?.role === "freelancer";
+
+  const buttonText = isFreelancer
+    ? t("profile.headers.findWork")
+    : t("profile.headers.postProject");
+
+  const buttonLink = isFreelancer
+    ? `/${locale}/projects`
+    : `/${locale}/create-project`;
 
   return (
     <>
@@ -89,20 +97,16 @@ export default function Header() {
                   <LinkHeader onClick={() => setIsOpenLogin(true)} href={`#`}>
                     {t("profile.headers.login")}
                   </LinkHeader>
-                  <LinkHeader
-                    onClick={() => {}}
-                    href={`/${locale}/registration`}
-                  >
+                  <LinkHeader href={`/${locale}/registration`}>
                     {t("profile.headers.signup")}
                   </LinkHeader>
                 </nav>
               )}
 
               <div className="flex gap-[12px] items-center mr-[20px]">
-                <ButtonGradientSmall
-                  text={t("profile.headers.postProject")}
-                  onClick={() => {}}
-                />
+                <Link href={buttonLink}>
+                  <ButtonGradientSmall text={buttonText} onClick={() => {}} />
+                </Link>
                 <LangButton />
               </div>
 
@@ -113,12 +117,10 @@ export default function Header() {
           {/* Для мобільного - бургер */}
           {isMobile && (
             <div className="flex items-center gap-4">
-              {/* Кнопка зовні лише якщо ширина > 414 */}
               {!isVerySmall && (
-                <ButtonGradientSmall
-                  text={t("profile.headers.postProject")}
-                  onClick={() => {}}
-                />
+                <Link href={buttonLink}>
+                  <ButtonGradientSmall text={buttonText} onClick={() => {}} />
+                </Link>
               )}
               <ButtonBurger
                 text={<></>}
@@ -131,49 +133,44 @@ export default function Header() {
 
         {/* Мобільне меню */}
         {isMobile && burgerOpen && (
-          <div className="flex flex-col gap-4 p-4 bg-bg-header dark:bg-bg-dark">
+          <div className="flex flex-col gap-4 p-4 bg-bg-header dark:bg-bg-dark border-t border-gray-100 dark:border-zinc-800">
             <nav className="flex flex-wrap justify-between gap-2">
-              <LinkHeader href="#">
+              <LinkHeader href={`/${locale}/freelancers`}>
                 {t("profile.headers.topFreelancers")}
               </LinkHeader>
-              <LinkHeader href="#">{t("profile.headers.findWork")}</LinkHeader>
+              <LinkHeader href={`/${locale}/clients`}>
+                {t("profile.headers.findWork")}
+              </LinkHeader>
               <LinkHeader href="#">{t("profile.headers.aboutUs")}</LinkHeader>
               <LinkHeader href="#">{t("profile.headers.faq")}</LinkHeader>
-              <LinkHeader href="#">{t("profile.headers.payments")}</LinkHeader>
-              <LinkHeader href="#">{t("profile.headers.contacts")}</LinkHeader>
               {isAuthenticated ? (
-                <div className="flex gap-2">
+                <>
                   <LinkHeader href={`/${locale}/profile`}>
                     {t("profile.headers.profile")}
                   </LinkHeader>
                   <LinkHeader href={`/${locale}/activeProjects`}>
                     {t("profile.headers.activeProjects")}
                   </LinkHeader>
-                </div>
+                </>
               ) : (
-                <nav className="flex gap-2.5 mr-[20px]">
-                  <LinkHeader onClick={() => setIsOpenLogin(true)} href={`#`}>
+                <>
+                  <LinkHeader onClick={() => setIsOpenLogin(true)} href="#">
                     {t("profile.headers.login")}
                   </LinkHeader>
-                  <LinkHeader
-                    onClick={() => {}}
-                    href={`/${locale}/registration`}
-                  >
+                  <LinkHeader href={`/${locale}/registration`}>
                     {t("profile.headers.signup")}
                   </LinkHeader>
-                </nav>
+                </>
               )}
             </nav>
 
-            <div className="flex flex-col gap-2">
-              {/* Кнопка всередині меню, якщо ширина <= 414 */}
+            <div className="flex flex-col gap-4">
               {isVerySmall && (
-                <ButtonGradientSmall
-                  text={t("profile.headers.postProject")}
-                  onClick={() => {}}
-                />
+                <Link href={buttonLink} className="w-full">
+                  <ButtonGradientSmall text={buttonText} onClick={() => {}} />
+                </Link>
               )}
-              <div className="flex gap-2">
+              <div className="flex items-center gap-4">
                 <LangButton />
                 <ThemeButton />
               </div>
@@ -182,6 +179,7 @@ export default function Header() {
         )}
       </header>
 
+      {/* Модальні вікна */}
       {isOpenReg && (
         <RegModal
           maxWidth={width}

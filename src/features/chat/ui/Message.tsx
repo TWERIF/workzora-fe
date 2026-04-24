@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import { useTheme } from "next-themes";
-import placeHolderAvatar from "../../../../public/images/profileIcon.png"; // Перевір правильність шляху
+import placeHolderAvatar from "../../../../public/images/avatar_placeholder.png";
 import { useTranslation } from "react-i18next";
 
 export interface MessageProps {
@@ -77,7 +77,7 @@ const Message: React.FC<MessageProps> = (message) => {
             height={32}
             src={displayAvatar}
             alt={displayName}
-            className="w-8 h-8 rounded object-cover shadow-sm bg-gray-200"
+            // className="w-8 h-8 rounded object-cover shadow-sm bg-gray-200"
           />
           <span className="text-sm font-semibold">{displayName}</span>
           <span className="text-[11px] text-gray-400">{formattedTime}</span>
