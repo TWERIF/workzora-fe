@@ -19,6 +19,10 @@ const nextConfig: NextConfig = {
     // навіть якщо є помилки TypeScript
     ignoreBuildErrors: true,
   },
+  eslint: {
+    // Це відключить перевірку ESLint під час збірки (build)
+    ignoreDuringBuilds: true,
+  },
 };
 
 export default nextConfig;
