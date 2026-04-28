@@ -128,7 +128,7 @@ export default function Main() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <div className="col-span-2 row-span-2 relative rounded-2xl overflow-hidden min-h-[300px] md:min-h-[500px]">
                 <Image
-                  src="/guitar.png"
+                  src="/images/guitar.png"
                   alt="Featured"
                   fill
                   className="object-cover"
@@ -140,7 +140,7 @@ export default function Main() {
                   className="relative aspect-square rounded-2xl overflow-hidden"
                 >
                   <Image
-                    src={`/grid${i}.png`}
+                    src={`/images/grid${i}.png`}
                     alt="Grid"
                     fill
                     className="object-cover"
