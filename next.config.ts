@@ -5,22 +5,20 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   localeDetection: false,
   images: {
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: "https",
         hostname: "res.cloudinary.com",
         port: "",
-        pathname: "/**", // Дозволяє всі шляхи на цьому хості
+        pathname: "/**", 
       },
     ],
   },
   typescript: {
-    // Увага: це дозволить успішно завершити білд, 
-    // навіть якщо є помилки TypeScript
     ignoreBuildErrors: true,
   },
   eslint: {
-    // Це відключить перевірку ESLint під час збірки (build)
     ignoreDuringBuilds: true,
   },
 };
