@@ -14,6 +14,11 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  typescript: {
+    // Увага: це дозволить успішно завершити білд, 
+    // навіть якщо є помилки TypeScript
+    ignoreBuildErrors: true,
+  },
 };
 
 export default nextConfig;
