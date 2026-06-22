@@ -19,7 +19,6 @@ import ConfirmEmail from "@/shared/components/ui/Input/ConfirmEmail";
 import Input from "@/shared/components/ui/Input/Input";
 import AuthLayout from "@/shared/components/ui/Layout/AuthLayout";
 
-// Імпортуємо наш хук! (Шлях зміни на свій, якщо він інший)
 import { useAuth } from "@/features/auth/model/useAuth";
 
 export default function Registration() {
@@ -40,8 +39,6 @@ export default function Registration() {
   const { theme } = useTheme();
   const router = useRouter();
 
-  // Дістаємо функцію register (перейменовуємо її в registerUser, щоб уникнути конфлікту)
-  // та стан завантаження
   const { register: registerUser, isRegistering } = useAuth();
 
   const sendMail = async () => {
@@ -83,12 +80,10 @@ export default function Registration() {
     return tmpErrors.every((e) => !e);
   };
 
-  // Перейменували функцію, щоб не конфліктувала з registerUser з useAuth
   const handleRegister = async () => {
     if (!validate() && !isActive) return;
 
     try {
-      // Викликаємо функцію з useAuth
       await registerUser({
         firstName,
         lastName,
@@ -99,11 +94,9 @@ export default function Registration() {
         isActive,
       });
 
-      // Якщо все пройшло успішно (помилок не виникло), робимо редирект
       router.push(`/${locale}/reserve-email`);
     } catch (error) {
       console.error("Помилка реєстрації:", error);
-      // Тут можна додати обробку помилки для UI
     }
   };
 

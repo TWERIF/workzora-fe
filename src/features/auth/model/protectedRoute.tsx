@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { useAuth } from "./useAuth"; // шлях до вашого хука
+import { useAuth } from "./useAuth"; 
 
 export default function ProtectedRoute({
   children,

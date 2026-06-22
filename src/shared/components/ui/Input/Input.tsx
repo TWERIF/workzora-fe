@@ -10,7 +10,8 @@ export default function Input(props: InputI) {
         setValue,
         errorText,
         password,
-        placeholder
+        placeholder,
+        className
     } = props;
     const changeToText = () => {
         setToText((prev) => !prev);
@@ -18,7 +19,7 @@ export default function Input(props: InputI) {
     return (
         <div className="flex flex-col gap-[6px] w-full">
             <div
-                className="
+                className={`
             bg-input 
             dark:bg-input-dark
             text-text-muted 
@@ -27,7 +28,8 @@ export default function Input(props: InputI) {
             relative
             flex
             items-center
-        "
+            ${className ?? ""}
+            `}
                 style={{ borderColor: errorText ? "#FF0000" : "" }}
             >
                 <input

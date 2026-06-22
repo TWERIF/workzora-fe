@@ -37,7 +37,6 @@ export default function LoginModal(props: ModalI) {
     const { t, i18n } = useTranslation('common');
     const [ready, setReady] = useState(false);
 
-    // Дістаємо loginError для відображення помилок з бекенду
     const { login, isLoggingIn } = useAuth();
 
     const validate = () => {
@@ -65,11 +64,10 @@ export default function LoginModal(props: ModalI) {
                 email: userName,
             });
 
-            // Якщо логін успішний (хук повертає дані)
             if (res) {
-                setIsOpen(false); // Закриваємо модалку
+                setIsOpen(false); 
             }
-        } catch (err) {
+        } catch (err:any) {
             setErrors({ global: err?.response?.data?.message || "Login failed" });
         }
     };

@@ -16,8 +16,8 @@ export enum UserRole {
 export interface User {
   id: string;
   email: string;
-  reserveEmail?: string; // nullable: true
-  password?: string; // зазвичай ховаємо при передачі на фронтенд
+  reserveEmail?: string; 
+  password?: string; 
   firstName: string;
   lastName: string;
   username: string;
@@ -27,7 +27,7 @@ export interface User {
   ratings: number;
   position: string;
   rates: number;
-  createdAt?: Date; // якщо додаси CreateDateColumn пізніше
+  createdAt?: Date; 
   updatedAt?: Date;
   avatarUrl: string;
 }

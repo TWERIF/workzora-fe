@@ -1,6 +1,5 @@
-import { ReactNode } from "react"
+import { ReactNode } from "react";
 import IconBGTriangles from "../../svg/IconBGTriangles";
-import IconDog from "../../svg/IconDog";
 import LogoWhite from "../../svg/LogoWhite";
 
 interface LayoutI {
@@ -15,7 +14,6 @@ export default function AuthLayout(props: LayoutI) {
             </div>
             <div className="absolute bottom-0 right-0 flex">
                 <div className="relative">
-                    <IconDog />
                     <div className="absolute bottom-[23px] right-[280px]">
                         <LogoWhite />
                     </div>

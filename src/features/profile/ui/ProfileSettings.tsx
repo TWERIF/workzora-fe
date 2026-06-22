@@ -10,13 +10,14 @@ import { useUsers } from "@/features/users/model/useUsers";
 import IconEdit from "@/shared/components/svg/IconEdit";
 import Breadcrumbs from "@/shared/components/ui/BreadCrumbs";
 import ButtonGradient from "@/shared/components/ui/Button/ButtonGradient";
+import ConfirmEmail from "@/shared/components/ui/Input/ConfirmEmail";
 import InputEdit from "@/shared/components/ui/Input/InputEdit";
-import ConfirmEmail from "@/shared/components/ui/Input/ConfirmEmail"; // Переконайтеся, що шлях правильний
+import Loader from "@/shared/components/ui/Loader";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useTranslation } from "react-i18next";
 import toast, { Toaster } from "react-hot-toast";
+import { useTranslation } from "react-i18next";
 
 export default function ProfileSettings() {
   const { t } = useTranslation("common");
@@ -27,7 +28,7 @@ export default function ProfileSettings() {
 
   const [isEmailValid, setEmailValid] = useState(false);
   const [emailError, setEmailError] = useState<string | null>(null);
-  const [code, setCode] = useState(""); // Стан для OTP коду
+  const [code, setCode] = useState("");
 
   const { register, handleSubmit, reset, watch } = useForm({
     defaultValues: {
@@ -41,7 +42,6 @@ export default function ProfileSettings() {
 
   const emailValue = watch("email");
 
-  // Функція ініціації відправки листа (передається в ConfirmEmail)
   const sendMail = async () => {
     setEmailError(null);
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -82,7 +82,7 @@ export default function ProfileSettings() {
       },
       {
         style: {
-          borderRadius: "16px", // у стилі твоєї Workzora
+          borderRadius: "16px",
           background: "#333",
           color: "#fff",
         },
@@ -134,7 +134,6 @@ export default function ProfileSettings() {
                     {...register("email")}
                   />
 
-                  {/* Логіка відображення блоку підтвердження коду */}
                   {emailValue && emailValue !== user?.email && !isEmailValid ? (
                     <div className="mt-4">
                       <ConfirmEmail
@@ -182,7 +181,7 @@ export default function ProfileSettings() {
 
           <aside className="order-1 lg:order-2 lg:col-span-4 w-full">
             <div className="sticky top-8">
-              <AccountSettings />
+              {user ? <AccountSettings user={user} /> : <Loader />}
             </div>
           </aside>
         </div>

@@ -1,4 +1,3 @@
-// types/chat.ts
 export interface MessageProps {
   id: string;
   text: string;
@@ -10,7 +9,7 @@ export interface MessageProps {
 export interface Message {
   id: string;
   text: string;
-  sender: string; //User потім
+  sender: string; 
   timestamp: string;
 }
 export enum ProjectStatus {
@@ -20,17 +19,3 @@ export enum ProjectStatus {
   CLOSED = "closed",
 }
 
-export interface IProject {
-  id: string;
-  title: string;
-  desc: string;
-  stack: string[];
-  price: number | string; // TypeORM decimal часто приходить як string через JSON
-  clientId: string;
-  freelancerId?: string | null;
-  createdAt: string | Date;
-  updatedAt: string | Date;
-  views: number;
-  status: ProjectStatus;
-  // chatRoom?: any; // Розкоментуй, якщо тобі потрібен об'єкт чату всередині проєкту
-}

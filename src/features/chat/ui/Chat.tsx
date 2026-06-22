@@ -1,16 +1,15 @@
 import { useAuth } from "@/features/auth/model/useAuth";
+import { Project, ProjectStatus } from "@/features/projects/model/types"; // Додано імпорт ProjectStatus
 import { $api } from "@/shared/components/http";
-import IconSupport from "@/shared/components/svg/IconSupport";
 import Breadcrumbs, {
   BreadcrumbItem,
 } from "@/shared/components/ui/BreadCrumbs";
 import { useTheme } from "next-themes";
+import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { io, Socket } from "socket.io-client";
 import Message from "./Message";
-import { IProject } from "../model/types";
-import { useRouter } from "next/router";
 
 interface ChatMessage {
   id: string;
@@ -18,12 +17,12 @@ interface ChatMessage {
   senderId: string;
   receiverId: string;
   content: string;
-  fileUrl?: string; // Додано поле для файлу
+  fileUrl?: string;
   createdAt: string;
 }
 
 interface ChatProps {
-  project: IProject;
+  project: Project;
   receiverId: string;
 }
 
@@ -31,6 +30,7 @@ export default function Chat({ project, receiverId }: ChatProps) {
   const { t } = useTranslation("common");
   const { user } = useAuth();
   const currentUserId = user?.id;
+  const userRole = user?.role; // Отримуємо роль користувача (припускаючи, що вона є в user)
   const [newMessage, setNewMessage] = useState("");
   const { theme } = useTheme();
   const isDark = theme === "dark";
@@ -38,11 +38,11 @@ export default function Chat({ project, receiverId }: ChatProps) {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [socket, setSocket] = useState<Socket | null>(null);
 
-  // Нові стани для роботи з файлами
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [isUploading, setIsUploading] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const chatContainerRef = useRef<HTMLDivElement>(null);
+
   const scrollToBottom = () => {
     if (chatContainerRef.current) {
       chatContainerRef.current.scrollTo({
@@ -57,6 +57,7 @@ export default function Chat({ project, receiverId }: ChatProps) {
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
+
   useEffect(() => {
     const fetchChat = async () => {
       try {
@@ -88,7 +89,6 @@ export default function Chat({ project, receiverId }: ChatProps) {
     });
 
     newSocket.on("connect", () => {
-      console.log("Підключено до чату проекту");
       newSocket.emit("joinChat", chatId);
     });
 
@@ -103,7 +103,6 @@ export default function Chat({ project, receiverId }: ChatProps) {
     };
   }, [chatId, currentUserId]);
 
-  // Обробник вибору файлу
   const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
       setSelectedFile(e.target.files[0]);
@@ -113,11 +112,10 @@ export default function Chat({ project, receiverId }: ChatProps) {
   const removeSelectedFile = () => {
     setSelectedFile(null);
     if (fileInputRef.current) {
-      fileInputRef.current.value = ""; // Очищаємо input
+      fileInputRef.current.value = "";
     }
   };
 
-  // Оновлений обробник відправки (тепер асинхронний)
   const handleSendMessage = async () => {
     if (
       (!newMessage.trim() && !selectedFile) ||
@@ -132,7 +130,6 @@ export default function Chat({ project, receiverId }: ChatProps) {
     let uploadedFileUrl = undefined;
 
     try {
-      // 1. Якщо є файл, спочатку завантажуємо його через HTTP
       if (selectedFile) {
         const formData = new FormData();
         formData.append("file", selectedFile);
@@ -145,22 +142,18 @@ export default function Chat({ project, receiverId }: ChatProps) {
         uploadedFileUrl = response.data.fileUrl;
       }
 
-      // 2. Відправляємо повідомлення через сокети (з файлом або без)
       socket.emit("sendMessage", {
         chatId: chatId,
         receiverId: receiverId,
-        // Якщо відправляється тільки файл, задаємо контент за замовчуванням
         content: newMessage.trim() || (uploadedFileUrl ? "Надіслано файл" : ""),
         senderId: currentUserId,
         fileUrl: uploadedFileUrl,
       });
 
-      // 3. Очищаємо форму після успішної відправки
       setNewMessage("");
       removeSelectedFile();
     } catch (error) {
       console.error("Помилка відправлення повідомлення:", error);
-      // Тут можна додати toast/сповіщення про помилку
     } finally {
       setIsUploading(false);
     }
@@ -173,6 +166,11 @@ export default function Chat({ project, receiverId }: ChatProps) {
     }
   };
 
+  const handleReserveFunds = () => {
+    // ТУТ БУДЕ ЛОГІКА РЕЗЕРВУВАННЯ КОШТІВ
+    console.log("Резервування коштів для проекту:", project.id);
+  };
+
   if (!user) {
     return (
       <div
@@ -182,37 +180,39 @@ export default function Chat({ project, receiverId }: ChatProps) {
       </div>
     );
   }
+
   const chatBreadcrumbs: BreadcrumbItem[] = [
     { label: t("breadcrumbs.home") || "Home", href: `/${locale}` },
     {
       label: t("breadcrumbs.activeProjects"),
       href: `/${locale}/activeProjects`,
     },
-    // Обрізаємо дуже довгу назву проєкту або показуємо заглушку
     { label: project?.title },
   ];
+
+  // Перевірка: чи клієнт і чи проект очікує на оплату
+  const isClient = userRole === "client"; // Або "CLIENT", залежно від того, як у вас зберігається роль
+  const showReserveFundsBtn =
+    isClient && project?.status === ProjectStatus.AWAITING_PAYMENT; // Переконайтесь, що у вас є enum ProjectStatus
+
   return (
     <div
       className={`h-[100dvh] w-full overflow-hidden flex flex-col transition-colors duration-300 ${isDark ? "bg-[#2A2A2A]" : "bg-[#F7F7F7]"}`}
     >
-      {/* Хлібні крихти (винесені окремо над загальним контейнером) */}
       <div className="mx-auto w-full max-w-[950px] pt-4 px-4 flex-shrink-0">
         <Breadcrumbs customItems={chatBreadcrumbs} />
       </div>
 
-      {/* ЄДИНИЙ КОНТЕЙНЕР ДЛЯ ШАПКИ ТА ЧАТУ */}
       <div className="mx-auto w-full max-w-[950px] flex-1 min-h-0 px-4 pb-4 flex flex-col">
         <div
           className={`flex flex-col h-full overflow-hidden rounded-xl shadow-sm transition-colors duration-300 ${isDark ? "bg-[#333333] text-white" : "bg-white text-[#333333]"}`}
         >
-          {/* Шапка з назвою (прибрано mb-3, залишено акуратний padding) */}
           <div className="px-5 pt-5 pb-3 flex-shrink-0">
             <div className="text-[32px] font-bold leading-none truncate">
               {project?.title}
             </div>
           </div>
 
-          {/* Основна частина чату */}
           <div
             ref={chatContainerRef}
             className={`flex-1 overflow-y-auto px-4 py-3 custom-scrollbar ${isDark ? "bg-[#252525]" : "bg-[#F7F7F7]"} mx-2 mb-1 rounded-2xl`}
@@ -236,9 +236,7 @@ export default function Chat({ project, receiverId }: ChatProps) {
             )}
           </div>
 
-          {/* Фіксований інпут */}
           <div className="p-3 flex-shrink-0 bg-transparent flex flex-col gap-2">
-            {/* Блок попереднього перегляду файлу */}
             {selectedFile && (
               <div
                 className={`flex items-center justify-between px-4 py-2 rounded-lg text-sm mx-4 shadow-sm border ${isDark ? "bg-[#444444] border-gray-600 text-gray-200" : "bg-blue-50 border-blue-100 text-blue-800"}`}
@@ -284,13 +282,11 @@ export default function Chat({ project, receiverId }: ChatProps) {
             )}
 
             <div
-              className={`flex items-center gap-3 pl-4 pr-2 py-2 rounded-[100px] border shadow-sm transition-colors duration-300 ${
-                isDark
-                  ? "bg-[#333333] border-[#444444]"
-                  : "bg-white border-[#E5E5E5]"
-              }`}
+              className={`flex items-center gap-3 pl-4 pr-2 py-2 rounded-[100px] border shadow-sm transition-colors duration-300 ${isDark
+                ? "bg-[#333333] border-[#444444]"
+                : "bg-white border-[#E5E5E5]"
+                }`}
             >
-              {/* Прихований input для файлів */}
               <input
                 type="file"
                 ref={fileInputRef}
@@ -326,11 +322,10 @@ export default function Chat({ project, receiverId }: ChatProps) {
                   isUploading ? t("chat.uploading") : t("chat.inputPlaceholder")
                 }
                 disabled={isUploading}
-                className={`flex-1 bg-transparent outline-none text-base py-1 transition-colors ${
-                  isDark
-                    ? "text-white placeholder-gray-500"
-                    : "text-[#333333] placeholder-gray-400"
-                } ${isUploading ? "opacity-50 cursor-not-allowed" : ""}`}
+                className={`flex-1 bg-transparent outline-none text-base py-1 transition-colors ${isDark
+                  ? "text-white placeholder-gray-500"
+                  : "text-[#333333] placeholder-gray-400"
+                  } ${isUploading ? "opacity-50 cursor-not-allowed" : ""}`}
               />
 
               <button
@@ -339,7 +334,6 @@ export default function Chat({ project, receiverId }: ChatProps) {
                 disabled={isUploading || (!newMessage.trim() && !selectedFile)}
               >
                 {isUploading ? (
-                  // Простий спінер завантаження
                   <svg
                     className="animate-spin h-5 w-5 text-white"
                     xmlns="http://www.w3.org/2000/svg"
@@ -373,6 +367,17 @@ export default function Chat({ project, receiverId }: ChatProps) {
                 )}
               </button>
             </div>
+
+            {showReserveFundsBtn && (
+              <div className="mt-2 flex justify-center">
+                <button
+                  onClick={handleReserveFunds}
+                  className="w-full max-w-xs py-3 px-4 rounded-[100px] bg-gradient text-white font-medium shadow-md hover:shadow-lg transition-all hover:opacity-95"
+                >
+                  {t("chat.reserveFunds")}
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>

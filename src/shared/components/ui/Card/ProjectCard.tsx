@@ -6,90 +6,96 @@ import PersonIcon from "../../svg/PersonIcon";
 import UsdtIcon from "../../svg/UsdtIcon";
 import SkillPin from "../SkillPin";
 import { Project } from "@/features/projects/model/types";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 export default function ProjectCard({ project }: { project: Project }) {
   const { t } = useTranslation("common");
   const { theme } = useTheme();
+
+  const router = useRouter();
+  const locale = router.locale ?? "en";
+
   const isDark = theme === "dark";
 
   return (
-    <div
-      className={`
-            relative rounded-3xl p-6 transition-all duration-300 flex flex-col gap-5 shadow-[0px_10px_30px_rgba(0,0,0,0.05)] hover:shadow-xl
-            ${
-              isDark
-                ? "bg-[#2A2A2A] text-white border border-white/10"
-                : "bg-white text-[#333333] border border-gray-100"
-            }
-        `}
-    >
-      {/* ЦІНА: Правий верхній кут */}
+    <Link href={`/${locale}/activeProjects/discussion/${project.id}`}>
       <div
         className={`
+            relative rounded-3xl p-6 transition-all duration-300 flex flex-col gap-5 shadow-[0px_10px_30px_rgba(0,0,0,0.05)] hover:shadow-xl
+            ${isDark
+            ? "bg-[#2A2A2A] text-white border border-white/10"
+            : "bg-white text-[#333333] border border-gray-100"
+          }
+        `}
+      >
+        {/* ЦІНА: Правий верхній кут */}
+        <div
+          className={`
                     absolute top-6 flex items-center gap-2 right-6 px-4 py-1.5 rounded-xl font-bold text-lg
                 `}
-      >
-        <UsdtIcon />
-        {project.price}
-      </div>
-
-      {/* HEADER: Title & Skills */}
-      <div className="flex flex-col gap-3">
-        {/* Додаємо pr-20, щоб текст не налізав на ціну */}
-        <h3
-          className={`text-2xl font-bold leading-tight pr-20 ${isDark ? "text-white" : "text-[#333333]"}`}
         >
-          {project.title}
-        </h3>
-
-        <p
-          className={`leading-relaxed text-base line-clamp-3 ${isDark ? "text-gray-400" : "text-gray-600"}`}
-        >
-          {project.desc}
-        </p>
-
-        <div className="flex flex-wrap gap-2">
-          {project.stack.map((skill, index) => (
-            <SkillPin skill={skill} key={index} />
-          ))}
+          <UsdtIcon />
+          {project.price}
         </div>
-      </div>
 
-      {/* FOOTER: Author, Date, Views */}
-      <div
-        className={`pt-5 border-t flex items-center justify-between text-sm 
-                ${isDark ? "border-white/10" : "border-gray-100"}`}
-      >
-        {/* ЛІВА ЧАСТИНА: Автор та Дата */}
-        <div className="flex items-center gap-6">
-          <div className="flex items-center gap-2">
-            <PersonIcon />
-            <span
-              className={`whitespace-nowrap ${isDark ? "text-gray-300" : "text-[#333333]"}`}
-            >
-              {project.clientName}
-            </span>
+        {/* HEADER: Title & Skills */}
+        <div className="flex flex-col gap-3">
+          {/* Додаємо pr-20, щоб текст не налізав на ціну */}
+          <h3
+            className={`text-2xl font-bold leading-tight pr-20 ${isDark ? "text-white" : "text-[#333333]"}`}
+          >
+            {project.title}
+          </h3>
+
+
+          <div className="prose dark:prose-invert max-w-none text-text dark:text-text-dark text-[15px] leading-relaxed">
+            <div dangerouslySetInnerHTML={{ __html: project.description }} />
           </div>
 
-          <div className="flex items-center gap-1.5">
-            <IconCalendar />
-            <span
-              className={`whitespace-nowrap ${isDark ? "text-gray-400" : "text-gray-500"}`}
-            >
-              {new Date(project.createdAt).toLocaleDateString()}
-            </span>
+          <div className="flex flex-wrap gap-2">
+            {project.categories?.map((skill, index) => (
+              <SkillPin skill={skill.title} key={index} />
+            ))}
           </div>
         </div>
 
-        {/* ПРАВА ЧАСТИНА: Views */}
+        {/* FOOTER: Author, Date, Views */}
         <div
-          className={`flex items-center gap-1.5 px-3 py-1 rounded-lg transition-colors
-                    ${isDark ? "bg-[#333333] text-white" : "bg-gray-50 text-gray-700"}`}
+          className={`pt-5 border-t flex items-center justify-between text-sm 
+                ${isDark ? "border-white/10" : "border-gray-100"}`}
         >
-          <IconViews />
-          <span className="font-medium">{project.views}</span>
+          {/* ЛІВА ЧАСТИНА: Автор та Дата */}
+          <div className="flex items-center gap-6">
+            <div className="flex items-center gap-2">
+              <PersonIcon />
+              <span
+                className={`whitespace-nowrap ${isDark ? "text-gray-300" : "text-[#333333]"}`}
+              >
+                {project.clientName}
+              </span>
+            </div>
+
+            <div className="flex items-center gap-1.5">
+              <IconCalendar />
+              <span
+                className={`whitespace-nowrap ${isDark ? "text-gray-400" : "text-gray-500"}`}
+              >
+                {new Date(project.createdAt).toLocaleDateString()}
+              </span>
+            </div>
+          </div>
+
+          {/* ПРАВА ЧАСТИНА: Views */}
+          <div
+            className={`flex items-center gap-1.5 px-3 py-1 rounded-lg transition-colors
+                    ${isDark ? "bg-[#333333] text-white" : "bg-gray-50 text-gray-700"}`}
+          >
+            <IconViews />
+            <span className="font-medium">{project.views}</span>
+          </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }

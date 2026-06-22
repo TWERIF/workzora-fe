@@ -1,13 +1,13 @@
+import { useTheme } from "next-themes";
 import Image from "next/image";
 import React from "react";
-import { useTheme } from "next-themes";
-import placeHolderAvatar from "../../../../public/images/avatar_placeholder.png";
 import { useTranslation } from "react-i18next";
+import placeHolderAvatar from "../../../../public/images/avatar_placeholder.png";
 
 export interface MessageProps {
   id: string;
   chatId: string;
-  senderId: string;
+  senderId: string | null;  
   receiverId?: string | null;
   projectId?: string;
   content: string;
@@ -20,27 +20,39 @@ export interface MessageProps {
   isMe: boolean;
   senderName?: string;
   senderAvatar?: string;
+  isSystemMessage?: boolean; 
 }
 
 const Message: React.FC<MessageProps> = (message) => {
   const { theme } = useTheme();
   const isDark = theme === "dark";
   const { t } = useTranslation("common");
+
   const formattedTime = new Date(message.createdAt).toLocaleTimeString([], {
+    day: "2-digit",
+    month: "2-digit",
+    year: "2-digit",
     hour: "2-digit",
     minute: "2-digit",
   });
 
-  const displayName =
-    message.senderName || (message.isMe ? "Ви" : "Співрозмовник");
+  if (message.isSystemMessage || !message.senderId) {
+    return (
+      <div className="flex w-full justify-center my-4">
+        <div className="bg-input dark:bg-input-dark border border-gray-200 dark:border-[#555] rounded-20 px-5 py-3 max-w-[85%] text-center shadow-sm">
+          <span className="text-sm font-medium text-text-muted dark:text-gray-300 leading-snug">
+            {message.content}
+          </span>
+          <div className="text-[10px] text-gray-400 mt-1.5">{formattedTime}</div>
+        </div>
+      </div>
+    );
+  }
 
+  const displayName = message.isMe ? "Ви" : message.senderName ?? "Співрозмовник";
   const displayAvatar = message.senderAvatar || placeHolderAvatar;
+  const displayText = message.isDeleted ? "Повідомлення видалено" : message.content;
 
-  const displayText = message.isDeleted
-    ? "Повідомлення видалено"
-    : message.content;
-
-  // Функція для визначення типу файлу з URL
   const getFileType = (url?: string | null) => {
     if (!url) return null;
     const extension = url.split(".").pop()?.toLowerCase();
@@ -49,7 +61,6 @@ const Message: React.FC<MessageProps> = (message) => {
     return "document";
   };
 
-  // Функція для отримання назви файлу з URL (щоб не показувати довжелезний лінк)
   const getFileName = (url?: string | null) => {
     if (!url) return "Файл";
     try {
@@ -77,24 +88,21 @@ const Message: React.FC<MessageProps> = (message) => {
             height={32}
             src={displayAvatar}
             alt={displayName}
-            // className="w-8 h-8 rounded object-cover shadow-sm bg-gray-200"
+            className="rounded-full object-cover"
           />
           <span className="text-sm font-semibold">{displayName}</span>
           <span className="text-[11px] text-gray-400">{formattedTime}</span>
         </div>
 
-        {/* --- БЛОК ВІДОБРАЖЕННЯ ФАЙЛУ --- */}
         {message.fileUrl && !message.isDeleted && (
           <div className="mb-1 w-full max-w-[300px]">
             {fileType === "image" ? (
-              // Відображення картинки
               <a
                 href={message.fileUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block overflow-hidden rounded-lg border border-gray-200 shadow-sm"
               >
-                {/* Використовуємо звичайний img для зовнішніх лінків, щоб уникнути помилок next/image з доменами */}
                 <img
                   src={message.fileUrl}
                   alt="Прикріплене зображення"
@@ -102,23 +110,20 @@ const Message: React.FC<MessageProps> = (message) => {
                 />
               </a>
             ) : (
-              // Відображення документа (PDF, DOCX, ZIP тощо)
               <a
                 href={message.fileUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`flex items-center gap-3 p-3 rounded-lg border transition-colors shadow-sm
-                  ${
-                    isDark
-                      ? "bg-[#3A3A3A] border-[#555] hover:bg-[#444]"
-                      : "bg-[#F3F4F6] border-[#E5E7EB] hover:bg-[#E5E7EB]"
+                  ${isDark
+                    ? "bg-[#3A3A3A] border-[#555] hover:bg-[#444]"
+                    : "bg-[#F3F4F6] border-[#E5E7EB] hover:bg-[#E5E7EB]"
                   }
                 `}
               >
                 <div
-                  className={`flex items-center justify-center w-10 h-10 rounded-md flex-shrink-0 ${
-                    isDark ? "bg-[#555]" : "bg-white shadow-sm"
-                  }`}
+                  className={`flex items-center justify-center w-10 h-10 rounded-md flex-shrink-0 ${isDark ? "bg-[#555]" : "bg-white shadow-sm"
+                    }`}
                 >
                   <svg
                     width="20"
@@ -139,9 +144,8 @@ const Message: React.FC<MessageProps> = (message) => {
                 </div>
                 <div className="flex flex-col overflow-hidden">
                   <span
-                    className={`text-sm font-medium truncate ${
-                      isDark ? "text-gray-200" : "text-gray-800"
-                    }`}
+                    className={`text-sm font-medium truncate ${isDark ? "text-gray-200" : "text-gray-800"
+                      }`}
                   >
                     {fileName}
                   </span>
@@ -155,9 +159,8 @@ const Message: React.FC<MessageProps> = (message) => {
         )}
         {displayText && (
           <p
-            className={`text-[15px] break-words leading-snug ${
-              message.isDeleted ? "italic text-gray-500" : "text-gray-800"
-            } ${isDark && !message.isDeleted ? "text-gray-200" : ""}`}
+            className={`text-[15px] break-words leading-snug ${message.isDeleted ? "italic text-gray-500" : "text-gray-800"
+              } ${isDark && !message.isDeleted ? "text-gray-200" : ""}`}
           >
             {displayText}
 

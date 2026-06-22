@@ -10,7 +10,9 @@ export default function Document() {
           defer
         />
       </Head>
-      <body>
+      <body 
+      // className="bg-[#F7F7F7]"
+      >
         <Main />
         <NextScript />
       </body>

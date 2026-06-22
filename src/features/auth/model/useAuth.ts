@@ -1,7 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { login, register, verify, logout } from "./api";
-import { User, UserCreate } from "./types";
 import { useRouter } from "next/navigation";
+import { login, logout, register, verify } from "./api";
+import { UserCreate } from "./types";
 
 export const authKeys = {
   me: ["me"] as const,
@@ -16,7 +16,6 @@ export const useAuth = () => {
   const queryClient = useQueryClient();
   const router = useRouter();
 
-  // 1. Отримання поточного користувача
   const {
     data: user,
     isLoading: isUserLoading,
@@ -59,13 +58,12 @@ export const useAuth = () => {
     },
   });
 
-  // 4. Вихід (Logout)
   const logoutMutation = useMutation({
     mutationFn: logout,
     onSuccess: () => {
       queryClient.setQueryData(authKeys.me, null);
       queryClient.clear();
-      router.push("/auth/login");
+      router.push("/");
     },
   });
 
@@ -73,7 +71,7 @@ export const useAuth = () => {
     user,
     isAuthenticated: !!user,
     login: loginMutation.mutateAsync,
-    register: registerMutation.mutateAsync, // Експортуємо функцію реєстрації
+    register: registerMutation.mutateAsync,
     logout: logoutMutation.mutateAsync,
     refetchMe: refetch,
     isLoading: isUserLoading || isFetching,

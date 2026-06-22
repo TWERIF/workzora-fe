@@ -13,4 +13,5 @@ export interface InputI {
   placeholder: string;
   errorText?: string | null;
   password?: boolean;
+  className?:string;
 }

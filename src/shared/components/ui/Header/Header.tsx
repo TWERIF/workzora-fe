@@ -43,7 +43,6 @@ export default function Header() {
   const isMobile = width < 1233;
   const isVerySmall = width <= 414;
 
-  // Визначаємо роль та параметри головної кнопки
   const isFreelancer = user?.role === "freelancer";
 
   const buttonText = isFreelancer
@@ -54,6 +53,7 @@ export default function Header() {
     ? `/${locale}/projects`
     : `/${locale}/create-project`;
 
+
   return (
     <>
       <header
@@ -61,7 +61,6 @@ export default function Header() {
         style={{ boxShadow: "0px 0px 20px #7EA310" }}
       >
         <div className="w-full flex items-center justify-between px-2 py-4">
-          {/* Logo */}
           <Link href="/">{theme === "dark" ? <LogoRegWhite /> : <Logo />}</Link>
 
           {!isMobile && (
@@ -70,15 +69,15 @@ export default function Header() {
                 <LinkHeader href={`/${locale}/freelancers`}>
                   {t("profile.headers.topFreelancers")}
                 </LinkHeader>
-                <LinkHeader href={`/${locale}/clients`}>
+                {user?.role !== "client" && <LinkHeader href={`/${locale}/categories`}>
                   {t("profile.headers.findWork")}
-                </LinkHeader>
-                <LinkHeader href="#">{t("profile.headers.aboutUs")}</LinkHeader>
-                <LinkHeader href="#">{t("profile.headers.faq")}</LinkHeader>
-                <LinkHeader href="#">
+                </LinkHeader>}
+                <LinkHeader href={`/${locale}/about-us`}>{t("profile.headers.aboutUs")}</LinkHeader>
+                <LinkHeader href={`/${locale}/faq`}>{t("profile.headers.faq")}</LinkHeader>
+                <LinkHeader href={`/${locale}/payments`}>
                   {t("profile.headers.payments")}
                 </LinkHeader>
-                <LinkHeader href="#">
+                <LinkHeader href={`/${locale}/contacts`}>
                   {t("profile.headers.contacts")}
                 </LinkHeader>
               </nav>
@@ -105,7 +104,7 @@ export default function Header() {
 
               <div className="flex gap-[12px] items-center mr-[20px]">
                 <Link href={buttonLink}>
-                  <ButtonGradientSmall text={buttonText} onClick={() => {}} />
+                  <ButtonGradientSmall text={buttonText} onClick={() => { }} />
                 </Link>
                 <LangButton />
               </div>
@@ -114,12 +113,11 @@ export default function Header() {
             </>
           )}
 
-          {/* Для мобільного - бургер */}
           {isMobile && (
             <div className="flex items-center gap-4">
               {!isVerySmall && (
                 <Link href={buttonLink}>
-                  <ButtonGradientSmall text={buttonText} onClick={() => {}} />
+                  <ButtonGradientSmall text={buttonText} onClick={() => { }} />
                 </Link>
               )}
               <ButtonBurger
@@ -167,7 +165,7 @@ export default function Header() {
             <div className="flex flex-col gap-4">
               {isVerySmall && (
                 <Link href={buttonLink} className="w-full">
-                  <ButtonGradientSmall text={buttonText} onClick={() => {}} />
+                  <ButtonGradientSmall text={buttonText} onClick={() => { }} />
                 </Link>
               )}
               <div className="flex items-center gap-4">

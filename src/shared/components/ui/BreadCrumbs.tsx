@@ -6,14 +6,13 @@ import { usePathname } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import IconArrowSmall from "../svg/IconArrowSmall";
 
-// Створюємо тип для кастомних хлібних крихт
 export interface BreadcrumbItem {
   label: string;
   href?: string;
 }
 
 interface BreadcrumbsProps {
-  customItems?: BreadcrumbItem[]; // Робимо пропс необов'язковим
+  customItems?: BreadcrumbItem[];
 }
 
 const Breadcrumbs = ({ customItems }: BreadcrumbsProps) => {
@@ -22,7 +21,6 @@ const Breadcrumbs = ({ customItems }: BreadcrumbsProps) => {
 
   const commonOpacity = "opacity-80";
 
-  // ВАРІАНТ 1: ЯКЩО ПЕРЕДАНІ КАСТОМНІ КРИХТИ (для чату)
   if (customItems && customItems.length > 0) {
     return (
       <nav aria-label="Breadcrumb" className="mb-6 my-4">
@@ -39,7 +37,6 @@ const Breadcrumbs = ({ customItems }: BreadcrumbsProps) => {
                 )}
 
                 {isLast || !item.href ? (
-                  // Останній елемент (або без посилання) не клікабельний
                   <span
                     className={`${commonOpacity} capitalize font-medium line-clamp-1 max-w-[250px]`}
                   >
@@ -61,7 +58,6 @@ const Breadcrumbs = ({ customItems }: BreadcrumbsProps) => {
     );
   }
 
-  // ВАРІАНТ 2: СТАНДАРТНА ЛОГІКА (якщо customItems немає)
   const pathSegments = pathname.split("/").filter((segment) => segment !== "");
 
   return (

@@ -146,7 +146,6 @@
       "2": "over 2700",
       "3": "different categories"
     },
-
     "category": {
       "website_design": "Website Design",
       "mobile_apps": "Mobile Apps",
@@ -181,35 +180,78 @@
       {
         "title": "Innovation Challenges",
         "description": "It's free and easy! Get lots of competitive bids that suit your budget in minutes. Start making your dreams reality.",
-        "skills": ["webdesign", "web", "innovation"],
-        "author": { "name": "Misha", "avatar": "/avatars/user1.png" },
+        "skills": [
+          "webdesign",
+          "web",
+          "innovation"
+        ],
+        "author": {
+          "name": "Misha",
+          "avatar": "/avatars/user1.png"
+        },
         "createdAt": "2 hours ago",
         "views": "1,240"
       },
       {
         "title": "E-commerce Website Redesign",
         "description": "Looking for an expert to revamp our online store. Focus on user experience and mobile responsiveness.",
-        "skills": ["react", "nextjs", "tailwind"],
-        "author": { "name": "Anna", "avatar": "/avatars/user2.png" },
+        "skills": [
+          "react",
+          "nextjs",
+          "tailwind"
+        ],
+        "author": {
+          "name": "Anna",
+          "avatar": "/avatars/user2.png"
+        },
         "createdAt": "5 hours ago",
         "views": "850"
       }
     ]
   },
-
   "community": {
-    "topFreelancers": { "top": "Top", "role": "Freelancers" },
-    "topClients": { "top": "Top", "role": "Clients" },
+    "topFreelancers": {
+      "top": "Top",
+      "role": "Freelancers"
+    },
+    "topClients": {
+      "top": "Top",
+      "role": "Clients"
+    },
     "showAll": "Show All",
     "freelancers": [
-      { "id": 1, "name": "Misha", "avatar": "/avatars/f1.png" },
-      { "id": 2, "name": "Anna", "avatar": "/avatars/f2.png" },
-      { "id": 14, "name": "Ivan", "avatar": "/avatars/f14.png" }
+      {
+        "id": 1,
+        "name": "Misha",
+        "avatar": "/avatars/f1.png"
+      },
+      {
+        "id": 2,
+        "name": "Anna",
+        "avatar": "/avatars/f2.png"
+      },
+      {
+        "id": 14,
+        "name": "Ivan",
+        "avatar": "/avatars/f14.png"
+      }
     ],
     "clients": [
-      { "id": 1, "name": "Google", "avatar": "/avatars/c1.png" },
-      { "id": 2, "name": "Nike", "avatar": "/avatars/c2.png" },
-      { "id": 14, "name": "Apple", "avatar": "/avatars/c14.png" }
+      {
+        "id": 1,
+        "name": "Google",
+        "avatar": "/avatars/c1.png"
+      },
+      {
+        "id": 2,
+        "name": "Nike",
+        "avatar": "/avatars/c2.png"
+      },
+      {
+        "id": 14,
+        "name": "Apple",
+        "avatar": "/avatars/c14.png"
+      }
     ]
   },
   "faq": {
@@ -362,6 +404,7 @@
   },
   "profilePage": {
     "title": "My Account",
+    "logout": "logout",
     "messages": {
       "saving": "Saving",
       "success": "Saved successfully",
@@ -424,18 +467,17 @@
     "freelancers": "Top freelancers",
     "clients": "Top Clients",
     "chats": "Chat",
-    "activeProjects": "Active projects"
+    "activeProjects": "Active projects",
+    "categories": "Jobs",
+    "discussion": "Project discussion"
   },
-
   "graphicDesignPage": {
     "hero": {
       "title": "Hire expert Graphic Designers for any job",
       "subtitle": "Millions of people use Freelancer to turn their ideas into reality.",
       "cta": "Hire a top Graphic Designer now"
     },
-
     "trustedBy": {},
-
     "hireSection": {
       "title": "Hire graphic designer",
       "cardTitle": "Hire a Graphic Designer",
@@ -443,17 +485,14 @@
       "whatIsTitle": "What is Graphic Design?",
       "whatIsText": "Graphic design refers to the planning and projection of visual communication through the use of imagery, words, space, typography or fonts and color palettes. Graphic design is a critical element in the process of communication or product design and creation."
     },
-
     "seeMore": {
       "designers": "See more Graphic designers"
     },
-
     "rating": {
       "title": "Clients rate our Graphic Designers",
       "outOf": "out of 5",
       "reviews": "from 1,124,396 reviews"
     },
-
     "article": {
       "title": "How to hire a great freelance ",
       "highlight": "Graphic Designer",
@@ -497,21 +536,18 @@
         "text": "A graphic designer could try to claim ownership of work that they complete, especially if their designs are original designs that don't contain a lot of your original brand or company assets. However, you can avoid any confusion and retain full rights to any work the designer completes by upgrading your project with an IP Agreement that you and the designer can sign before the project starts. You can also ask freelancers to sign a Non-Disclosure Agreement (NDA), another upgrade, before working with them."
       }
     },
-
     "cta": {
       "title": "So what are you waiting for?",
       "highlight": "waiting for",
       "subtitle": "Post a project today and get bids from talented freelancers",
       "button": "Hire a top Graphic Designer now"
     },
-
     "showcase": {
       "title": "Showcased work from our freelancers",
       "subtitle": "Get some inspiration from Graphic Design projects",
       "category": "Graphic design",
       "cta": "Discover more work from freelancers"
     },
-
     "marketplace": {
       "title": "The world's largest marketplace",
       "subtitle": "Millions of users, from small businesses to large enterprises, use Freelancer to turn their ideas into reality.",
@@ -519,7 +555,6 @@
         "users": "REGISTERED USERS"
       }
     },
-
     "categories": {
       "title": "Looking for freelancers for other types of work?",
       "button": "Show all"
@@ -545,7 +580,8 @@
     "edited": "edited",
     "deleted": "Message deleted",
     "you": "You",
-    "interlocutor": "User"
+    "interlocutor": "User",
+    "reserveFunds": "Reserve Funds"
   },
   "projectStatus": {
     "open": "Open",
@@ -556,5 +592,531 @@
   "roles": {
     "client": "Client",
     "freelancer": "Freelancer"
+  },
+  "categories": {
+    "title": "Web Development Jobs",
+    "hire": "Hire a Freelancer",
+    "earn": "Earn money Freelancing",
+    "search": "Search for a category",
+    "browseAll": "Browse all",
+    "categories": "Categories",
+    "recommendedArticles": "Recommended Articles",
+    "jfu": "Just For You"
+  },
+  "posts": [
+    {
+      "title": "The ultimate guide to hiring a web developer in 2021",
+      "description": "If you want to stay competitive in 2021, you need a high quality website. Learn how to hire the best possible web developer for your business fast.",
+      "readTime": "11 min read"
+    },
+    {
+      "title": "The ultimate guide to hiring a web developer in 2021",
+      "description": "If you want to stay competitive in 2021, you need a high quality website. Learn how to hire the best possible web developer for your business fast.",
+      "readTime": "11 min read"
+    },
+    {
+      "title": "The ultimate guide to hiring a web developer in 2021",
+      "description": "If you want to stay competitive in 2021, you need a high quality website. Learn how to hire the best possible web developer for your business fast.",
+      "readTime": "11 min read"
+    }
+  ],
+  "search": {
+    "button": "Search"
+  },
+  "createProject": {
+    "validation": {
+      "min_3_chars": "Minimum 3 characters",
+      "desc_too_short": "Description is too short",
+      "specify_budget": "Specify the budget",
+      "select_at_least_one_category": "Select at least one category",
+      "max_3_categories": "You can select up to 3 categories",
+      "max_budget": "The budget should not exceed $20,000"
+    },
+    "toast": {
+      "success_created": "Project successfully created",
+      "error_creating": "Failed to create project"
+    },
+    "form": {
+      "heading": "Create Project",
+      "title_label": "Title",
+      "title_placeholder": "Example: CRM System Development",
+      "price_label": "Budget ($)",
+      "categories_label": "Categories (up to 3)",
+      "categories_placeholder": "Search for a category...",
+      "categories_hint": "Select the required tags",
+      "selected": "Selected",
+      "description_label": "Description",
+      "button_creating": "Creating...",
+      "button_create": "Create Project"
+    }
+  },
+  "projects": {
+    "myProjects": "My projects",
+    "search": "Projects search",
+    "singleProject": {
+      "posted": "Posted",
+      "days": "days",
+      "day": "day",
+      "hour": "h",
+      "ago": "ago"
+    }
+  },
+  "projectDiscussion": {
+    "complain": "Complain about the project",
+    "closeForm": "Close form",
+    "bidOnProject": "Bid on the project",
+    "bidsCount_one": "{{count}} bid",
+    "bidsCount_other": "{{count}} bids"
+  },
+  "bidForm": {
+    "heading_create": "Place a Bid",
+    "heading_edit": "Edit Bid",
+    "button_open_form": "Bid on the project",
+    "price_label": "Your price",
+    "time_label": "Execution time (days)",
+    "time_placeholder": "e.g., 5",
+    "description_label": "Description / Cover letter",
+    "button_cancel": "Cancel",
+    "button_saving": "Saving...",
+    "button_update": "Update Bid",
+    "button_submit": "Submit Bid",
+    "validation": {
+      "price_too_low": "Price is lower than the minimum project budget",
+      "max_budget": "Price cannot exceed 20,000",
+      "min_time": "Execution time must be at least 1 day",
+      "desc_too_short": "Description must be at least 20 characters long"
+    },
+    "toast": {
+      "success_created": "Bid created successfully!",
+      "success_updated": "Bid updated successfully!",
+      "error_saving": "An error occurred while saving the bid"
+    }
+  },
+  "terms": {
+    "title": "Terms of Service for WorkZora.com",
+    "lastUpdated": "Last updated: 08.06.2026",
+    "intro1": "These Terms of Service govern access to WorkZora.com and the use of its content, materials, services, and features.",
+    "intro2": "By using the website, you agree to these Terms. If you do not agree with any part of the Terms, please do not use WorkZora.com.",
+    "sections": {
+      "1": {
+        "title": "1. General Information",
+        "content": "WorkZora.com is an informational online resource about remote work, freelancing, Telegram bots, online earning, Web3, cryptocurrencies, trading, promotion of Telegram channels, AI services, and other digital opportunities.\nThe content on the site is informational and educational in nature. We strive to publish useful, up-to-date, and clear materials, but we do not guarantee that all information will be complete, error-free, or up to date at the time you view it."
+      },
+      "2": {
+        "title": "2. Acceptance of Terms",
+        "content": "By using WorkZora.com, you confirm that you:\n- have read these Terms of Service;\n- agree to comply with them;\n- have sufficient age and legal capacity to use the website;\n- use the website in accordance with the laws of your country.\nIf you use the website on behalf of a company or organization, you confirm that you have the authority to accept these Terms on its behalf."
+      },
+      "3": {
+        "title": "3. Use of the Website",
+        "content": "You agree to use WorkZora.com only in a lawful manner.\nProhibited actions include:\n- using the website for fraud, spam, or illegal activities;\n- attempting to gain unauthorized access to the website, servers, or databases;\n- copying, scraping, or mass collecting content without permission;\n- distributing malicious software;\n- disrupting the operation of the website or creating excessive load on the infrastructure;\n- using website materials in a way that misleads other users."
+      },
+      "4": {
+        "title": "4. Informational Nature of Content",
+        "content": "Materials on WorkZora.com are published for general informational purposes. They do not constitute:\n- financial advice;\n- investment recommendations;\n- legal advice;\n- tax advice;\n- a guarantee of earnings;\n- an offer to buy or sell assets;\n- professional advice tailored to your personal situation.\nBefore making financial, investment, legal, or professional decisions, we recommend consulting a qualified specialist."
+      },
+      "5": {
+        "title": "5. Cryptocurrency, Web3, and Trading Topics",
+        "content": "WorkZora.com may publish materials about cryptocurrencies, exchanges, trading, DeFi, NFTs, Web3 platforms, wallets, and other digital assets.\nYou understand that these areas involve high risks, including:\n- loss of funds;\n- market volatility;\n- technical errors;\n- fraudulent projects;\n- regulatory changes;\n- risk of losing access to wallets or accounts.\nYou are solely responsible for all decisions related to cryptocurrencies, trading, or Web3 services.\nWorkZora.com is not responsible for your financial results, losses, account blocks, errors of third-party services, or actions of third parties."
+      },
+      "6": {
+        "title": "6. Online Earning and Freelancing",
+        "content": "The website may publish articles, collections, guides, or reviews related to freelancing, remote work, Telegram bots, AI services, and other ways of earning online.\nWe do not guarantee:\n- a specific income level;\n- job acquisition;\n- successful selection or hiring;\n- results from using any specific service;\n- stability or safety of third-party platforms.\nAny income examples, case studies, or scenarios are illustrative only and should not be considered a guarantee of results."
+      },
+      "7": {
+        "title": "7. Third-Party Links",
+        "content": "WorkZora.com may contain links to third-party websites, services, Telegram channels, exchanges, platforms, partner products, or advertising materials.\nWe do not control third-party resources and are not responsible for:\n- their content;\n- privacy policies;\n- terms of use;\n- security;\n- quality of services;\n- financial or technical consequences of their use.\nYou access third-party links at your own risk."
+      },
+      "8": {
+        "title": "8. Affiliate Materials and Advertising",
+        "content": "Some materials on WorkZora.com may contain affiliate links or advertising integrations. This means the website may receive a commission if you click a link or use a certain service.\nThe presence of an affiliate link does not mean that we guarantee the quality, safety, or profitability of the corresponding product or service.\nWe aim to clearly label advertising and affiliate materials where applicable."
+      },
+      "9": {
+        "title": "9. Intellectual Property",
+        "content": "All materials on WorkZora.com, including texts, page structure, design, logos, images, collections, guides, and other elements, belong to the website owner or are used legally.\nWithout written permission, it is prohibited to:\n- copy materials in full;\n- publish content on other websites;\n- sell or distribute materials as your own;\n- use content for mass automated scraping;\n- remove authorship marks or source references.\nYou may quote small portions of content with an active link to WorkZora.com, provided it does not violate the law or harm the website."
+      },
+      "10": {
+        "title": "10. User Content",
+        "content": "If the website allows posting comments, reviews, messages, or other user-generated content, you are responsible for what you publish.\nIt is prohibited to post:\n- illegal content;\n- insults, threats, or discriminatory statements;\n- spam;\n- fraudulent offers;\n- links to harmful resources;\n- personal data of others without permission;\n- private keys, seed phrases, passwords, or confidential information.\nWe reserve the right to remove user content that violates these Terms or may harm other users."
+      },
+      "11": {
+        "title": "11. Disclaimer of Warranties",
+        "content": "WorkZora.com is provided on an “as is” and “as available” basis.\nWe do not guarantee that:\n- the website will operate continuously;\n- the website will be available at any time;\n- information will always be up to date;\n- materials will be error-free;\n- third-party services mentioned will function reliably;\n- using the website will produce specific results.\nWe may change, update, or remove content without prior notice."
+      },
+      "12": {
+        "title": "12. Limitation of Liability",
+        "content": "To the maximum extent permitted by law, WorkZora.com, its owners, authors, editors, partners, and representatives are not liable for:\n- direct or indirect damages;\n- loss of profit;\n- loss of data;\n- financial losses;\n- consequences of using third-party services;\n- errors or inaccuracies in content;\n- decisions made based on website content;\n- technical failures, viruses, or website unavailability.\nYou use the website and its materials at your own risk."
+      },
+      "13": {
+        "title": "13. Changes to the Website",
+        "content": "We may at any time:\n- change the website structure;\n- add or remove materials;\n- update the design;\n- change functionality;\n- restrict access to certain sections;\n- partially or fully discontinue the website.\nWe are not obliged to notify users in advance of such changes."
+      },
+      "14": {
+        "title": "14. Changes to the Terms of Service",
+        "content": "We may update these Terms of Service. The new version becomes effective upon publication on the website.\nContinued use of WorkZora.com after updates means your acceptance of the revised Terms."
+      },
+      "15": {
+        "title": "15. Termination of Access",
+        "content": "We may restrict or terminate your access to the website if we believe that you are violating these Terms, the law, or the rights of others.\nSuch action may be taken without prior notice."
+      },
+      "16": {
+        "title": "16. Governing Law",
+        "content": "These Terms are governed by applicable law, unless otherwise required by mandatory legal provisions.\nAll disputes related to the use of WorkZora.com should be resolved through negotiation. If an agreement cannot be reached, the dispute will be submitted to a competent court of the relevant jurisdiction."
+      }
+    }
+  },
+  "privacy": {
+    "title": "Privacy Policy WorkZora.com",
+    "lastUpdated": "Last updated:",
+    "date": "08.06.2026",
+    "intro1": "This Privacy Policy explains how the WorkZora.com website collects, uses, stores, and protects user information. We respect your right to privacy and strive to make interaction with the website transparent, secure, and clear.",
+    "intro2": "By using WorkZora.com, you agree to this Privacy Policy. If you do not agree to its terms, please do not use the website.",
+    "sec1_title": "1. Who we are",
+    "sec1_p1": "WorkZora is a platform for organizing the work of customers and contractors. We have created a freelance ecosystem where the focus is shifted to the result, rather than bureaucratic red tape. Here, every action is aimed at fulfilling the task at hand. We do not offer complex turn-key solutions, but provide tools for interaction.",
+    "sec1_p2": "Our team ensures the technical operability of the service. WorkZora's mission is to enable working without unnecessary intermediaries. We have developed a system where the rules are clear and work tools are available in real-time. Standardization of processes avoids ambiguity in agreements between parties.",
+    "sec1_p3": "We adhere to security focus principles in every technical decision. Protecting data and intellectual property is a primary objective when building infrastructure. Monitoring of participants' activity is conducted continuously. Interaction on WorkZora is built according to the following points:",
+    "sec1_li1_bold": "project data security",
+    "sec1_li1_text": " – access restriction and information encryption;",
+    "sec1_li2_bold": "compliance with rules",
+    "sec1_li2_text": " – compliance with the regulations is mandatory for all users;",
+    "sec1_li3_bold": "specialized assistance",
+    "sec1_li3_text": " – resolution of organizational issues upon request without canned responses.",
+    "sec1_p4": "On WorkZora, each participant is responsible for their own actions and the results of their work. This is a marketplace for professionals who value clarity and a professional approach to fulfilling orders.",
+    "sec1_p5": "WorkZora is an international service for finding freelancers and remote specialists. We have created a space where clients quickly find contractors, and contractors receive secure payment for their work.",
+    "sec1_operator_bold": "Website operator:",
+    "sec1_operator_text": " WorkZora / IE Bevza Nataliia Stepanivna IBAN UA913220010000026004360012557 TIN/EDRPOU 2872816964 MFO 322001 EDRPOU of the Bank 21133352 / Website Owner - Bankivskyi Vitalii Petrovych (individual). Acceptance of payments and business activities through the website are carried out by IE Bevza Nataliia Stepanivna.",
+    "sec1_email_bold": "Email:",
+    "sec2_title": "2. What data we may collect",
+    "sec2_p1": "We may collect the following types of information:",
+    "sec2_sub1_title": "Data you provide yourself",
+    "sec2_sub1_p1": "This may include:",
+    "sec2_sub1_li1": "name or nickname;",
+    "sec2_sub1_li2": "email address;",
+    "sec2_sub1_li3": "messages you send through contact forms;",
+    "sec2_sub1_li4": "data you leave when subscribing to the newsletter;",
+    "sec2_sub1_li5": "other information you voluntarily share with us.",
+    "sec2_sub2_title": "Technical data",
+    "sec2_sub2_p1": "When visiting the website, the following may be collected automatically:",
+    "sec2_sub2_li1": "IP address;",
+    "sec2_sub2_li2": "browser and device type;",
+    "sec2_sub2_li3": "operating system and browser language;",
+    "sec2_sub2_li4": "pages you view, date and time of the visit;",
+    "sec2_sub2_li5": "source of referral to the website;",
+    "sec2_sub2_li6": "approximate location based on technical data.",
+    "sec2_sub3_title": "Cookies and similar technologies",
+    "sec2_sub3_p1": "WorkZora.com may use cookies for the correct operation of the website, analytics, improving user experience, and personalizing content. Cookies are small files stored on your device when you visit a website. You can restrict or disable cookies in your browser settings, however, some website features may not function correctly.",
+    "sec3_title": "3. What we use the data for",
+    "sec3_p1": "We may use the collected information for the following purposes:",
+    "sec3_li1": "ensuring the operation of the website;",
+    "sec3_li2": "improving the structure, content, and functionality of WorkZora.com;",
+    "sec3_li3": "responding to your inquiries;",
+    "sec3_li4": "sending informational messages or newsletters, if you have given consent;",
+    "sec3_li5": "analyzing website traffic;",
+    "sec3_li6": "protecting the website from spam, fraud, technical attacks, and abuse;",
+    "sec3_li7": "fulfilling legal obligations if necessary.",
+    "sec3_p2": "We do not sell users' personal data to third parties.",
+    "sec4_title": "4. Analytics and third-party services",
+    "sec4_p1": "WorkZora.com may use third-party tools for analytics, marketing, security, or technical support of the website. For example:",
+    "sec4_li1": "Google Analytics and Google Search Console;",
+    "sec4_li2": "advertising or affiliate tools;",
+    "sec4_li3": "email services for newsletters;",
+    "sec4_li4": "spam protection services, hosting providers, and technical platforms.",
+    "sec4_p2": "Such services may process technical data in accordance with their own privacy policies.",
+    "sec5_title": "5. Affiliate links and external websites",
+    "sec5_p1": "WorkZora.com may contain links to third-party websites, services, Telegram channels, exchanges, Web3 platforms, AI tools, or affiliate products. We do not control the privacy policies of third-party resources and are not responsible for how they collect, use, or protect your data.",
+    "sec6_title": "6. Data on financial, cryptocurrency, and Web3 services",
+    "sec6_p1": "WorkZora.com may publish materials about cryptocurrencies, trading, Web3 projects, exchanges, wallets, tokens, and other digital tools. The website itself is not a financial institution, broker, investment advisor, or cryptocurrency exchange. If you go to third-party financial or Web3 services, you interact with them directly.",
+    "sec7_title": "7. How long we keep data",
+    "sec7_p1": "We retain personal data only as long as necessary for the purposes described in this Policy, or as required by law. For example:",
+    "sec7_li1": "data from contact forms can be stored to process the request;",
+    "sec7_li2": "email for the newsletter is stored until unsubscribed;",
+    "sec7_li3": "technical and analytical data can be stored in an anonymized or aggregated form.",
+    "sec8_title": "8. How we protect data",
+    "sec8_p1": "We apply reasonable technical and organizational measures to protect information from unauthorized access, loss, alteration, or disclosure. At the same time, no method of transmitting data over the Internet is completely secure.",
+    "sec9_title": "9. Your rights",
+    "sec9_p1": "Depending on your jurisdiction, you may have the right to:",
+    "sec9_li1": "obtain information about what data we process;",
+    "sec9_li2": "request correction or deletion of your data;",
+    "sec9_li3": "withdraw consent to data processing or unsubscribe from the email newsletter;",
+    "sec9_li4": "restrict processing or obtain a copy of your data.",
+    "sec9_contact": "To exercise your rights, write to us at:",
+    "sec10_title": "10. Newsletter",
+    "sec10_p1": "If you subscribe to the WorkZora.com newsletter, we may send you news, collections of materials, useful tools, or partner offers. You can unsubscribe from the newsletter at any time.",
+    "sec11_title": "11. Comments and user content",
+    "sec11_p1": "Please do not publish personal data, passwords, private keys, seed phrases, financial information, or other confidential information in the public domain. Information you post may be visible to other users.",
+    "sec12_title": "12. Children's privacy",
+    "sec12_p1": "WorkZora.com is not intended for children under 18 years of age. If you believe that a child has provided us with personal data, please contact us and we will take steps to delete it.",
+    "sec13_title": "13. International data transfer",
+    "sec13_p1": "Since the website may use international services, your data may be processed in other countries. We strive to cooperate with services that maintain appropriate data protection standards.",
+    "sec14_title": "14. Changes to this Policy",
+    "sec14_p1": "We may periodically update this Privacy Policy. The new version becomes effective from the moment it is published on the website. We recommend reviewing this page from time to time.",
+    "sec15_title": "15. Contacts",
+    "sec15_p1": "If you have any questions regarding this Privacy Policy or the processing of personal data, please contact us:",
+    "sec15_name": "WorkZora.com"
+  },
+  "faqPage": {
+    "title": "FAQ · FREQUENTLY ASKED QUESTIONS",
+    "subtitle": "Answers to common questions",
+    "description": "If you couldn't find the answer — contact us at workzora.partners@gmail.com",
+    "stats": "28 questions · 7 categories · Updated: June 2026",
+    "categories": {
+      "general": {
+        "title": "General About the Platform",
+        "items": [
+          {
+            "question": "What is WorkZora?",
+            "answer": "WorkZora is a Ukrainian freelance platform that connects clients and freelancers. All transactions are made in US dollars, while funds for each deal are held in an escrow vault — a secure platform account — until the work result is confirmed. Currently, the platform serves users from Ukraine. Expanding to other regions is the next step."
+          },
+          {
+            "question": "How is WorkZora different from other freelance marketplaces?",
+            "answer": "The key difference is payments in USD and escrow protection by default. The platform uses escrow protection for every deal. WorkZora builds an infrastructure where both parties receive additional protection: the client does not pay for unfinished work, and the freelancer does not start without payment confirmation. WorkZora is currently in the MVP phase. We openly communicate this and continue to develop new features."
+          },
+          {
+            "question": "Is registration on the platform free?",
+            "answer": "Yes. Registration is free for both parties. A commission is charged only for successfully completed deals — see the \"Payments and Fees\" section for details."
+          },
+          {
+            "question": "Is WorkZora available outside Ukraine?",
+            "answer": "At the moment, the platform is focused on users from Ukraine. We plan to gradually expand the platform's geography. There are no specific dates yet."
+          }
+        ]
+      },
+      "gettingStarted": {
+        "title": "Getting Started",
+        "items": [
+          {
+            "question": "How do I register on the platform?",
+            "answer": "Go to workzora.com, click \"Sign Up\", and fill in your details: name, email, and password. After confirming your email, you will gain access to your personal dashboard. To fully use the platform — publish projects, top up your balance, and withdraw funds — account verification is required."
+          },
+          {
+            "question": "What is required for verification?",
+            "answer": "WorkZora performs KYC (Know Your Customer) verification: identity confirmation using official documents. This is a standard procedure for platforms that handle financial transactions. Verification reduces the risk of fraud and increases trust between users."
+          },
+          {
+            "question": "How can a client post their first project?",
+            "answer": "After registration and verification, go to the \"Projects\" section → \"New Project\". Describe the task, specify the budget in dollars, and indicate the desired deadlines. Publishing a project is free."
+          },
+          {
+            "question": "How can a freelancer find projects?",
+            "answer": "Complete your profile: skills, description, portfolio, and rate. Browse the list of active projects and apply to those that match your specialization. Clients can view your profile and invite you to work."
+          }
+        ]
+      },
+      "escrow": {
+        "title": "Escrow and Deal Security",
+        "items": [
+          {
+            "question": "What is escrow and how does it work on WorkZora?",
+            "answer": "Escrow is a secure platform account where the client's funds are held while the deal is being completed. 1. The client confirms the deal — the funds are locked in the vault. 2. The freelancer sees that the money is reserved and starts working. 3. The client accepts the result — the funds are transferred to the freelancer's balance. Neither party can access the funds without fulfilling the deal terms."
+          },
+          {
+            "question": "What happens if the client does not confirm the result?",
+            "answer": "If the client does not respond within the established period after the work is submitted, the deal may automatically be considered completed, or the freelancer may initiate a dispute. Specific deadlines are outlined in the Platform Rules."
+          },
+          {
+            "question": "Can a freelancer withdraw from a deal after work has started?",
+            "answer": "Yes, but the procedure depends on the terms of the specific deal. If the work has not yet started or there are valid reasons, the deal may be canceled by mutual agreement. If a conflict arises, a dispute is opened."
+          },
+          {
+            "question": "Is it safe to keep funds on my WorkZora balance?",
+            "answer": "We apply technical security measures and verify platform users. However, we recommend withdrawing earned funds in a timely manner — the platform balance is not a bank deposit."
+          }
+        ]
+      },
+      "payments": {
+        "title": "Payments, Balance, and Fees",
+        "items": [
+          {
+            "question": "What currency is used for payments?",
+            "answer": "All deals, balances, and payouts are made in US dollars (USD). This helps avoid dependence on the hryvnia exchange rate and simplifies payments for both parties."
+          },
+          {
+            "question": "What is the platform fee?",
+            "answer": "For clients: 0% fee for publishing a project. For freelancers: a commission is charged from the amount of a successfully completed deal. The rate depends on the profile rating and the order amount. No hidden fees. Current rates are always available in the \"Pricing\" section of your personal dashboard."
+          },
+          {
+            "question": "How do I top up my balance?",
+            "answer": "Go to the \"Finance\" section in your personal dashboard and choose a top-up method. Available payment methods are displayed in your profile."
+          },
+          {
+            "question": "How do I withdraw funds?",
+            "answer": "In the \"Finance\" section, select \"Withdraw Funds\". You can transfer funds to a bank card or a wallet of a supported payment system. In most cases, processing takes a few hours."
+          },
+          {
+            "question": "Is there a minimum withdrawal amount?",
+            "answer": "You can find the latest information about the minimum withdrawal amount in the \"Finance\" section or contact support."
+          }
+        ]
+      },
+      "disputes": {
+        "title": "Disputes and Arbitration",
+        "items": [
+          {
+            "question": "What should I do if I have a misunderstanding with the other party?",
+            "answer": "First, try to resolve the issue directly through chat — most misunderstandings are settled at this stage. If you cannot reach an agreement, you can open a dispute through your personal dashboard."
+          },
+          {
+            "question": "How do I open a dispute?",
+            "answer": "Go to the relevant deal and click \"Open Dispute\". Describe the situation and attach supporting materials: messages, files, screenshots, and project requirements. The more details you provide, the faster the team can review the case."
+          },
+          {
+            "question": "Who resolves disputes and how?",
+            "answer": "The WorkZora team reviews the situation according to the platform rules: analyzing communication, the progress of the work, and whether the result meets the project requirements. The goal is to help both parties reach a fair solution. Conclusions are based on the provided materials and the circumstances of the specific case."
+          },
+          {
+            "question": "How long does dispute resolution take?",
+            "answer": "The timeframe depends on the complexity of the case and the completeness of the provided materials. You can track the status of the case in your personal dashboard."
+          }
+        ]
+      },
+      "account": {
+        "title": "Account and Profile",
+        "items": []
+      },
+      "about": {
+        "title": "About the Platform",
+        "items": []
+      }
+    },
+    "contactBlock": {
+      "title": "COULDN'T FIND AN ANSWER?",
+      "subtitle": "Contact us directly — we'll respond without template replies.",
+      "email": "workzora.partners@gmail.com",
+      "legal": "Business activities through the platform are carried out by Sole Proprietor Natalia Bevza. The project owner is Vitalii Bankivskyi (individual)."
+    }
+  },
+  "About": {
+    "heroTitle": "Secure collaboration between clients and freelancers — in US dollars",
+    "heroDescription": "WorkZora is a Ukrainian freelance platform with escrow protection, transparent fees, and payments in USD. The platform is currently in the MVP stage and is attracting its first users.",
+    "heroCardUsdTitle": "USD",
+    "heroCardUsdText": "Balance, deals and payouts — in US dollars",
+    "heroCardFeeTitle": "0%",
+    "heroCardFeeText": "Client fee for publishing projects",
+    "heroCardEscrowTitle": "Escrow",
+    "heroCardEscrowText": "Funds are held securely until work is approved",
+    "whyTitle": "We know what freelancing looks like without protection",
+    "whyP1": "You pay upfront and the freelancer disappears. Or vice versa: the work is delivered, but the client delays payment. This problem remains relevant for most market participants.",
+    "whyP2": "WorkZora is built around escrow: the client's funds are locked until the result is approved. Freelancers see the funds secured before they start working. Clients receive the result first, and only then are the funds released. All transactions are made in USD — no exchange rate dependency and no currency conversion.",
+    "whyP3": "WorkZora is the answer to a specific problem: how to make online collaboration in Ukraine safe and predictable for both sides.",
+    "howTitle": "Simple — no lengthy instructions",
+    "clientTitle": "For clients",
+    "clientStep1Title": "Post a project",
+    "clientStep1Text": "Describe the task, set the budget in USD and deadlines. Free of charge.",
+    "clientStep2Title": "Choose a freelancer",
+    "clientStep2Text": "Review profiles, ratings and prices — then invite someone to work.",
+    "clientStep3Title": "Approve the result",
+    "clientStep3Text": "Confirm the work and the escrow is released. Fees apply only to successful deals.",
+    "freelancerTitle": "For freelancers",
+    "freelancerStep1Title": "Create a profile",
+    "freelancerStep1Text": "Add skills, portfolio and rates. Complete account verification.",
+    "freelancerStep2Title": "Take on projects",
+    "freelancerStep2Text": "See secured funds before starting work and focus on delivering results.",
+    "freelancerStep3Title": "Withdraw earnings",
+    "freelancerStep3Text": "After approval, your balance is credited. In most cases withdrawals take only a few hours.",
+    "benefitsTitle": "What WorkZora offers both sides",
+    "benefit1Title": "Escrow protection",
+    "benefit1Text": "Client funds are securely held and released only after the work is approved.",
+    "benefit2Title": "Payments in USD",
+    "benefit2Text": "Balance, deals and payouts are all in US dollars. No exchange rate dependency and no conversions.",
+    "benefit3Title": "Transparent fees",
+    "benefit3Text": "Fees apply only to successful deals. Project publishing is free. No hidden charges.",
+    "benefit4Title": "KYC verification",
+    "benefit4Text": "Participant verification reduces fraud risks and increases trust on the platform.",
+    "benefit5Title": "Dispute resolution",
+    "benefit5Text": "If a deal reaches a deadlock, the WorkZora team reviews the case according to platform rules and helps both parties find a solution.",
+    "benefit6Title": "Human support",
+    "benefit6Text": "Our support team responds to user requests and helps solve issues without unnecessary bureaucracy. Reach out — you'll get real answers, not templates.",
+    "teamTitle": "Who builds WorkZora",
+    "founderName": "Vitalii Bankivskyi",
+    "founderRole": "Founder, Project Owner",
+    "founderDescription": "Responsible for the product, strategy and communication with the audience. WorkZora started with his idea.",
+    "developerName": "Danylo Manuliak",
+    "developerRole": "Platform Developer",
+    "developerDescription": "Builds WorkZora's technical infrastructure — from backend architecture to the client interface.",
+    "teamP1": "WorkZora is not a corporation or another startup with a fancy presentation. It is a product created by two people who decided to make freelancing in Ukraine a little safer. We are a small team, but we listen to feedback, react quickly and stay open to dialogue.",
+    "teamP2": "WorkZora is currently in the MVP stage.",
+    "teamP3": "Core functionality is already implemented: projects, escrow, balance, profiles, support and dispute resolution. Some features are still under development — we are honest about this and grateful for the trust we receive at this early stage.",
+    "visionTitle": "Why we are building this",
+    "missionTitle": "Mission",
+    "missionText": "To make freelancing in Ukraine safe and predictable so clients get results and freelancers get paid without fear of being deceived.",
+    "visionPeriod": "1–2 years",
+    "visionText": "We aim to create a platform where Ukrainian specialists can collaborate with clients worldwide, while businesses quickly find trusted freelancers. Today we focus on the Ukrainian market, and in the future we plan to expand the platform for international collaboration.",
+    "ctaTitle": "Ready to start?",
+    "ctaText": "Registration is free. Publish your first project with no hidden fees.",
+    "email": "workzora.partners@gmail.com",
+    "legal": "Business activities on the platform are carried out by Sole Proprietor Nataliia Bevza. The project owner is Vitalii Bankivskyi (individual)."
+  },
+  "chatPage": {
+    "title": "Chats",
+    "search_placeholder": "Search for chats",
+    "search_button": "Search",
+    "no_chats": "No chats available",
+    "filters": {
+      "projects": "Projects",
+      "chats": "Chats",
+      "blocked": "Blocked"
+    }
+  },
+  "notFound": {
+    "title": "404",
+    "subtitle": "Oops! Page not found",
+    "description": "The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.",
+    "button": "Back to Homepage"
+  },
+  "paymentsHistory": {
+    "title": "Payment History",
+    "subtitle": "Track your transactions, balance top-ups, and withdrawals",
+    "emptyState": {
+      "title": "No transactions found",
+      "description": "You haven't made any financial operations on the WorkZora platform yet. All deposits, escrow deals, fees, and payouts will appear here.",
+      "actionButton": "Top up balance"
+    },
+    "table": {
+      "date": "Date",
+      "type": "Type",
+      "amount": "Amount",
+      "status": "Status",
+      "description": "Description"
+    },
+    "types": {
+      "deposit": "Deposit",
+      "withdrawal": "Withdrawal",
+      "escrow_lock": "Escrow Lock",
+      "escrow_release": "Escrow Release",
+      "fee": "Platform Fee"
+    },
+    "statuses": {
+      "completed": "Completed",
+      "pending": "Pending",
+      "failed": "Failed"
+    },
+    "filters": {
+      "all": "All operations",
+      "inflow": "Inflow",
+      "outflow": "Outflow"
+    },
+    "toggleStateDemo": "Toggle Empty State Demo"
+  },
+  "contactsPage": {
+    "title": "Feedback & Contacts",
+    "subtitle": "Have questions, partnership proposals, or need support? Write to us directly.",
+    "emailCard": {
+      "title": "Email Address",
+      "description": "Write to us anytime — we reply quickly and without boilerplate templates."
+    },
+    "form": {
+      "title": "Send a Message",
+      "nameLabel": "Your Name",
+      "namePlaceholder": "John Doe",
+      "emailLabel": "Your Email",
+      "emailPlaceholder": "example@domain.com",
+      "messageLabel": "Message",
+      "messagePlaceholder": "Describe your question or proposal...",
+      "submitBtn": "Send Message",
+      "successMessage": "Thank you! Your message has been successfully sent. We will get back to you shortly."
+    },
+    "legalCard": {
+      "title": "Legal Information",
+      "text": "Economic activity through the platform is carried out by FOP Bevza Nataliia Stepanivna. The project owner is Bankivskyi Vitalii Petrovych (individual)."
+    }
   }
 }

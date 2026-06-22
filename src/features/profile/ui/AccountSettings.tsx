@@ -1,3 +1,5 @@
+import { User } from "@/features/auth/model/types";
+import { useAuth } from "@/features/auth/model/useAuth";
 import BidsIcon from "@/shared/components/svg/AccountSettings/BidsIcon";
 import CabinetIcon from "@/shared/components/svg/AccountSettings/CabinetIcon";
 import CompetitionsIcon from "@/shared/components/svg/AccountSettings/CompetitionsIcon";
@@ -19,15 +21,18 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
-const AccountSettings = () => {
+const AccountSettings = ({ user }: { user: User }) => {
   const { t } = useTranslation("common");
   const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
+
+  const { logout } = useAuth();
+
   const locale = router.locale || "en";
 
   const activePath = router.asPath;
 
-  const mainLinks = [
+  const initialLinks = [
     {
       name: t("profilePage.settings_menu.cabinet"),
       icon: CabinetIcon,
@@ -36,7 +41,7 @@ const AccountSettings = () => {
     {
       name: t("profilePage.settings_menu.correspondence"),
       icon: CorrespondenceIcon,
-      link: `/${locale}/activeProjects`,
+      link: `/${locale}/chats`,
     },
     {
       name: t("profilePage.settings_menu.bids"),
@@ -69,6 +74,9 @@ const AccountSettings = () => {
       link: `/${locale}/statistics`,
     },
   ];
+  const mainLinks = user && user.role === "client"
+    ? initialLinks.filter((item) => !item.link.includes("bids") && !item.link.includes('portfolio'))
+    : initialLinks;
 
   const secondaryLinks = [
     {
@@ -76,16 +84,16 @@ const AccountSettings = () => {
       icon: ProfileDescIcon,
       link: `/${locale}/settings/description`,
     },
-    {
-      name: t("profilePage.settings_menu.performer_profile"),
-      icon: PerformerProfileIcon,
-      link: `/${locale}/settings/performer`,
-    },
-    {
-      name: t("profilePage.settings_menu.customer_profile"),
-      icon: CustomerProfileIcon,
-      link: `/${locale}/settings/customer`,
-    },
+    // {
+    //   name: t("profilePage.settings_menu.performer_profile"),
+    //   icon: PerformerProfileIcon,
+    //   link: `/${locale}/settings/performer`,
+    // },
+    // {
+    //   name: t("profilePage.settings_menu.customer_profile"),
+    //   icon: CustomerProfileIcon,
+    //   link: `/${locale}/settings/customer`,
+    // },
     {
       name: t("profilePage.settings_menu.settings"),
       icon: SettingsIcon,
@@ -110,12 +118,10 @@ const AccountSettings = () => {
 
   const NavItem = ({ link }: { link: any }) => {
     const Icon = link.icon;
-    // Перевіряємо, чи є посилання активним
     const isActive =
       activePath === link.link ||
       activePath === link.link?.replace(`/${locale}`, "");
 
-    // Якщо посилання не задане (наприклад, ще в розробці), використовуємо "#" або запобігаємо рендеру
     const href = link.link || "#";
 
     return (
@@ -123,11 +129,10 @@ const AccountSettings = () => {
         <div
           className={`
           flex items-center gap-3 py-2 px-3 cursor-pointer transition-all rounded-xl group
-          ${
-            isActive
+          ${isActive
               ? "bg-gray-100 dark:bg-zinc-800"
               : "hover:bg-gray-50 dark:hover:bg-zinc-800/50"
-          }
+            }
         `}
         >
           <div
@@ -138,11 +143,10 @@ const AccountSettings = () => {
           <span
             className={`
             text-xs font-medium transition-colors
-            ${
-              isActive
+            ${isActive
                 ? "text-black dark:text-white font-bold"
                 : "text-[#333333] dark:text-gray-300 group-hover:text-black dark:group-hover:text-white"
-            }
+              }
           `}
           >
             {link.name}
@@ -154,7 +158,6 @@ const AccountSettings = () => {
 
   return (
     <div className="w-full lg:max-w-[320px] bg-white dark:bg-[#1A1A1A] rounded-[30px] lg:rounded-[40px] p-6 lg:p-8 shadow-sm border border-gray-100 dark:border-zinc-800/50">
-      {/* Заголовок-тригер */}
       <div
         className="flex items-center justify-between cursor-pointer lg:cursor-default"
         onClick={() => setIsOpen(!isOpen)}
@@ -169,7 +172,6 @@ const AccountSettings = () => {
         </div>
       </div>
 
-      {/* Список посилань */}
       <div className={`${isOpen ? "block" : "hidden"} lg:block mt-6`}>
         <div className="space-y-1 mb-6">
           {mainLinks.map((link) => (
@@ -183,7 +185,9 @@ const AccountSettings = () => {
           {secondaryLinks.map((link) => (
             <NavItem key={link.name} link={link} />
           ))}
+          <button className="text-error capitalize py-2 px-3" onClick={() => logout()}>{t("profilePage.logout")}</button>
         </div>
+
       </div>
     </div>
   );
