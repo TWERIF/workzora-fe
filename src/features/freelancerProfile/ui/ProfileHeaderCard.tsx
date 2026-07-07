@@ -1,7 +1,7 @@
 import { User } from "@/features/auth/model/types";
 import { useTranslation } from "react-i18next";
 import { CheckBadgeIcon } from "./icons";
-import { RatingStars } from "./Ratingstars";
+import { RatingStars } from "./RatingStars";
 
 interface ProfileHeaderCardProps {
     user: User | null | undefined;

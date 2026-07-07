@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { Pagination } from "./Pagination";
-import { Review, ReviewCard } from "./Reviewcard";
+import { Review, ReviewCard } from "./ReviewCard";
 
 
 interface ReviewsSectionProps {
