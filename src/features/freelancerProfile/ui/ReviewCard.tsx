@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { RatingStars } from "./Ratingstars";
+import { RatingStars } from "./RatingStars";
 
 
 export interface ReviewCriteria {
