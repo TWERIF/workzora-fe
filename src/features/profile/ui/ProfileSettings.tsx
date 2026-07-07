@@ -3,9 +3,9 @@
 import { confirmEmail } from "@/features/auth/model/api";
 import { User } from "@/features/auth/model/types";
 import { useAuth } from "@/features/auth/model/useAuth";
+import VerificationBlock from "@/features/kyc/ui/VerificationBlock";
 import AccountSettings from "@/features/profile/ui/AccountSettings";
 import BankVerification from "@/features/profile/ui/BankVerification";
-import VerificationAccount from "@/features/profile/ui/VerificationAccount";
 import { useUsers } from "@/features/users/model/useUsers";
 import IconEdit from "@/shared/components/svg/IconEdit";
 import Breadcrumbs from "@/shared/components/ui/BreadCrumbs";
@@ -89,7 +89,7 @@ export default function ProfileSettings() {
       },
     );
   };
-
+  if (!user) return <></>
   return (
     <div
       className={`min-h-screen ${isDark ? "bg-[#2A2A2A] py-8 text-white" : "bg-[#F7F7F7] text-[#333333]"}`}
@@ -172,7 +172,7 @@ export default function ProfileSettings() {
             </form>
 
             <div className="w-full">
-              <VerificationAccount />
+              <VerificationBlock user={user} />
             </div>
             <div className="w-full">
               <BankVerification />

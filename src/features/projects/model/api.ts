@@ -36,3 +36,7 @@ export const toAwaitingPayment = async (data: { id: string; freelancerId: string
   });
   return res.data;
 };
+export const count = async (): Promise<number> => {
+  const res = await $api.get("/projects/count");
+  return res.data;
+};

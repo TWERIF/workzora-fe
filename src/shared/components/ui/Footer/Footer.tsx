@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
 import AvalibleApplestoreIcon from "../../svg/AvalibleApplestoreIcon";
 import AvalibleGoogleplayIcon from "../../svg/AvalibleGoogleplayIcon";
@@ -7,7 +8,6 @@ import IconTelegramSmall from "../../svg/IconTelegramSmall";
 import IconYoutubeSmall from "../../svg/IconYoutubeSmall";
 import LogoGreenStripes from "../../svg/LogoGreenStripes";
 import FooterMeta from "./FooterMeta";
-import { useRouter } from "next/router";
 
 const icons = [
   IconFacebookSmall,
@@ -63,16 +63,14 @@ export default function Footer() {
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10 lg:gap-10">
-            <FooterColumn data={footerData.freelancer} />
+            <FooterColumn data={{ ...footerData.freelancer, fallback: `/${locale}/coming-soon`, hrefs: [`/${locale}/categories`, "/coming-soon", `/${locale}/freelancers`] }} />
 
-            <FooterColumn data={footerData.about} />
+            <FooterColumn data={{ ...footerData.about, fallback: `/${locale}/coming-soon`, hrefs: [`/${locale}/about-us`, `/${locale}/about-us#how-it-works`, `/${locale}/about-us#benefits`, `/${locale}/about-us#team`, `/${locale}/about-us#vision`, `/${locale}/about-us#contacts`] }} />
 
             <div className="flex flex-col gap-10">
-              <FooterColumn data={{ ...footerData.terms, hrefs: [`/${locale}/privacy-policy`, `/${locale}/terms-and-conditions`] }} />
-              <FooterColumn data={footerData.clients} />
+              <FooterColumn data={{ ...footerData.terms, fallback: `/${locale}/coming-soon`, hrefs: [`/${locale}/privacy-policy`, `/${locale}/terms-and-conditions`, `/${locale}/copyright-policy`, `/${locale}/code-of-conduct`, `/${locale}/fees`] }} />
             </div>
 
-            <FooterColumn data={footerData.information} />
           </div>
         </div>
       </div>
@@ -82,7 +80,7 @@ export default function Footer() {
   );
 }
 
-const FooterColumn = ({ data }: { data: { title: string; links: string[], hrefs?: string[] } }) => {
+const FooterColumn = ({ data }: { data: { title: string; links: string[], fallback: string, hrefs?: string[] } }) => {
   if (!data) return null;
   return (
     <div className="flex flex-col gap-4 md:gap-5">
@@ -94,7 +92,7 @@ const FooterColumn = ({ data }: { data: { title: string; links: string[], hrefs?
           <li key={idx} className="leading-tight">
             {" "}
             <a
-              href={data.hrefs ? data.hrefs[idx] : "#"}
+              href={data.hrefs && data.hrefs[idx] ? data.hrefs[idx] : data.fallback}
               className="text-sm text-gray-300 hover:text-[#7EA310] transition-all 
                          block w-full break-words whitespace-normal"
             >

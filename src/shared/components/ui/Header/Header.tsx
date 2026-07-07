@@ -136,11 +136,17 @@ export default function Header() {
               <LinkHeader href={`/${locale}/freelancers`}>
                 {t("profile.headers.topFreelancers")}
               </LinkHeader>
-              <LinkHeader href={`/${locale}/clients`}>
+              {user?.role !== "client" && <LinkHeader href={`/${locale}/categories`}>
                 {t("profile.headers.findWork")}
+              </LinkHeader>}
+              <LinkHeader href={`/${locale}/about-us`}>{t("profile.headers.aboutUs")}</LinkHeader>
+              <LinkHeader href={`/${locale}/faq`}>{t("profile.headers.faq")}</LinkHeader>
+              <LinkHeader href={`/${locale}/payments`}>
+                {t("profile.headers.payments")}
               </LinkHeader>
-              <LinkHeader href="#">{t("profile.headers.aboutUs")}</LinkHeader>
-              <LinkHeader href="#">{t("profile.headers.faq")}</LinkHeader>
+              <LinkHeader href={`/${locale}/contacts`}>
+                {t("profile.headers.contacts")}
+              </LinkHeader>
               {isAuthenticated ? (
                 <>
                   <LinkHeader href={`/${locale}/profile`}>
@@ -150,6 +156,7 @@ export default function Header() {
                     {t("profile.headers.activeProjects")}
                   </LinkHeader>
                 </>
+
               ) : (
                 <>
                   <LinkHeader onClick={() => setIsOpenLogin(true)} href="#">

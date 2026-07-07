@@ -1,9 +1,14 @@
+import { useCountProjects } from "@/features/projects/model/useProjects";
+import { useCountUsers } from "@/features/users/model/useUsers";
 import { useTheme } from "next-themes";
 import { CopyrightInfo } from "./Footer";
 
 export default function FooterMeta({ info }: { info: CopyrightInfo }) {
   const { theme } = useTheme();
   const isDark = theme === "dark";
+
+  const { data: users } = useCountUsers();
+  const { data: projects } = useCountProjects();
 
   if (!info) return null;
 
@@ -15,7 +20,7 @@ export default function FooterMeta({ info }: { info: CopyrightInfo }) {
         <div className="flex flex-row md:flex-wrap justify-center gap-10 md:gap-24 text-center">
           <div className="flex flex-col gap-1">
             <span className="text-2xl md:text-3xl font-bold tracking-tight">
-              {info.registeredUsers}
+              {users}
             </span>
             <span className="text-[10px] md:text-xs font-semibold uppercase tracking-widest opacity-70">
               {info.registeredUsersText}
@@ -24,7 +29,7 @@ export default function FooterMeta({ info }: { info: CopyrightInfo }) {
 
           <div className="flex flex-col gap-1">
             <span className="text-2xl md:text-3xl font-bold tracking-tight">
-              {info.totalJobs}
+              {projects}
             </span>
             <span className="text-[10px] md:text-xs font-semibold uppercase tracking-widest opacity-70">
               {info.totalJobsText}
@@ -33,7 +38,7 @@ export default function FooterMeta({ info }: { info: CopyrightInfo }) {
         </div>
 
         <div className="flex flex-col items-center md:items-end gap-1 text-center md:text-right">
-          <p className="font-bold text-sm md:text-base">{info.trademark}</p>
+          {/* <p className="font-bold text-sm md:text-base">{info.trademark}</p> */}
           <p className="text-xs md:text-sm opacity-60">{info.copyright}</p>
         </div>
       </div>

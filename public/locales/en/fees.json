@@ -1,0 +1,69 @@
+{
+    "fees": {
+        "meta": {
+            "title": "Fees & Commissions",
+            "updated": "Terms last updated"
+        },
+        "hero": {
+            "eyebrow": "Transparency first",
+            "title": "Fees & Commissions",
+            "lead": "We aim to make our commission system as transparent as possible. You always see exactly what you're paying for, how the fee is calculated, and the terms for withdrawing funds."
+        },
+        "nav": {
+            "how": "How fees work",
+            "contractor": "Contractor fee",
+            "pro": "Pro account",
+            "autoclose": "Auto-close",
+            "withdrawal": "Withdrawals",
+            "refund": "Refunds",
+            "currency": "Currency",
+            "changes": "Changes to terms"
+        },
+        "how": {
+            "title": "How fees work",
+            "body": "A fee is only charged for successfully completed deals. If a project doesn't happen or the deal is cancelled before completion, no fee is charged.",
+            "customer": "For clients: 0% for posting a task.",
+            "contractor": "For contractors: the fee is charged only after a project is successfully completed."
+        },
+        "contractor": {
+            "title": "Contractor fee",
+            "rateLabel": "Base rate",
+            "rateValue": "8%",
+            "rateNote": "of the project value",
+            "body": "At launch, all contractors pay a single flat rate of 8%, regardless of rating or volume of completed work.",
+            "future": "Discounted rates for high-rated users may be introduced in the future — we'll announce any such changes in advance."
+        },
+        "pro": {
+            "title": "Pro account",
+            "discountLabel": "Pro discount",
+            "discountValue": "−2 pp",
+            "body": "Pro account holders get a 2 percentage point discount off the standard fee. A Pro account is a paid subscription (monthly or half-yearly) that also unlocks other platform perks.",
+            "soon": "A detailed overview of Pro account features will be published once this feature launches."
+        },
+        "autoclose": {
+            "title": "Automatic project closure",
+            "body": "Regardless of account type, a standard auto-close rule applies. If a client doesn't confirm completed work within 48 hours after the deadline, the project closes automatically and the funds are released to the contractor.",
+            "highlight": "48 hours"
+        },
+        "withdrawal": {
+            "title": "Withdrawing funds",
+            "body": "WorkZora doesn't charge its own fee for withdrawals. However, payment providers may apply their own fees, which vary by withdrawal method.",
+            "methods": "Withdrawals to Visa/Mastercard bank cards are currently available.",
+            "minimum": "Minimum withdrawal amount",
+            "minimumValue": "10 USD",
+            "note": "Before confirming a transaction, we recommend reviewing the terms of the relevant payment provider."
+        },
+        "refund": {
+            "title": "Refunds to clients",
+            "body": "If funds are refunded to a client, actual non-refundable payment provider fees may be deducted from the refund amount."
+        },
+        "currency": {
+            "title": "Settlement currency",
+            "body": "The platform's primary currency is USD. Balances and settlements are kept in dollars; amounts may additionally be shown in other currencies at the current rate for convenience."
+        },
+        "changes": {
+            "title": "Changes to these terms",
+            "body": "As the platform evolves, certain terms regarding fees and withdrawals may change. We will notify users of any material changes in advance."
+        }
+    }
+}

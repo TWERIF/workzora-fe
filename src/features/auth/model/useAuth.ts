@@ -5,6 +5,7 @@ import { UserCreate } from "./types";
 
 export const authKeys = {
   me: ["me"] as const,
+  countUsers: () => ["countUsers"],
 };
 
 interface LoginCredentials {

@@ -1,0 +1,41 @@
+{
+    "eyebrow": "Legal information",
+    "title": "Copyright Policy",
+    "intro": "WorkZora respects intellectual property rights and is committed to ensuring proper copyright protection for all platform users. This Policy sets out how copyright infringement notices are submitted, reviewed, and processed.",
+    "toc": {
+        "heading": "Sections"
+    },
+    "sections": {
+        "protection": {
+            "title": "What is protected",
+            "body": "Copyright covers text, images, portfolios, project descriptions, and other materials that users post on the platform in accordance with applicable law. By posting content on WorkZora, you confirm that you have the right to use it."
+        },
+        "whereToSend": {
+            "title": "Where to send a complaint",
+            "body": "If you believe your copyright has been infringed, send a complaint to {{email}} or through the contact form on the “Contacts” page."
+        },
+        "review": {
+            "title": "Reviewing a complaint",
+            "body": "Complaints are reviewed by authorized WorkZora support and moderation staff. While a review is underway, WorkZora may restrict access to the content or project in question and may request additional materials from the parties to clarify the circumstances.",
+            "body2": "WorkZora is not an arbiter of copyright disputes and does not conduct legal review. The final decision on whether an infringement occurred is made by competent authorities in accordance with applicable law."
+        },
+        "counterNotice": {
+            "title": "Counter-notice",
+            "body": "A user against whom a complaint has been filed has the right to provide an explanation and a counter-notice with evidence of their rights to the content."
+        },
+        "repeatViolations": {
+            "title": "Repeat violations",
+            "body": "Confirmed or repeated copyright violations are handled in accordance with the sanctions set out in WorkZora's Code of Conduct."
+        },
+        "changes": {
+            "title": "Changes to this Policy",
+            "body": "We may periodically update this Policy to reflect the platform's development, changes to service functionality, or legal requirements. Users will be notified in advance of any material changes."
+        }
+    },
+    "contactCard": {
+        "heading": "Have a question about copyright?",
+        "body": "Reach out and the WorkZora support team will review your request.",
+        "emailCta": "Email {{email}}",
+        "contactsCta": "Contact form"
+    }
+}

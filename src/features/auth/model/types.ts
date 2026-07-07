@@ -1,3 +1,5 @@
+import { VerificationStatus } from "@/features/kyc/model/types";
+
 export interface UserCreate {
   firstName: string;
   lastName: string;
@@ -13,11 +15,18 @@ export enum UserRole {
   ADMIN = "admin",
 }
 
+export interface Verification {
+  id: string;
+  documentUrl: string;
+  selfieUrl: string;
+  status: VerificationStatus;
+}
+
 export interface User {
   id: string;
   email: string;
-  reserveEmail?: string; 
-  password?: string; 
+  reserveEmail?: string;
+  password?: string;
   firstName: string;
   lastName: string;
   username: string;
@@ -27,9 +36,10 @@ export interface User {
   ratings: number;
   position: string;
   rates: number;
-  createdAt?: Date; 
+  createdAt?: Date;
   updatedAt?: Date;
   avatarUrl: string;
+  verification: Verification | null;
 }
 
 export type UserPreview = Pick<

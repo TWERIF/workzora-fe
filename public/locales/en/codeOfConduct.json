@@ -1,0 +1,68 @@
+{
+    "meta": {
+        "title": "Code of Conduct",
+        "updated": "Last updated",
+        "intro": "This Code of Conduct helps maintain a safe, honest, and professional environment for all WorkZora users. It sets out the core rules of interaction between clients and freelancers, and complements the platform's Terms of Use."
+    },
+    "toc": {
+        "label": "Sections"
+    },
+    "sections": {
+        "general": {
+            "eyebrow": "Section 1",
+            "title": "General principles",
+            "lead": "By using WorkZora, you agree to:",
+            "items": [
+                "communicate with other users honestly and respectfully",
+                "provide truthful information about yourself, your skills, and your projects",
+                "honor agreements made through the platform",
+                "respect the work of other users and follow the principles of fair collaboration",
+                "not mislead other users about your identity, qualifications, or terms of cooperation"
+            ]
+        },
+        "contacts": {
+            "eyebrow": "Section 2",
+            "title": "Sharing contacts outside the platform",
+            "body1": "WorkZora prohibits exchanging personal contact details (messengers, social media, phone numbers, email) in any form before or during an order. All project communication must take place through the platform.",
+            "body2": "This keeps the deal protected by escrow and gives the platform access to the full history of interaction between parties in case a dispute arises. If an agreement is made outside WorkZora, the platform is not responsible for its fulfillment."
+        },
+        "prohibited": {
+            "eyebrow": "Section 3",
+            "title": "Prohibited actions",
+            "lead": "The following is prohibited on the platform:",
+            "items": [
+                "fraud, deceptive offers, and any attempts to mislead other users",
+                "creating fake accounts, as well as actions aimed at artificially boosting or lowering ratings or manipulating reviews",
+                "spam and mass unsolicited messages",
+                "attempting to gain unauthorized access to accounts, servers, or the platform's databases",
+                "distributing malicious software",
+                "actions that disrupt the platform's operation or place excessive load on its infrastructure",
+                "posting illegal content, threats, insults, or discriminatory statements",
+                "disclosing other users' personal data without their consent"
+            ]
+        },
+        "sanctions": {
+            "eyebrow": "Section 4",
+            "title": "Sanctions for violations",
+            "lead": "Depending on the severity of the violation, the following may be applied:",
+            "items": [
+                "a warning",
+                "temporary restriction of account features",
+                "temporary account suspension",
+                "permanent account ban with no right to restoration — in cases of serious or repeated violations"
+            ],
+            "note": "The measure applied depends on the nature, severity, and recurrence of the violation."
+        },
+        "report": {
+            "eyebrow": "Section 5",
+            "title": "How to report a violation",
+            "body": "If you notice a violation of this Code, please report it to our support team. We will review the report and, if necessary, take appropriate action in accordance with the platform's rules. Contact details are listed on the \"Contacts\" page.",
+            "cta": "Contact support"
+        },
+        "changes": {
+            "eyebrow": "Section 6",
+            "title": "Changes to this Code",
+            "body": "We may periodically update this Code to reflect the platform's development and changes to the service's functionality. Users will be notified of any material changes in advance."
+        }
+    }
+}

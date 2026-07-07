@@ -1,5 +1,6 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import {
+  count,
   create,
   deleteProject,
   getMyProjects,
@@ -22,6 +23,7 @@ export const projectKeys = {
   search: (searchTerm: string) => ["projects-search", searchTerm],
   myProjects: (status: string, page: number, limit: number) =>
     ["my-projects", status, page, limit],
+  countProjects: () => ["countProjects"],
 };
 
 export const useProjects = (id?: string) => {
@@ -83,5 +85,11 @@ export const useSearchProjects = (searchTerm: string) => {
     queryFn: () => searchProjects(searchTerm),
     queryKey: projectKeys.search(searchTerm),
     enabled: !!searchTerm.trim(),
+  });
+};
+export const useCountProjects = () => {
+  return useQuery({
+    queryFn: () => count(),
+    queryKey: projectKeys.countProjects(),
   });
 };

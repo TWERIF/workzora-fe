@@ -4,10 +4,10 @@ export default function AboutUsPage() {
     const { t } = useTranslation('common');
 
     return (
-        <main className="min-h-screen bg-bg dark:bg-bg-dark text-text dark:text-text-dark transition-colors duration-300 py-13 px-15 md:py-20">
+        <main id="about-us" className="min-h-screen bg-bg dark:bg-bg-dark text-text dark:text-text-dark transition-colors duration-300 py-13 px-15 md:py-20">
             <div className="max-w-4xl mx-auto space-y-8">
 
-                <section className="bg-bg-header dark:bg-bg-modalDark rounded-20 px-15 py-13 shadow-input dark:shadow-input-dark border border-border">
+                <section id="how-it-works" className="bg-bg-header dark:bg-bg-modalDark rounded-20 px-15 py-13 shadow-input dark:shadow-input-dark border border-border">
                     <h1 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient text-transparent bg-clip-text leading-tight">
                         {t('About.heroTitle')}
                     </h1>
@@ -54,7 +54,7 @@ export default function AboutUsPage() {
                     </div>
                 </section>
 
-                <section className="bg-bg-header dark:bg-bg-modalDark rounded-20 px-15 py-13 shadow-input dark:shadow-input-dark border border-border">
+                <section id="how-it-works" className="bg-bg-header dark:bg-bg-modalDark rounded-20 px-15 py-13 shadow-input dark:shadow-input-dark border border-border">
                     <h2 className="text-2xl md:text-3xl font-bold mb-6 bg-gradient text-transparent bg-clip-text">
                         {t('About.howTitle')}
                     </h2>
@@ -102,7 +102,7 @@ export default function AboutUsPage() {
                     </div>
                 </section>
 
-                <section className="bg-bg-header dark:bg-bg-modalDark rounded-20 px-15 py-13 shadow-input dark:shadow-input-dark border border-border">
+                <section id="benefits" className="bg-bg-header dark:bg-bg-modalDark rounded-20 px-15 py-13 shadow-input dark:shadow-input-dark border border-border">
                     <h2 className="text-2xl md:text-3xl font-bold mb-6 text-text dark:text-text-dark">
                         {t('About.benefitsTitle')}
                     </h2>
@@ -130,7 +130,7 @@ export default function AboutUsPage() {
                     </div>
                 </section>
 
-                <section className="bg-bg-header dark:bg-bg-modalDark rounded-20 px-15 py-13 shadow-input dark:shadow-input-dark border border-border">
+                <section id="team" className="bg-bg-header dark:bg-bg-modalDark rounded-20 px-15 py-13 shadow-input dark:shadow-input-dark border border-border">
                     <h2 className="text-2xl md:text-3xl font-bold mb-6 text-text dark:text-text-dark">
                         {t('About.teamTitle')}
                     </h2>
@@ -155,7 +155,7 @@ export default function AboutUsPage() {
                     </div>
                 </section>
 
-                <section className="bg-bg-header dark:bg-bg-modalDark rounded-20 px-15 py-13 shadow-input dark:shadow-input-dark border border-border">
+                <section id="vision" className="bg-bg-header dark:bg-bg-modalDark rounded-20 px-15 py-13 shadow-input dark:shadow-input-dark border border-border">
                     <h2 className="text-2xl md:text-3xl font-bold mb-6 bg-gradient text-transparent bg-clip-text">
                         {t('About.visionTitle')}
                     </h2>
@@ -179,7 +179,7 @@ export default function AboutUsPage() {
                     </div>
                 </section>
 
-                <section className="bg-bg-header dark:bg-bg-modalDark rounded-20 px-15 py-13 shadow-input dark:shadow-input-dark border border-border text-center">
+                <section id="contacts" className="bg-bg-header dark:bg-bg-modalDark rounded-20 px-15 py-13 shadow-input dark:shadow-input-dark border border-border text-center">
                     <h2 className="text-2xl md:text-3xl font-bold mb-2 text-text dark:text-text-dark">
                         {t('About.ctaTitle')}
                     </h2>

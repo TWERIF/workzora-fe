@@ -1,4 +1,5 @@
 {
+  "minutes": "minutes",
   "auth": {
     "placeholders": {
       "name": "First Name",
@@ -67,6 +68,63 @@
       "profile": "Profile",
       "activeProjects": "Active projects",
       "chats": "Your chats"
+    },
+    "tabs": {
+      "about": "About",
+      "portfolio": "Portfolio",
+      "skills": "Skills",
+      "reviews": "Reviews"
+    },
+    "header": {
+      "quickActions": "Quick actions",
+      "offerJob": "Offer a job",
+      "message": "Message",
+      "block": "Block",
+      "report": "Report"
+    },
+    "about": {
+      "title": "About freelancer",
+      "successfulProjects": "Successful projects",
+      "allTime": "All time",
+      "rating": "Rating",
+      "hourRate": "Hour rate",
+      "perHour": "Per hour"
+    },
+    "portfolio": {
+      "title": "Portfolio",
+      "views_one": "{{count}} view",
+      "views_other": "{{count}} views"
+    },
+    "skills": {
+      "title": "Skills"
+    },
+    "reviews": {
+      "title": "Reviews",
+      "responseToReview": "Response to review",
+      "criteria": {
+        "quality": "Quality",
+        "professionalism": "Professionalism",
+        "price": "Price",
+        "sociability": "Sociability",
+        "deadlines": "Deadlines"
+      }
+    },
+    "pagination": {
+      "previous": "Previous page",
+      "next": "Next page"
+    },
+    "noData": {
+      "name": "Unnamed user",
+      "avatar": "No photo",
+      "memberSince": "Member since date is unavailable",
+      "onlineStatus": "Status unavailable",
+      "rating": "No rating yet",
+      "bio": "This freelancer hasn't added a description yet.",
+      "successfulProjects": "No project data available",
+      "hourRate": "Hourly rate is not set",
+      "portfolio": "No portfolio items yet.",
+      "skills": "No skills added yet.",
+      "reviews": "No reviews yet."
     }
   },
   "separators": {
@@ -318,7 +376,6 @@
       "title": "Freelancer",
       "links": [
         "Categories",
-        "Projects",
         "Contests",
         "Freelancers",
         "Enterprise",
@@ -340,16 +397,10 @@
       "links": [
         "About us",
         "How it works",
-        "Security",
-        "Investors",
-        "Sitemap",
-        "Stories",
-        "News",
+        "Benefits",
         "Team",
-        "Awards",
-        "Program",
-        "Press releases",
-        "Careers"
+        "Vision & Mission",
+        "Contacts"
       ]
     },
     "terms": {
@@ -1117,6 +1168,73 @@
     "legalCard": {
       "title": "Legal Information",
       "text": "Economic activity through the platform is carried out by FOP Bevza Nataliia Stepanivna. The project owner is Bankivskyi Vitalii Petrovych (individual)."
+    }
+  },
+  "blog": {
+    "badge": "Blog WorkZora",
+    "title": {
+      "before": "Knowledge",
+      "highlight": "that works",
+      "after": "for you"
+    },
+    "subtitle": "Useful articles about freelancing, online work, marketing, AI tools, and remote collaboration from the WorkZora team.",
+    "searchPlaceholder": "Search articles in the blog…",
+    "searchButton": "Search",
+    "popularSearchesLabel": "Popular searches:",
+    "popularSearches": {
+      "freelance": "freelance",
+      "marketing": "marketing",
+      "ai": "AI",
+      "clients": "clients"
+    },
+    "categories": {
+      "all": "All articles",
+      "freelance": "Freelance",
+      "marketing": "Marketing",
+      "ai": "AI",
+      "telegram": "Telegram",
+      "caseStudies": "Case studies"
+    },
+    "featured": {
+      "label": "Featured article"
+    },
+    "authorName": "WorkZora Team",
+    "readMore": "Read more",
+    "minRead_one": "{{count}} min read",
+    "minRead_other": "{{count}} min read",
+    "popular": {
+      "title": "Popular now"
+    },
+    "subscribe": {
+      "title": "Subscribe to new articles",
+      "subtitle": "Get the most useful materials first. No spam, only practical tips and updates.",
+      "placeholder": "Your email",
+      "button": "Subscribe"
+    },
+    "pagination": {
+      "label": "Blog pages",
+      "prev": "Previous page",
+      "next": "Next page"
+    },
+    "searchResultsFor": "Search results for \"{{term}}\"",
+    "searching": "Searching…",
+    "emptyState": "No articles found."
+  },
+  "post": {
+    "backToBlog": "Back to blog",
+    "categoryFallback": "Blog",
+    "authorRole": "AI and Telegram expert",
+    "missionText": "Our goal is to help users understand the online work market, make smarter decisions, and grow with confidence.",
+    "details": {
+      "title": "Details",
+      "readTime": "Time to read",
+      "postDate": "Post date",
+      "viewer": "Viewer"
+    },
+    "readAlso": "Read also",
+    "notFound": {
+      "title": "We couldn't find that article",
+      "subtitle": "It may have been moved or removed. Head back to the blog to keep browsing."
     }
   }
 }
