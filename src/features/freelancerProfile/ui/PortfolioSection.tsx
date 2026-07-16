@@ -1,6 +1,7 @@
+import { PortfolioItem } from "@/features/portfolio/model/types";
 import { useTranslation } from "react-i18next";
 import { Pagination } from "./Pagination";
-import { PortfolioCard, PortfolioItem } from "./PortfolioCard";
+import { PortfolioCard } from "./PortfolioCard";
 
 interface PortfolioSectionProps {
     items?: PortfolioItem[];

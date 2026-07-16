@@ -12,7 +12,7 @@ export default function Modal(props: ModalI) {
     const { children, setIsOpen } = props;
 
     return (
-        <div className="fixed inset-0 bg-black/75 z-50 overflow-y-auto">
+        <div className="fixed inset-0 bg-black/75 z-[9999] overflow-y-auto">
             <div className="min-h-full flex justify-center items-start sm:py-6 max-w-sm:py-0 max-w-sm:justify-start">
                 <div
                     className="

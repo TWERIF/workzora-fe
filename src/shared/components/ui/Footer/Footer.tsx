@@ -63,7 +63,7 @@ export default function Footer() {
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10 lg:gap-10">
-            <FooterColumn data={{ ...footerData.freelancer, fallback: `/${locale}/coming-soon`, hrefs: [`/${locale}/categories`, "/coming-soon", `/${locale}/freelancers`] }} />
+            <FooterColumn data={{ ...footerData.freelancer, fallback: `/${locale}/coming-soon`, hrefs: [`/${locale}/categories`, "/coming-soon", `/${locale}/freelancers`, `/${locale}/news`] }} />
 
             <FooterColumn data={{ ...footerData.about, fallback: `/${locale}/coming-soon`, hrefs: [`/${locale}/about-us`, `/${locale}/about-us#how-it-works`, `/${locale}/about-us#benefits`, `/${locale}/about-us#team`, `/${locale}/about-us#vision`, `/${locale}/about-us#contacts`] }} />
 

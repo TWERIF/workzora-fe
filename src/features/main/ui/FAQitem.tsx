@@ -1,5 +1,3 @@
-import IconArrow from "@/shared/components/svg/IconArrow";
-
 interface Props {
     question: string;
     answer: string;
@@ -8,34 +6,59 @@ interface Props {
 }
 
 export const FAQItem = ({ question, answer, isOpen, handleToggle }: Props) => {
-    // Видаляємо використання useTheme(), щоб компонент не перемальовувався при зміні теми
-
     return (
-        /* Фіксуємо bg-white та shadow незалежно від теми */
-        <div className={`p-5 w-full rounded-3xl transition-all duration-300 ease-in-out bg-white shadow-[0px_0px_20px_0px_rgba(0,0,0,0.1)] border border-gray-100`}>
-            <button
-                onClick={handleToggle}
-                className="w-full flex justify-between items-start text-left focus:outline-none"
-            >
-                {/* Фіксуємо колір тексту text-black */}
-                <span className="text-lg font-medium pr-4 leading-tight min-h-[3rem] flex items-center text-black">
-                    {question}
-                </span>
-
-                <span className={`transform transition-transform duration-500 flex-shrink-0 mt-2 ${isOpen ? 'rotate-180' : ''}`}>
-                    <IconArrow />
-                </span>
-            </button>
-
+        <div className="w-full flex flex-col gap-3">
+            {/* Блок питання */}
             <div
-                className={`grid transition-all duration-500 ease-in-out ${isOpen ? 'grid-rows-[1fr] opacity-100 mt-4' : 'grid-rows-[0fr] opacity-0'
-                    }`}
+                className={`w-full rounded-3xl overflow-hidden transition-all duration-300 ease-in-out ${
+                    isOpen
+                        ? "bg-success shadow-[0px_0px_20px_0px_rgba(0,0,0,0.15)]"
+                        : "bg-white dark:bg-bg-dark shadow-input dark:shadow-input-dark border border-border dark:border-transparent"
+                }`}
+            >
+                <button
+                    onClick={handleToggle}
+                    className="w-full flex justify-between items-center gap-4 text-left px-6 py-5 focus:outline-none"
+                >
+                    <span
+                        className={`text-lg font-semibold leading-tight transition-colors duration-300 ${
+                            isOpen ? "text-white" : "text-text dark:text-text-dark"
+                        }`}
+                    >
+                        {question}
+                    </span>
+
+                    <span
+                        className={`relative flex items-center justify-center w-8 h-8 rounded-full flex-shrink-0 transition-colors duration-300 ${
+                            isOpen ? "bg-white" : "bg-success"
+                        }`}
+                    >
+                        <span
+                            className={`absolute w-3.5 h-[2px] rounded-full transition-colors duration-300 ${
+                                isOpen ? "bg-success" : "bg-white"
+                            }`}
+                        />
+                        <span
+                            className={`absolute w-3.5 h-[2px] rounded-full rotate-90 transition-all duration-300 ${
+                                isOpen ? "bg-success opacity-0 scale-0" : "bg-white opacity-100 scale-100"
+                            }`}
+                        />
+                    </span>
+                </button>
+            </div>
+
+            {/* Блок відповіді — окрема картка, розкривається під питанням */}
+            <div
+                className={`grid transition-all duration-500 ease-in-out ${
+                    isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                }`}
             >
                 <div className="overflow-hidden">
-                    {/* Фіксуємо колір тексту text-gray-600 та колір лінії border-gray-100 */}
-                    <p className="border-t pt-4 leading-relaxed text-gray-600 border-gray-100">
-                        {answer}
-                    </p>
+                    <div className="w-full rounded-3xl bg-white dark:bg-bg-dark shadow-input dark:shadow-input-dark border border-border dark:border-transparent px-6 py-5">
+                        <p className="leading-relaxed text-sm text-text-muted dark:text-text-muted">
+                            {answer}
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>

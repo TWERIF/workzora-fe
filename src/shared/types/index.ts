@@ -3,6 +3,7 @@ import { ReactNode } from "react";
 export interface ButtonI {
   text: ReactNode;
   onClick?: () => void;
+  filled?: boolean;
   type?: "button" | "submit" | "reset";
   disabled?: boolean;
   id?: string;
@@ -13,5 +14,5 @@ export interface InputI {
   placeholder: string;
   errorText?: string | null;
   password?: boolean;
-  className?:string;
+  className?: string;
 }

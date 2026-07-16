@@ -1,0 +1,91 @@
+{
+    "nav": {
+        "basicInfo": "Basic information",
+        "skills": "Skills",
+        "hourlyRate": "Hourly rate",
+        "portfolio": "Portfolio",
+        "workPreferences": "Work preferences"
+    },
+    "completion": {
+        "title": "Complete your freelancer profile",
+        "description": "Add a portfolio, hourly rate, and skills to help clients understand your services better and land more jobs.",
+        "progress": "Profile is completed at",
+        "action": "Save"
+    },
+    "portfolioModal": {
+        "title": "Portfolio",
+        "addProject": "Add Project",
+        "addProjectDesc": "Showcase your best work",
+        "editProject": "Edit Project",
+        "modalTitleAdd": "Add New Work",
+        "modalTitleEdit": "Edit Work",
+        "labelTitle": "Project Title",
+        "labelDesc": "Description",
+        "labelImage": "Image URL",
+        "save": "Save Project",
+        "cancel": "Cancel",
+        "deleteConfirm": "Are you sure?"
+    },
+    "basicInfo": {
+        "title": "Basic Information",
+        "photo": "Profile photo",
+        "upload": "Upload",
+        "delete": "Delete photo",
+        "general": "General Information",
+        "firstName": "First name",
+        "lastName": "Last name",
+        "jobTitle": "Username",
+        "email": "Email",
+        "phone": "Phone number",
+        "country": "Country",
+        "city": "City",
+        "selectCountry": "Select country",
+        "selectCity": "Select city"
+    },
+    "skills": {
+        "title": "Skills",
+        "description": "Add skills that highlight your expertise.",
+        "placeholder": "e.g. UX/UI Design, Web Development..."
+    },
+    "hourlyRate": {
+        "title": "Hourly rate",
+        "description": "Set your standard hourly rate.",
+        "rateLabel": "Hourly rate",
+        "currencyLabel": "Currency",
+        "rateType": "Rate type",
+        "standard": "Standard rate",
+        "standardDesc": "Your default rate across the platform",
+        "project": "Project rate",
+        "projectDesc": "We partner with clients on specific tasks",
+        "coverLetter": "Cover letter (optional)",
+        "coverLetterPlaceholder": "Tell us more about your experience..."
+    },
+    "portfolio": {
+        "title": "Portfolio",
+        "addProject": "Add new project",
+        "addProjectDesc": "Showcase your best work to clients."
+    },
+    "workPreferences": {
+        "title": "Work preferences",
+        "description": "Let clients know your availability and preferred projects.",
+        "availability": "Availability",
+        "availableNow": "Available now",
+        "openToOffers": "Open to offers",
+        "busy": "Busy",
+        "notAvailable": "Not available",
+        "projectSize": "Preferred project size",
+        "small": "Small / short-term",
+        "medium": "Medium-term",
+        "large": "Large / long-term",
+        "budgetType": "Preferred budget type",
+        "hourly": "Hourly rate",
+        "fixed": "Fixed budget",
+        "workload": "Workload",
+        "fullTime": "Full-time",
+        "partTime": "Part-time",
+        "flexible": "Flexible"
+    },
+    "verifications": {
+        "title": "Verifications"
+    }
+}

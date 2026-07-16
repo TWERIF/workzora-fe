@@ -30,7 +30,7 @@ export const register = async ({
     lastName,
     password,
     email,
-    userName,
+    username: userName,
     locale,
     isActive,
   });

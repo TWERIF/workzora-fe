@@ -1,0 +1,463 @@
+{
+  "header": {
+    "navTopFreelancers": "Top freelancers",
+    "navFindWork": "Find work",
+    "navAbout": "About us",
+    "navFaq": "FAQ",
+    "navPayments": "Payments",
+    "navContacts": "Contacts",
+    "login": "Log in",
+    "signup": "Sign up",
+    "postProject": "Post a Project"
+  },
+  "featureCards": {
+    "qualityWork": {
+      "title": "Quality work",
+      "description": "With WorkZora's talent pool of over 60 million professionals at your fingertips, you'll find quality talent to get what you need done."
+    },
+    "beInControl": {
+      "title": "Be in control",
+      "description": "Stay in the loop while on the move. Chat with your freelancers and get real time updates with our mobile app. Anytime, anywhere."
+    },
+    "bestTalent": {
+      "title": "The best talent",
+      "description": "Discover reliable professionals by exploring their portfolios and immersing yourself in the feedback shared on their profiles."
+    },
+    "fastBids": {
+      "title": "Fast bids",
+      "description": "Get quick, no-obligation quotes from skilled freelancers. 80% of jobs receive bids within 60 seconds. Your idea is just moments from reality."
+    },
+    "banner": {
+      "titleLine1": "Make it real",
+      "titleHighlight": "with WorkZora",
+      "cta": "Get started now"
+    }
+  },
+  "topWorks": {
+    "title": "TOP-Related works"
+  },
+  "hero": {
+    "title": "Find the right freelancer or project in minutes",
+    "subtitle": "A simple platform for hiring specialists, posting tasks, and starting online collaborations faster.",
+    "createdBy": "Created by:",
+    "title-list": [
+      "Verified profiles",
+      "Free registration",
+      "Fast bids within 60 seconds",
+      "24/7 support"
+    ],
+    "HireFreelancerBtn1": "Find a freelancer",
+    "HireFreelancerBtn2": "Become a freelancer",
+    "ThisBannerCost": "Projects across key industries",
+    "asUsedBy": "Trusted by leaders",
+    "createdByLabel": "Created by",
+    "search": {
+      "title": "What are you looking for?",
+      "placeholder": "Try \u201cwebsite design\u201d, \u201cSEO specialist\u201d, \u201clogo design\u201d, \u201cGoogle Ads\u201d",
+      "button": "Search",
+      "popularLabel": "Popular tags",
+      "tags": [
+        "Design",
+        "Development",
+        "Marketing",
+        "SEO",
+        "Copywriting",
+        "Business support"
+      ]
+    }
+  },
+  "makeItReal": {
+    "title": {
+      "1": "Make it real",
+      "2": "with WorkZora"
+    },
+    "makeDreamsReality": "Get started now",
+    "grid": [
+      {
+        "title": "The best talent",
+        "content": "Discover reliable professionals by exploring their portfolios and immersing yourself in the feedback shared on their profiles."
+      },
+      {
+        "title": "Fast bids",
+        "content": "Get quick, no obligation quotes from skilled freelancers. 80% of jobs receive bids within 60 seconds. Your idea is just moments from reality."
+      },
+      {
+        "title": "Quality work",
+        "content": "With a talent pool of over 60 million professionals at your fingertips, you'll find quality talent to get what you need done."
+      },
+      {
+        "title": "Be in control",
+        "content": "Stay in the loop while on the move. Chat with your freelancers and get real time updates with our mobile app. Anytime, anywhere."
+      }
+    ]
+  },
+  "getStarted": "Get started now",
+  "howItWorks": {
+    "title": "How the platform works",
+    "tabs": {
+      "clients": "For clients",
+      "freelancers": "For freelancers"
+    },
+    "stepsClients": [
+      {
+        "number": "01",
+        "title": "Post your project",
+        "description": "Describe what you need, select the right category, add your budget, deadline, and key requirements. The more details you share, the easier it is for freelancers to understand your task and send relevant proposals."
+      },
+      {
+        "number": "02",
+        "title": "Get proposals",
+        "description": "Receive offers from freelancers who are interested in your project. Review their experience, suggested price, estimated timeline, and approach to understand who fits your needs best."
+      },
+      {
+        "number": "03",
+        "title": "Choose a freelancer",
+        "description": "Compare freelancer profiles, portfolios, ratings, reviews, and messages before making a decision. Choose the specialist who matches your project goals, budget, and communication style."
+      },
+      {
+        "number": "04",
+        "title": "Start working",
+        "description": "Discuss the final details, agree on the workflow, and begin your collaboration online. Stay connected with your freelancer and move your project from idea to result."
+      }
+    ],
+    "stepsFreelancers": [
+      {
+        "number": "01",
+        "title": "Create your profile",
+        "description": "Add your skills, portfolio, and experience so clients can quickly see what you offer and why you're the right fit for their project."
+      },
+      {
+        "number": "02",
+        "title": "Find your project",
+        "description": "Browse open projects that match your expertise, or get recommendations tailored to your profile and past work."
+      },
+      {
+        "number": "03",
+        "title": "Send a proposal",
+        "description": "Share your price, timeline, and approach. A clear, personal proposal makes it easier for clients to choose you."
+      },
+      {
+        "number": "04",
+        "title": "Start working",
+        "description": "Agree on the details with your client and begin the project. Track progress and get paid securely as you go."
+      }
+    ]
+  },
+  "categories": {
+    "title": {
+      "1": "Get work done in",
+      "2": "over 2700",
+      "3": "different categories"
+    },
+    "viewAllBtn": "View All",
+    "groups": [
+      {
+        "number": "01",
+        "title": "Programming",
+        "items": [
+          {
+            "name": "AI and machine learning",
+            "count": 2254
+          },
+          {
+            "name": "CMS",
+            "count": 429
+          },
+          {
+            "name": "AR and VR development",
+            "count": 481
+          },
+          {
+            "name": "HTML and CSS",
+            "count": 3183
+          },
+          {
+            "name": "Java",
+            "count": 1312
+          },
+          {
+            "name": "PHP",
+            "count": 812
+          },
+          {
+            "name": "C and C++",
+            "count": 1010
+          },
+          {
+            "name": "C#",
+            "count": 1327
+          },
+          {
+            "name": "JavaScript and TypeScript",
+            "count": 926
+          },
+          {
+            "name": "Python",
+            "count": 193
+          }
+        ]
+      },
+      {
+        "number": "02",
+        "title": "Design and Art",
+        "items": [
+          {
+            "name": "3D Modeling and Visualization",
+            "count": 837
+          },
+          {
+            "name": "AI Design",
+            "count": 721
+          },
+          {
+            "name": "VR and AR design",
+            "count": 321
+          },
+          {
+            "name": "Icons and pixel graphics",
+            "count": 1437
+          },
+          {
+            "name": "Illustrations and drawings",
+            "count": 3671
+          },
+          {
+            "name": "Infographics",
+            "count": 2986
+          },
+          {
+            "name": "Banners",
+            "count": 592
+          },
+          {
+            "name": "Vector graphics",
+            "count": 932
+          },
+          {
+            "name": "UI/UX Design",
+            "count": 1209
+          }
+        ]
+      },
+      {
+        "number": "03",
+        "title": "Services",
+        "items": [
+          {
+            "name": "Payment System Integration",
+            "count": 837
+          },
+          {
+            "name": "Enterprise Management Automation",
+            "count": 452
+          },
+          {
+            "name": "Cybersecurity and Data Protection",
+            "count": 2752
+          },
+          {
+            "name": "Online stores and e-commerce",
+            "count": 1326
+          },
+          {
+            "name": "AI Consultation",
+            "count": 943
+          },
+          {
+            "name": "Information gathering",
+            "count": 1876
+          },
+          {
+            "name": "Content Manager",
+            "count": 932
+          },
+          {
+            "name": "Learning",
+            "count": 1341
+          },
+          {
+            "name": "Data processing",
+            "count": 673
+          }
+        ]
+      },
+      {
+        "number": "04",
+        "title": "Working with texts",
+        "items": [
+          {
+            "name": "AI text processing",
+            "count": 936
+          },
+          {
+            "name": "Screenwriting",
+            "count": 136
+          },
+          {
+            "name": "Poems, songs, prose",
+            "count": 732
+          },
+          {
+            "name": "Naming and slogans",
+            "count": 820
+          },
+          {
+            "name": "Editing and proofreading",
+            "count": 1278
+          },
+          {
+            "name": "Copywriting",
+            "count": 1095
+          },
+          {
+            "name": "Article Writing",
+            "count": 1654
+          },
+          {
+            "name": "Advertisements",
+            "count": 943
+          },
+          {
+            "name": "Rewriting",
+            "count": 1209
+          },
+          {
+            "name": "Technical documentation",
+            "count": 936
+          }
+        ]
+      }
+    ]
+  },
+  "community": {
+    "title": "Discover trusted users",
+    "topFreelancers": "Top freelancers",
+    "topClients": "Top clients",
+    "freelancersCountSuffix": "freelancers",
+    "clientsCountSuffix": "clients",
+    "proposeProject": "Propose a project",
+    "rating": "Rating",
+    "earned": "Earned",
+    "rate": "Rate",
+    "showAll": "Show all"
+  },
+  "topProjects": {
+    "title": {
+      "topPosted": "Top posted",
+      "projects": "projects"
+    },
+    "proposalsLabel": "proposals",
+    "exploreAllBtn": "Explore all projects"
+  },
+  "faq": {
+    "title": {
+      "part_1": "Top user",
+      "part_2": "quotations"
+    },
+    "showAllBtn": "Show all",
+    "content": [
+      {
+        "question": "Is registration free?",
+        "answer": "Yes, you can create an account for free. After signing up, you can set up your profile, browse freelancers or projects, and explore the platform before starting any collaboration."
+      },
+      {
+        "question": "How do I find a freelancer?",
+        "answer": "Post a project or search the catalog by category, skill, or keyword, then compare profiles, portfolios, and reviews to pick the best fit."
+      },
+      {
+        "question": "How can freelancers find work?",
+        "answer": "Complete your profile, add a portfolio, and browse open projects that match your skills, or wait for invitations from clients."
+      },
+      {
+        "question": "Can I work with clients online?",
+        "answer": "Yes, the entire workflow \u2014 messaging, file sharing, milestones, and payments \u2014 happens online through the platform."
+      },
+      {
+        "question": "How do I post a project?",
+        "answer": "Click \u201cPost a Project\u201d, describe your task, set a budget and deadline, and publish it to start receiving proposals."
+      },
+      {
+        "question": "What types of services can I find?",
+        "answer": "Over 2700 categories are available, from programming and design to marketing, copywriting, and business support."
+      }
+    ]
+  },
+  "statsBar": {
+    "registeredUsers": "Registered Users",
+    "totalJobsPosted": "Total Jobs Posted"
+  },
+  "imagine-text": "Imagine you can get AI to answer the phone, make sales, set appointments, and generally make your life way easier. It'll cost you less than building a website, and it's the next big thing for businesses in 2025. Thanks to our extensive global talent network, WorkZora is your best bet for finding AI experts to take your business to the next level.",
+  "footer": {
+    "trademark": "WorkZora \u00ae is a registered Trademark",
+    "copyright": "Copyright \u00a9 2025\u20132026 WorkZora",
+    "columns": [
+      {
+        "title": "Freelancer",
+        "links": [
+          "Categories",
+          "Projects",
+          "Contests",
+          "Freelancers",
+          "Enterprise",
+          "Innovation Challenges",
+          "AI Development"
+        ]
+      },
+      {
+        "title": "Membership",
+        "links": [
+          "Preferred Freelancer Program",
+          "Project Management",
+          "Local Jobs",
+          "Photo Anywhere",
+          "Showcase",
+          "API for Developers",
+          "Get Verified",
+          "Desktop App"
+        ]
+      },
+      {
+        "title": "About",
+        "links": [
+          "About us",
+          "How it works",
+          "Security",
+          "Investors",
+          "Sitemap",
+          "Stories",
+          "News",
+          "Team",
+          "Awards Program",
+          "Press releases",
+          "Careers"
+        ]
+      },
+      {
+        "title": "Clients",
+        "links": [
+          "Privacy Policy",
+          "Terms and Conditions",
+          "Copyright Policy",
+          "Code of Conduct",
+          "Fees and Charges"
+        ]
+      },
+      {
+        "title": "Information",
+        "links": [
+          "About us",
+          "How it works",
+          "Security",
+          "Investors",
+          "Sitemap",
+          "Stories",
+          "News",
+          "Team",
+          "Awards Program",
+          "Press releases",
+          "Careers"
+        ]
+      }
+    ]
+  }
+}

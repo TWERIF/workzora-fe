@@ -33,6 +33,19 @@ module.exports = {
           DEFAULT: "rgba(200, 199, 199, 1)",
         },
       },
+      keyframes: {
+        marquee: {
+          from: {
+            transform: "translateX(0)",
+          },
+          to: {
+            transform: "translateX(-50%)",
+          },
+        },
+      },
+      animation: {
+        marquee: "marquee 20s linear infinite",
+      },
       borderRadius: {
         '20': '20px', // для rounded-20
       },
@@ -43,6 +56,8 @@ module.exports = {
       /* === Gradients === */
       backgroundImage: {
         gradient: "linear-gradient(180deg, rgba(33, 107, 82, 1), rgba(126, 163, 16, 1))",
+        card: "linear-gradient(180deg, #E4F1C1 0%, #F2F6E7 100%)",
+        "card-dark": "linear-gradient(180deg, #216B52 0%, #2E413B 100%)",
       },
       border: {
         gradient: "linear-gradient(180deg, rgba(33, 107, 82, 1), rgba(126, 163, 16, 1))",

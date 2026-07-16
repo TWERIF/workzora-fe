@@ -5,16 +5,37 @@ import comingSoonEn from "../public/locales/en/comingSoon.json";
 import commonEn from "../public/locales/en/common.json";
 import copyrightPolicyEn from "../public/locales/en/copyrightPolicy.json";
 import feesEn from "../public/locales/en/fees.json";
+import mainEn from "../public/locales/en/main.json";
 import codeOfConductUk from "../public/locales/uk/codeOfConduct.json";
 import comingSoonUk from "../public/locales/uk/comingSoon.json";
 import commonUk from "../public/locales/uk/common.json";
 import copyrightPolicyUk from "../public/locales/uk/copyrightPolicy.json";
 import feesUk from "../public/locales/uk/fees.json";
+import mainUk from "../public/locales/uk/main.json";
+
+import profileEn from "../public/locales/en/profile.json";
+import profileUk from "../public/locales/uk/profile.json";
 
 i18n.use(initReactI18next).init({
   resources: {
-    en: { common: commonEn, codeOfConduct: codeOfConductEn, fees: feesEn, copyrightPolicy: copyrightPolicyEn, comingSoon: comingSoonEn },
-    uk: { common: commonUk, codeOfConduct: codeOfConductUk, fees: feesUk, copyrightPolicy: copyrightPolicyUk, comingSoon: comingSoonUk },
+    en: {
+      common: commonEn,
+      codeOfConduct: codeOfConductEn,
+      fees: feesEn,
+      copyrightPolicy: copyrightPolicyEn,
+      comingSoon: comingSoonEn,
+      main: mainEn,
+      profile: profileEn
+    },
+    uk: {
+      common: commonUk,
+      codeOfConduct: codeOfConductUk,
+      fees: feesUk,
+      copyrightPolicy: copyrightPolicyUk,
+      comingSoon: comingSoonUk,
+      main: mainUk,
+      profile: profileUk
+    },
   },
   lng: 'en',
   fallbackLng: 'en',

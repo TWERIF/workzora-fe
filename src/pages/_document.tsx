@@ -1,6 +1,7 @@
 import { Head, Html, Main, NextScript } from "next/document";
 
 export default function Document() {
+
   return (
     <Html lang="en">
       <Head>
@@ -10,8 +11,8 @@ export default function Document() {
           defer
         />
       </Head>
-      <body 
-      // className="bg-[#F7F7F7]"
+      <body
+        className="relative"
       >
         <Main />
         <NextScript />

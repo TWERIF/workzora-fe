@@ -1,5 +1,7 @@
 import { User } from "@/features/auth/model/types";
+import Image from "next/image";
 import { useTranslation } from "react-i18next";
+import placeHolderAvatar from "../../../../public/images/avatar_placeholder.png";
 import { CheckBadgeIcon } from "./icons";
 import { RatingStars } from "./RatingStars";
 
@@ -22,23 +24,20 @@ export const ProfileHeaderCard = ({ user }: ProfileHeaderCardProps) => {
         })
         : t("profile.noData.memberSince");
 
+    const avatar = user?.avatarUrl ?? placeHolderAvatar;
+
     return (
         <section className="rounded-20 border border-border bg-bg-header px-15 py-13 shadow-input dark:bg-bg-modalDark dark:shadow-input-dark">
             <div className="flex flex-wrap items-start justify-between gap-4">
                 <div className="flex items-center gap-4">
                     <div className="relative shrink-0">
                         <div className="h-20 w-20 overflow-hidden rounded-full bg-gradient p-0.5">
-                            {user?.avatarUrl ? (
-                                <img
-                                    src={user.avatarUrl}
-                                    alt={fullName}
-                                    className="h-full w-full rounded-full object-cover"
-                                />
-                            ) : (
-                                <div className="flex h-full w-full items-center justify-center rounded-full bg-input text-xs text-text-muted dark:bg-input-dark">
-                                    {t("profile.noData.avatar")}
-                                </div>
-                            )}
+                            <Image
+                                src={avatar}
+                                alt={fullName}
+                                fill
+                                className="h-full w-full rounded-full object-cover"
+                            />
                         </div>
                     </div>
 
