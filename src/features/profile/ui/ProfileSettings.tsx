@@ -1,10 +1,12 @@
 import { Availability, PreferredBudgetType, PreferredProjectSize, User, WorkType } from "@/features/auth/model/types";
 import { useAuth } from "@/features/auth/model/useAuth";
+import VerificationBlock from "@/features/kyc/ui/VerificationBlock";
 import { PortfolioItem } from "@/features/portfolio/model/types";
 import { useCreatePortfolio, useDeletePortfolio, useUpdatePortfolio, useUserPortfolios } from "@/features/portfolio/model/usePortfolio";
 import PortfolioModal from "@/features/portfolio/ui/PortfolioModal";
 import { useUsers } from "@/features/users/model/useUsers";
 import IconUsa from "@/shared/components/svg/IconUsa";
+import Loader from "@/shared/components/ui/Loader";
 import StickyNav from "@/shared/components/ui/StickyNav";
 import { Icon } from "@iconify/react";
 import { useRef, useState } from "react";
@@ -154,7 +156,7 @@ export default function ProfileSettings() {
     { id: "portfolio", label: t("nav.portfolio") },
     { id: "work-preferences", label: t("nav.workPreferences") },
   ];
-
+  if (!user) return <Loader />;
   return (
     <>
       <form
@@ -515,6 +517,7 @@ export default function ProfileSettings() {
           </div>
 
         </div>
+        <VerificationBlock user={user!} />
       </form>
       <PortfolioModal
         isOpen={isModalOpen}
