@@ -13,7 +13,7 @@ export default function ShowcaseItem(props: Showcase) {
                 width={317}
                 height={396}
                 src={props.imageUrl}
-                alt={props.creator.firstName + " " + "work"}
+                alt={props.creator.name + " " + "work"}
             />
             <div
                 className="
@@ -36,7 +36,7 @@ export default function ShowcaseItem(props: Showcase) {
             >
                 <Avatar size={"[38px]"} user={props.creator} />
                 <span className="opacity-50">{t("hero.createdBy") + " "}</span>
-                {props.creator.firstName}
+                {props.creator.name}
             </div>
         </Link>
     );

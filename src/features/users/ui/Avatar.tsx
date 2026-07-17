@@ -8,7 +8,7 @@ export const Avatar = ({ user, size }: { user: User, size?: string }) => {
     const router = useRouter();
 
     const locale = router.locale ?? "en";
-    const displayName = user.username || `${user.firstName} ${user.lastName}`.trim();
+    const displayName = user.name || user.username || `${user.firstName} ${user.lastName}`.trim();
     const avatar = user?.avatarUrl ?? placeHolderAvatar;
     return (
         <Link href={`/${locale}/public-profile/${user.id}`}>
