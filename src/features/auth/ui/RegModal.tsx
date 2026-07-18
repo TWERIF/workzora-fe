@@ -19,6 +19,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import LinkSubmit from "@/shared/components/ui/Link/Link";
 
 import { useAuth } from "@/features/auth/model/useAuth";
 
@@ -162,18 +163,19 @@ export default function RegModal(props: ModalI) {
                         <Submit
                             value={submit}
                             setValue={setSubmit}
-                            errorText={errors[6]}
+                            errorText={errors[2]}
                             text={
                                 <span className="whitespace-normal break-words">
                                     {t("auth.texts.agree")}
-
-                                    <Link href="/agreement" className="hover:underline cursor-pointer">
-                                        {" " + t("auth.texts.user") + " "}
-                                    </Link>
+                                    <LinkSubmit
+                                        href="/agreement"
+                                        text={" " + t("auth.texts.user") + " "}
+                                    />
                                     {t("auth.texts.and")}
-                                    <Link href="/privacy" className="hover:underline cursor-pointer">
-                                        {" " + t("auth.texts.privacy") + " "}
-                                    </Link>
+                                    <LinkSubmit
+                                        href="/privacy"
+                                        text={" " + t("auth.texts.privacy")}
+                                    />
                                 </span>
                             }
                         />
