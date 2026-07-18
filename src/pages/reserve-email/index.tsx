@@ -64,16 +64,14 @@ export default function ReserveEmail() {
       </Head>
       <AuthLayout>
         <div
-          className={`flex-1 bg-bg opacity-1 z-10 flex flex-col justify-center dark:bg-bg-dark ${
-            isMobile
+          className={`flex-1 bg-bg opacity-1 z-10 flex flex-col justify-center dark:bg-bg-dark ${isMobile
               ? "w-full items-center px-4 py-10"
               : "max-w-[50%] items-end mr-[77px]"
-          }`}
+            }`}
         >
           <div
-            className={`flex flex-col items-center gap-[30px] ${
-              isMobile ? "w-full" : ""
-            }`}
+            className={`flex flex-col items-center gap-[30px] ${isMobile ? "w-full" : ""
+              }`}
           >
             <AuthHeader backUrl={`/${locale}/registration`} />
             <div className="flex flex-col mt-[25px] w-full max-w-[541px] items-center">
@@ -100,12 +98,12 @@ export default function ReserveEmail() {
                     <span className="whitespace-normal break-words">
                       {t("auth.texts.agree")}
                       <Link
-                        href="/agreement"
+                        href={`${locale}/terms-and-conditions`}
                         text={" " + t("auth.texts.user") + " "}
                       />
                       {t("auth.texts.and")}
                       <Link
-                        href="/privacy"
+                        href={`${locale}/privacy-policy`}
                         text={" " + t("auth.texts.privacy")}
                       />
                     </span>

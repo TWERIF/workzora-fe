@@ -168,12 +168,12 @@ export default function RegModal(props: ModalI) {
                                 <span className="whitespace-normal break-words">
                                     {t("auth.texts.agree")}
                                     <LinkSubmit
-                                        href="/agreement"
+                                        href={`${locale}/terms-and-conditions`}
                                         text={" " + t("auth.texts.user") + " "}
                                     />
                                     {t("auth.texts.and")}
                                     <LinkSubmit
-                                        href="/privacy"
+                                        href={`${locale}/privacy-policy`}
                                         text={" " + t("auth.texts.privacy")}
                                     />
                                 </span>
