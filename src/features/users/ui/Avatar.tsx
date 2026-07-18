@@ -4,7 +4,13 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import placeHolderAvatar from "../../../../public/images/avatar_placeholder.png";
 
-export const Avatar = ({ user, size }: { user: User, size?: string }) => {
+const SIZES = {
+  sm: "w-8 h-8",
+  md: "w-16 h-16",
+  lg: "w-[38px] h-[38px]",
+} as const;
+
+export const Avatar = ({ user, size = "md" }: { user: User; size?: keyof typeof SIZES }) => {
     const router = useRouter();
 
     const locale = router.locale ?? "en";
@@ -12,7 +18,7 @@ export const Avatar = ({ user, size }: { user: User, size?: string }) => {
     const avatar = user?.avatarUrl ?? placeHolderAvatar;
     return (
         <Link href={`/${locale}/public-profile/${user.id}`}>
-            <div className={`relative w-${size ?? "16"} h-${size ?? "16"} rounded-full overflow-hidden bg-input`}>
+              <div className={`relative ${SIZES[size]} rounded-full overflow-hidden bg-input`}>
                 {avatar && (
                     <Image src={avatar} alt={displayName} fill className="object-cover" />
                 )}

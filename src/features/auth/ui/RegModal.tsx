@@ -1,4 +1,3 @@
-
 import { $api } from "@/shared/components/http";
 import IconApple from "@/shared/components/svg/IconApple";
 import IconAppleDark from "@/shared/components/svg/IconAppleDark";
@@ -20,6 +19,8 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+
+import { useAuth } from "@/features/auth/model/useAuth";
 
 
 interface ModalI {
@@ -51,6 +52,8 @@ export default function RegModal(props: ModalI) {
     const locale = i18n.language;
     const router = useRouter()
 
+    // Той самий хук реєстрації, що й на сторінці index.tsx
+    const { register: registerUser, isRegistering } = useAuth();
 
     const sendMail = async () => {
         if (!validateEmailTmp()) return;
@@ -96,20 +99,27 @@ export default function RegModal(props: ModalI) {
         return tmpErrors.every(e => !e);
     };
 
+    // Логіка реєстрації тепер ідентична index.tsx: використовує useAuth().register
+    // і після успіху веде на сторінку reserve-email замість прямого $api-виклику.
     const register = async () => {
         if (!validate() && !isActive) return;
 
-        const res = await $api.post('/auth/register', {
-            firstName,
-            lastName,
-            password,
-            email,
-            userName,
-            locale,
-            isActive
-        });
+        try {
+            await registerUser({
+                firstName,
+                lastName,
+                password,
+                email,
+                userName,
+                locale,
+                isActive,
+            });
 
-        if (res) router.push(`/${locale}/profile`);
+            setIsOpen(false);
+            router.push(`/${locale}/reserve-email`);
+        } catch (error) {
+            console.error("Помилка реєстрації:", error);
+        }
     }
 
     useEffect(() => {
@@ -168,7 +178,11 @@ export default function RegModal(props: ModalI) {
                             }
                         />
                     </div>
-                    <ButtonGradient type="button" text={t("auth.buttons.join")} onClick={register} />
+                    <ButtonGradient
+                        type="button"
+                        text={isRegistering ? "Завантаження..." : t("auth.buttons.join")}
+                        onClick={register}
+                    />
                 </form>
                 <Line />
                 <span className="whitespace-normal break-words">

@@ -34,7 +34,7 @@ export default function ShowcaseItem(props: Showcase) {
                     text-white
                     "
             >
-                <Avatar size={"[38px]"} user={props.creator} />
+                <Avatar size={"lg"} user={props.creator} />
                 <span className="opacity-50">{t("hero.createdBy") + " "}</span>
                 {props.creator.name}
             </div>

@@ -189,7 +189,13 @@ export default function Header() {
                     <LinkHeader onClick={() => setIsOpenLogin(true)} href="#">
                       {t("profile.headers.login")}
                     </LinkHeader>
-                    <LinkHeader href={`/${locale}/registration`}>
+                    <LinkHeader
+                      onClick={() => {
+                        setBurgerOpen(false);
+                        setIsOpenReg(true);
+                      }}
+                      href="#"
+                    >
                       {t("profile.headers.signup")}
                     </LinkHeader>
                   </>
