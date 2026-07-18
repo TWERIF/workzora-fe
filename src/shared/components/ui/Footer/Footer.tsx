@@ -31,7 +31,6 @@ export default function Footer() {
 
   const footerData = t("footer", { returnObjects: true }) as any;
   const info = footerData.copyrightInfo as CopyrightInfo;
-
   return (
     <footer className="bg-[#3B3B3B] text-white pt-12 md:pt-16">
       <div className="container mx-auto px-4 pb-8">

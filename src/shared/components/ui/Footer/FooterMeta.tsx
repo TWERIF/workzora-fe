@@ -2,8 +2,11 @@ import { useCountProjects } from "@/features/projects/model/useProjects";
 import { useCountUsers } from "@/features/users/model/useUsers";
 import { useTheme } from "next-themes";
 import { CopyrightInfo } from "./Footer";
+import { useTranslation } from "react-i18next";
+import { UaFlag } from "../../svg/UaFlag";
 
 export default function FooterMeta({ info }: { info: CopyrightInfo }) {
+  const { t } = useTranslation("main");
   const { theme } = useTheme();
   const isDark = theme === "dark";
 
@@ -39,7 +42,10 @@ export default function FooterMeta({ info }: { info: CopyrightInfo }) {
 
         <div className="flex flex-col items-center md:items-end gap-1 text-center md:text-right">
           {/* <p className="font-bold text-sm md:text-base">{info.trademark}</p> */}
-          <p className="text-xs md:text-sm opacity-60">{info.copyright}</p>
+          <p className="text-xs md:text-sm opacity-60">{t("footer.copyright.line1")}</p>
+          <p className="text-xs md:text-sm opacity-60">{t("footer.copyright.line2")}</p>
+          <p className="text-xs md:text-sm opacity-60">{t("footer.copyright.line3")}</p>
+          <p className="text-xs md:text-sm opacity-60 flex items-center gap-1">{t("footer.copyright.line4")} <UaFlag /> </p>
         </div>
       </div>
     </section>

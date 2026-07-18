@@ -7,6 +7,7 @@ import Input from "@/shared/components/ui/Input/Input";
 import Submit from "@/shared/components/ui/Input/Submit";
 import AuthLayout from "@/shared/components/ui/Layout/AuthLayout";
 import Link from "@/shared/components/ui/Link/Link";
+import { useWindowWidth } from "@/utils/useWindowsWidth";
 import { validateEmail } from "@/utils/validators";
 import { useTranslation } from "next-i18next";
 import Head from "next/head";
@@ -21,6 +22,9 @@ export default function ReserveEmail() {
   const { t, i18n } = useTranslation("common");
   const [ready, setReady] = useState(false);
   const locale = i18n.language;
+
+  const width = useWindowWidth();
+  const isMobile = width < 1233;
 
   const router = useRouter();
   const validate = () => {
@@ -59,23 +63,35 @@ export default function ReserveEmail() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <AuthLayout>
-        <div className="flex-1 max-w-[50%] bg-bg opacity-1 z-10 flex flex-col items-end justify-center dark:bg-bg-dark">
-          <div className="flex flex-col items-center gap-[30px] mr-[77px]">
+        <div
+          className={`flex-1 bg-bg opacity-1 z-10 flex flex-col justify-center dark:bg-bg-dark ${
+            isMobile
+              ? "w-full items-center px-4 py-10"
+              : "max-w-[50%] items-end mr-[77px]"
+          }`}
+        >
+          <div
+            className={`flex flex-col items-center gap-[30px] ${
+              isMobile ? "w-full" : ""
+            }`}
+          >
             <AuthHeader backUrl={`/${locale}/registration`} />
             <div className="flex flex-col mt-[25px] w-full max-w-[541px] items-center">
-              <span className="font-semibold text-text dark:text-text-dark">
+              <span className="font-semibold text-text dark:text-text-dark text-center">
                 {t("auth.texts.welcome")}
               </span>
-              <span className="text-text dark:text-text-dark mt-[11px] mb-[13px]">
+              <span className="text-text dark:text-text-dark mt-[11px] mb-[13px] text-center">
                 {t("auth.texts.welcomeText")}
               </span>
-              <Input
-                errorText={errors[3]}
-                value={email}
-                setValue={setEmail}
-                placeholder={t("auth.placeholders.email")}
-              />
-              <div className="mt-[25px] mb-[32px]">
+              <div className="w-full">
+                <Input
+                  errorText={errors[3]}
+                  value={email}
+                  setValue={setEmail}
+                  placeholder={t("auth.placeholders.email")}
+                />
+              </div>
+              <div className="mt-[25px] mb-[32px] w-full">
                 <Submit
                   value={submit}
                   setValue={setSubmit}

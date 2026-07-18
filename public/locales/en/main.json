@@ -389,7 +389,12 @@
   "imagine-text": "Imagine you can get AI to answer the phone, make sales, set appointments, and generally make your life way easier. It'll cost you less than building a website, and it's the next big thing for businesses in 2025. Thanks to our extensive global talent network, WorkZora is your best bet for finding AI experts to take your business to the next level.",
   "footer": {
     "trademark": "WorkZora \u00ae is a registered Trademark",
-    "copyright": "Copyright \u00a9 2025\u20132026 WorkZora",
+    "copyright": {
+      "line1": "WorkZora™",
+      "line2": "Find trusted freelancers and clients.",
+      "line3": "Copyright © 2025–2026 WorkZora. All rights reserved.",
+      "line4": "Made in Ukraine"
+    },
     "columns": [
       {
         "title": "Freelancer",
