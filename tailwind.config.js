@@ -33,6 +33,9 @@ module.exports = {
           DEFAULT: "rgba(200, 199, 199, 1)",
         },
       },
+      fontFamily: {
+        sans: ["var(--font-poppins)", "var(--font-manrope)", "sans-serif"],
+      },
       keyframes: {
         marquee: {
           from: {
@@ -55,7 +58,8 @@ module.exports = {
       },
       /* === Gradients === */
       backgroundImage: {
-        gradient: "linear-gradient(180deg, rgba(33, 107, 82, 1), rgba(126, 163, 16, 1))",
+        gradient: "linear-gradient(90deg, #216B52 0%, #7EA310 100%)",
+        gradientReverse: "linear-gradient(90deg, #7EA310 0%, #216B52 100%)",
         card: "linear-gradient(180deg, #E4F1C1 0%, #F2F6E7 100%)",
         "card-dark": "linear-gradient(180deg, #216B52 0%, #2E413B 100%)",
       },

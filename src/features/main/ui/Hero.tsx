@@ -23,7 +23,7 @@ export default function Hero({ showcaseItems = [], onSearch }: HeroProps) {
   const isDark = theme === "dark";
 
   return (
-    <section className="relative text-text bg-bg dark:text-text-dark dark:bg-bg-dark overflow-hidden pt-24 md:pt-28">
+    <section className="relative text-text bg-bg dark:text-text-dark dark:bg-bg-dark overflow-hidden pt-24 md:pt-28 mt-14">
       <div className="absolute top-0">
         {isDark ? <Vector fill="#ffffff" /> : <Vector />}
         <Fade />

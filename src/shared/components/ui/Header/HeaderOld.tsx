@@ -10,7 +10,7 @@ import Logo from "../../svg/Logo";
 import LogoRegWhite from "../../svg/LogoRegWhite";
 import ButtonBurger from "../Button/ButtonBurger";
 import ButtonGradientSmall from "../Button/ButtonGradientSmall";
-import LangButton from "../Button/LangButton";
+import LangButtonNew from "../Button/LangButtonNew";
 import ThemeButton from "../Button/ThemeButton";
 import LinkHeader from "../Link/LinkHeader";
 
@@ -66,37 +66,37 @@ export default function HeaderOld() {
                     {!isMobile && (
                         <>
                             <nav className="mx-[40px] flex gap-2.5">
-                                <LinkHeader href={`/${locale}/freelancers`}>
+                                <LinkHeader hover={false} href={`/${locale}/freelancers`}>
                                     {t("profile.headers.topFreelancers")}
                                 </LinkHeader>
-                                {user?.role !== "client" && <LinkHeader href={`/${locale}/categories`}>
+                                {user?.role !== "client" && <LinkHeader hover={false} href={`/${locale}/categories`}>
                                     {t("profile.headers.findWork")}
                                 </LinkHeader>}
-                                <LinkHeader href={`/${locale}/about-us`}>{t("profile.headers.aboutUs")}</LinkHeader>
-                                <LinkHeader href={`/${locale}/faq`}>{t("profile.headers.faq")}</LinkHeader>
-                                <LinkHeader href={`/${locale}/payments`}>
+                                <LinkHeader hover={false} href={`/${locale}/about-us`}>{t("profile.headers.aboutUs")}</LinkHeader>
+                                <LinkHeader hover={false} href={`/${locale}/faq`}>{t("profile.headers.faq")}</LinkHeader>
+                                <LinkHeader hover={false} href={`/${locale}/payments`}>
                                     {t("profile.headers.payments")}
                                 </LinkHeader>
-                                <LinkHeader href={`/${locale}/contacts`}>
+                                <LinkHeader hover={false} href={`/${locale}/contacts`}>
                                     {t("profile.headers.contacts")}
                                 </LinkHeader>
                             </nav>
 
                             {isAuthenticated ? (
                                 <div className="flex gap-3">
-                                    <LinkHeader href={`/${locale}/profile`}>
+                                    <LinkHeader hover={false} href={`/${locale}/profile`}>
                                         {t("profile.headers.profile")}
                                     </LinkHeader>
-                                    <LinkHeader href={`/${locale}/activeProjects`}>
+                                    <LinkHeader hover={false} href={`/${locale}/activeProjects`}>
                                         {t("profile.headers.activeProjects")}
                                     </LinkHeader>
                                 </div>
                             ) : (
                                 <nav className="flex gap-2.5 mr-[20px]">
-                                    <LinkHeader onClick={() => setIsOpenLogin(true)} href={`#`}>
+                                    <LinkHeader hover={false} onClick={() => setIsOpenLogin(true)} href={`#`}>
                                         {t("profile.headers.login")}
                                     </LinkHeader>
-                                    <LinkHeader href={`/${locale}/registration`}>
+                                    <LinkHeader hover={false} href={`/${locale}/registration`}>
                                         {t("profile.headers.signup")}
                                     </LinkHeader>
                                 </nav>
@@ -106,7 +106,7 @@ export default function HeaderOld() {
                                 <Link href={buttonLink}>
                                     <ButtonGradientSmall text={buttonText} onClick={() => { }} />
                                 </Link>
-                                <LangButton />
+                                <LangButtonNew />
                             </div>
 
                             <ThemeButton />
@@ -133,33 +133,33 @@ export default function HeaderOld() {
                 {isMobile && burgerOpen && (
                     <div className="flex flex-col gap-4 p-4 bg-bg-header dark:bg-bg-dark border-t border-gray-100 dark:border-zinc-800">
                         <nav className="flex flex-wrap justify-between gap-2">
-                            <LinkHeader href={`/${locale}/freelancers`}>
+                            <LinkHeader hover={false} href={`/${locale}/freelancers`}>
                                 {t("profile.headers.topFreelancers")}
                             </LinkHeader>
-                            {user?.role !== "client" && <LinkHeader href={`/${locale}/categories`}>
+                            {user?.role !== "client" && <LinkHeader hover={false} href={`/${locale}/categories`}>
                                 {t("profile.headers.findWork")}
                             </LinkHeader>}
-                            <LinkHeader href={`/${locale}/about-us`}>{t("profile.headers.aboutUs")}</LinkHeader>
-                            <LinkHeader href={`/${locale}/faq`}>{t("profile.headers.faq")}</LinkHeader>
-                            <LinkHeader href={`/${locale}/payments`}>
+                            <LinkHeader hover={false} href={`/${locale}/about-us`}>{t("profile.headers.aboutUs")}</LinkHeader>
+                            <LinkHeader hover={false} href={`/${locale}/faq`}>{t("profile.headers.faq")}</LinkHeader>
+                            <LinkHeader hover={false} href={`/${locale}/payments`}>
                                 {t("profile.headers.payments")}
                             </LinkHeader>
-                            <LinkHeader href={`/${locale}/contacts`}>
+                            <LinkHeader hover={false} href={`/${locale}/contacts`}>
                                 {t("profile.headers.contacts")}
                             </LinkHeader>
                             {isAuthenticated ? (
                                 <>
-                                    <LinkHeader href={`/${locale}/profile`}>
+                                    <LinkHeader hover={false} href={`/${locale}/profile`}>
                                         {t("profile.headers.profile")}
                                     </LinkHeader>
-                                    <LinkHeader href={`/${locale}/activeProjects`}>
+                                    <LinkHeader hover={false} href={`/${locale}/activeProjects`}>
                                         {t("profile.headers.activeProjects")}
                                     </LinkHeader>
                                 </>
 
                             ) : (
                                 <>
-                                    <LinkHeader onClick={() => setIsOpenLogin(true)} href="#">
+                                    <LinkHeader hover={false} onClick={() => setIsOpenLogin(true)} href="#">
                                         {t("profile.headers.login")}
                                     </LinkHeader>
                                     <LinkHeader
@@ -182,7 +182,7 @@ export default function HeaderOld() {
                                 </Link>
                             )}
                             <div className="flex items-center gap-4">
-                                <LangButton />
+                                <LangButtonNew />
                                 <ThemeButton />
                             </div>
                         </div>

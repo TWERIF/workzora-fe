@@ -1,9 +1,9 @@
 import { useCategoriesList } from "@/features/categories/model/useData";
 import { BgNetwork } from "@/shared/components/svg/BgDecor";
 import IconSearch from "@/shared/components/svg/IconSearch";
+import ButtonGradient from "@/shared/components/ui/Button/ButtonGradientSmall";
 import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
-import { BeInControlCard, BestTalentCard, FastBidsCard, QualityWorkCard, WorkZoraBanner } from "./FeatureCards";
 
 export default function LookingFor() {
     const { t } = useTranslation("main");
@@ -33,9 +33,9 @@ export default function LookingFor() {
                         e.preventDefault();
                         toSearch();
                     }}
-                    className="max-w-2xl mx-auto flex items-center gap-2 bg-input rounded-2xl shadow-input px-5 py-3 cursor-pointer"
+                    className="bg-white dark:bg-bg-dark max-w-3xl mx-auto flex items-center gap-2 rounded-[100px] px-5 py-3 cursor-pointer border-[1px] dark:border-[#444444] border-[#E2E2E2]"
                 >
-                    <IconSearch className="w-5 h-5 opacity-50 shrink-0" />
+                    <IconSearch color="#7EA310" className="w-5 h-5 opacity-50 shrink-0" />
 
                     <input
                         readOnly
@@ -44,12 +44,10 @@ export default function LookingFor() {
                         className="flex-1 bg-transparent outline-none text-sm md:text-base placeholder:text-text-muted cursor-pointer"
                     />
 
-                    <button
+                    <ButtonGradient
+                        text={t("hero.search.button")}
                         type="submit"
-                        className="shrink-0 bg-success text-white rounded-xl px-5 py-2 text-sm font-medium hover:opacity-90 transition-opacity"
-                    >
-                        {t("hero.search.button")}
-                    </button>
+                    />
                 </form>
 
                 <div className="mt-8 flex flex-col items-center gap-3">

@@ -7,6 +7,8 @@ export interface ButtonI {
   type?: "button" | "submit" | "reset";
   disabled?: boolean;
   id?: string;
+  form?: string;
+  className?: string;
 }
 export interface InputI {
   value: string;

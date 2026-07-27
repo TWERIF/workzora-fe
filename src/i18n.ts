@@ -16,6 +16,15 @@ import mainUk from "../public/locales/uk/main.json";
 import profileEn from "../public/locales/en/profile.json";
 import profileUk from "../public/locales/uk/profile.json";
 
+import paymentEn from "../public/locales/en/payment.json";
+import paymentUk from "../public/locales/uk/payment.json";
+
+import chatEn from "../public/locales/en/chat.json";
+import chatUk from "../public/locales/uk/chat.json";
+
+import paymentDataEn from "../public/locales/en/payment-data.json";
+import paymentDataUk from "../public/locales/uk/payment-data.json";
+
 i18n.use(initReactI18next).init({
   resources: {
     en: {
@@ -25,7 +34,10 @@ i18n.use(initReactI18next).init({
       copyrightPolicy: copyrightPolicyEn,
       comingSoon: comingSoonEn,
       main: mainEn,
-      profile: profileEn
+      profile: profileEn,
+      payment: paymentEn,
+      chat: chatEn,
+      "payment-data": paymentDataEn
     },
     uk: {
       common: commonUk,
@@ -34,7 +46,10 @@ i18n.use(initReactI18next).init({
       copyrightPolicy: copyrightPolicyUk,
       comingSoon: comingSoonUk,
       main: mainUk,
-      profile: profileUk
+      profile: profileUk,
+      payment: paymentUk,
+      chat: chatUk,
+      "payment-data": paymentDataUk
     },
   },
   lng: 'en',

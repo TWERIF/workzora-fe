@@ -12,6 +12,23 @@ import { useEffect } from 'react';
 import '../i18n';
 import i18n from '../i18n';
 import HeaderOld from '@/shared/components/ui/Header/HeaderOld';
+import { Poppins, Manrope } from "next/font/google";
+
+// ⬇️ обов'язково на верхньому рівні модуля, не всередині компонента
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-poppins",
+  display: "swap",
+});
+
+const manrope = Manrope({
+  subsets: ["cyrillic", "latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-manrope",
+  display: "swap",
+});
+
 function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
   const { locale, pathname } = router;
@@ -25,17 +42,18 @@ function App({ Component, pageProps }: AppProps) {
   const noHeaderRoutes = ['/registration', '/login', '/reserve-email', '/account-type'];
 
   const showHeader = !noHeaderRoutes.includes(pathname);
-  const showHeaderNew = pathname==="/";
+  const showHeaderNew = pathname === "/";
 
   return (
     <ReactQueryProvider>
-
       <ThemeProvider attribute="class" defaultTheme="light">
         <ThemeProviderGuard>
           <Layout>
             {showHeaderNew && <Header />}
             {showHeader && !showHeaderNew && <HeaderOld />}
-            <Component {...pageProps} />
+            <main className={`${poppins.variable} ${manrope.variable} font-sans`}>
+              <Component {...pageProps} />
+            </main>
             <Footer />
           </Layout>
         </ThemeProviderGuard>

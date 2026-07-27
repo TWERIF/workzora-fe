@@ -8,6 +8,9 @@ import IconTelegramSmall from "../../svg/IconTelegramSmall";
 import IconYoutubeSmall from "../../svg/IconYoutubeSmall";
 import LogoGreenStripes from "../../svg/LogoGreenStripes";
 import FooterMeta from "./FooterMeta";
+import LogoRegWhite from "../../svg/LogoRegWhite";
+import Logo from "../../svg/Logo";
+import { useTheme } from "next-themes";
 
 const icons = [
   IconFacebookSmall,
@@ -27,6 +30,8 @@ export interface CopyrightInfo {
 export default function Footer() {
   const { t } = useTranslation("common");
   const { locale } = useRouter();
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
 
 
   const footerData = t("footer", { returnObjects: true }) as any;
@@ -37,27 +42,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-12 xl:gap-32">
           <div className="flex flex-col items-center lg:items-start gap-8">
             <div className="w-40">
-              <LogoGreenStripes />
-            </div>
-
-            <div className="flex flex-wrap justify-center lg:justify-start gap-4">
-              <div className="cursor-pointer hover:opacity-80 transition-opacity">
-                <AvalibleApplestoreIcon />
-              </div>
-              <div className="cursor-pointer hover:opacity-80 transition-opacity">
-                <AvalibleGoogleplayIcon />
-              </div>
-            </div>
-
-            <div className="flex gap-4">
-              {icons.map((Icon, i) => (
-                <div
-                  key={i}
-                  className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-[#7EA310] transition-colors cursor-pointer"
-                >
-                  <Icon />
-                </div>
-              ))}
+              {isDark ? <LogoRegWhite /> : <Logo />}
             </div>
           </div>
 

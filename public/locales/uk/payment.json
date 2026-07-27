@@ -1,0 +1,52 @@
+{
+  "title": "Захистіть оплату проєкту",
+  "description": "Зарезервуйте бюджет проєкту безпечно ще до того, як фрилансер почне роботу. Кошти утримуватимуться до завершення й підтвердження проєкту.",
+  "paymentMethod": "Спосіб оплати",
+  "methods": {
+    "card": "Картка",
+    "apple-pay": "Apple Pay",
+    "google-pay": "Google Pay",
+    "paypal": "PayPal"
+  },
+  "cardNumber": "Номер картки*",
+  "cardNumberPlaceholder": "1234 1234 1234 1234",
+  "cardNumberRequired": "Введіть номер картки",
+  "cardNumberInvalid": "Введіть коректний номер картки",
+  "expirationDate": "Термін дії*",
+  "expirationPlaceholder": "ММ / РР",
+  "expirationRequired": "Обов'язкове поле",
+  "expirationInvalid": "ММ / РР",
+  "cvv": "CVV*",
+  "cvvPlaceholder": "***",
+  "cvvRequired": "Обов'язкове поле",
+  "cvvInvalid": "Некоректний CVV",
+  "cardholderName": "Ім'я власника картки",
+  "cardholderPlaceholder": "Emily Carter",
+  "secureNotice": "Дані вашої картки зашифровані та захищені.",
+  "payWithApplePay": "Оплатити через Apple Pay",
+  "payWithGooglePay": "Оплатити через Google Pay",
+  "processing": "Обробка...",
+  "pay": "Оплатити",
+  "cancel": "Скасувати",
+  "submitPayment": "Підтвердити оплату",
+  "orderSummary": {
+    "title": "Підсумок замовлення",
+    "projectBudget": "Бюджет проєкту",
+    "platformFee": "Комісія платформи",
+    "platformFeeInfo": "Деталі комісії платформи",
+    "total": "Разом",
+    "escrowNotice": "Після оплати кошти буде заблоковано на ескроу-рахунку."
+  },
+  "secureTrusted": {
+    "title": "Безпечно та надійно",
+    "ssl": "256-бітне SSL-шифрування",
+    "pciDss": "Відповідність PCI DSS",
+    "dataProtected": "Ваші дані завжди захищені"
+  },
+  "checkout": {
+    "completeTitle": "Завершіть оплату",
+    "closeLabel": "Закрити оплату",
+    "loading": "Завантаження безпечної оплати…",
+    "troubleLoading": "Проблема із завантаженням? Відкрити оплату в новій вкладці"
+  }
+}

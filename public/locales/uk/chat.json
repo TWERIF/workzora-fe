@@ -1,0 +1,11 @@
+{
+    "deadline": "Дедлайн проекту",
+    "timeLeft": "Залишилось часу",
+    "daysLeft": {
+        "daysLeft_one": "день залишився",
+        "daysLeft_few": "дні залишилось",
+        "daysLeft_many": "днів залишилось"
+    },
+    "complete": "Завершити проект",
+    "arbitration": "Арбітраж"
+}

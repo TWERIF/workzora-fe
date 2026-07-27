@@ -16,8 +16,6 @@ import HowItWorks from "./HowItWorks";
 import LookingFor from "./LookingFor";
 import { TopWorks } from "./TopWorks";
 import TrustedUsers from "./TrustedUsers";
-
-// Підключіть правильні шляхи
 import { usePortfolioList } from "@/features/portfolio/model/usePortfolio"; 
 import { PortfolioItem } from "@/features/portfolio/model/types"; 
 
@@ -28,11 +26,8 @@ export default function Main() {
   
   const { topProjects } = useProjects();
   
-  // Отримуємо перші 10 робіт для портфоліо (для Hero та TopWorks)
   const { data: portfolioData } = usePortfolioList(1, 10);
   
-  // Залежно від того, як бекенд NestJS віддає пагіновані дані. 
-  // У вашому контролері це { items, total, page, limit }, тому беремо items.
   const portfolioItems: PortfolioItem[] = portfolioData?.items || portfolioData || [];
 
   const router = useRouter();
@@ -46,7 +41,6 @@ export default function Main() {
       </Head>
 
       <main className={`overflow-x-hidden w-full ${isDark ? "bg-bg-dark text-text-dark" : "bg-bg text-text"}`}>
-        {/* Передаємо реальні дані портфоліо */}
         <Hero showcaseItems={portfolioItems} />
 
         <TrustedBy />

@@ -8,6 +8,7 @@ import {
   getTopProjects,
   searchProjects,
   toAwaitingPayment,
+  toCompleted,
   update,
 } from "./api";
 import { Project, ProjectStatus, type CreateProjectDto } from "./types";
@@ -49,6 +50,10 @@ export const useProjects = (id?: string) => {
     mutationFn: (data: { id: string; freelancerId: string }) => toAwaitingPayment(data),
   });
 
+  const toCompletedMutation = useMutation({
+    mutationFn: (data: { id: string }) => toCompleted(data),
+  });
+
   const { data: topProjects } = useQuery({
     queryFn: getTopProjects,
     queryKey: projectKeys.topProjects,
@@ -69,6 +74,7 @@ export const useProjects = (id?: string) => {
     updateMutation,
     deleteMutation,
     toAwaitingPaymentMutation,
+    toCompletedMutation
   };
 };
 

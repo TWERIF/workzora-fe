@@ -1,4 +1,6 @@
 {
+    "logout":"Logout",
+    "changeCardInfo":"Payment info",
     "nav": {
         "basicInfo": "Basic information",
         "skills": "Skills",

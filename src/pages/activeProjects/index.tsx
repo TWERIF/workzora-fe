@@ -95,7 +95,7 @@ export default function ChatsPage() {
             {projects.map((project: any) => (
               <Link
                 key={project.id}
-                href={`/${locale}/activeProjects/discussion/${project.id}`}
+                href={project.status === ProjectStatus.CLOSED || project.status === ProjectStatus.OPEN ? `/${locale}/activeProjects/discussion/${project.id}` : `/${locale}/chats/${project.id}`}
               >
                 <ProjectCard project={project} currentUserId={user.id} />
               </Link>

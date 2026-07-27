@@ -20,6 +20,7 @@ export interface Project {
   views: number;
   status: ProjectStatus;
   clientName: string;
+  time?: number | null;
 }
 export enum ProjectStatus {
   OPEN = 'open',

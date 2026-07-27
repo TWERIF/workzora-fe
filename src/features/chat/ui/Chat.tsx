@@ -1,5 +1,7 @@
 import { useAuth } from "@/features/auth/model/useAuth";
-import { Project, ProjectStatus } from "@/features/projects/model/types"; // Додано імпорт ProjectStatus
+import { useCreateEscrow } from "@/features/payment/model/usePayment";
+import { Project, ProjectStatus } from "@/features/projects/model/types";
+import { useProjects } from "@/features/projects/model/useProjects";
 import { $api } from "@/shared/components/http";
 import Breadcrumbs, {
   BreadcrumbItem,
@@ -9,6 +11,7 @@ import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { io, Socket } from "socket.io-client";
+import { ChatProjectComplete } from "./ChatProjectComplete";
 import Message from "./Message";
 
 interface ChatMessage {
@@ -27,10 +30,11 @@ interface ChatProps {
 }
 
 export default function Chat({ project, receiverId }: ChatProps) {
+  const createEscrowMutation = useCreateEscrow();
   const { t } = useTranslation("common");
   const { user } = useAuth();
   const currentUserId = user?.id;
-  const userRole = user?.role; // Отримуємо роль користувача (припускаючи, що вона є в user)
+  const userRole = user?.role;
   const [newMessage, setNewMessage] = useState("");
   const { theme } = useTheme();
   const isDark = theme === "dark";
@@ -166,9 +170,31 @@ export default function Chat({ project, receiverId }: ChatProps) {
     }
   };
 
-  const handleReserveFunds = () => {
-    // ТУТ БУДЕ ЛОГІКА РЕЗЕРВУВАННЯ КОШТІВ
-    console.log("Резервування коштів для проекту:", project.id);
+
+  const handleReserveFunds = async () => {
+    if (!project?.id) return;
+    try {
+      const escrow = await createEscrowMutation.mutateAsync({
+        amount: Math.round(project.price * 100),
+        currencyCode: 840,
+        projectId: project.id,
+        clientId: project.client.id,
+        freelancerId: project.freelancerId,
+        description: project.title,
+      });
+
+      if (escrow.pageUrl) {
+        window.location.href = escrow.pageUrl;
+      }
+    } catch (error) {
+      console.error("Не вдалося створити рахунок для оплати:", error);
+    }
+  };
+  const { toCompletedMutation } = useProjects(project.id);
+  const handleCopmlete = () => {
+    toCompletedMutation.mutate({
+      id: project.id,
+    });
   };
 
   if (!user) {
@@ -190,14 +216,15 @@ export default function Chat({ project, receiverId }: ChatProps) {
     { label: project?.title },
   ];
 
-  // Перевірка: чи клієнт і чи проект очікує на оплату
-  const isClient = userRole === "client"; // Або "CLIENT", залежно від того, як у вас зберігається роль
+  const isClient = userRole === "client";
   const showReserveFundsBtn =
-    isClient && project?.status === ProjectStatus.AWAITING_PAYMENT; // Переконайтесь, що у вас є enum ProjectStatus
+    isClient && project?.status === ProjectStatus.AWAITING_PAYMENT;
+
+  const showCompleteProject = isClient && project?.status === ProjectStatus.IN_PROGRESS;
 
   return (
     <div
-      className={`h-[100dvh] w-full overflow-hidden flex flex-col transition-colors duration-300 ${isDark ? "bg-[#2A2A2A]" : "bg-[#F7F7F7]"}`}
+      className={`min-h-[100vh] w-full overflow-hidden flex flex-col transition-colors duration-300 ${isDark ? "bg-[#2A2A2A]" : "bg-[#F7F7F7]"}`}
     >
       <div className="mx-auto w-full max-w-[950px] pt-4 px-4 flex-shrink-0">
         <Breadcrumbs customItems={chatBreadcrumbs} />
@@ -205,7 +232,7 @@ export default function Chat({ project, receiverId }: ChatProps) {
 
       <div className="mx-auto w-full max-w-[950px] flex-1 min-h-0 px-4 pb-4 flex flex-col">
         <div
-          className={`flex flex-col h-full overflow-hidden rounded-xl shadow-sm transition-colors duration-300 ${isDark ? "bg-[#333333] text-white" : "bg-white text-[#333333]"}`}
+          className={`flex flex-col min-h-[100vh] overflow-hidden rounded-xl shadow-sm transition-colors duration-300 ${isDark ? "bg-[#333333] text-white" : "bg-white text-[#333333]"}`}
         >
           <div className="px-5 pt-5 pb-3 flex-shrink-0">
             <div className="text-[32px] font-bold leading-none truncate">
@@ -372,12 +399,22 @@ export default function Chat({ project, receiverId }: ChatProps) {
               <div className="mt-2 flex justify-center">
                 <button
                   onClick={handleReserveFunds}
-                  className="w-full max-w-xs py-3 px-4 rounded-[100px] bg-gradient text-white font-medium shadow-md hover:shadow-lg transition-all hover:opacity-95"
+                  disabled={createEscrowMutation.isPending}
+                  className="w-full max-w-xs py-3 px-4 rounded-[100px] bg-gradient text-white font-medium shadow-md hover:shadow-lg transition-all hover:opacity-95 disabled:opacity-60"
                 >
-                  {t("chat.reserveFunds")}
+                  {createEscrowMutation.isPending ? t("chat.processing") : t("chat.reserveFunds")}
                 </button>
               </div>
             )}
+            {
+              showCompleteProject && (
+                <ChatProjectComplete
+                  createdAt={project.createdAt}
+                  deadline={project.time ?? 1}
+                  onComplete={handleCopmlete}
+                  onArbitration={() => { }} />
+              )
+            }
           </div>
         </div>
       </div>

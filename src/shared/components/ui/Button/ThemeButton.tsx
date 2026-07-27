@@ -5,7 +5,7 @@ import IconSun from "../../svg/IconSun";
 export default function ThemeButton() {
     const { theme, setTheme } = useTheme();
 
-    const isDark = theme === "dark"; // похідний стан, без useState і useEffect
+    const isDark = theme === "dark";
 
     const toggle = () => {
         setTheme(isDark ? "light" : "dark");
@@ -15,44 +15,50 @@ export default function ThemeButton() {
         <button
             type="button"
             onClick={toggle}
-            className="
+            aria-pressed={isDark}
+            className={`
                 relative
                 w-[63px]
                 h-[28px]
                 rounded-full
-                bg-success
+                px-[7px]
+                flex items-center
                 transition-colors
                 duration-300
                 ease-in-out
-                flex items-center
-            "
+                ${isDark ? "bg-[#3E3E3E]" : "bg-[#EEF3E1]"}
+            `}
         >
-            {/* Кружок-перемикач */}
             <span
                 className={`
-                    absolute
-                    top-[2px]
-                    w-[24px]
-                    h-[24px]
+                    absolute inset-0
+                    flex items-center
+                    ${isDark ? "justify-start pl-[8px]" : "justify-end pr-[8px]"}
+                    pointer-events-none
+                `}
+            >
+                {isDark ? (
+                    <IconMoon className="w-[16.25px] h-[16.25px] text-white" fill={"#ffffff"} />
+                ) : (
+                    <IconSun className="w-[20px] h-[20px] text-text" fill={"#333333"} />
+                )}
+            </span>
+
+            {/* Гурток-перемикач */}
+            <span
+                className={`
+                    relative
+                    z-10
+                    w-[22px]
+                    h-[22px]
                     rounded-full
-                    bg-bg-header
-                    dark:bg-bg-dark
-                    shadow
+                    bg-success
                     transition-transform
                     duration-300
                     ease-in-out
-                    flex items-center justify-center
-                    ${isDark ? "translate-x-[35px]" : "translate-x-[2px]"}
+                    ${isDark ? "translate-x-[28px]" : "translate-x-0"}
                 `}
-            >
-                {isDark ? <IconMoon /> : <IconSun />}
-            </span>
-
-            {/* Фонові іконки */}
-            <span className="absolute inset-0 flex items-center justify-between px-[6px] pointer-events-none">
-                <IconSun fill={isDark ? "white" : undefined} className={`${!isDark ? "opacity-0" : "opacity-100 "} transition-opacity duration-300`} />
-                <IconMoon className={`${!isDark ? "opacity-100" : "opacity-0"} transition-opacity duration-300`} />
-            </span>
+            />
         </button>
     );
 }

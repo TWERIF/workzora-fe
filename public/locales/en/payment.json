@@ -1,0 +1,52 @@
+{
+  "title": "Secure your project payment",
+  "description": "Reserve the project budget safely before the freelancer starts working. Funds will be held until the project is completed and approved.",
+  "paymentMethod": "Payment method",
+  "methods": {
+    "card": "Card",
+    "apple-pay": "Apple Pay",
+    "google-pay": "Google Pay",
+    "paypal": "PayPal"
+  },
+  "cardNumber": "Card number*",
+  "cardNumberPlaceholder": "1234 1234 1234 1234",
+  "cardNumberRequired": "Card number is required",
+  "cardNumberInvalid": "Enter a valid card number",
+  "expirationDate": "Expiration date*",
+  "expirationPlaceholder": "MM / YY",
+  "expirationRequired": "Required",
+  "expirationInvalid": "MM / YY",
+  "cvv": "CVV*",
+  "cvvPlaceholder": "***",
+  "cvvRequired": "Required",
+  "cvvInvalid": "Invalid CVV",
+  "cardholderName": "Cardholder name",
+  "cardholderPlaceholder": "Emily Carter",
+  "secureNotice": "Your payment information is encrypted and secure.",
+  "payWithApplePay": "Pay with Apple Pay",
+  "payWithGooglePay": "Pay with Google Pay",
+  "processing": "Processing...",
+  "pay": "Pay",
+  "cancel": "Cancel",
+  "submitPayment": "Submit payment",
+  "orderSummary": {
+    "title": "Order summary",
+    "projectBudget": "Project budget",
+    "platformFee": "Platform fee",
+    "platformFeeInfo": "Platform fee details",
+    "total": "Total",
+    "escrowNotice": "Funds will be reserved in escrow after payment."
+  },
+  "secureTrusted": {
+    "title": "Secure and trusted",
+    "ssl": "256-bit SSL encryption",
+    "pciDss": "PCI DSS compliant",
+    "dataProtected": "Your data is always protected"
+  },
+  "checkout": {
+    "completeTitle": "Complete your payment",
+    "closeLabel": "Close checkout",
+    "loading": "Loading secure checkout…",
+    "troubleLoading": "Trouble loading? Open checkout in a new tab"
+  }
+}

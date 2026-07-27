@@ -77,10 +77,10 @@ function TabButton({
     <button
       type="button"
       onClick={onClick}
-      className={`flex items-center gap-2 rounded-20 px-5 py-2 text-sm font-medium transition-colors duration-300 ${
+      className={` flex items-center gap-2 rounded-20 px-5 py-2 text-sm font-medium transition-colors duration-300 ${
         active
           ? "bg-success text-white"
-          : "border border-border text-text-muted hover:text-text dark:hover:text-text-dark"
+          : "border bg-[#FFFFFF] dark:bg-[#333333] border-border text-text-muted hover:text-text dark:hover:text-text-dark"
       }`}
     >
       <Icon className="h-4 w-4" />
@@ -191,7 +191,7 @@ export default function HowItWorks() {
         </h2>
 
         <div className="mb-16 flex justify-center">
-          <div className="inline-flex items-center gap-1 rounded-20 border border-border p-1">
+          <div className="inline-flex items-center gap-1 rounded-20 border border-border p-1 bg-[#F5F5F5] dark:bg-[#3D3D3D]">
             <TabButton
               active={tab === "clients"}
               onClick={() => setTab("clients")}

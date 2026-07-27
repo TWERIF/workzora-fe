@@ -1,0 +1,13 @@
+{
+    "paymentData": {
+        "cardNumber": "Card number",
+        "add": "Add card",
+        "update": "Update card",
+        "saving": "Saving...",
+        "errors": {
+            "required": "Enter your card number",
+            "invalid": "Invalid card number",
+            "saveFailed": "Failed to save card details"
+        }
+    }
+}

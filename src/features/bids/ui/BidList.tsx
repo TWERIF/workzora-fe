@@ -37,8 +37,6 @@ export const BidList: React.FC<BidListProps> = ({ project }) => {
         }, {
             onSuccess: () => {
                 setSelectedBid(null);
-                // Опціонально: тут можна викликати invalidation квері, 
-                // щоб оновити дані проєкту, якщо ви не робите це глобально
             }
         });
     };

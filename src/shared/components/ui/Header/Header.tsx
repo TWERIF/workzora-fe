@@ -13,6 +13,9 @@ import ButtonGradientSmall from "../Button/ButtonGradientSmall";
 import LangButton from "../Button/LangButton";
 import ThemeButton from "../Button/ThemeButton";
 import LinkHeader from "../Link/LinkHeader";
+import LangButtonNew from "../Button/LangButtonNew";
+import { IconPerson } from "../../svg/IconPerson";
+import ButtonGradient from "../Button/ButtonGradient";
 
 const ChevronIcon = () => (
   <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -106,11 +109,11 @@ export default function Header() {
 
   return (
     <>
-      {/* FIXED-обгортка: тепер хедер завжди над контентом і "їде" разом зі скролом */}
+
       <div className="fixed inset-x-0 top-0 z-[9998]">
         <div className="max-w-[1400px] mx-auto px-4 pt-4">
           <header
-            className={`w-full max-w-[1400px] mx-auto rounded-full bg-white dark:bg-bg-dark transition-shadow duration-300 ease-in-out ${scrolled
+            className={`w-full max-w-[1400px] mx-auto rounded-[36px] bg-white dark:bg-bg-dark transition-shadow duration-300 ease-in-out ${scrolled
               ? "shadow-[0px_10px_30px_rgba(0,0,0,0.35)]"
               : "shadow-[0px_6px_18px_rgba(0,0,0,0.2)]"
               }`}
@@ -134,11 +137,16 @@ export default function Header() {
                       </LinkHeader>
                     ) : (
                       <div className="flex items-center gap-4">
-                        <LinkHeader onClick={() => setIsOpenLogin(true)} href="#">
+                        <LinkHeader hover={false} className="flex items-center gap-2 hover:fill-success hover:text-success" onClick={() => setIsOpenLogin(true)} href="#">
+                          <IconPerson />
                           {t("profile.headers.login")}
                         </LinkHeader>
-                        <LinkHeader href={`/${locale}/registration`}>
-                          {t("profile.headers.signup")}
+                        <LinkHeader href={`/${locale}/registration`} hover={false}>
+                          <ButtonGradient
+                          className="rounded-full !py-3 !px-6"
+                            text={t("profile.headers.signup")}
+                            filled={false}
+                          />
                         </LinkHeader>
                       </div>
                     )}
@@ -147,7 +155,7 @@ export default function Header() {
                       <ButtonGradientSmall text={buttonText} onClick={() => { }} />
                     </Link>
 
-                    <LangButton />
+                    <LangButtonNew />
                     <ThemeButton />
                   </div>
                 </>
@@ -209,7 +217,7 @@ export default function Header() {
                   </Link>
                 )}
                 <div className="flex items-center gap-4">
-                  <LangButton />
+                  <LangButtonNew />
                   <ThemeButton />
                 </div>
               </div>

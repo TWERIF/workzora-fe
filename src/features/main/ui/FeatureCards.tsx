@@ -24,14 +24,14 @@ export function QualityWorkCard() {
     return (
         <div
             className={cx(
-                "relative overflow-visible rounded-20 p-6",
+                "relative overflow-visible rounded-20 p-5",
                 isDark ? "bg-bg-modalDark" : "bg-bg"
             )}
         >
             <div className="max-w-[70%]">
                 <h3
                     className={cx(
-                        "mb-2 text-lg font-bold",
+                        "mb-2 text-base font-bold",
                         isDark ? "text-text-dark" : "text-text"
                     )}
                 >
@@ -48,7 +48,7 @@ export function QualityWorkCard() {
             </div>
 
             {/* 3D check badge, overlapping the top edge of the card. Swap for a real illustration/asset if you have one. */}
-            <div className="absolute -top-7 right-0 h-20 w-20 md:top-9 sm:right-0 sm:h-24 sm:w-24">
+            <div className="absolute -top-6 right-2 h-16 w-16 sm:h-20 sm:w-20">
                 <img
                     alt=""
                     src="/images/main/Check.png"
@@ -69,14 +69,14 @@ export function BeInControlCard() {
     const isDark = theme === "dark";
 
     return (
-        <div className={cx("rounded-20 p-6", isDark ? "bg-bg-modalDark" : "bg-bg")}>
+        <div className={cx("rounded-20 p-5", isDark ? "bg-bg-modalDark" : "bg-bg")}>
             <div className="mb-3 flex items-center gap-3">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-20 bg-success">
-                    <Setting className="h-5 w-5 text-white" />
+                <div className="flex p-3 shrink-0 items-center justify-center rounded-20 bg-success">
+                    <Setting className="h-4 w-4 text-white" />
                 </div>
                 <h3
                     className={cx(
-                        "text-lg font-bold",
+                        "text-base font-bold",
                         isDark ? "text-text-dark" : "text-text"
                     )}
                 >
@@ -105,14 +105,14 @@ export function FastBidsCard() {
     const isDark = theme === "dark";
 
     return (
-        <div className={cx("rounded-20 p-6", isDark ? "bg-bg-modalDark" : "bg-bg")}>
+        <div className={cx("rounded-20 p-5", isDark ? "bg-bg-modalDark" : "bg-bg")}>
             <div className="mb-3 flex items-center gap-3">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-20 bg-success">
-                    <Clock className="h-5 w-5 text-white" />
+                <div className="flex p-3 shrink-0 items-center justify-center rounded-20 bg-success">
+                    <Clock className="h-[24.375px] w-[24.375px] text-white" />
                 </div>
                 <h3
                     className={cx(
-                        "text-lg font-bold",
+                        "text-base font-bold",
                         isDark ? "text-text-dark" : "text-text"
                     )}
                 >
@@ -131,16 +131,11 @@ export function FastBidsCard() {
     );
 }
 
-/* -------------------------------------------------------------------------- */
-/*  4. "The best talent" — brand gradient card with floating avatars          */
-/* -------------------------------------------------------------------------- */
-
-// Replace these with real imports/URLs of your reviewers' avatars.
 const AVATARS = [
-    { src: "/images/main/avatars/avatar1.png", className: "right-[10%] top-[10%] h-12 w-12" },
-    { src: "/images/main/avatars/avatar2.png", className: "right-0 top-[38%] h-11 w-11" },
-    { src: "/images/main/avatars/avatar3.png", className: "right-[32%] top-[62%] h-12 w-12" },
-    { src: "/images/main/avatars/avatar4.png", className: "right-[4%] bottom-[6%] h-12 w-12" },
+    { src: "/images/main/avatars/avatar1.png", className: "right-[10%] top-[10%] h-11 w-11" },
+    { src: "/images/main/avatars/avatar2.png", className: "right-0 top-[38%] h-10 w-10" },
+    { src: "/images/main/avatars/avatar3.png", className: "right-[32%] top-[62%] h-11 w-11" },
+    { src: "/images/main/avatars/avatar4.png", className: "right-[4%] bottom-[6%] h-11 w-11" },
 ];
 
 export function BestTalentCard() {
@@ -151,7 +146,7 @@ export function BestTalentCard() {
     return (
         <div
             className={cx(
-                "relative min-h-[200px] overflow-hidden rounded-20 p-6",
+                "relative min-h-[170px] overflow-hidden rounded-20 p-5",
                 isDark ? "bg-card-dark" : "bg-card"
             )}
         >
@@ -168,7 +163,7 @@ export function BestTalentCard() {
             <div className="relative z-10 max-w-[65%] sm:max-w-[55%]">
                 <h3
                     className={cx(
-                        "mb-2 text-lg font-bold",
+                        "mb-2 text-base font-bold",
                         isDark ? "text-text-dark" : "text-text"
                     )}
                 >
@@ -212,14 +207,14 @@ export function WorkZoraBanner() {
     return (
         <div
             className={cx(
-                "relative flex flex-col overflow-visible rounded-20 p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8",
+                "relative flex min-h-[170px] flex-col overflow-visible rounded-20 p-6 sm:flex-row sm:items-center sm:justify-between",
                 isDark ? "bg-card-dark" : "bg-card"
             )}
         >
             <div className="relative z-10 order-2 max-w-xs sm:order-1">
                 <h2
                     className={cx(
-                        "text-2xl font-extrabold leading-tight sm:text-3xl",
+                        "text-xl font-extrabold leading-tight sm:text-2xl",
                         isDark ? "text-text-dark" : "text-text"
                     )}
                 >
@@ -233,7 +228,7 @@ export function WorkZoraBanner() {
                 {/* Ideally add a dedicated token for this dark green (e.g. colors.brand.dark: "#216B52") in tailwind.config.js */}
                 <button
                     type="button"
-                    className="mt-6 rounded-full bg-[#216B52] px-6 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+                    className="mt-5 rounded-full bg-[#216B52] px-5 py-2.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
                 >
                     {t("featureCards.banner.cta")}
                 </button>
@@ -242,26 +237,26 @@ export function WorkZoraBanner() {
             <img
                 src="/images/main/PhoneMain.png"
                 alt=""
-                className="pointer-events-none absolute right-0 -top-[3.4rem] z-10 w-40 h-[130%] sm:left-auto sm:right-0 sm:-top-[4.6rem] sm:w-60 sm:translate-x-0"
+                className="pointer-events-none absolute right-2 -top-8 z-10 w-32 h-[120%] sm:right-4 sm:-top-10 sm:w-44"
             />
         </div>
     );
 }
 
-/* -------------------------------------------------------------------------- */
-/*  Section wrapper — lays the 5 cards out exactly like the reference design  */
-/* -------------------------------------------------------------------------- */
-
 export function HomeFeaturesSection() {
     return (
-        <div className="bg-white dark:bg-bg-dark grid grid-cols-1 gap-4 md:grid-cols-[1.4fr_1fr] pb-16 mx-auto px-4">
-            <WorkZoraBanner />
-            <BestTalentCard />
+        <div className="w-full bg-white dark:bg-bg-dark">
+            <div className="mx-auto max-w-[1140px] px-4 pb-16">
+                <div className="grid grid-cols-1 gap-4 md:grid-cols-[1.4fr_1fr]">
+                    <WorkZoraBanner />
+                    <BestTalentCard />
 
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-3 md:col-span-2">
-                <FastBidsCard />
-                <QualityWorkCard />
-                <BeInControlCard />
+                    <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 md:col-span-2">
+                        <FastBidsCard />
+                        <QualityWorkCard />
+                        <BeInControlCard />
+                    </div>
+                </div>
             </div>
         </div>
     );

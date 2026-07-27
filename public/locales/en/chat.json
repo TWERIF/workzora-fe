@@ -1,0 +1,11 @@
+{
+    "deadline": "Project deadline",
+    "timeLeft": "Time left",
+    "daysLeft": {
+        "daysLeft_one": "days left",
+        "daysLeft_few": "days left",
+        "daysLeft_many": "days left"
+    },
+    "complete": "Complete project",
+    "arbitration": "Contact arbitration"
+}

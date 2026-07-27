@@ -1,4 +1,4 @@
-import { Availability, PreferredBudgetType, PreferredProjectSize, User, WorkType } from "@/features/auth/model/types";
+import { Availability, PreferredBudgetType, PreferredProjectSize, User, UserRole, WorkType } from "@/features/auth/model/types";
 import { useAuth } from "@/features/auth/model/useAuth";
 import VerificationBlock from "@/features/kyc/ui/VerificationBlock";
 import { PortfolioItem } from "@/features/portfolio/model/types";
@@ -6,17 +6,22 @@ import { useCreatePortfolio, useDeletePortfolio, useUpdatePortfolio, useUserPort
 import PortfolioModal from "@/features/portfolio/ui/PortfolioModal";
 import { useUsers } from "@/features/users/model/useUsers";
 import IconUsa from "@/shared/components/svg/IconUsa";
+import ButtonGradient from "@/shared/components/ui/Button/ButtonGradient";
 import Loader from "@/shared/components/ui/Loader";
 import StickyNav from "@/shared/components/ui/StickyNav";
 import { Icon } from "@iconify/react";
+import Link from "next/link";
+import { useRouter } from "next/router";
 import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 
 export default function ProfileSettings() {
   const { t } = useTranslation("profile");
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
   const { updateMutaion, uploadAvatarMutation } = useUsers();
+  const router = useRouter();
+  const locale = router.locale || "en";
 
   const [skillInput, setSkillInput] = useState("");
 
@@ -502,17 +507,16 @@ export default function ProfileSettings() {
                   <div className="bg-success h-2 rounded-full" style={{ width: `${progressPercentage}%` }}></div>
                 </div>
               </div>
+              <div className="flex flex-col justify-start">
 
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full flex justify-center items-center py-3 bg-gradient text-white font-semibold rounded-20 transition-colors shadow-lg shadow-success/30 disabled:opacity-70"
-              >
-                {isSubmitting ? (
-                  <Icon icon="eos-icons:loading" className="text-xl mr-2" />
-                ) : null}
-                {t("completion.action", "Save Changes")}
-              </button>
+                <ButtonGradient
+                  type="submit"
+                  disabled={isSubmitting}
+                  text={t("completion.action", "Save Changes")}
+                />
+                {user.role === UserRole.FREELANCER && <Link className="mt-5 max-w-fit hover:underline" href={`/${locale}/payment-data`}>{t("changeCardInfo")}</Link>}
+                <button className="text-error capitalize  mt-4 max-w-fit" onClick={() => logout()}>{t("logout")}</button>
+              </div>
             </div>
           </div>
 
