@@ -16,10 +16,3 @@ export default function MainPage() {
     </>
   )
 }
-
-// docker compose up --build -d admin-panel
-// docker compose up --build -d api-gateway
-// docker compose up --build -d bids-service
-// docker compose up --build -d escrow
-// docker compose up --build -d project-service
-// docker compose up --build -d user-service
