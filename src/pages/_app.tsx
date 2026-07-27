@@ -14,7 +14,6 @@ import i18n from '../i18n';
 import HeaderOld from '@/shared/components/ui/Header/HeaderOld';
 import { Poppins, Manrope } from "next/font/google";
 
-// ⬇️ обов'язково на верхньому рівні модуля, не всередині компонента
 const poppins = Poppins({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
