@@ -62,7 +62,48 @@ function useInView<T extends HTMLElement>(threshold = 0.2) {
   return { ref, inView };
 }
 
-function TabButton({
+function useScrollProgress<T extends HTMLElement>() {
+  const ref = useRef<T | null>(null);
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    let ticking = false;
+
+    const update = () => {
+      ticking = false;
+      const rect = el.getBoundingClientRect();
+      const viewportH = window.innerHeight;
+
+      // Trigger point: center of the viewport
+      const covered = viewportH * 0.5 - rect.top;
+      const total = rect.height;
+      const pct = Math.min(1, Math.max(0, covered / total));
+      setProgress(pct);
+    };
+
+    const onScroll = () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
+    };
+
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, []);
+
+  return { ref, progress };
+}
+
+export function TabButton({
   active,
   onClick,
   icon: Icon,
@@ -70,20 +111,19 @@ function TabButton({
 }: {
   active: boolean;
   onClick: () => void;
-  icon: React.ComponentType<{ className?: string }>;
+  icon: React.ComponentType<{ fill?: string, className?: string }>;
   label: string;
 }) {
   return (
     <button
       type="button"
       onClick={onClick}
-      className={` flex items-center gap-2 rounded-20 px-5 py-2 text-sm font-medium transition-colors duration-300 ${
-        active
+      className={` flex items-center gap-2 rounded-20 px-5 py-2 text-sm font-medium transition-colors duration-300 ${active
           ? "bg-success text-white"
           : "border bg-[#FFFFFF] dark:bg-[#333333] border-border text-text-muted hover:text-text dark:hover:text-text-dark"
-      }`}
+        }`}
     >
-      <Icon className="h-4 w-4" />
+      <Icon fill={active ? "white" : "#7EA310"} className="h-4 w-4" />
       {label}
     </button>
   );
@@ -99,7 +139,7 @@ function StepRow({ step, index, tab }: { step: Step; index: number; tab: Tab }) 
 
   const badge = (
     <div className="relative z-10 flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-success text-white shadow-input">
-      <Icon  />
+      <Icon />
     </div>
   );
 
@@ -125,9 +165,8 @@ function StepRow({ step, index, tab }: { step: Step; index: number; tab: Tab }) 
     <div
       ref={ref}
       style={{ transitionDelay: `${index * 100}ms` }}
-      className={`transition-all duration-700 ease-out ${
-        inView ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
-      }`}
+      className={`transition-all duration-700 ease-out ${inView ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
+        }`}
     >
       {/* Desktop / tablet: zig-zag timeline */}
       <div className="hidden md:grid md:grid-cols-[1fr_56px_1fr] md:items-center md:gap-6">
@@ -151,7 +190,7 @@ function StepRow({ step, index, tab }: { step: Step; index: number; tab: Tab }) 
         {image}
         <div className="flex items-center gap-3">
           <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-success text-white">
-            <Icon  />
+            <Icon />
           </div>
           <span className="text-sm font-semibold text-success">/{step.number}</span>
         </div>
@@ -169,6 +208,7 @@ export default function HowItWorks() {
   const { theme } = useTheme();
   const isDark = theme === "dark";
   const [tab, setTab] = useState<Tab>("clients");
+  const { ref: lineRef, progress } = useScrollProgress<HTMLDivElement>();
 
   const steps = t(
     tab === "clients" ? "howItWorks.stepsClients" : "howItWorks.stepsFreelancers",
@@ -177,9 +217,8 @@ export default function HowItWorks() {
 
   return (
     <section
-      className={`relative overflow-hidden py-20 ${
-        isDark ? "bg-bg-dark text-text-dark" : "bg-bg text-text"
-      }`}
+      className={`relative overflow-hidden py-20 ${isDark ? "bg-bg-dark text-text-dark" : "bg-bg text-text"
+        }`}
     >
       <div className="pointer-events-none absolute inset-0 opacity-40">
         <TrianglesBg />
@@ -207,9 +246,12 @@ export default function HowItWorks() {
           </div>
         </div>
 
-        {/* Center connecting line (desktop only) */}
-        <div className="relative">
+        <div ref={lineRef} className="relative">
           <div className="pointer-events-none absolute left-1/2 top-0 bottom-0 hidden w-px -translate-x-1/2 bg-success/30 md:block" />
+          <div
+            className="pointer-events-none absolute left-1/2 top-0 hidden w-px -translate-x-1/2 bg-success md:block"
+            style={{ height: `${progress * 100}%` }}
+          />
           <div className="space-y-12 md:space-y-16">
             {steps?.map((step, index) => (
               <StepRow key={step.number ?? index} step={step} index={index} tab={tab} />

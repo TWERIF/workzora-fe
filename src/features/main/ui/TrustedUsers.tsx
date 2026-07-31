@@ -5,6 +5,9 @@ import { useUsers } from "../model/useUsers";
 import UserCard from "./UserCard";
 import UsersCountCard from "./UsersCountCard";
 import { useRouter } from "next/router";
+import { TabButton } from "./HowItWorks";
+import { HandIcon } from "@/shared/components/svg/HandIcon";
+import { WorkIcon } from "@/shared/components/svg/WorkIcon";
 
 type Tab = "freelancers" | "clients";
 
@@ -32,16 +35,18 @@ export default function TrustedUsers() {
             className={`inline-flex rounded-full p-1 border ${isDark ? "border-white/15" : "border-border"
               }`}
           >
-            {(["freelancers", "clients"] as const).map((key) => (
-              <button
-                key={key}
-                onClick={() => setTab(key)}
-                className={`px-5 py-2 rounded-full text-sm font-medium transition-colors ${tab === key ? "bg-success text-white" : "opacity-70 hover:opacity-100"
-                  }`}
-              >
-                {t(`community.${key === "freelancers" ? "topFreelancers" : "topClients"}`)}
-              </button>
-            ))}
+            <TabButton
+              active={tab === "clients"}
+              onClick={() => setTab("clients")}
+              icon={HandIcon}
+              label={t(`community.topClients`)}
+            />
+            <TabButton
+              active={tab === "freelancers"}  
+              onClick={() => setTab("freelancers")}
+              icon={WorkIcon}
+              label={t(`community.topFreelancers`)}
+            />
           </div>
         </div>
 

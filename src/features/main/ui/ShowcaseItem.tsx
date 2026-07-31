@@ -7,7 +7,7 @@ import { Avatar } from "@/features/users/ui/Avatar";
 export default function ShowcaseItem(props: Showcase) {
     const { t } = useTranslation("main");
     return (
-        <Link href={props.workUrl} className="block w-[317px] h-[396px] p-[14px] relative">
+        <div className="block w-[317px] h-[396px] p-[14px] relative">
             <Image
                 className="rounded-[22px] w-full h-full object-cover absolute top-0 left-0"
                 width={317}
@@ -38,6 +38,6 @@ export default function ShowcaseItem(props: Showcase) {
                 <span className="opacity-50">{t("hero.createdBy") + " "}</span>
                 {props.creator.name}
             </div>
-        </Link>
+        </div>
     );
 }

@@ -41,7 +41,7 @@ export default function Main() {
       </Head>
 
       <main className={`overflow-x-hidden w-full ${isDark ? "bg-bg-dark text-text-dark" : "bg-bg text-text"}`}>
-        <Hero showcaseItems={portfolioItems} />
+        <Hero  showcaseItems={portfolioItems} />
 
         <TrustedBy />
 
