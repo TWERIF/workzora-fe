@@ -2,7 +2,7 @@ import { Availability, PreferredBudgetType, PreferredProjectSize, User, UserRole
 import { useAuth } from "@/features/auth/model/useAuth";
 import VerificationBlock from "@/features/kyc/ui/VerificationBlock";
 import { PortfolioItem } from "@/features/portfolio/model/types";
-import { useCreatePortfolio, useDeletePortfolio, useUpdatePortfolio, useUserPortfolios } from "@/features/portfolio/model/usePortfolio";
+import { useCreatePortfolio, useDeletePortfolio, useUpdatePortfolio, useMyPortfolios } from "@/features/portfolio/model/usePortfolio";
 import PortfolioModal from "@/features/portfolio/ui/PortfolioModal";
 import { useUsers } from "@/features/users/model/useUsers";
 import IconUsa from "@/shared/components/svg/IconUsa";
@@ -25,7 +25,7 @@ export default function ProfileSettings() {
 
   const [skillInput, setSkillInput] = useState("");
 
-  const { data: portfolios, isLoading: isLoadingList } = useUserPortfolios(user?.id);
+  const { data: portfolios, isLoading: isLoadingList } = useMyPortfolios();
   const createMutation = useCreatePortfolio();
   const updateMutationPortfolio = useUpdatePortfolio();
   const deleteMutation = useDeletePortfolio();

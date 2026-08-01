@@ -38,11 +38,12 @@ export const getAllPortfolios = async (
     return res.data;
 };
 
-export const getPortfoliosByUserId = async (userId: string) => {
-    if (!userId) return [];
-
+export const getPortfolioByUserId = async (userId: string) => {
+    const res = await $api.get(`/portfolio/${userId}`);
+    return res.data;
+};
+export const getMyPortfolios = async () => {
     const res = await $api.get(`/portfolio/me`);
-
     return res.data;
 };
 

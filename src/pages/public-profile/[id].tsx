@@ -7,7 +7,7 @@ import { ProfileTab, ProfileTabs } from "@/features/freelancerProfile/ui/Profile
 import { QuickActionsCard } from "@/features/freelancerProfile/ui/QuickActionsCard";
 import { ReviewsSection } from "@/features/freelancerProfile/ui/ReviewsSection";
 import { SkillsSection } from "@/features/freelancerProfile/ui/SkillsSection";
-import { useUserPortfolios } from "@/features/portfolio/model/usePortfolio";
+import { usePortfolioByUserId } from "@/features/portfolio/model/usePortfolio";
 import { useUser } from "@/features/users/model/useUsers";
 import { useRouter } from "next/router";
 import { useState } from "react";
@@ -22,7 +22,7 @@ export default function FreelancerProfilePage() {
         isLoading,
     } = useUser(id);
 
-    const { data: portfolios, isLoading: isLoadingList } = useUserPortfolios(user?.id);
+    const { data: portfolios, isLoading: isLoadingList } = usePortfolioByUserId(user?.id);
 
     const [activeTab, setActiveTab] = useState<ProfileTab>("about");
 

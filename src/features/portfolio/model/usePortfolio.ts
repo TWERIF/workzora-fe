@@ -3,7 +3,8 @@ import {
     createPortfolio,
     deletePortfolio,
     getAllPortfolios,
-    getPortfoliosByUserId,
+    getMyPortfolios,
+    getPortfolioByUserId,
     updatePortfolio,
 } from "./api";
 
@@ -36,11 +37,18 @@ export const usePortfolioList = (
     });
 };
 
-export const useUserPortfolios = (userId?: string) => {
+export const usePortfolioByUserId = (userId?: string) => {
     return useQuery({
-        queryFn: () => getPortfoliosByUserId(userId!),
+        queryFn: () => getPortfolioByUserId(userId!),
         queryKey: portfolioKeys.byUserId(userId!),
         enabled: !!userId,
+    });
+};
+
+export const useMyPortfolios = () => {
+    return useQuery({
+        queryFn: getMyPortfolios,
+        queryKey: ["portfolios-my"],
     });
 };
 
