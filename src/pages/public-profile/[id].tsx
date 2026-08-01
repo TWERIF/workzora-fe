@@ -12,11 +12,10 @@ import { useUser } from "@/features/users/model/useUsers";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
-
 export default function FreelancerProfilePage() {
     const router = useRouter();
 
-    const id = router.query.id as string | undefined;
+    const id = router.isReady ? (router.query.id as string | undefined) : undefined;
 
     const {
         data: user,
@@ -26,6 +25,10 @@ export default function FreelancerProfilePage() {
     const { data: portfolios, isLoading: isLoadingList } = useUserPortfolios(user?.id);
 
     const [activeTab, setActiveTab] = useState<ProfileTab>("about");
+
+    if (!router.isReady) {
+        return null;
+    }
 
     return (
         <div className="min-h-screen bg-bg px-4 py-6 dark:bg-bg-dark sm:px-8 sm:py-10">
