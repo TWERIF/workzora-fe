@@ -87,17 +87,16 @@ export default function Chat({ project, receiverId }: ChatProps) {
   useEffect(() => {
     if (!chatId || !currentUserId) return;
 
-    const origin = window.location.origin; 
+    const isProd = window.location.origin === "https://workzora.com";
 
-    const baseUrl =
-      origin === "https://workzora.com"
-        ? "https://workzora.com/api"
-        : "http://localhost:8000";
-
-    const newSocket = io(`${baseUrl}/chat`, {
-      query: { userId: currentUserId },
-      transports: ["websocket"],
-    });
+    const newSocket = io(
+      isProd ? "https://workzora.com/chat" : "http://localhost:8000/chat",
+      {
+        query: { userId: currentUserId },
+        transports: ["websocket"],
+        path: isProd ? "/api/socket.io" : "/socket.io", 
+      }
+    );
 
     newSocket.on("connect", () => {
       newSocket.emit("joinChat", chatId);
