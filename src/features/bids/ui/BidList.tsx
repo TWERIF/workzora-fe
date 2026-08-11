@@ -2,6 +2,7 @@ import { useAuth } from '@/features/auth/model/useAuth';
 import { Project, ProjectStatus } from '@/features/projects/model/types';
 import { useProjects } from '@/features/projects/model/useProjects';
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Bid as BidType } from '../model/types';
 import { useProjectBids } from '../model/useBids';
 import { Bid } from './Bid';
@@ -14,6 +15,7 @@ interface BidListProps {
 export const BidList: React.FC<BidListProps> = ({ project }) => {
     const bids = useProjectBids(project.id);
     const { user } = useAuth();
+    const { t } = useTranslation("discussion");
 
     const { toAwaitingPaymentMutation } = useProjects(project.id);
 
@@ -44,7 +46,7 @@ export const BidList: React.FC<BidListProps> = ({ project }) => {
     return (
         <div className="flex flex-col gap-4 w-full py-8 relative">
             <h1 className='text-text dark:text-text-dark font-[700] text-[20px] md:text-[24px]'>
-                Applications
+                {t("bidList.applications")}
             </h1>
 
             {bids.data?.map((bid) => {

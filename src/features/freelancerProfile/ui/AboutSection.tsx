@@ -11,7 +11,8 @@ export const AboutSection = ({ user }: AboutSectionProps) => {
     const { t } = useTranslation("common");
 
     const hasRating = user?.ratings != null;
-    const hasRate = user?.rates != null;
+    const hasRate = user?.rate != null;
+    const hasRates = user?.rates != null;
 
     return (
         <section>
@@ -23,8 +24,8 @@ export const AboutSection = ({ user }: AboutSectionProps) => {
                 <StatRing
                     label={t("profile.about.successfulProjects")}
                     sublabel={t("profile.noData.successfulProjects")}
-                    centerText="–"
-                    progress={0}
+                    centerText={hasRates ? `${user!.rates}` : "–"}
+                    progress={hasRates ? user!.rates : 0}
                 />
                 <StatRing
                     label={t("profile.about.rating")}
@@ -35,7 +36,7 @@ export const AboutSection = ({ user }: AboutSectionProps) => {
                 <StatRing
                     label={t("profile.about.hourRate")}
                     sublabel={hasRate ? t("profile.about.perHour") : t("profile.noData.hourRate")}
-                    centerText={hasRate ? `${user!.rates}$` : "–"}
+                    centerText={hasRate ? `${user!.rate}$` : "–"}
                     progress={hasRate ? 1 : 0}
                 />
             </div>

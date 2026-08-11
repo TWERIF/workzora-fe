@@ -25,6 +25,9 @@ import chatUk from "../public/locales/uk/chat.json";
 import paymentDataEn from "../public/locales/en/payment-data.json";
 import paymentDataUk from "../public/locales/uk/payment-data.json";
 
+import discussionEn from "../public/locales/en/discussion.json";
+import discussionUk from "../public/locales/uk/discussion.json";
+
 i18n.use(initReactI18next).init({
   resources: {
     en: {
@@ -37,7 +40,8 @@ i18n.use(initReactI18next).init({
       profile: profileEn,
       payment: paymentEn,
       chat: chatEn,
-      "payment-data": paymentDataEn
+      "payment-data": paymentDataEn,
+      discussion: discussionEn
     },
     uk: {
       common: commonUk,
@@ -49,7 +53,8 @@ i18n.use(initReactI18next).init({
       profile: profileUk,
       payment: paymentUk,
       chat: chatUk,
-      "payment-data": paymentDataUk
+      "payment-data": paymentDataUk,
+      discussion: discussionUk
     },
   },
   lng: 'en',

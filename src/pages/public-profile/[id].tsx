@@ -34,7 +34,7 @@ export default function FreelancerProfilePage() {
         <div className="min-h-screen bg-bg px-4 py-6 dark:bg-bg-dark sm:px-8 sm:py-10">
             <div className="mx-auto grid max-w-6xl grid-cols-1 gap-4 lg:grid-cols-[1fr_280px]">
                 <ProfileHeaderCard user={isLoading ? undefined : user} />
-                {user?.role === "freelancer" && <QuickActionsCard />}
+                {/* {user?.role === "freelancer" && <QuickActionsCard />} */}
 
                 {user?.role === "freelancer" && <div className="lg:col-span-2">
                     <ProfileTabs active={activeTab} onChange={setActiveTab} />

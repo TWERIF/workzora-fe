@@ -20,7 +20,7 @@ export const useAuth = () => {
 
   const {
     data: user,
-    isLoading: isUserLoading,
+    isLoading,
     isFetching,
     isError,
     refetch,
@@ -39,24 +39,19 @@ export const useAuth = () => {
     refetchOnWindowFocus: true,
   });
 
-  // 2. Логін
   const loginMutation = useMutation({
     mutationFn: (credentials: LoginCredentials) => login(credentials),
-    onSuccess: (data) => {
-      // Бекенд повернув { success: true, user: ... }, токени вже в куках
-      queryClient.setQueryData(authKeys.me, data.user);
+    onSuccess: async () => {
+      await refetch();
       router.push("/profile");
     },
   });
 
-  // 3. Реєстрація
   const registerMutation = useMutation({
-    // Використовуємо UserCreate замість RegisterData
     mutationFn: (userData: UserCreate) => register(userData),
     onSuccess: async () => {
-      // Бекенд вже поставив куки, тому просто перезапитуємо дані юзера
-      await refetch(); // Переконайся, що викликаєш правильну функцію з useQuery або refetch
-      // Редирект зробимо на самій сторінці (в index.tsx)
+      await refetch(); 
+      router.push("/profile");
     },
   });
 
@@ -76,7 +71,8 @@ export const useAuth = () => {
     register: registerMutation.mutateAsync,
     logout: logoutMutation.mutateAsync,
     refetchMe: refetch,
-    isLoading: isUserLoading || isFetching,
+    isLoading,
+    isFetching,
     isLoggingIn: loginMutation.isPending,
     isRegistering: registerMutation.isPending,
     isLoggingOut: logoutMutation.isPending,

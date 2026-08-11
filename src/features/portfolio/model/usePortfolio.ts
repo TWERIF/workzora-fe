@@ -8,24 +8,13 @@ import {
     updatePortfolio,
 } from "./api";
 
-// Ключі для кешування
 export const portfolioKeys = {
-    all: (page: number, limit: number) => [
-        "portfolios",
-        page,
-        limit,
-    ],
-
-    byUserId: (userId: string) => [
-        "portfolios-user",
-        userId,
-    ],
-
-    // Базовий ключ для інвалідації всіх списків портфоліо
-    lists: ["portfolios"] as const,
+  all: (page: number, limit: number) => ["portfolios", page, limit],
+  byUserId: (userId: string) => ["portfolios-user", userId],
+  myList: ["portfolios-my"] as const,
+  lists: ["portfolios"] as const,
 };
 
-// --- Хуки для отримання даних (Queries) ---
 
 export const usePortfolioList = (
     page: number = 1,
@@ -46,13 +35,11 @@ export const usePortfolioByUserId = (userId?: string) => {
 };
 
 export const useMyPortfolios = () => {
-    return useQuery({
-        queryFn: getMyPortfolios,
-        queryKey: ["portfolios-my"],
-    });
+  return useQuery({
+    queryFn: getMyPortfolios,
+    queryKey: portfolioKeys.myList, 
+  });
 };
-
-// --- Хуки для зміни даних (Mutations) ---
 
 export const useCreatePortfolio = () => {
     const queryClient = useQueryClient();
@@ -61,6 +48,7 @@ export const useCreatePortfolio = () => {
         mutationFn: createPortfolio,
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: portfolioKeys.lists });
+            queryClient.invalidateQueries({ queryKey: portfolioKeys.myList });
         },
     });
 };
@@ -72,6 +60,7 @@ export const useUpdatePortfolio = () => {
         mutationFn: updatePortfolio,
         onSuccess: (_, variables) => {
             queryClient.invalidateQueries({ queryKey: portfolioKeys.lists });
+            queryClient.invalidateQueries({ queryKey: portfolioKeys.myList });
 
             const userId = variables.get("userId");
 
@@ -89,6 +78,7 @@ export const useDeletePortfolio = () => {
         mutationFn: deletePortfolio,
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: portfolioKeys.lists });
+            queryClient.invalidateQueries({ queryKey: portfolioKeys.myList });
         },
     });
 };

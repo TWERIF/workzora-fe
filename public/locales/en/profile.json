@@ -1,6 +1,8 @@
 {
-    "logout":"Logout",
-    "changeCardInfo":"Payment info",
+    "logout": "Logout",
+    "changeCardInfo": "Payment info",
+    "workSaved": "Work saved",
+    "userDataUpdated": "User Data updated",
     "nav": {
         "basicInfo": "Basic information",
         "skills": "Skills",

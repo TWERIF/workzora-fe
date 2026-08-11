@@ -1,27 +1,34 @@
 import { Availability, PreferredBudgetType, PreferredProjectSize, User, UserRole, WorkType } from "@/features/auth/model/types";
-import { useAuth } from "@/features/auth/model/useAuth";
 import VerificationBlock from "@/features/kyc/ui/VerificationBlock";
 import { PortfolioItem } from "@/features/portfolio/model/types";
-import { useCreatePortfolio, useDeletePortfolio, useUpdatePortfolio, useMyPortfolios } from "@/features/portfolio/model/usePortfolio";
+import { useCreatePortfolio, useDeletePortfolio, useMyPortfolios, useUpdatePortfolio } from "@/features/portfolio/model/usePortfolio";
 import PortfolioModal from "@/features/portfolio/ui/PortfolioModal";
 import { useUsers } from "@/features/users/model/useUsers";
 import IconUsa from "@/shared/components/svg/IconUsa";
 import ButtonGradient from "@/shared/components/ui/Button/ButtonGradient";
-import Loader from "@/shared/components/ui/Loader";
 import StickyNav from "@/shared/components/ui/StickyNav";
+import Toast from "@/shared/components/ui/Toast";
 import { Icon } from "@iconify/react";
+import { TFunction } from "i18next";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { NextRouter } from "next/router";
 import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useTranslation } from "react-i18next";
 
-export default function ProfileSettings() {
-  const { t } = useTranslation("profile");
-  const { user, logout } = useAuth();
+export default function ProfileSettings({
+  user,
+  t,
+  locale,
+  logout,
+  router
+}: {
+  user: User;
+  t: TFunction;
+  locale: string;
+  logout: () => void;
+  router: NextRouter;
+}) {
   const { updateMutaion, uploadAvatarMutation } = useUsers();
-  const router = useRouter();
-  const locale = router.locale || "en";
 
   const [skillInput, setSkillInput] = useState("");
 
@@ -55,6 +62,9 @@ export default function ProfileSettings() {
     setIsModalOpen(true);
   };
 
+  const [toast, setToast] = useState<{ msg: string; id: number } | null>(null);
+  const showToast = (msg: string) => setToast({ msg, id: Date.now() });
+
   const onPortfolioSubmit = (formData: FormData) => {
     if (user?.id) {
       formData.append("userId", user.id);
@@ -62,15 +72,22 @@ export default function ProfileSettings() {
 
     if (editingItem) {
       formData.append("id", editingItem.id);
-      updateMutationPortfolio.mutate(formData as any, {
-        onSuccess: () => setIsModalOpen(false)
+      updateMutationPortfolio.mutate(formData, {
+        onSuccess: () => {
+          setIsModalOpen(false);
+          showToast(t("workSaved"));
+        }
       });
     } else {
-      createMutation.mutate(formData as any, {
-        onSuccess: () => setIsModalOpen(false)
+      createMutation.mutate(formData, {
+        onSuccess: () => {
+          setIsModalOpen(false);
+          showToast(t("workSaved"));
+        }
       });
     }
   };
+
 
   const { register, handleSubmit, setValue, watch, formState: { isSubmitting } } = useForm<Partial<User>>({
     defaultValues: {
@@ -125,6 +142,7 @@ export default function ProfileSettings() {
 
   const onSubmit = (data: Partial<User>) => {
     updateMutaion.mutate(data);
+    showToast(t("userDataUpdated"));
   };
 
   const countComplience = () => {
@@ -161,7 +179,9 @@ export default function ProfileSettings() {
     { id: "portfolio", label: t("nav.portfolio") },
     { id: "work-preferences", label: t("nav.workPreferences") },
   ];
-  if (!user) return <Loader />;
+  if (!user) {
+    return router.push(`/${locale}/404`);
+  }
   return (
     <>
       <form
@@ -530,6 +550,10 @@ export default function ProfileSettings() {
         initialData={editingItem}
         isLoading={createMutation.isPending || updateMutationPortfolio.isPending}
       />
+
+      {toast && (
+        <Toast key={toast.id} message={toast.msg} />
+      )}
     </>
   );
 }

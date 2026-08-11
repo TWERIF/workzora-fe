@@ -1,4 +1,5 @@
 import { useAuth } from "@/features/auth/model/useAuth";
+import { useProjectBids } from "@/features/bids/model/useBids";
 import BidForm from "@/features/bids/ui/BidForm";
 import { BidList } from "@/features/bids/ui/BidList";
 import CategoryThumb from "@/features/categories/ui/CategoryThumb";
@@ -23,28 +24,33 @@ const BottomActionBar = ({
     project: Project;
     onToggleForm: () => void;
     isFormOpen: boolean;
-}) => (
-    <div className="w-full bg-white dark:bg-bg-modalDark rounded-20 p-4 shadow-sm border border-border dark:border-gray-600 mt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <button className="px-6 py-2.5 bg-bg dark:bg-bg-dark hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors rounded-full text-[14px] text-text-muted font-medium w-full sm:w-auto">
-            Complain about the project
-        </button>
+}) => {
+    const bids = useProjectBids(project.id);
+    const { t } = useTranslation("discussion");
 
-        <div className="flex items-center gap-4 sm:gap-6 w-full sm:w-auto justify-between sm:justify-end">
-            <span className="text-[14px] font-medium text-text-muted dark:text-text-dark">
-                139 bids
-            </span>
-            <button className="text-success hover:opacity-80 transition-opacity">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8M16 6l-4-4-4 4M12 2v13" /></svg>
+    return (
+        <div className="w-full bg-white dark:bg-bg-modalDark rounded-20 p-4 shadow-sm border border-border dark:border-gray-600 mt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <button className="px-6 py-2.5 bg-bg dark:bg-bg-dark hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors rounded-full text-[14px] text-text-muted font-medium w-full sm:w-auto">
+                {t("complain")}
             </button>
-            <button
-                onClick={onToggleForm}
-                className="px-8 py-3 bg-success hover:opacity-90 transition-opacity text-white rounded-full font-medium text-[15px]"
-            >
-                {isFormOpen ? "Close form" : "Bid on the project"}
-            </button>
+
+            <div className="flex items-center gap-4 sm:gap-6 w-full sm:w-auto justify-between sm:justify-end">
+                <span className="text-[14px] font-medium text-text-muted dark:text-text-dark">
+                    {bids.data?.length ?? 0} {t("bids")}
+                </span>
+                <button className="text-success hover:opacity-80 transition-opacity">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8M16 6l-4-4-4 4M12 2v13" /></svg>
+                </button>
+                <button
+                    onClick={onToggleForm}
+                    className="px-8 py-3 bg-success hover:opacity-90 transition-opacity text-white rounded-full font-medium text-[15px]"
+                >
+                    {isFormOpen ? t("closeForm") : t("bidOnProject")}
+                </button>
+            </div>
         </div>
-    </div>
-);
+    );
+}
 
 export default function Discussion() {
     const router = useRouter();
@@ -54,6 +60,7 @@ export default function Discussion() {
 
     const locale = router.locale || "en";
     const { t } = useTranslation("common");
+    const { t: td } = useTranslation("discussion"); // додано, поки не використовується напряму в цьому компоненті
     const { user, isLoading } = useAuth();
     const { project, isLoadingProjectData } = useProjects(id as string);
 

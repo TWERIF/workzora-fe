@@ -1,6 +1,8 @@
 {
     "logout": "Вийти",
-    "changeCardInfo":"Платіжна інформація",
+    "changeCardInfo": "Платіжна інформація",
+    "workSaved": "Роботу збережено",
+    "userDataUpdated": "Дані користувача оновлено",
     "nav": {
         "basicInfo": "Основна інформація",
         "skills": "Навички",

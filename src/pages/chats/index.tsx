@@ -1,5 +1,6 @@
 "use client";
 
+import { User } from "@/features/auth/model/types";
 import { useChats } from "@/features/chat/model/useChat";
 import { FilterType } from "@/features/chat/ui/ChatFilters";
 import ChatItem, { ChatItemData } from "@/features/chat/ui/ChatItem";
@@ -92,7 +93,7 @@ export default function ChatsPage() {
                     </div>
 
                     <aside className="order-1 lg:order-2 lg:col-span-4 w-full lg:sticky lg:top-8">
-                        <AccountSettings />
+                        <AccountSettings user={undefined as unknown as User} />
                     </aside>
                 </div>
             </div>

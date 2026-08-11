@@ -5,10 +5,14 @@ import IconArrow from "@/shared/components/svg/IconArrow";
 import ProjectCard from "@/shared/components/ui/Card/ProjectCard";
 import { useTheme } from "next-themes";
 import Head from "next/head";
+import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
 import TrustedBy from "./TrustedBy";
-import { useRouter } from "next/router";
 
+import RegModal from "@/features/auth/ui/RegModal";
+import { PortfolioItem } from "@/features/portfolio/model/types";
+import { usePortfolioList } from "@/features/portfolio/model/usePortfolio";
+import { useEffect, useState } from "react";
 import Categories from "./Categories";
 import { HomeFeaturesSection } from "./FeatureCards";
 import Hero from "./Hero";
@@ -16,22 +20,50 @@ import HowItWorks from "./HowItWorks";
 import LookingFor from "./LookingFor";
 import { TopWorks } from "./TopWorks";
 import TrustedUsers from "./TrustedUsers";
-import { usePortfolioList } from "@/features/portfolio/model/usePortfolio"; 
-import { PortfolioItem } from "@/features/portfolio/model/types"; 
 
 export default function Main() {
   const { t } = useTranslation("main");
   const { theme } = useTheme();
   const isDark = theme === "dark";
-  
+
   const { topProjects } = useProjects();
-  
+
   const { data: portfolioData } = usePortfolioList(1, 10);
-  
+
   const portfolioItems: PortfolioItem[] = portfolioData?.items || portfolioData || [];
+
+  const [isOpenReg, setIsOpenReg] = useState(false);
+  const [width, setWidth] = useState(0);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    const init = () => {
+      setMounted(true);
+      setWidth(window.innerWidth);
+    };
+    init();
+    const handleResize = () => setWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  if (!mounted) return null;
 
   const router = useRouter();
   const locale = router.locale ?? "en";
+
+  const isMobile = width < 1233;
+
+  const handleReg = () => {
+    if (!isMobile) {
+      router.push(`/${locale}/registration`);
+    } else {
+      setIsOpenReg(true);
+    }
+  }
 
   return (
     <>
@@ -41,7 +73,7 @@ export default function Main() {
       </Head>
 
       <main className={`overflow-x-hidden w-full ${isDark ? "bg-bg-dark text-text-dark" : "bg-bg text-text"}`}>
-        <Hero  showcaseItems={portfolioItems} />
+        <Hero showcaseItems={portfolioItems} handleReg={handleReg} />
 
         <TrustedBy />
 
@@ -93,6 +125,9 @@ export default function Main() {
           </div>
         </section>
       </main>
+      {isOpenReg && (
+        <RegModal maxWidth={width} setIsOpen={setIsOpenReg} setIsOpenLogin={() => { }} />
+      )}
     </>
   );
 }

@@ -1,0 +1,30 @@
+{
+    "complain": "Поскаржитись на проєкт",
+    "bids": "ставок",
+    "closeForm": "Закрити форму",
+    "bidOnProject": "Зробити ставку",
+    "projectId": "ID проєкту: {{id}}",
+    "status": {
+        "open": "Відкрито",
+        "awaiting_payment": "Очікує оплати",
+        "in_progress": "В процесі",
+        "completed": "Завершено",
+        "closed": "Закрито"
+    },
+    "clientSidebar": {
+        "postSameProject": "Опублікувати такий самий проєкт",
+        "aboutClient": "Про клієнта",
+        "reviewsCount_one": "{{count}} відгук",
+        "reviewsCount_few": "{{count}} відгуки",
+        "reviewsCount_many": "{{count}} відгуків",
+        "reviewsCount_other": "{{count}} відгуків",
+        "memberSince": "На платформі з {{date}}",
+        "sendMessage": "Написати повідомлення",
+        "makeNote": "Додати нотатку (видно лише вам)",
+        "blockUser": "Заблокувати користувача",
+        "complain": "Поскаржитись"
+    },
+    "bidList": {
+        "applications": "Заявки"
+    }
+}

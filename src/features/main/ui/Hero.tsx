@@ -7,15 +7,15 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import ShowcaseItem from "./ShowcaseItem";
 
-// Підключіть правильний шлях до вашого типу
 import { PortfolioItem } from "@/features/portfolio/model/types";
 
 interface HeroProps {
+  handleReg: () => void;
   showcaseItems?: PortfolioItem[];
   onSearch?: (query: string) => void;
 }
 
-export default function Hero({ showcaseItems = [], onSearch }: HeroProps) {
+export default function Hero({ handleReg, showcaseItems = [], onSearch }: HeroProps) {
   const { t } = useTranslation("main");
   const [query, setQuery] = useState("");
   const tags = t("hero.search.tags", { returnObjects: true }) as string[];
@@ -39,8 +39,8 @@ export default function Hero({ showcaseItems = [], onSearch }: HeroProps) {
             <h2>{t("hero.subtitle")}</h2>
 
             <div className="flex justify-center gap-4 mt-2 w-full ">
-              <ButtonGradient text={t("hero.HireFreelancerBtn1")} />
-              <ButtonGradient filled={false} text={t("hero.HireFreelancerBtn2")} />
+              <ButtonGradient onClick={handleReg} text={t("hero.HireFreelancerBtn1")} />
+              <ButtonGradient onClick={handleReg} filled={false} text={t("hero.HireFreelancerBtn2")} />
             </div>
           </div>
         </div>

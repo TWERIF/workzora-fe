@@ -117,7 +117,6 @@ export default function RegModal(props: ModalI) {
             });
 
             setIsOpen(false);
-            router.push(`/${locale}/reserve-email`);
         } catch (error) {
             console.error("Помилка реєстрації:", error);
         }
