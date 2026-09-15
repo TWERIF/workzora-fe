@@ -1,0 +1,23 @@
+{
+    "findWork": {
+        "title": "Усі проєкти",
+        "breadcrumb": "Пошук роботи",
+        "filters": "Фільтри",
+        "category": "Категорія",
+        "tags": "Теги",
+        "tagsPlaceholder": "Введіть для пошуку",
+        "removeTag": "Видалити тег",
+        "budget": "Бюджет",
+        "from": "від",
+        "to": "до",
+        "searchPlaceholder": "Пошук проєкту",
+        "searchButton": "Пошук",
+        "proposalsCount_one": "{{count}} пропозиція",
+        "proposalsCount_few": "{{count}} пропозиції",
+        "proposalsCount_many": "{{count}} пропозицій",
+        "proposalsCount_other": "{{count}} пропозицій",
+        "loading": "Завантаження проєктів...",
+        "updating": "Оновлення результатів...",
+        "noResults": "Поки що немає проєктів за вашим запитом. Спробуйте змінити фільтри."
+    }
+}

@@ -1,7 +1,8 @@
-import { PaymentDataForm } from "@/features/payment-data/ui/PaymentDataForm";
+import { useAuth } from "@/features/auth/model/useAuth";
+import FinancesPage from "@/features/finances/ui/FinancesPage";
 
-export default function PaymentData() {
-    return (
-        <div className="h-[50vh] flex flex-col items-center justify-center"><PaymentDataForm /></div>
-    )
+
+export default function Finances() {
+    const { user } = useAuth();
+    return <FinancesPage userId={user?.id ?? ""} />;
 }

@@ -28,6 +28,15 @@ import paymentDataUk from "../public/locales/uk/payment-data.json";
 import discussionEn from "../public/locales/en/discussion.json";
 import discussionUk from "../public/locales/uk/discussion.json";
 
+import findWorkEn from "../public/locales/en/findWork.json";
+import findWorkUk from "../public/locales/uk/findWork.json";
+
+import financesEn from "../public/locales/en/finances.json";
+import financesUk from "../public/locales/uk/finances.json";
+
+import additionsEn from "../public/locales/en/additions.json";
+import additionsUk from "../public/locales/uk/additions.json";
+
 i18n.use(initReactI18next).init({
   resources: {
     en: {
@@ -41,7 +50,10 @@ i18n.use(initReactI18next).init({
       payment: paymentEn,
       chat: chatEn,
       "payment-data": paymentDataEn,
-      discussion: discussionEn
+      discussion: discussionEn,
+      findWork: findWorkEn,
+      finances: financesEn,
+      additions: additionsEn
     },
     uk: {
       common: commonUk,
@@ -54,7 +66,10 @@ i18n.use(initReactI18next).init({
       payment: paymentUk,
       chat: chatUk,
       "payment-data": paymentDataUk,
-      discussion: discussionUk
+      discussion: discussionUk,
+      findWork: findWorkUk,
+      finances: financesUk,
+      additions: additionsUk
     },
   },
   lng: 'en',

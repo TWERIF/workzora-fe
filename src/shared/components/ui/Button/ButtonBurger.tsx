@@ -15,7 +15,7 @@ export default function ButtonBurger({ onClick, isOpen }: BurgerI) {
             onClick={onClick}
             aria-label={isOpen ? "Close menu" : "Open menu"}
         >
-            {theme === "dark" ? <IconBurgerDark /> : <IconBurger />}
+            { <IconBurger />}
         </button>
     );
 }

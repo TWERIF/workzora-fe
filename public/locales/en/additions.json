@@ -1,0 +1,39 @@
+{
+  "auth": {
+    "loading": "Authorizing..."
+  },
+  "breadcrumbs": {
+    "home": "Home",
+    "chat": "Chat"
+  },
+  "chats": {
+    "title": "Chat",
+    "searchPlaceholder": "Search for message",
+    "search": "Search",
+    "empty": "No projects here yet",
+    "workingChat": "Working chat",
+    "projectDeadline": "Project deadline",
+    "timeLeft": "Time left",
+    "daysLeft_one": "{{count}} day left",
+    "daysLeft_other": "{{count}} days left",
+    "pagination": {
+      "title": "Pagination",
+      "prev": "Previous page",
+      "next": "Next page"
+    }
+  },
+  "status": {
+    "open": "Open",
+    "awaiting_payment": "Awaiting payment",
+    "in_progress": "In progress",
+    "completed": "Completed",
+    "closed": "Closed",
+    "badge": {
+      "open": "Open",
+      "awaiting_payment": "Money reservation",
+      "in_progress": "Working on project",
+      "completed": "Completed",
+      "closed": "Archive project"
+    }
+  }
+}

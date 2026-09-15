@@ -1,0 +1,41 @@
+{
+  "auth": {
+    "loading": "Авторизація..."
+  },
+  "breadcrumbs": {
+    "home": "Головна",
+    "chat": "Чат"
+  },
+  "chats": {
+    "title": "Чат",
+    "searchPlaceholder": "Пошук повідомлень",
+    "search": "Пошук",
+    "empty": "Тут поки немає проєктів",
+    "workingChat": "Робочий чат",
+    "projectDeadline": "Дедлайн проєкту",
+    "timeLeft": "Залишилось часу",
+    "daysLeft_one": "Залишився {{count}} день",
+    "daysLeft_few": "Залишилось {{count}} дні",
+    "daysLeft_many": "Залишилось {{count}} днів",
+    "daysLeft_other": "Залишилось {{count}} дня",
+    "pagination": {
+      "title": "Навігація сторінками",
+      "prev": "Попередня сторінка",
+      "next": "Наступна сторінка"
+    }
+  },
+  "status": {
+    "open": "Відкрито",
+    "awaiting_payment": "Очікує оплати",
+    "in_progress": "У роботі",
+    "completed": "Завершено",
+    "closed": "Закрито",
+    "badge": {
+      "open": "Відкрито",
+      "awaiting_payment": "Резервування коштів",
+      "in_progress": "Виконання проєкту",
+      "completed": "Завершено",
+      "closed": "Архів проєкту"
+    }
+  }
+}

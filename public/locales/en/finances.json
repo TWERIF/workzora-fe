@@ -1,0 +1,128 @@
+{
+  "title": "Finances",
+  "subtitle": "Manage your balance, payment cards, withdrawals, and transaction history.",
+  "balance": {
+    "main": {
+      "title": "Main balance",
+      "hint": "Available for withdrawal or project payments",
+      "tooltip": "Approximate value in UAH at the current exchange rate"
+    },
+    "bonus": {
+      "title": "Bonus balance",
+      "unit": "bonuses",
+      "hint": "Spend bonuses on profile promotion, discounts, and platform features"
+    },
+    "rate": {
+      "title": "Current rate",
+      "hint": "Approximate value in UAH is calculated using the current exchange rate"
+    }
+  },
+  "cards": {
+    "title": "Linked cards",
+    "subtitle": "Add and manage the cards you use for withdrawals",
+    "add": "Add",
+    "limitReached": "Only one card can be linked for now",
+    "primary": "Primary",
+    "expires": "Expires {{date}}",
+    "empty": {
+      "title": "No cards yet",
+      "description": "Add a card to withdraw what you earn."
+    },
+    "actions": {
+      "label": "Card actions",
+      "makePrimary": "Make primary",
+      "delete": "Delete card",
+      "edit": "Edit card"
+    },
+    "verified": {
+      "title": "Your profile is verified",
+      "description": "Your profile is confirmed. You can create withdrawal requests."
+    },
+    "unverified": {
+      "title": "Your profile is not verified",
+      "description": "Verify your profile to create withdrawal requests."
+    }
+  },
+  "modal": {
+    "addTitle": "Add card",
+    "editTitle": "Edit card",
+    "close": "Close"
+  },
+  "withdraw": {
+    "title": "Withdraw funds",
+    "subtitle": "Create a withdrawal request to transfer available funds to your card.",
+    "amount": "Amount",
+    "available": "Available: {{amount}}",
+    "target": "Withdraw to",
+    "noCards": "Add a card first",
+    "willReceive": "You will receive (approx.)",
+    "processingTime": "Processing time",
+    "businessDays": "business days",
+    "submit": "Create withdrawal request",
+    "submitting": "Creating request…",
+    "errors": {
+      "required": "Enter a withdrawal amount",
+      "min": "The minimum amount is {{amount}}",
+      "max": "You cannot withdraw more than {{amount}}",
+      "noCard": "Choose a card to withdraw to",
+      "failed": "The request could not be created. Try again."
+    }
+  },
+  "history": {
+    "tabs": {
+      "withdrawals": "Withdrawal history",
+      "transactions": "Transaction history",
+      "bonuses": "Bonuses history"
+    },
+    "periods": {
+      "label": "Period",
+      "1m": "Last month",
+      "3m": "Last 3 months",
+      "6m": "Last 6 months",
+      "12m": "Last year"
+    },
+    "withdrawals": {
+      "title": "Withdrawal history",
+      "subtitle": "All your withdrawal requests and their current status."
+    },
+    "columns": {
+      "id": "ID",
+      "amount": "Amount",
+      "card": "Card",
+      "date": "Date",
+      "status": "Status",
+      "actions": "Actions"
+    },
+    "status": {
+      "completed": "Completed",
+      "processing": "Processing",
+      "rejected": "Rejected"
+    },
+    "rowActions": {
+      "label": "Request actions",
+      "details": "Details",
+      "receipt": "Download receipt",
+      "repeat": "Repeat withdrawal"
+    },
+    "empty": {
+      "title": "No operations for this period",
+      "description": "Pick another period or create your first withdrawal request."
+    },
+    "comingSoon": "This section will be available soon."
+  },
+  "pro": {
+    "title": "Get more insights with WorkZora Pro",
+    "description": "Advanced financial statistics, report exports, and income tracking by project and period.",
+    "cta": "Upgrade to Pro"
+  },
+  "nav": {
+    "title": "Navigation",
+    "profile": "Profile",
+    "chat": "Chat",
+    "bids": "Bids",
+    "reviews": "Reviews",
+    "finances": "Finances",
+    "support": "Support",
+    "news": "News"
+  }
+}

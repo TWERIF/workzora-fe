@@ -67,7 +67,13 @@
       "logout": "logout",
       "profile": "Profile",
       "activeProjects": "Active projects",
-      "chats": "Your chats"
+      "chats": "Your chats",
+      "for_clients": "For clients",
+      "for_freelancers": "For freelancers",
+      "news": "News",
+      "topClients": "Top clients",
+      "categories": "Categories",
+      "contests": "Contests"
     },
     "tabs": {
       "about": "About",
@@ -521,7 +527,8 @@
     "chats": "Chat",
     "activeProjects": "Active projects",
     "categories": "Jobs",
-    "discussion": "Project discussion"
+    "discussion": "Project discussion",
+    "payment-data": "Finances"
   },
   "graphicDesignPage": {
     "hero": {

@@ -3,7 +3,6 @@ import { useForm } from "@tanstack/react-form";
 import { useTranslation } from "react-i18next";
 import { useCreatePaymentData, useUpdatePaymentData } from "../model/usePaymentData";
 
-
 const isValidCardNumber = (value: string): boolean => {
     const digits = value.replace(/\s/g, "");
     if (!/^\d{16,19}$/.test(digits)) return false;
@@ -29,17 +28,24 @@ const formatCardNumber = (value: string): string => {
     return digits.replace(/(.{4})/g, "$1 ").trim();
 };
 
-export const PaymentDataForm = ({
-    existingCardNumber,
-}: {
+interface PaymentDataFormProps {
+    userId?: string;
+    /** Передайте номер, щоб форма пішла в PUT замість POST */
     existingCardNumber?: string;
-} = {}) => {
+    onSuccess?: () => void;
+}
+
+export const PaymentDataForm = ({
+    userId,
+    existingCardNumber,
+    onSuccess,
+}: PaymentDataFormProps = {}) => {
     const { t } = useTranslation("payment-data");
 
     const isEditing = !!existingCardNumber;
 
-    const createMutation = useCreatePaymentData();
-    const updateMutation = useUpdatePaymentData();
+    const createMutation = useCreatePaymentData(userId);
+    const updateMutation = useUpdatePaymentData(userId);
 
     const mutation = isEditing ? updateMutation : createMutation;
 
@@ -51,6 +57,7 @@ export const PaymentDataForm = ({
             await mutation.mutateAsync({
                 cardNumber: value.cardNumber.replace(/\s/g, ""),
             });
+            onSuccess?.();
         },
     });
 
@@ -61,7 +68,7 @@ export const PaymentDataForm = ({
                 e.stopPropagation();
                 form.handleSubmit();
             }}
-            className="flex flex-col gap-3 w-full max-w-sm"
+            className="flex w-full max-w-sm flex-col gap-3"
         >
             <form.Field
                 name="cardNumber"
@@ -96,13 +103,13 @@ export const PaymentDataForm = ({
                                 field.handleChange(formatCardNumber(e.target.value))
                             }
                             onBlur={field.handleBlur}
-                            className={`px-4 py-2 rounded-20 border bg-input dark:bg-input-dark text-text dark:text-text-dark placeholder-text-muted outline-none shadow-input dark:shadow-input-dark transition-colors ${field.state.meta.errors.length > 0
-                                ? "border-error"
+                            className={`rounded-20 border bg-input px-4 py-2 text-text shadow-input outline-none transition-colors placeholder-text-muted dark:bg-input-dark dark:text-text-dark dark:shadow-input-dark ${field.state.meta.errors.length > 0
+                                ? "border-status-danger"
                                 : "border-border"
                                 }`}
                         />
                         {field.state.meta.errors.length > 0 && (
-                            <span className="text-sm text-error">
+                            <span className="text-sm text-status-danger">
                                 {field.state.meta.errors.join(", ")}
                             </span>
                         )}
@@ -114,23 +121,26 @@ export const PaymentDataForm = ({
                 {([canSubmit, isSubmitting]) => (
                     <ButtonGradient
                         type="submit"
-                        text={isSubmitting
-                            ? t("paymentData.saving")
-                            : isEditing
-                                ? t("paymentData.update")
-                                : t("paymentData.add")}
+                        text={
+                            isSubmitting
+                                ? t("paymentData.saving")
+                                : isEditing
+                                    ? t("paymentData.update")
+                                    : t("paymentData.add")
+                        }
                         disabled={!canSubmit || isSubmitting}
-                        className="w-full py-3 px-4 rounded-[100px] bg-gradient text-white font-medium shadow-md hover:shadow-lg transition-all hover:opacity-95 disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="w-full rounded-[100px] bg-gradient px-4 py-3 font-medium text-white shadow-md transition-all hover:opacity-95 hover:shadow-lg disabled:cursor-not-allowed disabled:opacity-50"
                     />
-
                 )}
             </form.Subscribe>
 
             {mutation.isError && (
-                <span className="text-sm text-error">
+                <span className="text-sm text-status-danger">
                     {t("paymentData.errors.saveFailed")}
                 </span>
             )}
         </form>
     );
 };
+
+export default PaymentDataForm;

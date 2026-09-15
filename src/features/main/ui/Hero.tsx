@@ -23,13 +23,13 @@ export default function Hero({ handleReg, showcaseItems = [], onSearch }: HeroPr
   const isDark = theme === "dark";
 
   return (
-    <section className="relative text-text bg-bg dark:text-text-dark dark:bg-bg-dark overflow-hidden pt-24 md:pt-28 mt-14">
+    <section className="relative text-text bg-bg dark:text-text-dark dark:bg-bg-dark overflow-hidden pt-24 md:pt-28">
       <div className="absolute top-0">
         {isDark ? <Vector fill="#ffffff" /> : <Vector />}
         <Fade />
       </div>
 
-      <div className="relative container mx-auto px-4">
+      <div className="relative container mx-auto px-4 mt-14">
         <div className="flex flex-col w-full text-center items-center">
           <div className="max-w-[650px]">
             <h1 className="font-bold text-4xl md:text-[55px] leading-tight pb-6">

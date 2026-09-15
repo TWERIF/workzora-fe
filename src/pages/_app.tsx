@@ -7,12 +7,11 @@ import ThemeProviderGuard from '@/utils/providers/ThemeProviderGuard';
 import { appWithTranslation } from 'next-i18next';
 import { ThemeProvider } from 'next-themes';
 import type { AppProps } from 'next/app';
+import { Manrope, Poppins } from "next/font/google";
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import '../i18n';
 import i18n from '../i18n';
-import HeaderOld from '@/shared/components/ui/Header/HeaderOld';
-import { Poppins, Manrope } from "next/font/google";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -48,8 +47,10 @@ function App({ Component, pageProps }: AppProps) {
       <ThemeProvider attribute="class" defaultTheme="light">
         <ThemeProviderGuard>
           <Layout>
-            {showHeaderNew && <Header />}
-            {showHeader && !showHeaderNew && <HeaderOld />}
+            {/* {showHeaderNew &&  */}
+            <Header />
+            {/* } */}
+            {/* {showHeader && !showHeaderNew && <HeaderOld />} */}
             <main className={`${poppins.variable} ${manrope.variable} font-sans`}>
               <Component {...pageProps} />
             </main>

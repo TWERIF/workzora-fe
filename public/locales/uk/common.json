@@ -67,7 +67,13 @@
       "logout": "вийти",
       "profile": "Профіль",
       "activeProjects": "Активні проекти",
-      "chats": "Ваші чати"
+      "chats": "Ваші чати",
+      "for_clients": "Для клієнтів",
+      "for_freelancers": "Для фрилансерів",
+      "news": "Новини",
+      "topClients": "Топ клієнтів",
+      "categories": "Категорії",
+      "contests": "Конкурси"
     },
     "tabs": {
       "about": "Про фрилансера",
@@ -523,7 +529,8 @@
     "chats": "Чати",
     "activeProjects": "Активні проекти",
     "categories": "Проекти",
-    "discussion": "Обговорення проекту"
+    "discussion": "Обговорення проекту",
+    "payment-data": "Фінанси"
   },
   "graphicDesignPage": {
     "hero": {

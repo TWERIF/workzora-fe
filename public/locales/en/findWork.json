@@ -1,0 +1,21 @@
+{
+    "findWork": {
+        "title": "All projects",
+        "breadcrumb": "Find Work",
+        "filters": "Filters",
+        "category": "Category",
+        "tags": "Tags",
+        "tagsPlaceholder": "Enter to search",
+        "removeTag": "Remove tag",
+        "budget": "Budget",
+        "from": "from",
+        "to": "to",
+        "searchPlaceholder": "Search for project",
+        "searchButton": "Search",
+        "proposalsCount_one": "{{count}} proposal",
+        "proposalsCount_other": "{{count}} proposals",
+        "loading": "Loading projects...",
+        "updating": "Updating results...",
+        "noResults": "No projects match your search yet. Try adjusting the filters."
+    }
+}

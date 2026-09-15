@@ -3,6 +3,7 @@ import {
   count,
   create,
   deleteProject,
+  findAllProjects,
   getMyProjects,
   getOne,
   getTopProjects,
@@ -11,7 +12,12 @@ import {
   toCompleted,
   update,
 } from "./api";
-import { Project, ProjectStatus, type CreateProjectDto } from "./types";
+import {
+  FindProjectsParams,
+  Project,
+  ProjectStatus,
+  type CreateProjectDto,
+} from "./types";
 
 export const projectKeys = {
   topProjects: ["topProjects"],
@@ -25,6 +31,7 @@ export const projectKeys = {
   myProjects: (status: string, page: number, limit: number) =>
     ["my-projects", status, page, limit],
   countProjects: () => ["countProjects"],
+  allProjects: (params: FindProjectsParams) => ["all-projects", params],
 };
 
 export const useProjects = (id?: string) => {
@@ -97,5 +104,18 @@ export const useCountProjects = () => {
   return useQuery({
     queryFn: () => count(),
     queryKey: projectKeys.countProjects(),
+  });
+};
+
+/**
+ * Drives the "Find Work" / "All projects" page: search text, multi-category
+ * filter, tags filter and a budget range, all sent as query params to the
+ * backend (see api.ts findAllProjects for the exact contract).
+ */
+export const useAllProjects = (params: FindProjectsParams) => {
+  return useQuery({
+    queryFn: () => findAllProjects(params),
+    queryKey: projectKeys.allProjects(params),
+    placeholderData: (previousData) => previousData,
   });
 };

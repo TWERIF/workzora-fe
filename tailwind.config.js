@@ -20,6 +20,7 @@ module.exports = {
           DEFAULT: "#333333",
           dark: "#FFFFFF",
           muted: "#A0A1A3",
+          light: "#999999"
         },
         input: {
           DEFAULT: "#ffffff",
@@ -31,6 +32,15 @@ module.exports = {
         checkbox: "#C8C7C7",
         border: {
           DEFAULT: "rgba(200, 199, 199, 1)",
+        },
+        /* === Status colors (badges, notices) === */
+        status: {
+          success: "#7EA310",
+          successSoft: "#7EA3101A",
+          danger: "#E55555",
+          dangerSoft: "#CC40401A",
+          info: "#6987E9",
+          infoSoft: "#486BDD1A",
         },
       },
       fontFamily: {
@@ -70,6 +80,8 @@ module.exports = {
       boxShadow: {
         input: "0px 0px 20px rgba(0, 0, 0, 0.25)",
         "input-dark": "0px 0px 20px rgba(0, 0, 0, 0.5)",
+        card: "0px 0px 20px rgba(0, 0, 0, 0.08)",
+        "card-dark": "0px 0px 20px rgba(0, 0, 0, 0.35)",
       },
     },
   },
