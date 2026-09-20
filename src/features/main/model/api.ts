@@ -1,7 +1,7 @@
-import { User } from "@/features/auth/model/types";
+import { TopFreelancer, User } from "@/features/auth/model/types";
 import { $api } from "@/shared/components/http";
 
-export const getTopFreelancers = async (): Promise<User[]> => {
+export const getTopFreelancers = async (): Promise<TopFreelancer[]> => {
   const res = await $api.get("/users/topFreelancers");
   return res.data;
 };

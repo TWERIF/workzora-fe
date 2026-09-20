@@ -1,32 +1,44 @@
 "use client";
 
-import { useEffect } from "react";
+import Loader from "@/shared/components/ui/Loader";
 import { useRouter } from "next/navigation";
-import { useAuth } from "./useAuth"; 
+import { useEffect } from "react";
+import { UserRole } from "./types";
+import { useAuth } from "./useAuth";
 
 export default function ProtectedRoute({
   children,
+  role,
 }: {
   children: React.ReactNode;
+  role?: UserRole;
 }) {
-  const { isAuthenticated, isLoading } = useAuth();
+  const { isAuthenticated, user, isLoading } = useAuth();
   const router = useRouter();
-  console.log("protected route");
+
   useEffect(() => {
-    if (!isLoading && !isAuthenticated) {
-      router.push("/auth/login");
+    if (isLoading) return;
+
+    if (!isAuthenticated) {
+      router.push("/");
+      return;
     }
-  }, [isLoading, isAuthenticated, router]);
+
+    if (role && user?.role !== role) {
+      router.push("/");
+      return;
+    }
+  }, [isLoading, isAuthenticated, user, role, router]);
 
   if (isLoading) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        Завантаження...
-      </div>
-    );
+    return <Loader />;
   }
 
   if (!isAuthenticated) {
+    return null;
+  }
+
+  if (role && user?.role !== role) {
     return null;
   }
 

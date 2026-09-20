@@ -1,0 +1,78 @@
+{
+  "hero": {
+    "badge": "WORKZORA PRO",
+    "titleLine1": "More opportunities for",
+    "titleLine2": "your growth",
+    "description": "Unlock advanced tools for analytics, profile customization, and financial insights. WorkZora Pro helps you work smarter, get more clients, and achieve better results.",
+    "cta": "Start PRO",
+    "tagMoreClients": "More clients",
+    "tagAdvancedAnalytics": "Advanced analytics"
+  },
+  "features": {
+    "title": "What’s included in Pro",
+    "items": {
+      "advancedStatistics": {
+        "title": "Advanced statistics",
+        "description": "Track your deals, fees, payouts, and withdrawals by selected periods."
+      },
+      "exportReports": {
+        "title": "Export reports",
+        "description": "Download financial reports for your projects, payments, fees, and withdrawals."
+      },
+      "profileAnalytics": {
+        "title": "Profile analytics",
+        "description": "See profile views, activity trends, and how clients interact with your profile."
+      },
+      "proposalPerformance": {
+        "title": "Proposal performance",
+        "description": "Understand how often your proposals are viewed and how well they convert."
+      },
+      "reviewAnalytics": {
+        "title": "Review analytics",
+        "description": "Track your rating, reviews, and client feedback over time."
+      },
+      "profilePersonalization": {
+        "title": "Profile personalization",
+        "description": "Customize your profile cover, visual style, badges, and public appearance."
+      },
+      "visibilityTools": {
+        "title": "Visibility tools",
+        "description": "Get more opportunities to stand out in search results and attract new clients."
+      },
+      "priorityFeatures": {
+        "title": "Priority features",
+        "description": "Get access to new platform features before standard users."
+      }
+    }
+  },
+  "pricing": {
+    "title": "Choose your Pro plan",
+    "subtitle": "Get full access to all Pro features. You can change or cancel your plan anytime.",
+    "planDescription": "Best for trying Pro tools and improving your profile step by step.",
+    "cta": "Start PRO",
+    "perMonth": "/month",
+    "base": {
+      "name": "Base Account",
+      "price": "Free"
+    },
+    "pro": {
+      "name": "Pro Account",
+      "price": "5"
+    },
+    "features": {
+      "createProfile": "Create a profile",
+      "addPortfolio": "Add portfolio",
+      "sendProposals": "Send proposals",
+      "receiveReviews": "Receive reviews",
+      "basicBalanceHistory": "Basic balance history",
+      "advancedFinancialStatistics": "Advanced financial statistics",
+      "exportFinancialReports": "Export financial reports",
+      "profileAnalytics": "Profile analytics",
+      "proposalPerformance": "Proposal performance",
+      "reviewAnalytics": "Review analytics",
+      "profilePersonalization": "Profile personalization",
+      "visibilityTools": "Visibility tools",
+      "priorityAccess": "Priority access to new features"
+    }
+  }
+}

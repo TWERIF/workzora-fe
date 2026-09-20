@@ -1,0 +1,43 @@
+{
+  "page": {
+    "breadcrumb_label": "Breadcrumb",
+    "breadcrumb_home": "Workzora",
+    "breadcrumb_current": "Post a project"
+  },
+  "form": {
+    "heading": "Create Project",
+    "title_label": "Project title*",
+    "title_placeholder": "Example: CRM System Development",
+    "price_label": "Budget*",
+    "price_hint": "Enter the maximum amount you are willing to pay.",
+    "currency_label": "Currency",
+    "currency_options": {
+      "USD": "USD - US Dollar"
+    },
+    "categories_label": "Category and specialization (up to 3)",
+    "categories_search_placeholder": "Search for specialization",
+    "categories_search_button": "Search",
+    "categories_empty_selected": "Pick up to 3 categories from the list below",
+    "categories_selected": "Selected: {{current}}/{{max}}",
+    "categories_remove": "Remove {{title}}",
+    "categories_not_found": "Nothing found. Try a different search.",
+    "description_label": "Description",
+    "button_create": "Post a project",
+    "button_creating": "Posting..."
+  },
+  "checklist": {
+    "title": "Project brief checklist",
+    "description": "Make sure your project has enough details before publishing.",
+    "list_title": "A strong project brief should include:",
+    "items": {
+      "goal": "Clear project goal",
+      "scope": "Scope of work",
+      "budget": "Budget and deadline",
+      "files": "References or files"
+    }
+  },
+  "toast": {
+    "success_created": "Project posted successfully",
+    "error_creating": "Could not post the project. Please try again."
+  }
+}

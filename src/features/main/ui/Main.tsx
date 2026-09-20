@@ -7,18 +7,15 @@ import { useTheme } from "next-themes";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
-import TrustedBy from "./TrustedBy";
 
 import RegModal from "@/features/auth/ui/RegModal";
-import { PortfolioItem } from "@/features/portfolio/model/types";
-import { usePortfolioList } from "@/features/portfolio/model/usePortfolio";
 import { useEffect, useState } from "react";
 import Categories from "./Categories";
 import { HomeFeaturesSection } from "./FeatureCards";
 import Hero from "./Hero";
 import HowItWorks from "./HowItWorks";
 import LookingFor from "./LookingFor";
-import { TopWorks } from "./TopWorks";
+import TrustedFreelancers from "./TrustedFreelancers";
 import TrustedUsers from "./TrustedUsers";
 
 export default function Main() {
@@ -27,10 +24,6 @@ export default function Main() {
   const isDark = theme === "dark";
 
   const { topProjects } = useProjects();
-
-  const { data: portfolioData } = usePortfolioList(1, 10);
-
-  const portfolioItems: PortfolioItem[] = portfolioData?.items || portfolioData || [];
 
   const [isOpenReg, setIsOpenReg] = useState(false);
   const [width, setWidth] = useState(0);
@@ -73,15 +66,13 @@ export default function Main() {
       </Head>
 
       <main className={`overflow-x-hidden w-full ${isDark ? "bg-bg-dark text-text-dark" : "bg-bg text-text"}`}>
-        <Hero showcaseItems={portfolioItems} handleReg={handleReg} />
-
-        <TrustedBy />
+        <Hero handleReg={handleReg} />
 
         <LookingFor />
 
         <HomeFeaturesSection />
 
-        <TopWorks items={portfolioItems} />
+        <TrustedFreelancers handleReg={handleReg} />
 
         <HowItWorks />
 
@@ -117,12 +108,15 @@ export default function Main() {
 
         <FAQSection />
 
-        <section className={`py-12 ${isDark ? "bg-bg-dark text-text-dark" : "bg-white text-text"}`}>
+        <section className={`py-12 ${isDark ? "bg-bg-dark text-text-dark" : "bg-white text-[#333333]"}`}>
           <div className="container mx-auto px-4">
-            <p className="text-sm md:text-base text-center max-w-4xl mx-auto opacity-70">
+            <p className="text-sm md:text-base text-center max-w-4xl mx-auto font-semibold ">
               {t("imagine-text")}
             </p>
           </div>
+          <p className="text-center text-[14px]/[100%] bg-[#F2F6E7] dark:bg-bg-dark max-w-fit mx-auto p-6 rounded-5! mt-6">
+            {t("ai-text")}
+          </p>
         </section>
       </main>
       {isOpenReg && (

@@ -1,0 +1,29 @@
+{
+  "breadcrumbs": {
+    "home": "Workzora",
+    "current": "Top freelancers"
+  },
+  "title": "Top freelancers",
+  "search": {
+    "placeholder": "Search for freelancer",
+    "button": "Search"
+  },
+  "filters": {
+    "title": "Filters",
+    "clearAll": "Clear all filters",
+    "category": "Category",
+    "specialization": "Specialization",
+    "showMore": "Show more",
+    "showLess": "Show less"
+  },
+  "card": {
+    "goToProfile": "Go to profile",
+    "lastWork": "Last work",
+    "outOf": "5,0"
+  },
+  "pagination": {
+    "prev": "Previous page",
+    "next": "Next page"
+  },
+  "empty": "No freelancers found"
+}

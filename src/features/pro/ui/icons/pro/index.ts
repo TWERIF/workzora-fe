@@ -1,0 +1,9 @@
+export { default as ProIcon1 } from "./ProIcon1";
+export { default as ProIcon2 } from "./ProIcon2";
+export { default as ProIcon3 } from "./ProIcon3";
+export { default as ProIcon4 } from "./ProIcon4";
+export { default as ProIcon5 } from "./ProIcon5";
+export { default as ProIcon6 } from "./ProIcon6";
+export { default as ProIcon7 } from "./ProIcon7";
+export { default as ProIcon8 } from "./ProIcon8";
+export { default as CheckIcon } from "./CheckIcon";

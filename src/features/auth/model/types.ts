@@ -1,4 +1,5 @@
 import { VerificationStatus } from "@/features/kyc/model/types";
+import { PortfolioItem } from "@/features/portfolio/model/types";
 
 export interface UserCreate {
   firstName: string;
@@ -88,6 +89,10 @@ export interface User {
 
   createdAt?: Date;
   updatedAt?: Date;
+}
+
+export interface TopFreelancer extends User {
+  portfolio: PortfolioItem;
 }
 
 export type UserPreview = Pick<

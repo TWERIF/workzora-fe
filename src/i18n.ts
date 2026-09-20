@@ -37,6 +37,15 @@ import financesUk from "../public/locales/uk/finances.json";
 import additionsEn from "../public/locales/en/additions.json";
 import additionsUk from "../public/locales/uk/additions.json";
 
+import createProjectEn from "../public/locales/en/createProject.json";
+import createProjectUk from "../public/locales/uk/createProject.json";
+
+import proEn from "../public/locales/en/pro.json";
+import proUk from "../public/locales/uk/pro.json";
+
+import topFreelancersEn from "../public/locales/en/topFreelancers.json";
+import topFreelancersUk from "../public/locales/uk/topFreelancers.json";
+
 i18n.use(initReactI18next).init({
   resources: {
     en: {
@@ -53,7 +62,10 @@ i18n.use(initReactI18next).init({
       discussion: discussionEn,
       findWork: findWorkEn,
       finances: financesEn,
-      additions: additionsEn
+      additions: additionsEn,
+      createProject: createProjectEn,
+      pro: proEn,
+      topFreelancers: topFreelancersEn
     },
     uk: {
       common: commonUk,
@@ -69,7 +81,10 @@ i18n.use(initReactI18next).init({
       discussion: discussionUk,
       findWork: findWorkUk,
       finances: financesUk,
-      additions: additionsUk
+      additions: additionsUk,
+      createProject: createProjectUk,
+      pro: proUk,
+      topFreelancers: topFreelancersUk
     },
   },
   lng: 'en',

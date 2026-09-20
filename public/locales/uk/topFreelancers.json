@@ -1,0 +1,29 @@
+{
+  "breadcrumbs": {
+    "home": "Workzora",
+    "current": "Топ фрилансери"
+  },
+  "title": "Топ фрилансери",
+  "search": {
+    "placeholder": "Пошук фрилансера",
+    "button": "Пошук"
+  },
+  "filters": {
+    "title": "Фільтри",
+    "clearAll": "Скинути всі фільтри",
+    "category": "Категорія",
+    "specialization": "Спеціалізація",
+    "showMore": "Показати більше",
+    "showLess": "Згорнути"
+  },
+  "card": {
+    "goToProfile": "Перейти до профілю",
+    "lastWork": "Остання робота",
+    "outOf": "5,0"
+  },
+  "pagination": {
+    "prev": "Попередня сторінка",
+    "next": "Наступна сторінка"
+  },
+  "empty": "Фрилансерів не знайдено"
+}

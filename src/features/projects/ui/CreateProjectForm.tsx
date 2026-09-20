@@ -1,32 +1,52 @@
 "use client";
 
 import { useForm } from "@tanstack/react-form";
+import type { ComponentType, SVGProps } from "react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
 
 import { useAuth } from "@/features/auth/model/useAuth";
-import { Category } from "@/features/categories/model/types";
-import { useCategoriesSearch } from "@/features/categories/model/useData";
+
 import TipTapEditor from "@/shared/components/ui/TipTapEditor";
-import { useState } from "react";
+
 import { FormValues, schema } from "../model/schema";
 import { useProjects } from "../model/useProjects";
+import CategoryPicker from "./CategoryPicker";
 
+import ChevronDownIcon from "@/shared/components/svg/ChevronDownIcon";
+import UsFlagIcon from "@/shared/components/svg/UsFlagIcon";
+import { fieldClass, groupFieldClass, labelClass } from "../model/fieldStyles";
+import ProjectBriefChecklist from "./ProjectBriefChecklist";
+
+interface Currency {
+    code: string;
+    symbol: string;
+    Flag: ComponentType<SVGProps<SVGSVGElement>>;
+}
+
+const USD: Currency = { code: "USD", symbol: "$", Flag: UsFlagIcon };
+const CURRENCIES: Currency[] = [USD];
+
+function FieldError({ message }: { message?: string }) {
+    if (!message) return null;
+    return (
+        <p role="alert" className="mt-1.5 text-xs text-error">
+            {message}
+        </p>
+    );
+}
 
 export default function CreateProjectForm() {
-    const { t } = useTranslation("common");
+    const { t } = useTranslation("createProject");
+    const tError = (message?: string) =>
+        message ? t(message, { ns: ["common", "createProject"] }) : "";
 
     const { createMutation } = useProjects();
     const { user } = useAuth();
 
-    const [search, setSearch] = useState("");
-    const [cachedCategoryTitles, setCachedCategoryTitles] = useState<Record<string, string>>({});
-
-    const { data: categoriesResult } = useCategoriesSearch({
-        search,
-        page: 1,
-        limit: 10,
-    });
+    const [currencyCode, setCurrencyCode] = useState(USD.code);
+    const currency = CURRENCIES.find((item) => item.code === currencyCode) ?? USD;
 
     const form = useForm({
         defaultValues: {
@@ -41,7 +61,7 @@ export default function CreateProjectForm() {
 
             if (!result.success) {
                 result.error.issues.forEach((issue) => {
-                    toast.error(t(issue.message));
+                    toast.error(tError(issue.message));
                 });
                 return;
             }
@@ -49,11 +69,11 @@ export default function CreateProjectForm() {
             try {
                 await createMutation.mutateAsync({ ...result.data, clientId: user?.id! });
 
-                toast.success(t("createProject.toast.success_created"));
+                toast.success(t("toast.success_created"));
 
                 form.reset();
             } catch {
-                toast.error(t("createProject.toast.error_creating"));
+                toast.error(t("toast.error_creating"));
             }
         },
     });
@@ -65,224 +85,163 @@ export default function CreateProjectForm() {
                 e.stopPropagation();
                 form.handleSubmit();
             }}
-            className="space-y-6 rounded-20 bg-bg-header p-6 shadow-input dark:bg-bg-modalDark"
+            className="grid items-start gap-8 lg:grid-cols-[minmax(0,1fr)_316px]"
         >
-            <h2 className="text-2xl font-semibold text-text dark:text-text-dark">
-                {t("createProject.form.heading")}
-            </h2>
+            <div className="min-w-0">
+                <h1 className="mb-8 text-3xl font-bold text-text dark:text-text-dark sm:text-[40px] sm:leading-tight">
+                    {t("form.heading")}
+                </h1>
 
-            <form.Field
-                name="title"
-                validators={{
-                    onChange: ({ value }) => {
-                        const res = schema.shape.title.safeParse(value);
-                        return res.success ? undefined : t(res.error.issues[0]?.message as string);
-                    },
-                }}
-                children={(field) => (
-                    <div>
-                        <label className="mb-2 block text-sm font-medium">
-                            {t("createProject.form.title_label")}
-                        </label>
-                        <input
-                            value={field.state.value}
-                            onBlur={field.handleBlur}
-                            onChange={(e) => field.handleChange(e.target.value)}
-                            className={`
-                                w-full rounded-xl border px-4 py-3 text-text outline-none focus:ring-2 dark:bg-input-dark dark:text-text-dark bg-input
-                                ${field.state.meta.errors.length > 0
-                                    ? "border-red-500 focus:ring-red-500"
-                                    : "border-border focus:ring-success"
-                                }
-                            `}
-                            placeholder={t("createProject.form.title_placeholder")}
-                        />
-                        {field.state.meta.errors.length > 0 && (
-                            <p className="mt-1 text-sm text-red-500">
-                                {field.state.meta.errors[0]}
-                            </p>
-                        )}
-                    </div>
-                )}
-            />
+                <div className="space-y-6">
+                    <form.Field
+                        name="title"
+                        validators={{
+                            onChange: ({ value }) => {
+                                const res = schema.shape.title.safeParse(value);
+                                return res.success ? undefined : tError(res.error.issues[0]?.message);
+                            },
+                        }}
+                        children={(field) => {
+                            const error = field.state.meta.errors[0];
+                            return (
+                                <div>
+                                    <label htmlFor={field.name} className={labelClass}>
+                                        {t("form.title_label")}
+                                    </label>
+                                    <input
+                                        id={field.name}
+                                        type="text"
+                                        value={field.state.value}
+                                        onBlur={field.handleBlur}
+                                        onChange={(e) => field.handleChange(e.target.value)}
+                                        placeholder={t("form.title_placeholder")}
+                                        aria-invalid={Boolean(error)}
+                                        className={`${fieldClass(Boolean(error))} h-[50px] px-4`}
+                                    />
+                                    <FieldError message={error} />
+                                </div>
+                            );
+                        }}
+                    />
 
-            <form.Field
-                name="price"
-                validators={{
-                    onChange: ({ value }) => {
-                        const res = schema.shape.price.safeParse(value);
-                        return res.success ? undefined : t(res.error.issues[0]?.message as string);
-                    },
-                }}
-                children={(field) => (
-                    <div>
-                        <label className="mb-2 block text-sm font-medium">
-                            {t("createProject.form.price_label")}
-                        </label>
-                        <input
-                            type="text"
-                            inputMode="numeric"
-                            value={field.state.value === 0 ? "" : field.state.value}
-                            onBlur={field.handleBlur}
-                            onChange={(e) => {
-                                const onlyDigits = e.target.value.replace(/\D/g, "");
-                                const parsedValue = onlyDigits ? parseInt(onlyDigits, 10) : 0;
-
-                                field.handleChange(parsedValue);
+                    {/* Бюджет + валюта */}
+                    <div className="grid items-start gap-x-3 gap-y-6 sm:grid-cols-2">
+                        <form.Field
+                            name="price"
+                            validators={{
+                                onChange: ({ value }) => {
+                                    const res = schema.shape.price.safeParse(value);
+                                    return res.success ? undefined : tError(res.error.issues[0]?.message);
+                                },
                             }}
-                            className={`
-                                w-full rounded-xl border px-4 py-3 outline-none focus:ring-2 dark:bg-input-dark dark:text-text-dark bg-input
-                                ${field.state.meta.errors.length > 0
-                                    ? "border-red-500 focus:ring-red-500"
-                                    : "border-border focus:ring-success"
-                                }
-                            `}
-                        />
-                        {field.state.meta.errors.length > 0 && (
-                            <p className="mt-1 text-sm text-red-500">
-                                {field.state.meta.errors[0]}
-                            </p>
-                        )}
-                    </div>
-                )}
-            />
+                            children={(field) => {
+                                const error = field.state.meta.errors[0];
+                                return (
+                                    <div>
+                                        <label htmlFor={field.name} className={labelClass}>
+                                            {t("form.price_label")}
+                                        </label>
+                                        <div className={groupFieldClass(Boolean(error))}>
+                                            <span className="flex w-12 shrink-0 items-center justify-center border-r border-inherit text-lg">
+                                                {currency.symbol}
+                                            </span>
+                                            <input
+                                                id={field.name}
+                                                type="text"
+                                                inputMode="numeric"
+                                                value={field.state.value === 0 ? "" : field.state.value}
+                                                onBlur={field.handleBlur}
+                                                onChange={(e) => {
+                                                    const onlyDigits = e.target.value.replace(/\D/g, "");
+                                                    const parsedValue = onlyDigits ? parseInt(onlyDigits, 10) : 0;
 
-            <form.Field
-                name="categories"
-                validators={{
-                    onChange: ({ value }) => {
-                        const res = schema.shape.categories.safeParse(value);
-                        return res.success ? undefined : t(res.error.issues[0]?.message as string);
-                    },
-                }}
-                children={(field) => {
-                    const selectedCategories = field.state.value as string[];
-                    return (
-                        <div>
-                            <label className="mb-2 block text-sm font-medium">
-                                {t("createProject.form.categories_label")}
-                            </label>
-                            <input
-                                value={search}
-                                onChange={(e) => setSearch(e.target.value)}
-                                placeholder={t("createProject.form.categories_placeholder")}
-                                className={`
-                                    mb-3 w-full rounded-xl border px-4 py-3 outline-none focus:ring-2 dark:bg-input-dark dark:text-text-dark bg-input
-                                    ${field.state.meta.errors.length > 0
-                                        ? "border-red-500 focus:ring-red-500"
-                                        : "border-border focus:ring-success"
-                                    }
-                                `}
-                            />
-
-                            {selectedCategories.length > 0 && (
-                                <div className="mb-3 flex flex-wrap gap-2">
-                                    {selectedCategories.map((id) => {
-                                        const category = categoriesResult?.items?.find(
-                                            (item: Category) => item.id === id
-                                        );
-                                        const displayTitle = category?.title ?? cachedCategoryTitles[id] ?? id;
-
-                                        return (
-                                            <button
-                                                key={id}
-                                                type="button"
-                                                onClick={() =>
-                                                    field.handleChange(
-                                                        field.state.value.filter((categoryId) => categoryId !== id)
-                                                    )
-                                                }
-                                                className="rounded-full bg-success px-3 py-1 text-sm text-white"
-                                            >
-                                                {displayTitle} ✕
-                                            </button>
-                                        );
-                                    })}
-                                </div>
-                            )}
-
-                            {search.length > 1 && categoriesResult?.items?.length > 0 && (
-                                <div className="max-h-60 overflow-y-auto rounded-xl border border-border bg-input dark:bg-input-dark">
-                                    {categoriesResult.items.map((category: Category) => {
-                                        const selected = field.state.value.includes(category.id);
-                                        return (
-                                            <button
-                                                key={category.id}
-                                                type="button"
-                                                disabled={selected || field.state.value.length >= 3}
-                                                onClick={() => {
-                                                    setCachedCategoryTitles((prev) => ({
-                                                        ...prev,
-                                                        [category.id]: category.title,
-                                                    }));
-                                                    field.handleChange([...field.state.value, category.id]);
-                                                    setSearch("");
+                                                    field.handleChange(parsedValue);
                                                 }}
-                                                className="block w-full px-4 py-3 text-left hover:bg-black/5 disabled:cursor-not-allowed disabled:opacity-50"
-                                            >
-                                                {category.title}
-                                            </button>
-                                        );
-                                    })}
-                                </div>
-                            )}
+                                                aria-invalid={Boolean(error)}
+                                                className="min-w-0 flex-1 bg-transparent px-4 text-sm outline-none"
+                                            />
+                                        </div>
+                                        {error ? (
+                                            <FieldError message={error} />
+                                        ) : (
+                                            <p className="mt-2 text-xs text-text-muted">
+                                                {t("form.price_hint")}
+                                            </p>
+                                        )}
+                                    </div>
+                                );
+                            }}
+                        />
 
-                            <div className="mt-2 flex items-center justify-between text-sm">
-                                {field.state.meta.errors.length > 0 ? (
-                                    <span className="text-red-500">
-                                        {field.state.meta.errors[0]}
-                                    </span>
-                                ) : (
-                                    <span className="text-text-muted">
-                                        {t("createProject.form.categories_hint")}
-                                    </span>
-                                )}
-                                <span className="text-text-muted">
-                                    {t("createProject.form.selected")}: {field.state.value.length}/3
-                                </span>
+                        <div>
+                            <label htmlFor="currency" className={labelClass}>
+                                {t("form.currency_label")}
+                            </label>
+                            <div className="relative">
+                                <currency.Flag className="pointer-events-none absolute left-[15px] top-1/2 h-4 w-[22px] -translate-y-1/2" />
+                                <select
+                                    id="currency"
+                                    value={currency.code}
+                                    onChange={(e) => setCurrencyCode(e.target.value)}
+                                    className={`${fieldClass(false)} h-[50px] cursor-pointer appearance-none pl-[43px] pr-10`}
+                                >
+                                    {CURRENCIES.map((item) => (
+                                        <option key={item.code} value={item.code}>
+                                            {t(`form.currency_options.${item.code}`)}
+                                        </option>
+                                    ))}
+                                </select>
+                                <ChevronDownIcon className="pointer-events-none absolute right-4 top-1/2 h-2 w-3 -translate-y-1/2 text-text dark:text-text-dark" />
                             </div>
                         </div>
-                    );
-                }}
-            />
-
-            <form.Field
-                name="description"
-                validators={{
-                    onChange: ({ value }) => {
-                        const res = schema.shape.description.safeParse(value);
-                        return res.success ? undefined : t(res.error.issues[0]?.message as string);
-                    },
-                }}
-                children={(field) => (
-                    <div>
-                        <label className="mb-2 block text-sm font-medium">
-                            {t("createProject.form.description_label")}
-                        </label>
-                        <div className={field.state.meta.errors.length > 0 ? "rounded-xl border border-red-500" : ""}>
-                            <TipTapEditor
-                                value={field.state.value}
-                                onChange={(html) => field.handleChange(html)}
-                            />
-                        </div>
-                        {field.state.meta.errors.length > 0 && (
-                            <p className="mt-1 text-sm text-red-500">
-                                {field.state.meta.errors[0]}
-                            </p>
-                        )}
                     </div>
-                )}
-            />
 
-            <button
-                type="submit"
-                disabled={createMutation.isPending}
-                className="w-full rounded-xl bg-gradient px-6 py-3 font-medium text-white disabled:opacity-50"
-            >
-                {createMutation.isPending
-                    ? t("createProject.form.button_creating")
-                    : t("createProject.form.button_create")}
-            </button>
+                    <form.Field
+                        name="categories"
+                        validators={{
+                            onChange: ({ value }) => {
+                                const res = schema.shape.categories.safeParse(value);
+                                return res.success ? undefined : tError(res.error.issues[0]?.message);
+                            },
+                        }}
+                        children={(field) => (
+                            <CategoryPicker
+                                value={field.state.value as string[]}
+                                onChange={field.handleChange}
+                                error={field.state.meta.errors[0]}
+                            />
+                        )}
+                    />
+
+                    <form.Field
+                        name="description"
+                        validators={{
+                            onChange: ({ value }) => {
+                                const res = schema.shape.description.safeParse(value);
+                                return res.success ? undefined : tError(res.error.issues[0]?.message);
+                            },
+                        }}
+                        children={(field) => {
+                            const error = field.state.meta.errors[0];
+                            return (
+                                <div>
+                                    <span className={labelClass}>{t("form.description_label")}</span>
+                                    <div className={error ? "rounded-20 border border-error" : ""}>
+                                        <TipTapEditor
+                                            value={field.state.value}
+                                            onChange={(html) => field.handleChange(html)}
+                                        />
+                                    </div>
+                                    <FieldError message={error} />
+                                </div>
+                            );
+                        }}
+                    />
+                </div>
+            </div>
+
+            {/* Права колонка: чекліст + кнопка відправки */}
+            <ProjectBriefChecklist isPending={createMutation.isPending} />
         </form>
     );
 }

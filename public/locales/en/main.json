@@ -64,7 +64,32 @@
         "Copywriting",
         "Business support"
       ]
-    }
+    },
+    "stats": [
+      {
+        "value": "2,700+",
+        "label": "Service categories"
+      },
+      {
+        "value": "1,000+",
+        "label": "Freelancer profiles"
+      },
+      {
+        "value": "500+",
+        "label": "Active projects"
+      },
+      {
+        "value": "24/7",
+        "label": "Online access"
+      }
+    ]
+  },
+  "trustedFreelancers": {
+    "title": {
+      "line1": "Work with freelancers",
+      "line2": "you can trust"
+    },
+    "description": "Explore freelancer profiles, review their experience, check completed projects, and see what other clients say before making a decision."
   },
   "makeItReal": {
     "title": {
@@ -387,6 +412,7 @@
     "totalJobsPosted": "Total Jobs Posted"
   },
   "imagine-text": "Imagine you can get AI to answer the phone, make sales, set appointments, and generally make your life way easier. It'll cost you less than building a website, and it's the next big thing for businesses in 2025. Thanks to our extensive global talent network, WorkZora is your best bet for finding AI experts to take your business to the next level.",
+  "ai-text":"Thanks to our extensive global talent network, Workzora is your best bet for finding AI experts to take your business to the next level.",
   "footer": {
     "trademark": "WorkZora \u00ae is a registered Trademark",
     "copyright": {

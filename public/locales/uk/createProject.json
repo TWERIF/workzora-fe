@@ -1,0 +1,43 @@
+{
+  "page": {
+    "breadcrumb_label": "Навігація",
+    "breadcrumb_home": "Workzora",
+    "breadcrumb_current": "Опублікувати проєкт"
+  },
+  "form": {
+    "heading": "Створити проєкт",
+    "title_label": "Назва проєкту*",
+    "title_placeholder": "Наприклад: розробка CRM-системи",
+    "price_label": "Бюджет*",
+    "price_hint": "Вкажіть максимальну суму, яку ви готові заплатити.",
+    "currency_label": "Валюта",
+    "currency_options": {
+      "USD": "USD - долар США"
+    },
+    "categories_label": "Категорія та спеціалізація (до 3)",
+    "categories_search_placeholder": "Пошук спеціалізації",
+    "categories_search_button": "Шукати",
+    "categories_empty_selected": "Оберіть до 3 категорій зі списку нижче",
+    "categories_selected": "Обрано: {{current}}/{{max}}",
+    "categories_remove": "Прибрати «{{title}}»",
+    "categories_not_found": "Нічого не знайдено. Спробуйте інший запит.",
+    "description_label": "Опис",
+    "button_create": "Опублікувати проєкт",
+    "button_creating": "Публікуємо..."
+  },
+  "checklist": {
+    "title": "Чекліст опису проєкту",
+    "description": "Переконайтеся, що в проєкті достатньо деталей перед публікацією.",
+    "list_title": "Сильний опис проєкту містить:",
+    "items": {
+      "goal": "Чітку мету проєкту",
+      "scope": "Обсяг робіт",
+      "budget": "Бюджет і дедлайн",
+      "files": "Референси або файли"
+    }
+  },
+  "toast": {
+    "success_created": "Проєкт успішно опубліковано",
+    "error_creating": "Не вдалося опублікувати проєкт. Спробуйте ще раз."
+  }
+}
