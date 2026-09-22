@@ -52,7 +52,7 @@ export default function FreelancerCard({ freelancer }: FreelancerCardProps) {
               )}
             </div>
 
-            <div className="flex items-center gap-3">
+            <div className="flex flex-col sm:flex-col items-center gap-3">
               <div className="flex items-center gap-2">
                 <div className="flex gap-0.5">
                   {Array.from({ length: 5 }).map((_, i) => (

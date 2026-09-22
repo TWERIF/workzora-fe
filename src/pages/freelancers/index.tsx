@@ -159,7 +159,7 @@ export default function TopFreelancers() {
   };
 
   return (
-    <div className="bg-[#ffffff] text-text dark:bg-bg-dark dark:text-text-dark transition-colors py-20 duration-300 min-h-screen px-20">
+    <div className="bg-[#ffffff] text-text dark:bg-bg-dark dark:text-text-dark transition-colors py-20 duration-300 min-h-screen px-0 md:px-20 overflow-x-hidden">
       <div className="container mx-auto px-4 pt-6">
         <Breadcrumbs />
       </div>
@@ -171,8 +171,8 @@ export default function TopFreelancers() {
         </span>
       </div>
 
-      <div className="container mx-auto px-4 pb-16 flex flex-col lg:flex-row gap-6 lg:gap-8">
-        <aside className="w-full lg:w-[280px] shrink-0">
+      <div className="container mx-auto px-4 pb-16 flex flex-col lg:flex-row gap-6 lg:gap-8 min-w-0">
+        <aside className="w-full lg:w-[280px] shrink-0 min-w-0">
           <div className="rounded-2xl bg-bg-header dark:bg-bg-modalDark shadow-card dark:shadow-card-dark p-5 flex flex-col gap-5 transition-colors">
             <div className="flex items-center justify-between">
               <span className="font-bold">{t("filters.title")}</span>
@@ -269,9 +269,9 @@ export default function TopFreelancers() {
         </aside>
 
         {/* Main content */}
-        <div className="flex-1 flex flex-col gap-6">
-          <div className="flex items-center gap-3">
-            <div className="flex-1 flex items-center gap-2 rounded-2xl bg-input dark:bg-input-dark shadow-input dark:shadow-input-dark px-4 py-3 transition-colors">
+        <div className="flex-1 flex flex-col gap-6 min-w-0">
+          <div className="flex items-center gap-3 flex-wrap sm:flex-nowrap min-w-0">
+            <div className="flex-1 min-w-0 flex items-center gap-2 rounded-2xl bg-input dark:bg-input-dark shadow-input dark:shadow-input-dark px-4 py-3 transition-colors">
               <SearchIcon />
               <input
                 type="text"
@@ -281,7 +281,7 @@ export default function TopFreelancers() {
                   setPage(1);
                 }}
                 placeholder={t("search.placeholder")}
-                className="flex-1 bg-transparent outline-none text-sm placeholder:text-text-light dark:placeholder:text-text-muted"
+                className="flex-1 min-w-0 bg-transparent outline-none text-sm placeholder:text-text-light dark:placeholder:text-text-muted"
               />
             </div>
             <button
@@ -305,7 +305,7 @@ export default function TopFreelancers() {
           </div>
 
           {totalPages > 1 && (
-            <div className="mx-auto mt-4 flex items-center gap-3">
+            <div className="mx-auto mt-4 flex flex-wrap items-center justify-center gap-3 max-w-full">
               <button
                 type="button"
                 aria-label={t("pagination.prev")}
@@ -327,8 +327,8 @@ export default function TopFreelancers() {
                     type="button"
                     onClick={() => setPage(p)}
                     className={`w-9 h-9 rounded-full flex items-center justify-center text-sm font-medium transition-colors ${p === currentPage
-                        ? "border border-success text-success"
-                        : "text-text dark:text-text-dark"
+                      ? "border border-success text-success"
+                      : "text-text dark:text-text-dark"
                       }`}
                   >
                     {p}
