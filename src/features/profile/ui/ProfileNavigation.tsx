@@ -12,7 +12,7 @@ interface NavItem {
 
 const primaryItems: NavItem[] = [
     { icon: "profile", labelKey: "profile", href: "/profile" },
-    { icon: "chat", labelKey: "chat", href: "/chat" },
+    { icon: "chat", labelKey: "chat", href: "/activeProjects" },
     { icon: "bids", labelKey: "bids", href: "/bids" },
     { icon: "reviews", labelKey: "reviews", href: "/reviews" },
     { icon: "finances", labelKey: "finances", href: "/payment-data" },

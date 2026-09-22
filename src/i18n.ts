@@ -81,7 +81,7 @@ i18n.use(initReactI18next).init({
       "getting-started": gettingStartedEn,
       createAccount: createAccountEn,
       help: helpEn,
-      footer: footerEn
+      footer: footerUk
     },
     uk: {
       common: commonUk,
@@ -104,7 +104,7 @@ i18n.use(initReactI18next).init({
       "getting-started": gettingStartedUk,
       createAccount: createAccountUk,
       help: helpUk,
-      footer: footerUk
+      footer: footerEn
     },
   },
   lng: 'en',
