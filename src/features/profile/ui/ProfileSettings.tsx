@@ -535,6 +535,13 @@ export default function ProfileSettings({
                   disabled={isSubmitting}
                   text={t("completion.action", "Save Changes")}
                 />
+                <ButtonGradient
+                  type="button"
+                  filled={false}
+                  text={t("completion.publicProfile", "View public profile")}
+                  className="mt-2"
+                  onClick={() => { router.push(`/${locale}/public-profile/${user.id}`) }}
+                />
                 {/* {user.role === UserRole.FREELANCER && <Link className="mt-5 max-w-fit hover:underline" href={`/${locale}/payment-data`}>{t("changeCardInfo")}</Link>} */}
               </div>
             </div>

@@ -14,7 +14,8 @@
         "title": "Complete your freelancer profile",
         "description": "Add a portfolio, hourly rate, and skills to help clients understand your services better and land more jobs.",
         "progress": "Profile is completed at",
-        "action": "Save"
+        "action": "Save",
+        "publicProfile":"View public profile"
     },
     "portfolioModal": {
         "title": "Portfolio",

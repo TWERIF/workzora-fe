@@ -4,6 +4,7 @@ import VerifiedIcon from "@/shared/components/svg/VerifiedIcon";
 import WorkzoraMarkIcon from "@/shared/components/svg/WorkzoraMarkIcon";
 import ButtonGradientSmall from "@/shared/components/ui/Button/ButtonGradientSmall";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
 
 interface FreelancerCardProps {
@@ -12,6 +13,12 @@ interface FreelancerCardProps {
 
 export default function FreelancerCard({ freelancer }: FreelancerCardProps) {
   const { t } = useTranslation("topFreelancers");
+  const router = useRouter();
+  const locale = router.locale ?? "en";
+
+  const gotoProfile = (id: string) => {
+    router.push(`/${locale}/public-profile/${id}`)
+  }
 
   const fullName =
     freelancer.name || `${freelancer.firstName} ${freelancer.lastName}`;
@@ -69,7 +76,7 @@ export default function FreelancerCard({ freelancer }: FreelancerCardProps) {
 
               <ButtonGradientSmall
                 text={t("card.goToProfile")}
-                onClick={() => { }}
+                onClick={() => { gotoProfile(freelancer.id) }}
               />
             </div>
           </div>

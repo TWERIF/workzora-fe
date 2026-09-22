@@ -4,7 +4,6 @@ import { AboutSection } from "@/features/freelancerProfile/ui/AboutSection";
 import { PortfolioSection } from "@/features/freelancerProfile/ui/PortfolioSection";
 import { ProfileHeaderCard } from "@/features/freelancerProfile/ui/ProfileHeaderCard";
 import { ProfileTab, ProfileTabs } from "@/features/freelancerProfile/ui/ProfileTabs";
-import { QuickActionsCard } from "@/features/freelancerProfile/ui/QuickActionsCard";
 import { ReviewsSection } from "@/features/freelancerProfile/ui/ReviewsSection";
 import { SkillsSection } from "@/features/freelancerProfile/ui/SkillsSection";
 import { usePortfolioByUserId } from "@/features/portfolio/model/usePortfolio";
@@ -31,7 +30,7 @@ export default function FreelancerProfilePage() {
     }
 
     return (
-        <div className="min-h-screen bg-bg px-4 py-6 dark:bg-bg-dark sm:px-8 sm:py-10">
+        <div className="min-h-screen bg-bg px-4 dark:bg-bg-dark sm:px-8 py-28">
             <div className="mx-auto grid max-w-6xl grid-cols-1 gap-4 lg:grid-cols-[1fr_280px]">
                 <ProfileHeaderCard user={isLoading ? undefined : user} />
                 {/* {user?.role === "freelancer" && <QuickActionsCard />} */}

@@ -25,14 +25,3 @@ export default function ProPage() {
     </>
   );
 }
-
-export const getStaticProps: GetStaticProps = async ({ locale }) => {
-  return {
-    props: {
-      ...(await serverSideTranslations(locale ?? "en", [
-        "common",
-        "pro",
-      ])),
-    },
-  };
-};

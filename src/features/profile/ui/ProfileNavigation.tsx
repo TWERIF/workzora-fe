@@ -26,7 +26,7 @@ const settingsItems: NavItem[] = [
 ];
 
 const secondaryItems: NavItem[] = [
-    { icon: "support", labelKey: "support", href: "/support" },
+    { icon: "support", labelKey: "support", href: "/contacts" },
     { icon: "news", labelKey: "news", href: "/news" },
 ];
 
@@ -87,7 +87,7 @@ export const ProfileNavigation = ({
     return (
         <nav
             aria-label={t("nav.title")}
-            className="rounded-20 bg-[#F5F5F5] p-5 dark:bg-input-dark"
+            className="rounded-20 bg-[#F5F5F5] p-5 dark:bg-input-dark mb-5"
         >
             <h2 className="mb-4 text-xl font-semibold text-text dark:text-text-dark">
                 {t("nav.title")}
