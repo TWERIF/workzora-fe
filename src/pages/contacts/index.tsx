@@ -21,7 +21,7 @@ export default function ContactsPage() {
     };
 
     return (
-        <main className="min-h-screen bg-bg dark:bg-bg-dark text-text dark:text-text-dark transition-colors duration-300 py-13 px-15 md:py-20">
+        <main className="min-h-screen bg-bg dark:bg-bg-dark text-text dark:text-text-dark transition-colors duration-300 py-28 px-15 ">
             <div className="max-w-5xl mx-auto space-y-10">
 
                 {/* ВЕЛИКИЙ ЗАГОЛОВОК СТОРІНКИ */}

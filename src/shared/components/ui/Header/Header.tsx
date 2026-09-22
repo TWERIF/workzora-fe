@@ -1,3 +1,4 @@
+import { logout } from "@/features/auth/model/api";
 import { useAuth } from "@/features/auth/model/useAuth";
 import LoginModal from "@/features/auth/ui/LoginModal";
 import RegModal from "@/features/auth/ui/RegModal";
@@ -196,12 +197,14 @@ export default function Header() {
               {mobileNavLinks}
 
               {isAuthenticated ? (
-                <LinkHeader href={`/${locale}/profile`}>
-                  <span className="flex items-center gap-1.5">
-                    <UserIcon />
-                    {t("profile.headers.profile")}
-                  </span>
-                </LinkHeader>
+                <div className="flex gap-1.5 items-center">
+                  <Link href={`/${locale}/profile`}>
+                    <span className="flex items-center gap-1.5">
+                      {user?.avatarUrl ? <img className="w-11 h-11 rounded-full object-cover" src={user.avatarUrl} /> : <UserIcon />}
+                    </span>
+                  </Link>
+                  <button className="text-text-light text-[16px] transition-all rounded-[8px]" onClick={logout}>{t("profile.headers.logout")} </button>
+                </div>
               ) : (
                 <>
                   <LinkHeader onClick={() => setIsOpenLogin(true)} href="#">
@@ -274,12 +277,14 @@ export default function Header() {
 
                   <div className="flex items-center gap-4 ">
                     {isAuthenticated ? (
-                      <LinkHeader href={`/${locale}/profile`}>
-                        <span className="flex items-center gap-1.5">
-                          <UserIcon />
-                          {t("profile.headers.profile")}
-                        </span>
-                      </LinkHeader>
+                      <div className="flex gap-1.5 items-center">
+                        <Link href={`/${locale}/profile`}>
+                          <span className="flex items-center gap-1.5">
+                            {user?.avatarUrl ? <img className="w-11 h-11 rounded-full object-cover" src={user.avatarUrl} /> : <UserIcon />}
+                          </span>
+                        </Link>
+                        <button className="text-text-light text-[16px] transition-all rounded-[8px]" onClick={logout}>{t("profile.headers.logout")} </button>
+                      </div>
                     ) : (
                       <div className="flex items-center gap-4">
                         <LinkHeader hover={false} className="flex items-center gap-2 hover:fill-success hover:text-success" onClick={() => setIsOpenLogin(true)} href="#">

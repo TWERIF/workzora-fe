@@ -1,0 +1,37 @@
+{
+  "brand": {
+    "trademark": "WorkZora® is a registered trademark",
+    "copyright": "Copyright © 2025-2026 WorkZora"
+  },
+  "columns": {
+    "freelancer": {
+      "title": "Freelancer",
+      "links": ["Categories", "Contests", "Freelancers", "News"]
+    },
+    "about": {
+      "title": "About us",
+      "links": [
+        "About us",
+        "How it works",
+        "Benefits",
+        "Team",
+        "Vision & Mission",
+        "Contacts"
+      ]
+    },
+    "terms": {
+      "title": "Terms",
+      "links": [
+        "Privacy Policy",
+        "Terms and Conditions",
+        "Copyright Policy",
+        "Code of Conduct",
+        "Fees and Charges"
+      ]
+    }
+  },
+  "stats": {
+    "registeredUsers": "Registered Users",
+    "totalJobs": "Total Jobs Posted"
+  }
+}

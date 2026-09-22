@@ -1,0 +1,49 @@
+{
+  "badge": "Knowledge base",
+  "title": "How can we help you?",
+  "subtitle": "Search the WorkZora Knowledge Base or browse help topics to find the information you need.",
+  "searchPlaceholder": "Search for help articles...",
+  "searchButton": "Search",
+  "popularSearches": "Popular searches",
+  "popular": {
+    "payments": "payments",
+    "profile": "profile",
+    "project": "project",
+    "arbitration": "arbitration",
+    "proposals": "proposals"
+  },
+  "categories": {
+    "gettingStarted": {
+      "title": "Getting started",
+      "description": "Learn how to create an account, set up your profile, and start using WorkZora."
+    },
+    "forClients": {
+      "title": "For clients",
+      "description": "Find out how to post projects, review proposals, hire freelancers, and manage collaboration."
+    },
+    "forFreelancers": {
+      "title": "For freelancers",
+      "description": "Learn how to create a strong profile, apply to projects, communicate with clients, and grow your reputation."
+    },
+    "paymentsEscrow": {
+      "title": "Payments & escrow",
+      "description": "Understand how payments are secured, when funds are released, and about project budget."
+    },
+    "projectsProposals": {
+      "title": "Projects & proposals",
+      "description": "Learn how projects work, how proposals are sent, and how clients choose freelancers."
+    },
+    "accountSettings": {
+      "title": "Account & settings",
+      "description": "Manage your personal information, portfolio, skills, hourly rate, notifications, and privacy settings."
+    },
+    "safetyArbitration": {
+      "title": "Safety & arbitration",
+      "description": "Find information about disputes, arbitration, platform rules, and safe collaboration."
+    },
+    "technicalSupport": {
+      "title": "Technical support",
+      "description": "Get help with login issues, notifications, bugs, and platform functionality."
+    }
+  }
+}

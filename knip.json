@@ -1,0 +1,32 @@
+{
+  "$schema": "https://unpkg.com/knip@5/schema.json",
+
+  "entry": [
+    "src/pages/**/*.{ts,tsx}",
+    "src/pages/api/**/*.{ts,tsx}",
+    "src/middleware.ts",
+    "next.config.{js,mjs,ts}",
+    "eslint.config.mjs"
+  ],
+
+  "project": [
+    "src/**/*.{ts,tsx}"
+  ],
+
+  "ignore": [
+    "src/pages/_app.tsx",
+    "src/pages/_document.tsx",
+    "src/pages/404.tsx",
+    "src/pages/500.tsx",
+    "**/*.d.ts"
+  ],
+
+  "ignoreExportsUsedInFile": true,
+
+  "next": {
+    "entry": [
+      "src/pages/**/*.{ts,tsx}",
+      "src/pages/api/**/*.{ts,tsx}"
+    ]
+  }
+}

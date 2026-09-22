@@ -46,6 +46,18 @@ import proUk from "../public/locales/uk/pro.json";
 import topFreelancersEn from "../public/locales/en/topFreelancers.json";
 import topFreelancersUk from "../public/locales/uk/topFreelancers.json";
 
+import gettingStartedEn from "../public/locales/en/getting-started.json";
+import gettingStartedUk from "../public/locales/uk/getting-started.json";
+
+import createAccountEn from "../public/locales/en/createAccount.json";
+import createAccountUk from "../public/locales/uk/createAccount.json";
+
+import helpEn from "../public/locales/en/help.json";
+import helpUk from "../public/locales/uk/help.json";
+
+import footerEn from "../public/locales/en/footer.json";
+import footerUk from "../public/locales/uk/footer.json";
+
 i18n.use(initReactI18next).init({
   resources: {
     en: {
@@ -65,7 +77,11 @@ i18n.use(initReactI18next).init({
       additions: additionsEn,
       createProject: createProjectEn,
       pro: proEn,
-      topFreelancers: topFreelancersEn
+      topFreelancers: topFreelancersEn,
+      "getting-started": gettingStartedEn,
+      createAccount: createAccountEn,
+      help: helpEn,
+      footer: footerEn
     },
     uk: {
       common: commonUk,
@@ -84,7 +100,11 @@ i18n.use(initReactI18next).init({
       additions: additionsUk,
       createProject: createProjectUk,
       pro: proUk,
-      topFreelancers: topFreelancersUk
+      topFreelancers: topFreelancersUk,
+      "getting-started": gettingStartedUk,
+      createAccount: createAccountUk,
+      help: helpUk,
+      footer: footerUk
     },
   },
   lng: 'en',

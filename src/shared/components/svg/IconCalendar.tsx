@@ -1,8 +1,7 @@
-import React from 'react'
 
-export default function IconCalendar() {
+export default function IconCalendar({ className = "" }: { className?: string }) {
     return (
-        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg className={className} width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g clipPath="url(#clip0_540_17650)">
                 <path d="M7.875 15.75H4.5C4.10218 15.75 3.72064 15.592 3.43934 15.3107C3.15804 15.0294 3 14.6478 3 14.25V5.25C3 4.85218 3.15804 4.47064 3.43934 4.18934C3.72064 3.90804 4.10218 3.75 4.5 3.75H13.5C13.8978 3.75 14.2794 3.90804 14.5607 4.18934C14.842 4.47064 15 4.85218 15 5.25V7.5" stroke="#7EA310" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                 <path d="M12 2.25V5.25" stroke="#7EA310" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />

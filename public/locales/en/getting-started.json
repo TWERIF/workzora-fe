@@ -1,0 +1,91 @@
+{
+    "badge": "Knowledge base",
+    "title": "Getting started",
+    "subtitle": "Learn how to create an account, set up your profile, and start using WorkZora.",
+    "search": {
+        "placeholder": "Search for help articles...",
+        "button": "Search"
+    },
+    "popularSearches": {
+        "label": "Popular searches:",
+        "items": [
+            "payments",
+            "profile",
+            "project",
+            "arbitration",
+            "proposals"
+        ]
+    },
+    "cards": [
+        {
+            "title": "How to create a WorkZora account",
+            "description": "Learn how to sign up, choose your account type, and start using the platform.",
+            "link": "create-account"
+        },
+        {
+            "title": "How to choose your account type",
+            "description": "Understand the difference between a client account and a freelancer account, and choose the option that fits your goals.",
+            "link": "#"
+        },
+        {
+            "title": "How to complete your profile",
+            "description": "Add your photo, name, professional title, short bio, skills, portfolio, hourly rate, and work preferences.",
+            "link": "#"
+        },
+        {
+            "title": "How to verify your email address",
+            "description": "Confirm your email address to activate your account and receive important platform notifications.",
+            "link": "#"
+        },
+        {
+            "title": "How to set up your profile photo or avatar",
+            "description": "Upload a clear profile photo or choose an avatar that helps other users recognize you.",
+            "link": "#"
+        },
+        {
+            "title": "How to navigate your dashboard",
+            "description": "Learn where to find your projects, messages, profile settings, notifications, and saved items.",
+            "link": "#"
+        },
+        {
+            "title": "How to use search on WorkZora",
+            "description": "Find freelancers, projects, categories, and help articles using keywords and filters.",
+            "link": "#"
+        },
+        {
+            "title": "How to update your account settings",
+            "description": "Change your personal information, password, email preferences, and notification settings.",
+            "link": "#"
+        },
+        {
+            "title": "How to manage notifications",
+            "description": "Choose which updates you want to receive about messages, proposals, project status, and payments.",
+            "link": "#"
+        },
+        {
+            "title": "How to keep your account safe",
+            "description": "Use a strong password, check suspicious messages, and follow basic safety recommendations on the platform.",
+            "link": "#"
+        },
+        {
+            "title": "How WorkZora works for clients",
+            "description": "A quick overview of how clients can post projects, receive proposals, hire freelancers, and manage work online.",
+            "link": "#"
+        },
+        {
+            "title": "How WorkZora works for freelancers",
+            "description": "A quick overview of how freelancers can create a profile, find projects, send proposals, and build their reputation.",
+            "link": "#"
+        },
+        {
+            "title": "What to do after registration",
+            "description": "Follow the first steps after creating your account: complete your profile, explore categories, and start using the platform.",
+            "link": "#"
+        },
+        {
+            "title": "Common beginner mistakes to avoid",
+            "description": "Learn what new users often miss when setting up their profile, posting a project, or sending their first proposal.",
+            "link": "#"
+        }
+    ]
+}

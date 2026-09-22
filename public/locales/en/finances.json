@@ -122,6 +122,10 @@
     "bids": "Bids",
     "reviews": "Reviews",
     "finances": "Finances",
+    "security": "Security",
+    "notifications": "Notifications",
+    "privacy": "Privacy",
+    "proAccount": "PRO Account",
     "support": "Support",
     "news": "News"
   }

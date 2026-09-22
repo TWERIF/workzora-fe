@@ -1,0 +1,76 @@
+{
+    "badge": "Knowledge base",
+    "title": "How to create a WorkZora account",
+    "description": "Creating a WorkZora account is the first step to using the platform as a client or a freelancer. After registration, you can complete your profile, browse projects, find freelancers, send proposals, and manage your work in one place.",
+    "searchPlaceholder": "Search for help articles...",
+    "searchButton": "Search",
+    "popularSearchesLabel": "Popular searches:",
+    "popularSearches": {
+        "payments": "payments",
+        "profile": "profile",
+        "project": "project",
+        "arbitration": "arbitration",
+        "proposals": "proposals"
+    },
+    "steps": {
+        "step1": {
+            "title": "1. Click “Sign up”",
+            "text": "Go to the WorkZora homepage and click the “Sign up” button in the top-right corner of the page"
+        },
+        "step2": {
+            "title": "2. Choose your account type",
+            "intro": "Select how you want to use WorkZora:",
+            "client": "Client — if you want to post projects, find freelancers, and hire specialists.",
+            "freelancer": "Freelancer — if you want to create a professional profile, browse projects, and offer your services to clients.",
+            "note": "You can update some profile details later, but choosing the right account type helps WorkZora show you the most relevant features."
+        },
+        "step3": {
+            "title": "3. Enter your basic information",
+            "text": "Fill in the registration form with your name, email address, and password. Make sure to use an email address you have access to, because you may need it for account confirmation and important platform notifications."
+        },
+        "step4": {
+            "title": "4. Confirm your email address",
+            "text1": "After submitting the form, check your inbox for a confirmation email from WorkZora. Open the email and follow the confirmation link to activate your account.",
+            "text2": "If you do not see the email, check your spam or promotions folder."
+        },
+        "step5": {
+            "title": "5. Complete your profile",
+            "text1": "Once your account is created, add the information that other users will see on your profile.",
+            "text2": "For freelancers, this may include your profile photo, professional title, skills, portfolio, hourly rate, short bio, and work preferences.",
+            "text3": "For clients, this may include your name, company information, project interests, and contact preferences."
+        },
+        "step6": {
+            "title": "6. Start using WorkZora",
+            "text1": "After setting up your account, you can begin using the platform.",
+            "text2": "Clients can post a project, browse freelancer profiles, and receive proposals.",
+            "text3": "Freelancers can explore active projects, send proposals, and build their reputation through completed work and reviews."
+        }
+    },
+    "tipsTitle": "Tips for a better start",
+    "tips": {
+        "tip1": "Use your real name or a professional display name",
+        "tip2": "Add a clear profile photo or avatar.",
+        "tip3": "Write a short and helpful bio.",
+        "tip4": "Keep your account information up to date.",
+        "tip5": "Use a strong password to protect your account."
+    },
+    "needHelp": {
+        "title": "Need help?",
+        "text": "If you have trouble creating your account or confirming your email, contact the WorkZora support team for assistance."
+    },
+    "details": {
+        "title": "Details",
+        "timeToReadLabel": "Time to read:",
+        "timeToReadValue": "2 min",
+        "updatedLabel": "Updated",
+        "updatedValue": "September 1, 2026"
+    },
+    "team": {
+        "name": "WorkZora Team",
+        "role": "AI and Telegram expert",
+        "text": "Our goal is to help users understand the online work market, make smarter decisions, and grow with confidence."
+    },
+    "feedback": {
+        "question": "Did this answer your question?"
+    }
+}

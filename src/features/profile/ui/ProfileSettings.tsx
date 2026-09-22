@@ -1,4 +1,4 @@
-import { Availability, PreferredBudgetType, PreferredProjectSize, User, UserRole, WorkType } from "@/features/auth/model/types";
+import { Availability, PreferredBudgetType, PreferredProjectSize, User, WorkType } from "@/features/auth/model/types";
 import VerificationBlock from "@/features/kyc/ui/VerificationBlock";
 import { PortfolioItem } from "@/features/portfolio/model/types";
 import { useCreatePortfolio, useDeletePortfolio, useMyPortfolios, useUpdatePortfolio } from "@/features/portfolio/model/usePortfolio";
@@ -10,10 +10,10 @@ import StickyNav from "@/shared/components/ui/StickyNav";
 import Toast from "@/shared/components/ui/Toast";
 import { Icon } from "@iconify/react";
 import { TFunction } from "i18next";
-import Link from "next/link";
 import { NextRouter } from "next/router";
 import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
+import ProfileNavigation from "./ProfileNavigation";
 
 export default function ProfileSettings({
   user,
@@ -512,6 +512,7 @@ export default function ProfileSettings({
           </div>
 
           <div className="lg:col-span-4 xl:col-span-3">
+            <ProfileNavigation activeHref={`/profile`} />
             <div className="sticky top-32 bg-bg dark:bg-bg-dark p-6 rounded-20 border border-border">
               <h3 className="text-lg font-bold mb-2">{t("completion.title")}</h3>
               <p className="text-sm text-text-muted mb-6">
@@ -534,8 +535,7 @@ export default function ProfileSettings({
                   disabled={isSubmitting}
                   text={t("completion.action", "Save Changes")}
                 />
-                {user.role === UserRole.FREELANCER && <Link className="mt-5 max-w-fit hover:underline" href={`/${locale}/payment-data`}>{t("changeCardInfo")}</Link>}
-                <button className="text-error capitalize  mt-4 max-w-fit" onClick={() => logout()}>{t("logout")}</button>
+                {/* {user.role === UserRole.FREELANCER && <Link className="mt-5 max-w-fit hover:underline" href={`/${locale}/payment-data`}>{t("changeCardInfo")}</Link>} */}
               </div>
             </div>
           </div>

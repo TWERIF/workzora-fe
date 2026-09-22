@@ -1,24 +1,33 @@
+import NavIcon, { NavIconName } from "@/shared/components/svg/NavIcon";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { useTranslation } from "react-i18next";
-import NavIcon, { NavIconName } from "../svg/NavIcon";
+
 
 interface NavItem {
-    key: NavIconName;
+    icon: NavIconName;
+    labelKey: string;
     href: string;
 }
 
 const primaryItems: NavItem[] = [
-    { key: "profile", href: "/profile" },
-    { key: "chat", href: "/chat" },
-    { key: "bids", href: "/bids" },
-    { key: "reviews", href: "/reviews" },
-    { key: "finances", href: "/payment-data" },
+    { icon: "profile", labelKey: "profile", href: "/profile" },
+    { icon: "chat", labelKey: "chat", href: "/chat" },
+    { icon: "bids", labelKey: "bids", href: "/bids" },
+    { icon: "reviews", labelKey: "reviews", href: "/reviews" },
+    { icon: "finances", labelKey: "finances", href: "/payment-data" },
+];
+
+const settingsItems: NavItem[] = [
+    { icon: "lock", labelKey: "security", href: "/security" },
+    { icon: "notifications", labelKey: "notifications", href: "/notifications" },
+    { icon: "settings", labelKey: "privacy", href: "/privacy" },
+    { icon: "logo", labelKey: "proAccount", href: "/pro" },
 ];
 
 const secondaryItems: NavItem[] = [
-    { key: "support", href: "/support" },
-    { key: "news", href: "/news" },
+    { icon: "support", labelKey: "support", href: "/support" },
+    { icon: "news", labelKey: "news", href: "/news" },
 ];
 
 interface UserNavigationProps {
@@ -30,7 +39,7 @@ interface UserNavigationProps {
     }) => ReactNode;
 }
 
-export const UserNavigation = ({
+export const ProfileNavigation = ({
     activeHref,
     renderLink,
 }: UserNavigationProps) => {
@@ -49,13 +58,13 @@ export const UserNavigation = ({
 
         const content = (
             <>
-                <NavIcon name={item.key} />
-                {t(`nav.${item.key}`)}
+                <NavIcon name={item.icon} />
+                {t(`nav.${item.labelKey}`)}
             </>
         );
 
         return (
-            <li key={item.key}>
+            <li key={item.labelKey}>
                 {renderLink ? (
                     renderLink({
                         href: locale + item.href,
@@ -88,9 +97,13 @@ export const UserNavigation = ({
 
             <hr className="my-4 border-border dark:border-white/10" />
 
+            <ul className="flex flex-col gap-1">{settingsItems.map(renderItem)}</ul>
+
+            <hr className="my-4 border-border dark:border-white/10" />
+
             <ul className="flex flex-col gap-1">{secondaryItems.map(renderItem)}</ul>
         </nav>
     );
 };
 
-export default UserNavigation;
+export default ProfileNavigation;
