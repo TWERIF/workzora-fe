@@ -31,7 +31,7 @@ export default function FreelancerProfilePage() {
 
     return (
         <div className="min-h-screen bg-bg px-4 dark:bg-bg-dark sm:px-8 py-28">
-            <div className="mx-auto grid max-w-6xl grid-cols-1 gap-4 lg:grid-cols-[1fr_280px]">
+            <div className="mx-auto grid max-w-6xl grid-cols-1 gap-4 lg:grid-cols-[minmax(0,1fr)_280px]">
                 <ProfileHeaderCard user={isLoading ? undefined : user} />
                 {/* {user?.role === "freelancer" && <QuickActionsCard />} */}
 

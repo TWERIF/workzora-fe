@@ -43,9 +43,9 @@ export default function GettingStarted() {
                         <input
                             type="text"
                             placeholder={t("search.placeholder") as string}
-                            className="flex-1 bg-transparent outline-none text-text dark:text-text-dark placeholder:text-text-light dark:placeholder:text-text-muted text-[14px] md:text-[15px]"
+                            className="min-w-0 flex-1 bg-transparent outline-none text-text dark:text-text-dark placeholder:text-text-light dark:placeholder:text-text-muted text-[14px] md:text-[15px]"
                         />
-                        <ButtonGradient text={t("search.button") as string} className="!px-[28px] !py-[12px] !rounded-full" />
+                        <ButtonGradient text={t("search.button") as string} className="!px-4 sm:!px-[28px] !py-[12px] !rounded-full" />
                     </div>
 
                     <div className="mt-[20px] flex flex-wrap items-center justify-center gap-[8px] text-[14px]">

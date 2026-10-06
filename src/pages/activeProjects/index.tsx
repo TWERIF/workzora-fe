@@ -67,7 +67,7 @@ export default function ChatsPage() {
           {t("chats.title", "Chat")}
         </h1>
 
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1fr_320px]">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1fr)_320px]">
           <div>
             <ProjectSearchBar onResults={setSearchResults} />
 

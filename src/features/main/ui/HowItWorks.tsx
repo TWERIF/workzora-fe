@@ -169,7 +169,7 @@ function StepRow({ step, index, tab }: { step: Step; index: number; tab: Tab }) 
         }`}
     >
       {/* Desktop / tablet: zig-zag timeline */}
-      <div className="hidden md:grid md:grid-cols-[1fr_56px_1fr] md:items-center md:gap-6">
+      <div className="hidden md:grid md:grid-cols-[minmax(0,1fr)_56px_minmax(0,1fr)] md:items-center md:gap-6">
         {imageFirst ? (
           <>
             {image}

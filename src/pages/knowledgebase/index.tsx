@@ -58,15 +58,15 @@ export default function HelpKnowledgeBase() {
                 </p>
 
                 <div className="mb-4 flex w-full max-w-2xl items-center rounded-full border border-border bg-input px-2 py-2 shadow-input dark:bg-input-dark dark:shadow-input-dark">
-                    <span className="pl-4 text-success">
+                    <span className="pl-2 sm:pl-4 text-success">
                         <IconSearch />
                     </span>
                     <input
                         type="text"
                         placeholder={t("searchPlaceholder")}
-                        className="flex-1 bg-transparent px-4 text-text outline-none placeholder:text-text-muted dark:text-text-dark"
+                        className="min-w-0 flex-1 bg-transparent px-2 sm:px-4 text-text outline-none placeholder:text-text-muted dark:text-text-dark"
                     />
-                    <ButtonGradient text={t("searchButton")} type="button" className="!px-8 !py-3 text-sm" />
+                    <ButtonGradient text={t("searchButton")} type="button" className="!px-4 sm:!px-8 !py-3 text-sm" />
                 </div>
 
                 <div className="mb-16 flex flex-wrap items-center justify-center gap-2 text-sm text-text-light dark:text-text-muted">

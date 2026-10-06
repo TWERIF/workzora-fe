@@ -1,4 +1,6 @@
 
+import { useAuth } from "@/features/auth/model/useAuth";
+import { VerificationStatus } from "@/features/kyc/model/types";
 import Breadcrumbs from "@/shared/components/ui/BreadCrumbs";
 import Loader from "@/shared/components/ui/Loader";
 import ProBanner from "@/shared/components/ui/ProBanner";
@@ -19,6 +21,8 @@ interface FinancesPageProps {
 
 export const FinancesPage = ({ userId }: FinancesPageProps) => {
     const { t } = useTranslation("finances");
+    const { user } = useAuth();
+    const isVerified = user?.verification?.status === VerificationStatus.VERIFIED;
 
     const {
         data: paymentData,
@@ -57,7 +61,7 @@ export const FinancesPage = ({ userId }: FinancesPageProps) => {
                         <div className="grid min-w-0 gap-6 xl:grid-cols-[minmax(0,1fr)_380px] xl:items-start">
                             <LinkedCardsSection
                                 cards={cards}
-                                isVerified
+                                isVerified={isVerified}
                                 userId={userId}
                                 existingCardNumber={paymentData?.maskedCardNumber}
                                 isLoading={isCardsLoading}
