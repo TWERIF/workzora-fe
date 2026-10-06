@@ -58,6 +58,12 @@ import helpUk from "../public/locales/uk/help.json";
 import footerEn from "../public/locales/en/footer.json";
 import footerUk from "../public/locales/uk/footer.json";
 
+import reviewEn from "../public/locales/en/review.json";
+import reviewUk from "../public/locales/uk/review.json";
+
+import topClientsEn from "../public/locales/en/topClients.json";
+import topClientsUk from "../public/locales/uk/topClients.json";
+
 i18n.use(initReactI18next).init({
   resources: {
     en: {
@@ -81,7 +87,9 @@ i18n.use(initReactI18next).init({
       "getting-started": gettingStartedEn,
       createAccount: createAccountEn,
       help: helpEn,
-      footer: footerUk
+      footer: footerEn,
+      review: reviewEn,
+      topClients: topClientsEn,
     },
     uk: {
       common: commonUk,
@@ -104,7 +112,9 @@ i18n.use(initReactI18next).init({
       "getting-started": gettingStartedUk,
       createAccount: createAccountUk,
       help: helpUk,
-      footer: footerEn
+      footer: footerUk,
+      review: reviewUk,
+      topClients: topClientsUk,
     },
   },
   lng: 'en',

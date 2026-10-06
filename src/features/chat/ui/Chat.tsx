@@ -1,17 +1,21 @@
 import { useAuth } from "@/features/auth/model/useAuth";
 import { useCreateEscrow } from "@/features/payment/model/usePayment";
 import { Project, ProjectStatus } from "@/features/projects/model/types";
-import { useProjects } from "@/features/projects/model/useProjects";
+import { projectKeys, useProjects } from "@/features/projects/model/useProjects";
+import { walletKeys } from "@/features/finances/model/useWallet";
 import { $api } from "@/shared/components/http";
 import Breadcrumbs, {
   BreadcrumbItem,
 } from "@/shared/components/ui/BreadCrumbs";
+import { useQueryClient } from "@tanstack/react-query";
 import { useTheme } from "next-themes";
 import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { toast } from "sonner";
 import { io, Socket } from "socket.io-client";
 import { ChatProjectComplete } from "./ChatProjectComplete";
+import { ChatReviewPrompt } from "./ChatReviewPrompt";
 import Message from "./Message";
 
 interface ChatMessage {
@@ -181,11 +185,7 @@ export default function Chat({ project, receiverId }: ChatProps) {
     if (!project?.id) return;
     try {
       const escrow = await createEscrowMutation.mutateAsync({
-        amount: Math.round(project.price * 100),
-        currencyCode: 840,
         projectId: project.id,
-        clientId: project.client.id,
-        freelancerId: project.freelancerId,
         description: project.title,
       });
 
@@ -196,11 +196,22 @@ export default function Chat({ project, receiverId }: ChatProps) {
       console.error("Не вдалося створити рахунок для оплати:", error);
     }
   };
+  const queryClient = useQueryClient();
+  const { t: tChat } = useTranslation("chat");
   const { toCompletedMutation } = useProjects(project.id);
+  // Completing releases the escrow to the freelancer's balance; then the client is asked for a review.
   const handleCopmlete = () => {
-    toCompletedMutation.mutate({
-      id: project.id,
-    });
+    toCompletedMutation.mutate(
+      { id: project.id },
+      {
+        onSuccess: () => {
+          queryClient.invalidateQueries({ queryKey: projectKeys.one(project.id) });
+          queryClient.invalidateQueries({ queryKey: walletKeys.all });
+          router.push(`/${locale}/review/${project.id}`);
+        },
+        onError: () => toast.error(tChat("completeError")),
+      },
+    );
   };
 
   if (!user) {
@@ -227,6 +238,9 @@ export default function Chat({ project, receiverId }: ChatProps) {
     isClient && project?.status === ProjectStatus.AWAITING_PAYMENT;
 
   const showCompleteProject = isClient && project?.status === ProjectStatus.IN_PROGRESS;
+
+  const isFinished =
+    project?.status === ProjectStatus.COMPLETED || project?.status === ProjectStatus.CLOSED;
 
   return (
     <div
@@ -421,6 +435,7 @@ export default function Chat({ project, receiverId }: ChatProps) {
                   onArbitration={() => { }} />
               )
             }
+            {isFinished && <ChatReviewPrompt projectId={project.id} />}
           </div>
         </div>
       </div>

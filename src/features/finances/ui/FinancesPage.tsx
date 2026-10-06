@@ -6,15 +6,9 @@ import UserNavigation from "@/shared/components/ui/UserNavigation";
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { toLinkedCards } from "../model/MapPaymentData";
-import {
-    mockAvailableToWithdraw,
-    mockBonusBalance,
-    mockMainBalance,
-    mockRate,
-    mockWithdrawals,
-} from "../model/mock";
 import { usePaymentData } from "../model/usePaymentData";
-import BalanceOverview from "./BalanceOverview";
+import { useExchangeRate, useWalletSummary } from "../model/useWallet";
+import WalletBalanceOverview from "./WalletBalanceOverview";
 import HistorySection from "./HistorySection";
 import LinkedCardsSection from "./LinkedCardsSection";
 import WithdrawFundsCard from "./WithdrawFundsCard";
@@ -24,7 +18,7 @@ interface FinancesPageProps {
 }
 
 export const FinancesPage = ({ userId }: FinancesPageProps) => {
-    const { t, i18n } = useTranslation("finances");
+    const { t } = useTranslation("finances");
 
     const {
         data: paymentData,
@@ -32,11 +26,15 @@ export const FinancesPage = ({ userId }: FinancesPageProps) => {
         isError: isCardsError,
     } = usePaymentData(userId);
 
+    const { data: wallet, isLoading: isWalletLoading } = useWalletSummary(Boolean(userId));
+    const { data: exchangeRate } = useExchangeRate();
+
     const cards = useMemo(() => toLinkedCards(paymentData), [paymentData]);
 
-    const locale = i18n.language;
+    const balance = wallet?.balance ?? 0;
+    const rate = exchangeRate?.rate ?? 0;
 
-    if (isCardsLoading) return <Loader />
+    if (isCardsLoading || isWalletLoading) return <Loader />
 
     return (
         <div className="min-h-screen bg-white dark:bg-bg-dark">
@@ -54,11 +52,7 @@ export const FinancesPage = ({ userId }: FinancesPageProps) => {
                             </p>
                         </header>
 
-                        <BalanceOverview
-                            balance={mockMainBalance}
-                            bonuses={mockBonusBalance}
-                            rate={mockRate}
-                        />
+                        <WalletBalanceOverview />
 
                         <div className="grid min-w-0 gap-6 xl:grid-cols-[minmax(0,1fr)_380px] xl:items-start">
                             <LinkedCardsSection
@@ -72,12 +66,12 @@ export const FinancesPage = ({ userId }: FinancesPageProps) => {
 
                             <WithdrawFundsCard
                                 cards={cards}
-                                available={mockAvailableToWithdraw}
-                                rate={mockRate}
+                                available={balance}
+                                rate={rate}
                             />
                         </div>
 
-                        <HistorySection withdrawals={mockWithdrawals} />
+                        <HistorySection />
 
                         <ProBanner />
                     </div>

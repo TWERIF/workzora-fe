@@ -13,6 +13,7 @@ import { TFunction } from "i18next";
 import { NextRouter } from "next/router";
 import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
+import { calcProfileCompletion } from "../model/completion";
 import ProfileNavigation from "./ProfileNavigation";
 
 export default function ProfileSettings({
@@ -145,32 +146,7 @@ export default function ProfileSettings({
     showToast(t("userDataUpdated"));
   };
 
-  const countComplience = () => {
-    const formValues = watch();
-
-    let filledFields = 0;
-    const totalFields = 9;
-
-    if (formValues.firstName?.trim()) filledFields++;
-    if (formValues.lastName?.trim()) filledFields++;
-    if (formValues.username?.trim()) filledFields++;
-    if (formValues.email?.trim()) filledFields++;
-    if (formValues.phone?.trim()) filledFields++;
-    if (formValues.country?.trim()) filledFields++;
-    if (formValues.city?.trim()) filledFields++;
-
-    if (formValues.skills && formValues.skills.length > 0) filledFields++;
-
-    if (formValues.rate && formValues.rate > 0) filledFields++;
-
-    const baseProgress = Math.round((filledFields / totalFields) * 85);
-
-    const portfolioBonus = (portfolios?.length || 0) >= 5 ? 15 : 0;
-
-    return Math.min(baseProgress + portfolioBonus, 100);
-  }
-
-  const progressPercentage = countComplience();
+  const progressPercentage = calcProfileCompletion(watch(), portfolios?.length);
 
   const navItems = [
     { id: "basic-info", label: t("nav.basicInfo") },
@@ -512,7 +488,9 @@ export default function ProfileSettings({
           </div>
 
           <div className="lg:col-span-4 xl:col-span-3">
-            <ProfileNavigation activeHref={`/profile`} />
+            <div className="mb-5">
+              <ProfileNavigation activeHref={`/profile`} />
+            </div>
             <div className="sticky top-32 bg-bg dark:bg-bg-dark p-6 rounded-20 border border-border">
               <h3 className="text-lg font-bold mb-2">{t("completion.title")}</h3>
               <p className="text-sm text-text-muted mb-6">

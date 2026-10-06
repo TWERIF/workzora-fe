@@ -79,6 +79,8 @@ export interface User {
 
   avatarUrl?: string | null;
 
+  bio?: string;
+
   verification: Verification | null;
 
   phone?: string;
@@ -87,7 +89,8 @@ export interface User {
 
   country?: string;
 
-  createdAt?: Date;
+  // null for accounts registered before the field was introduced
+  createdAt?: Date | string | null;
   updatedAt?: Date;
 }
 

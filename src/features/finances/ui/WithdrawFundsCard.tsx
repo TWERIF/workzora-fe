@@ -1,6 +1,7 @@
 import ButtonGradient from "@/shared/components/ui/Button/ButtonGradient";
 import { useForm } from "@tanstack/react-form";
 import { useTranslation } from "react-i18next";
+import { toast } from "sonner";
 import { MIN_WITHDRAW_AMOUNT, WITHDRAW_PROCESSING_DAYS } from "../model/constants";
 import { formatMoney, formatNumber, maskedCard } from "../model/format";
 import { LinkedCard } from "../model/types";
@@ -25,14 +26,20 @@ export const WithdrawFundsCard = ({
 
     const form = useForm({
         defaultValues: {
-            amount: "100",
+            amount: "",
             cardId: primaryCard?.id ?? "",
         },
-        onSubmit: async ({ value }) => {
-            await mutation.mutateAsync({
-                amount: Number(value.amount),
-                cardId: value.cardId,
-            });
+        onSubmit: async ({ value, formApi }) => {
+            try {
+                await mutation.mutateAsync({
+                    amount: Number(value.amount),
+                    cardId: value.cardId,
+                });
+                toast.success(t("withdraw.success"));
+                formApi.reset();
+            } catch {
+                // повідомлення про помилку рендериться нижче з mutation.isError
+            }
         },
     });
 
@@ -152,7 +159,7 @@ export const WithdrawFundsCard = ({
                                 ) : (
                                     cards.map((card) => (
                                         <option key={card.id} value={card.id}>
-                                            {`${card.brand === "visa" ? "Visa" : "Mastercard"} ${maskedCard(
+                                            {`${card.brand === "visa" ? "Visa" : card.brand === "mastercard" ? "Mastercard" : t("cards.card")} ${maskedCard(
                                                 card.last4,
                                             )}${card.isPrimary ? ` (${t("cards.primary")})` : ""}`}
                                         </option>

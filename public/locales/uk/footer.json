@@ -1,37 +1,43 @@
 {
   "brand": {
-    "trademark": "WorkZora® is a registered trademark",
+    "trademark": "WorkZora® — зареєстрований товарний знак",
     "copyright": "Copyright © 2025-2026 WorkZora"
   },
   "columns": {
     "freelancer": {
-      "title": "Freelancer",
-      "links": ["Categories", "Contests", "Freelancers", "News"]
+      "title": "Фрілансерам",
+      "links": [
+        "Категорії",
+        "Конкурси",
+        "Фрілансери",
+        "Новини"
+      ]
     },
     "about": {
-      "title": "About us",
+      "title": "Про нас",
       "links": [
-        "About us",
-        "How it works",
-        "Benefits",
-        "Team",
-        "Vision & Mission",
-        "Contacts"
+        "Про нас",
+        "Як це працює",
+        "Переваги",
+        "Команда",
+        "Місія та бачення",
+        "Контакти",
+        "База знань"
       ]
     },
     "terms": {
-      "title": "Terms",
+      "title": "Умови",
       "links": [
-        "Privacy Policy",
-        "Terms and Conditions",
-        "Copyright Policy",
-        "Code of Conduct",
-        "Fees and Charges"
+        "Політика конфіденційності",
+        "Умови використання",
+        "Політика авторських прав",
+        "Кодекс поведінки",
+        "Тарифи та комісії"
       ]
     }
   },
   "stats": {
-    "registeredUsers": "Registered Users",
-    "totalJobs": "Total Jobs Posted"
+    "registeredUsers": "Зареєстрованих користувачів",
+    "totalJobs": "Опублікованих завдань"
   }
 }

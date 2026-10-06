@@ -8,6 +8,7 @@ interface NavItem {
     icon: NavIconName;
     labelKey: string;
     href: string;
+    accent?: boolean;
 }
 
 const primaryItems: NavItem[] = [
@@ -23,6 +24,7 @@ const settingsItems: NavItem[] = [
     { icon: "notifications", labelKey: "notifications", href: "/notifications" },
     { icon: "settings", labelKey: "privacy", href: "/privacy" },
     { icon: "logo", labelKey: "proAccount", href: "/pro" },
+    { icon: "userSwitch", labelKey: "clientAccount", href: "/coming-soon", accent: true },
 ];
 
 const secondaryItems: NavItem[] = [
@@ -46,15 +48,15 @@ export const ProfileNavigation = ({
     const { t, i18n } = useTranslation("finances");
     const locale = i18n.language;
 
-    const itemClasses = (isActive: boolean) =>
-        `flex items-center gap-3 rounded-20 px-4 py-3 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-success ${isActive
-            ? "bg-success font-medium text-white"
-            : "text-text hover:bg-black/5 dark:text-text-dark dark:hover:bg-white/10"
+    const itemClasses = (isActive: boolean, accent?: boolean) =>
+        `flex items-center gap-2 rounded-2xl py-[14px] text-sm transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-success ${isActive
+            ? "bg-success px-6 text-white"
+            : `px-3 hover:bg-black/5 dark:hover:bg-white/10 ${accent ? "text-success" : "text-text dark:text-text-dark"}`
         }`;
 
     const renderItem = (item: NavItem) => {
         const isActive = item.href === activeHref;
-        const className = itemClasses(isActive);
+        const className = itemClasses(isActive, item.accent);
 
         const content = (
             <>
@@ -87,21 +89,23 @@ export const ProfileNavigation = ({
     return (
         <nav
             aria-label={t("nav.title")}
-            className="rounded-20 bg-[#F5F5F5] p-5 dark:bg-input-dark mb-5"
+            className="flex flex-col gap-4 rounded-22 bg-surface p-6 dark:bg-input-dark"
         >
-            <h2 className="mb-4 text-xl font-semibold text-text dark:text-text-dark">
+            <h2 className="text-22 font-semibold text-text dark:text-text-dark">
                 {t("nav.title")}
             </h2>
 
-            <ul className="flex flex-col gap-1">{primaryItems.map(renderItem)}</ul>
+            <div className="flex flex-col gap-3">
+                <ul className="flex flex-col gap-0.5">{primaryItems.map(renderItem)}</ul>
 
-            <hr className="my-4 border-border dark:border-white/10" />
+                <hr className="border-text/10 dark:border-white/10" />
 
-            <ul className="flex flex-col gap-1">{settingsItems.map(renderItem)}</ul>
+                <ul className="flex flex-col gap-0.5">{settingsItems.map(renderItem)}</ul>
 
-            <hr className="my-4 border-border dark:border-white/10" />
+                <hr className="border-text/10 dark:border-white/10" />
 
-            <ul className="flex flex-col gap-1">{secondaryItems.map(renderItem)}</ul>
+                <ul className="flex flex-col gap-0.5">{secondaryItems.map(renderItem)}</ul>
+            </div>
         </nav>
     );
 };

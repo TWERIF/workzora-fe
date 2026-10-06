@@ -41,7 +41,8 @@
     "unverified": {
       "title": "Your profile is not verified",
       "description": "Verify your profile to create withdrawal requests."
-    }
+    },
+    "card": "Card"
   },
   "modal": {
     "addTitle": "Add card",
@@ -66,7 +67,8 @@
       "max": "You cannot withdraw more than {{amount}}",
       "noCard": "Choose a card to withdraw to",
       "failed": "The request could not be created. Try again."
-    }
+    },
+    "success": "Withdrawal request created. The funds will reach your card once processed."
   },
   "history": {
     "tabs": {
@@ -91,7 +93,8 @@
       "card": "Card",
       "date": "Date",
       "status": "Status",
-      "actions": "Actions"
+      "actions": "Actions",
+      "type": "Operation"
     },
     "status": {
       "completed": "Completed",
@@ -108,7 +111,22 @@
       "title": "No operations for this period",
       "description": "Pick another period or create your first withdrawal request."
     },
-    "comingSoon": "This section will be available soon."
+    "comingSoon": "This section will be available soon.",
+    "transactions": {
+      "title": "Transaction history",
+      "subtitle": "Project earnings, withdrawals and refunds."
+    },
+    "bonuses": {
+      "title": "Bonus history",
+      "subtitle": "Bonuses you earned and spent."
+    },
+    "transactionTypes": {
+      "project_payout": "Project payment",
+      "withdrawal": "Withdrawal to card",
+      "withdrawal_refund": "Rejected withdrawal refund",
+      "bonus": "Bonuses"
+    },
+    "error": "Failed to load history. Try refreshing the page."
   },
   "pro": {
     "title": "Get more insights with WorkZora Pro",
@@ -127,6 +145,7 @@
     "privacy": "Privacy",
     "proAccount": "PRO Account",
     "support": "Support",
-    "news": "News"
+    "news": "News",
+    "clientAccount": "Client account"
   }
 }

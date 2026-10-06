@@ -10,6 +10,7 @@ import type { AppProps } from 'next/app';
 import { Manrope, Poppins } from "next/font/google";
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
+import { Toaster } from 'sonner';
 import '../i18n';
 import i18n from '../i18n';
 
@@ -55,6 +56,7 @@ function App({ Component, pageProps }: AppProps) {
               <Component {...pageProps} />
             </main>
             <Footer />
+            <Toaster position="top-right" richColors />
           </Layout>
         </ThemeProviderGuard>
       </ThemeProvider>

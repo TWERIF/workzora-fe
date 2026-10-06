@@ -12,13 +12,43 @@ export interface LinkedCard {
     isPrimary?: boolean;
 }
 
+/** GET /wallet/withdrawals — суми в USD */
 export interface WithdrawalRecord {
     id: string;
     amount: number;
-    brand: CardBrand;
-    last4: string;
-    date: string;
+    maskedCard: string;
     status: WithdrawalStatus;
+    note: string | null;
+    createdAt: string;
+    processedAt: string | null;
+}
+
+export type TransactionType = "project_payout" | "withdrawal" | "withdrawal_refund" | "bonus";
+
+/** GET /wallet/transactions — USD для балансу, бали для бонусів; amount зі знаком */
+export interface WalletTransaction {
+    id: string;
+    type: TransactionType;
+    kind: "balance" | "bonus";
+    amount: number;
+    projectId: string | null;
+    withdrawalId: string | null;
+    description: string | null;
+    createdAt: string;
+}
+
+/** GET /wallet/me */
+export interface WalletSummary {
+    balance: number;
+    bonus: number;
+    pendingWithdrawals: number;
+}
+
+/** GET /wallet/rate — курс USD→UAH з Monobank */
+export interface ExchangeRate {
+    currency: "USD";
+    rate: number;
+    updatedAt: string;
 }
 
 export interface Balance {

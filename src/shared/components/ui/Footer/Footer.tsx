@@ -26,6 +26,7 @@ export default function Footer() {
       `/${locale}/about-us#team`,
       `/${locale}/about-us#vision`,
       `/${locale}/about-us#contacts`,
+      `/${locale}/knowledgebase`,
     ],
     terms: [
       `/${locale}/privacy-policy`,

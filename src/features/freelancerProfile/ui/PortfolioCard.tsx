@@ -10,25 +10,25 @@ export const PortfolioCard = ({ item }: PortfolioCardProps) => {
     const { t } = useTranslation("common");
 
     return (
-        <article className="overflow-hidden rounded-20 border border-border bg-bg-header dark:bg-bg-modalDark">
-            <img src={item.imageUrl} alt={item.title} className="h-40 w-full object-cover" />
-            <div className="px-15 py-13">
-                {/* <div className="flex items-center justify-between text-xs text-text-muted">
-                    <span className="flex items-center gap-1">
-                        <EyeIcon className="h-3.5 w-3.5" />
+        <article className="flex flex-col overflow-hidden rounded-3xl bg-surface dark:bg-bg-modalDark">
+            <img src={item.imageUrl} alt={item.title} className="h-[237.75px] w-full rounded-3xl object-cover" />
+            <div className="flex flex-col gap-3 p-6">
+                {/* <div className="flex items-center justify-between text-xs font-medium">
+                    <span className="flex items-center gap-[6px] text-text dark:text-text-dark">
+                        <EyeIcon className="size-[18px] text-success" />
                         {t("profile.portfolio.views", { count: item.views })}
                     </span>
-                    <span>{item.date}</span>
+                    <span className="text-text opacity-50 dark:text-text-dark">{item.date}</span>
                 </div> */}
-                <h3 className="mt-2 text-sm font-medium text-text dark:text-text-dark">{item.title}</h3>
-                {/* <div className="mt-1 flex flex-wrap gap-1.5">
+                <h3 className="text-base font-semibold leading-[29px] text-text dark:text-text-dark">{item.title}</h3>
+                {/* <div className="flex flex-wrap gap-[6px]">
                     {item.tags.map((tag) => (
-                        <span key={tag} className="text-xs text-success">
+                        <span key={tag} className="rounded-full bg-bg-header px-3 py-[6px] text-xs text-success">
                             #{tag}
                         </span>
                     ))}
                 </div> */}
-                <p className="mt-2 line-clamp-3 text-xs text-text-muted">{item.description}</p>
+                <p className="line-clamp-4 text-sm text-text dark:text-text-dark">{item.description}</p>
             </div>
         </article>
     );

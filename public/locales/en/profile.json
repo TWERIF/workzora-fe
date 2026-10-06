@@ -12,10 +12,12 @@
     },
     "completion": {
         "title": "Complete your freelancer profile",
-        "description": "Add a portfolio, hourly rate, and skills to help clients understand your services better and land more jobs.",
+        "description": "Add your skills, hourly rate, portfolio, and work preferences so clients can better understand your experience and offer you relevant projects.",
         "progress": "Profile is completed at",
         "action": "Save",
-        "publicProfile":"View public profile"
+        "publicProfile": "View public profile",
+        "label": "Profile completion:",
+        "hint": "Profiles with portfolios and skills get more relevant project offers."
     },
     "portfolioModal": {
         "title": "Portfolio",
@@ -92,5 +94,37 @@
     },
     "verifications": {
         "title": "Verifications"
+    },
+    "overview": {
+        "proBanner": {
+            "title": "Make your profile stand out",
+            "description": "Add a cover image, customize your profile, and unlock more opportunities with Pro."
+        },
+        "cards": {
+            "achievements": {
+                "title": "Achievements",
+                "description": "Track your progress, completed projects, reviews, and profile milestones."
+            },
+            "store": {
+                "title": "Store",
+                "description": "Buy profile boosts, visual upgrades, badges, and other platform features."
+            },
+            "advertising": {
+                "title": "Advertising",
+                "description": "Promote your services, profile, or project to reach more clients."
+            },
+            "settings": {
+                "title": "Settings",
+                "description": "Manage your information, password, notifications, privacy, and more."
+            },
+            "affiliate": {
+                "title": "Affiliate program",
+                "description": "Invite new users to WorkZora and earn rewards for successful referrals."
+            },
+            "bonuses": {
+                "title": "Bonuses",
+                "description": "View your bonus balance, promo codes, and available offers."
+            }
+        }
     }
 }

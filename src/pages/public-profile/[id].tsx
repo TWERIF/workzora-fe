@@ -4,9 +4,9 @@ import { AboutSection } from "@/features/freelancerProfile/ui/AboutSection";
 import { PortfolioSection } from "@/features/freelancerProfile/ui/PortfolioSection";
 import { ProfileHeaderCard } from "@/features/freelancerProfile/ui/ProfileHeaderCard";
 import { ProfileTab, ProfileTabs } from "@/features/freelancerProfile/ui/ProfileTabs";
-import { ReviewsSection } from "@/features/freelancerProfile/ui/ReviewsSection";
 import { SkillsSection } from "@/features/freelancerProfile/ui/SkillsSection";
 import { usePortfolioByUserId } from "@/features/portfolio/model/usePortfolio";
+import { UserReviews } from "@/features/reviews/ui/UserReviews";
 import { useUser } from "@/features/users/model/useUsers";
 import { useRouter } from "next/router";
 import { useState } from "react";
@@ -42,9 +42,16 @@ export default function FreelancerProfilePage() {
                         {activeTab === "about" && <AboutSection user={isLoading ? undefined : user} />}
                         {activeTab === "portfolio" && <PortfolioSection items={portfolios} />}
                         {activeTab === "skills" && <SkillsSection skills={user?.skills} />}
-                        {activeTab === "reviews" && <ReviewsSection />}
+                        {activeTab === "reviews" && <UserReviews userId={user?.id} />}
                     </div>
                 </div>}
+
+                {/* clients have no portfolio/skills tabs, only reviews left by freelancers */}
+                {user?.role === "client" && (
+                    <div className="lg:col-span-2">
+                        <UserReviews userId={user.id} />
+                    </div>
+                )}
             </div>
         </div>
     );

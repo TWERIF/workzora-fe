@@ -86,7 +86,8 @@
       "offerJob": "Запропонувати роботу",
       "message": "Повідомлення",
       "block": "Заблокувати",
-      "report": "Поскаржитись"
+      "report": "Поскаржитись",
+      "memberSince": "На платформі з:"
     },
     "about": {
       "title": "Про фрилансера",
@@ -94,14 +95,18 @@
       "allTime": "За весь час",
       "rating": "Рейтинг",
       "hourRate": "Погодинна ставка",
-      "perHour": "За годину"
+      "perHour": "За годину",
+      "ratingPosition": "Позиція в загальному рейтингу"
     },
     "portfolio": {
       "title": "Портфоліо",
       "views_one": "{{count}} перегляд",
       "views_few": "{{count}} перегляди",
       "views_many": "{{count}} переглядів",
-      "views_other": "{{count}} переглядів"
+      "views_other": "{{count}} переглядів",
+      "addTitle": "Додати новий проєкт",
+      "addDescription": "Покажіть свої найкращі роботи, щоб клієнти зрозуміли ваш стиль, досвід і результати, які ви можете забезпечити.",
+      "addAction": "Додати проєкт у портфоліо"
     },
     "skills": {
       "title": "Навички"
@@ -133,6 +138,17 @@
       "portfolio": "Портфоліо поки що порожнє.",
       "skills": "Навички ще не додано.",
       "reviews": "Відгуків поки немає."
+    },
+    "edit": {
+      "editBio": "Редагувати опис",
+      "editSkills": "Редагувати навички",
+      "save": "Зберегти",
+      "cancel": "Скасувати",
+      "bioLabel": "Опис профілю",
+      "bioPlaceholder": "Розкажіть клієнтам про свій досвід, послуги та як ви працюєте.",
+      "skillLabel": "Додати навичку",
+      "skillPlaceholder": "Введіть навичку й натисніть Enter",
+      "removeSkill": "Видалити {{skill}}"
     }
   },
   "separators": {
@@ -530,7 +546,9 @@
     "activeProjects": "Активні проекти",
     "categories": "Проекти",
     "discussion": "Обговорення проекту",
-    "payment-data": "Фінанси"
+    "payment-data": "Фінанси",
+    "top-clients": "Топ клієнти",
+    "review": "Відгук"
   },
   "graphicDesignPage": {
     "hero": {

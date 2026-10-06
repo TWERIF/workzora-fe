@@ -86,7 +86,8 @@
       "offerJob": "Offer a job",
       "message": "Message",
       "block": "Block",
-      "report": "Report"
+      "report": "Report",
+      "memberSince": "Member since:"
     },
     "about": {
       "title": "About freelancer",
@@ -94,12 +95,16 @@
       "allTime": "All time",
       "rating": "Rating",
       "hourRate": "Hour rate",
-      "perHour": "Per hour"
+      "perHour": "Per hour",
+      "ratingPosition": "Position in general rating"
     },
     "portfolio": {
       "title": "Portfolio",
       "views_one": "{{count}} view",
-      "views_other": "{{count}} views"
+      "views_other": "{{count}} views",
+      "addTitle": "Add new project",
+      "addDescription": "Show your best work to help clients understand your style, experience, and the type of results you can deliver.",
+      "addAction": "Add portfolio project"
     },
     "skills": {
       "title": "Skills"
@@ -131,6 +136,17 @@
       "portfolio": "No portfolio items yet.",
       "skills": "No skills added yet.",
       "reviews": "No reviews yet."
+    },
+    "edit": {
+      "editBio": "Edit description",
+      "editSkills": "Edit skills",
+      "save": "Save",
+      "cancel": "Cancel",
+      "bioLabel": "Profile description",
+      "bioPlaceholder": "Tell clients about your experience, services, and how you work.",
+      "skillLabel": "Add a skill",
+      "skillPlaceholder": "Type a skill and press Enter",
+      "removeSkill": "Remove {{skill}}"
     }
   },
   "separators": {
@@ -528,7 +544,9 @@
     "activeProjects": "Active projects",
     "categories": "Jobs",
     "discussion": "Project discussion",
-    "payment-data": "Finances"
+    "payment-data": "Finances",
+    "top-clients": "Top clients",
+    "review": "Review"
   },
   "graphicDesignPage": {
     "hero": {

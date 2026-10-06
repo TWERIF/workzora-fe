@@ -8,6 +8,8 @@ import Breadcrumbs from "@/shared/components/ui/BreadCrumbs";
 import InfoCard from "@/shared/components/ui/Card/InfoCard";
 import ProfileCard from "@/shared/components/ui/Card/ProfileCard";
 import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 // Використовуємо оригінальні зображення
 import OBJECTS1_Image from "../../../public/images/OBJECTS (1).png";
@@ -17,6 +19,7 @@ import { useUsers } from "@/features/main/model/useUsers";
 
 export default function ClientsPage() {
   const { topClients } = useUsers();
+  const locale = useRouter().locale ?? "en";
   return (
     <div className="bg-white text-[#333] dark:bg-[#333333] dark:text-white transition-colors duration-300">
       {/* Hero Section — використовуємо той самий градієнт #7EA310 */}
@@ -110,14 +113,17 @@ export default function ClientsPage() {
             </div>
           </div>
 
-          <div className="mx-auto mt-12 lg:mt-16 flex items-center justify-center gap-2 group cursor-pointer w-fit p-2">
+          <Link
+            href={`/${locale}/top-clients`}
+            className="mx-auto mt-12 lg:mt-16 flex items-center justify-center gap-2 group cursor-pointer w-fit p-2"
+          >
             <span className="text-sm font-semibold text-[#7EA310] group-hover:underline transition-all">
               See more active clients
             </span>
             <div className="transform group-hover:translate-x-1 transition-transform flex items-center">
               <IconArrow color="#7EA310" />
             </div>
-          </div>
+          </Link>
         </div>
       </section>
 

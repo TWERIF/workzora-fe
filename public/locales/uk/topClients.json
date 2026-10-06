@@ -1,0 +1,26 @@
+{
+  "title": "Топ клієнти",
+  "search": {
+    "placeholder": "Пошук клієнта",
+    "button": "Пошук"
+  },
+  "filters": {
+    "title": "Фільтри",
+    "clearAll": "Очистити всі фільтри",
+    "rating": "Рейтинг клієнта",
+    "starsChip": "{{stars}} ★",
+    "remove": "Прибрати фільтр {{stars}} зірок"
+  },
+  "card": {
+    "goToProfile": "Перейти в профіль",
+    "lastReview": "Останній відгук про клієнта",
+    "lastActivity": "Остання активність",
+    "anonymous": "Клієнт",
+    "proposals_one": "{{count}} пропозиція",
+    "proposals_few": "{{count}} пропозиції",
+    "proposals_many": "{{count}} пропозицій",
+    "proposals_other": "{{count}} пропозицій"
+  },
+  "empty": "Клієнтів не знайдено.",
+  "error": "Не вдалося завантажити клієнтів. Спробуйте оновити сторінку."
+}

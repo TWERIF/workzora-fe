@@ -1,4 +1,6 @@
 import { PortfolioItem } from "@/features/portfolio/model/types";
+import UploadIcon from "@/shared/components/svg/Profile/UploadIcon";
+import ButtonPill from "@/shared/components/ui/Button/ButtonPill";
 import { useTranslation } from "react-i18next";
 import { Pagination } from "./Pagination";
 import { PortfolioCard } from "./PortfolioCard";
@@ -8,6 +10,7 @@ interface PortfolioSectionProps {
     page?: number;
     pageCount?: number;
     onPageChange?: (page: number) => void;
+    onAddProject?: () => void;
 }
 
 export const PortfolioSection = ({
@@ -15,22 +18,36 @@ export const PortfolioSection = ({
     page = 1,
     pageCount = 1,
     onPageChange,
+    onAddProject,
 }: PortfolioSectionProps) => {
     const { t } = useTranslation("common");
 
     return (
-        <section>
-            <h2 className="text-base font-semibold text-text dark:text-text-dark">
+        <section className="flex flex-col gap-6">
+            <h2 className="text-25 font-bold text-text dark:text-text-dark">
                 {t("profile.portfolio.title")}
             </h2>
 
-            {items.length === 0 ? (
-                <p className="mt-3 rounded-20 border border-border bg-bg-header px-15 py-13 text-sm text-text-muted dark:bg-bg-modalDark">
+            {items.length === 0 && !onAddProject ? (
+                <p className="rounded-3xl bg-surface px-6 py-3 text-sm text-text-light dark:bg-bg-modalDark">
                     {t("profile.noData.portfolio")}
                 </p>
             ) : (
                 <>
-                    <div className="mt-3 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                        {onAddProject && (
+                            <div className="flex min-h-[483px] flex-col items-center justify-center gap-3 rounded-3xl border border-dashed border-text-light px-6 text-center">
+                                <div className="flex flex-col gap-[6px] text-text dark:text-text-dark">
+                                    <p className="text-base font-semibold">{t("profile.portfolio.addTitle")}</p>
+                                    <p className="text-sm">{t("profile.portfolio.addDescription")}</p>
+                                </div>
+                                <ButtonPill
+                                    onClick={onAddProject}
+                                    icon={<UploadIcon />}
+                                    text={t("profile.portfolio.addAction")}
+                                />
+                            </div>
+                        )}
                         {items.map((item) => (
                             <PortfolioCard key={item.id} item={item} />
                         ))}

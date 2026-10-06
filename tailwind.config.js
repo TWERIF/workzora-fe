@@ -32,7 +32,16 @@ module.exports = {
         checkbox: "#C8C7C7",
         border: {
           DEFAULT: "rgba(200, 199, 199, 1)",
+          light: "#E2E2E2", // Figma: Main/Main 10
         },
+        /* === Figma redesign tokens === */
+        surface: {
+          DEFAULT: "#F5F5F5", // Figma: Main/Main 5
+          success: "#F2F6E7", // Figma: Primary/Primary 10
+        },
+        secondary: "#216B52", // Figma: Secondary 100
+        star: "#EBB447", // Figma: rating stars / rating ring
+        danger: "#EF4C4C", // Figma: "Clear all filters" link and chip close icon
         /* === Status colors (badges, notices) === */
         status: {
           success: "#7EA310",
@@ -61,6 +70,13 @@ module.exports = {
       },
       borderRadius: {
         '20': '20px', // для rounded-20
+        '18': '18px',
+        '22': '22px',
+        '36': '36px',
+      },
+      fontSize: {
+        '22': ['22px', '31px'],
+        '25': '25px',
       },
       spacing: {
         '13': '13px', // для py-13

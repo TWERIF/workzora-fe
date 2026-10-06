@@ -1,0 +1,24 @@
+{
+  "title": "Top clients",
+  "search": {
+    "placeholder": "Search for a client",
+    "button": "Search"
+  },
+  "filters": {
+    "title": "Filters",
+    "clearAll": "Clear all filters",
+    "rating": "Client rating",
+    "starsChip": "{{stars}} ★",
+    "remove": "Remove the {{stars}} stars filter"
+  },
+  "card": {
+    "goToProfile": "Go to profile",
+    "lastReview": "Last client review",
+    "lastActivity": "Last activity",
+    "anonymous": "Client",
+    "proposals_one": "{{count}} proposal",
+    "proposals_other": "{{count}} proposals"
+  },
+  "empty": "No clients found.",
+  "error": "Failed to load clients. Try refreshing the page."
+}

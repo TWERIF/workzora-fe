@@ -114,13 +114,7 @@ export const PaymentForm = ({
         // checkout page. Submitting here just creates the escrow
         // invoice; the actual card entry happens inside the embedded
         // checkout below.
-        const payload: CreateEscrowPayload = {
-            amount,
-            currencyCode,
-            projectId,
-            clientId,
-            freelancerId,
-        };
+        const payload: CreateEscrowPayload = { projectId };
 
         createEscrow(payload, {
             onSuccess: (escrow: any) => {
