@@ -1,5 +1,5 @@
-import Hotjar from '@/shared/components/analytics/Hotjar';
-import VisitTracker from '@/shared/components/analytics/VisitTracker';
+import Hotjar from '@/features/analytics/ui/Hotjar';
+import VisitTracker from '@/features/analytics/ui/VisitTracker';
 import Footer from '@/shared/components/ui/Footer/Footer';
 import Header from '@/shared/components/ui/Header/Header';
 import Layout from '@/shared/components/ui/Layout/Layout';

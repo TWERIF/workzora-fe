@@ -8,6 +8,7 @@ import SearchIcon from "@/shared/components/svg/SearchIcon";
 import Breadcrumbs from "@/shared/components/ui/BreadCrumbs";
 import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
+import PageMeta from "@/shared/components/seo/PageMeta";
 
 const ITEMS_PER_PAGE = 6;
 
@@ -160,6 +161,7 @@ export default function TopFreelancers() {
 
   return (
     <div className="bg-[#ffffff] text-text dark:bg-bg-dark dark:text-text-dark transition-colors py-20 duration-300 min-h-screen px-0 md:px-20 overflow-x-hidden">
+      <PageMeta page="freelancers" />
       <div className="container mx-auto px-4 pt-6">
         <Breadcrumbs />
       </div>

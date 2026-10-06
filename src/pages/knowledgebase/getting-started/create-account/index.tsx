@@ -7,6 +7,7 @@ import { Clock } from "@/shared/components/svg/Knowledgebase/Clock";
 import { Team } from "@/shared/components/svg/Knowledgebase/Team";
 import ButtonGradient from "@/shared/components/ui/Button/ButtonGradient";
 import { useTranslation } from "react-i18next";
+import PageMeta from "@/shared/components/seo/PageMeta";
 
 
 export default function CreateAccountPage() {
@@ -24,6 +25,7 @@ export default function CreateAccountPage() {
 
     return (
         <main className="bg-white dark:bg-bg-dark py-28">
+            <PageMeta page="createAccount" />
             <section className="px-4 text-center">
                 <span className="inline-block rounded-full bg-success px-5 py-2 text-[13px] font-medium text-text-dark">
                     {t("badge")}

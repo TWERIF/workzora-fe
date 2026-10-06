@@ -64,6 +64,9 @@ import reviewUk from "../public/locales/uk/review.json";
 import topClientsEn from "../public/locales/en/topClients.json";
 import topClientsUk from "../public/locales/uk/topClients.json";
 
+import seoEn from "../public/locales/en/seo.json";
+import seoUk from "../public/locales/uk/seo.json";
+
 const resources = {
     en: {
       common: commonEn,
@@ -89,6 +92,7 @@ const resources = {
       footer: footerEn,
       review: reviewEn,
       topClients: topClientsEn,
+      seo: seoEn,
     },
     uk: {
       common: commonUk,
@@ -114,6 +118,7 @@ const resources = {
       footer: footerUk,
       review: reviewUk,
       topClients: topClientsUk,
+      seo: seoUk,
     },
 };
 

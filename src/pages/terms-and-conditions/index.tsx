@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import PageMeta from "@/shared/components/seo/PageMeta";
 
 export default function TermsPage() {
     const { t } = useTranslation('common');
@@ -7,6 +8,7 @@ export default function TermsPage() {
 
     return (
         <main className="min-h-screen bg-bg dark:bg-bg-dark text-text dark:text-text-dark transition-colors duration-200 ease-in-out py-12 px-4 sm:px-6 lg:px-8">
+            <PageMeta page="terms" />
             <div className="max-w-6xl mx-auto">
 
                 <div className="mb-10 text-center relative pb-6">

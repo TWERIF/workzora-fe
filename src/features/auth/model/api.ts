@@ -40,6 +40,21 @@ export const verify = async (): Promise<User> => {
 };
 
 export const confirmEmail = async (email: string) => {
-  const res = await $api.post("/auth/confirm-email", { email });
+  const res = await $api.post<{ success: boolean }>("/auth/confirm-email", { email });
+  return res.data;
+};
+
+export const verifyEmailCode = async ({ email, code }: { email: string; code: number }) => {
+  const res = await $api.post<{ success: boolean }>("/auth/verify-email", { email, code });
+  return res.data;
+};
+
+export const requestPasswordReset = async ({ email, locale }: { email: string; locale?: string }) => {
+  const res = await $api.post<{ success: boolean }>("/auth/forgot-password", { email, locale });
+  return res.data;
+};
+
+export const resetPassword = async (data: { email: string; code: string; password: string }) => {
+  const res = await $api.post<{ success: boolean }>("/auth/reset-password", data);
   return res.data;
 };

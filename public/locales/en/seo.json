@@ -1,0 +1,86 @@
+{
+  "home": {
+    "title": "Find freelancers and projects",
+    "description": "Workzora is a platform to find projects, freelancers and specialists. Post tasks, hire performers or get new orders quickly and safely."
+  },
+  "news": {
+    "title": "Blog: freelancing, marketing and AI",
+    "description": "Useful articles about freelancing, online work, marketing, AI tools and remote collaboration from the Workzora team."
+  },
+  "freelancers": {
+    "title": "Top freelancers",
+    "description": "Find verified freelancers with ratings, reviews and portfolios."
+  },
+  "topClients": {
+    "title": "Top clients",
+    "description": "Clients with the best ratings and reviews from freelancers on Workzora."
+  },
+  "categories": {
+    "title": "All projects",
+    "description": "Open projects by category, budget and tags. Find work that fits your skills."
+  },
+  "knowledgebase": {
+    "title": "Knowledge base",
+    "description": "Guides on accounts, projects, payments, escrow and safety on Workzora."
+  },
+  "gettingStarted": {
+    "title": "Getting started",
+    "description": "How to create an account, set up your profile and start using Workzora."
+  },
+  "createAccount": {
+    "title": "How to create a Workzora account",
+    "description": "Step by step guide to signing up and choosing an account type."
+  },
+  "faq": {
+    "title": "FAQ",
+    "description": "Answers to common questions about Workzora."
+  },
+  "fees": {
+    "title": "Fees and charges",
+    "description": "Workzora commissions and payment terms."
+  },
+  "contacts": {
+    "title": "Contacts",
+    "description": "Contact the Workzora team."
+  },
+  "aboutUs": {
+    "title": "About us",
+    "description": "Who we are, how Workzora works and what we are building."
+  },
+  "privacyPolicy": {
+    "title": "Privacy policy",
+    "description": "How Workzora collects and protects personal data."
+  },
+  "terms": {
+    "title": "Terms and conditions",
+    "description": "Rules for using the Workzora platform."
+  },
+  "codeOfConduct": {
+    "title": "Code of conduct",
+    "description": "How clients and freelancers work together on Workzora."
+  },
+  "copyrightPolicy": {
+    "title": "Copyright policy",
+    "description": "Copyright rules for content on Workzora."
+  },
+  "createProject": {
+    "title": "Post a project",
+    "description": "Describe your task, set a budget and receive proposals from freelancers."
+  },
+  "registration": {
+    "title": "Sign up",
+    "description": "Create a Workzora account as a client or a freelancer."
+  },
+  "login": {
+    "title": "Log in",
+    "description": "Log in to your Workzora account."
+  },
+  "forgotPassword": {
+    "title": "Password recovery",
+    "description": "Reset your Workzora password."
+  },
+  "comingSoon": {
+    "title": "Coming soon",
+    "description": "This section is under construction."
+  }
+}

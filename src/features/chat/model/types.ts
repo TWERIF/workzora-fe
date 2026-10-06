@@ -19,3 +19,21 @@ export enum ProjectStatus {
   CLOSED = "closed",
 }
 
+
+export interface ChatRoom {
+  id: string;
+  projectId: string;
+}
+
+export interface ChatMessage {
+  id: string;
+  chatId: string;
+  senderId: string | null;
+  receiverId: string | null;
+  content: string;
+  fileUrl?: string | null;
+  isSystemMessage?: boolean;
+  senderName?: string;
+  senderAvatar?: string | null;
+  createdAt: string;
+}

@@ -1,6 +1,6 @@
 "use client";
 
-import { $api } from "@/shared/components/http";
+import { useUsers } from "@/features/users/model/useUsers";
 import ButtonGradient from "@/shared/components/ui/Button/ButtonGradientSmall";
 import AuthHeader from "@/shared/components/ui/Header/AuthHeader";
 import Input from "@/shared/components/ui/Input/Input";
@@ -15,6 +15,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function ReserveEmail() {
+  const { updateMutaion } = useUsers();
   const [email, setEmail] = useState("");
   const [submit, setSubmit] = useState(false);
   const [errors, seterrors] = useState<string[]>([]);
@@ -43,10 +44,7 @@ export default function ReserveEmail() {
   const addEmail = async () => {
     if (!validate() || !submit) return;
 
-    const res = await $api.put("/users/update", {
-      reserveEmail: email,
-    });
-    if (res) router.push(`/${locale}/account-type`);
+    updateMutaion.mutate({ reserveEmail: email }, { onSuccess: () => router.push(`/${locale}/account-type`) });
   };
 
   useEffect(() => {

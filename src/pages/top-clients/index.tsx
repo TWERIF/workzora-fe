@@ -9,6 +9,7 @@ import ButtonGradient from "@/shared/components/ui/Button/ButtonGradient";
 import Loader from "@/shared/components/ui/Loader";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import PageMeta from "@/shared/components/seo/PageMeta";
 
 const ITEMS_PER_PAGE = 8;
 
@@ -45,6 +46,7 @@ export default function TopClients() {
 
     return (
         <div className="min-h-screen overflow-x-hidden bg-bg-header px-4 pb-24 pt-24 text-text transition-colors duration-300 dark:bg-bg-dark dark:text-text-dark sm:px-8">
+            <PageMeta page="topClients" />
             <div className="mx-auto flex max-w-[1360px] flex-col gap-6">
                 <div>
                     <Breadcrumbs />

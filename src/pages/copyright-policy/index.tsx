@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
+import PageMeta from "@/shared/components/seo/PageMeta";
 
 
 const SUPPORT_EMAIL = "admin@workzora.com";
@@ -56,6 +57,7 @@ export default function CopyrightPolicyPage() {
 
     return (
         <main className="min-h-screen bg-bg text-text dark:bg-bg-dark dark:text-text-dark">
+            <PageMeta page="copyrightPolicy" />
             <div className="mx-auto max-w-5xl px-6 py-16 md:py-24">
                 {/* Header */}
                 <header className="mb-14 max-w-2xl">

@@ -1,9 +1,8 @@
 import type { NextConfig } from "next";
 import { i18n } from "./next-i18next.config";
 const nextConfig: NextConfig = {
-  i18n,
+  i18n: { ...i18n, localeDetection: false },
   reactStrictMode: true,
-  localeDetection: false,
   images: {
     unoptimized: true,
     remotePatterns: [
@@ -14,9 +13,6 @@ const nextConfig: NextConfig = {
         pathname: "/**", 
       },
     ],
-  },
-  typescript: {
-    ignoreBuildErrors: true,
   },
   eslint: {
     ignoreDuringBuilds: true,

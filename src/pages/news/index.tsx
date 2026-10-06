@@ -1,4 +1,5 @@
 import { Post } from "@/features/posts/model/types";
+import PageMeta from "@/shared/components/seo/PageMeta";
 import { PaginatedPosts } from "@/features/posts/model/types-paginated-posts";
 import { useLatestPosts, usePostList, useSearchPosts } from "@/features/posts/model/usePosts";
 import { BlogHero } from "@/features/posts/ui/BlogHero";
@@ -36,6 +37,7 @@ export const BlogPage = () => {
 
     return (
         <div className="min-h-screen bg-bg px-4 py-16 dark:bg-bg-dark sm:px-8 lg:px-16">
+            <PageMeta page="news" />
             <div className="mx-auto flex max-w-6xl flex-col gap-10">
                 <BlogHero onSearch={setSearchTerm} />
 

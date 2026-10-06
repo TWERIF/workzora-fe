@@ -2,7 +2,7 @@ import { InputI } from "@/shared/types";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import Input from "./Input";
-import { $api } from "../../http";
+import { useEmailVerification } from "@/features/auth/model/useEmailVerification";
 
 interface ConfirmI extends InputI {
     sendMail: () => void;
@@ -12,6 +12,7 @@ interface ConfirmI extends InputI {
 }
 
 export default function ConfirmEmail(props: ConfirmI) {
+    const { verifyCode } = useEmailVerification();
     const { t, i18n } = useTranslation('common');
     const [ready, setReady] = useState(false);
     const [cooldown, setCooldown] = useState(0); // ⏱ таймер
@@ -25,11 +26,8 @@ export default function ConfirmEmail(props: ConfirmI) {
     } = props;
 
     const verifyEmail = async () => {
-        const status = await $api.post('/auth/verify-email', {
-            email,
-            code: parseInt(value)
-        })
-        setMailConfirmed(status.data.success);
+        const status = await verifyCode({ email, code: Number(value) }).catch(() => ({ success: false }));
+        setMailConfirmed(status.success);
     }
     const effectiveCooldown = mailConfirmed ? 0 : cooldown;
 

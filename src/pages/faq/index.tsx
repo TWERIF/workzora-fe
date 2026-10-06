@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import PageMeta from "@/shared/components/seo/PageMeta";
 
 // Налаштування іконок для кожної категорії відповідно до документа
 const CATEGORIES = [
@@ -53,6 +54,7 @@ export default function FAQPage() {
 
     return (
         <main className="min-h-screen bg-bg dark:bg-bg-dark text-text dark:text-text-dark transition-colors duration-300 py-13 px-15 md:py-20">
+            <PageMeta page="faq" />
             <div className="max-w-3xl mx-auto space-y-12">
 
                 {/* HEADER SECTION */}

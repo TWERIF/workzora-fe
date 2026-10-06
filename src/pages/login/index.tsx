@@ -1,15 +1,10 @@
-import Head from "next/head";
+import type { GetServerSideProps } from "next";
 
 export default function Login() {
-    return (
-        <>
-            <Head>
-                <title>Workzora | Login</title>
-                <meta name="description" content="Workzora | Login" />
-                <meta name="viewport" content="width=device-width, initial-scale=1" />
-                <link rel="icon" href="/favicon.ico" />
-            </Head>
-
-        </>
-    );
+    return null;
 }
+
+export const getServerSideProps: GetServerSideProps = async ({ locale, defaultLocale }) => {
+    const prefix = locale && locale !== defaultLocale ? `/${locale}` : "";
+    return { redirect: { destination: `${prefix}/?login=1`, permanent: false } };
+};

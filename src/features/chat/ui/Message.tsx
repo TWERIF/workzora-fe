@@ -19,7 +19,7 @@ export interface MessageProps {
 
   isMe: boolean;
   senderName?: string;
-  senderAvatar?: string;
+  senderAvatar?: string | null;
   isSystemMessage?: boolean; 
 }
 

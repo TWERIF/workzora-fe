@@ -1,8 +1,9 @@
-import { $api } from "@/shared/components/http";
+import { usePasswordReset } from "@/features/auth/model/useEmailVerification";
 import ButtonGradient from "@/shared/components/ui/Button/ButtonGradientSmall";
 import Input from "@/shared/components/ui/Input/Input";
 import { validateConfirmPassword, validateEmail, validatePassword } from "@/utils/validators";
-import Head from "next/head";
+import { isAxiosError } from "axios";
+import PageMeta from "@/shared/components/seo/PageMeta";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
@@ -20,7 +21,7 @@ export default function ForgotPassword() {
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [errors, setErrors] = useState<Record<string, string | undefined>>({});
-    const [isSending, setIsSending] = useState(false);
+    const { requestCode: sendResetCode, resetPassword: submitNewPassword, isPending: isSending } = usePasswordReset();
 
     const requestCode = async () => {
         const emailError = validateEmail(email);
@@ -30,14 +31,11 @@ export default function ForgotPassword() {
         }
 
         setErrors({});
-        setIsSending(true);
         try {
-            await $api.post("/auth/forgot-password", { email: email.trim(), locale });
+            await sendResetCode({ email: email.trim(), locale });
             setStep("code");
         } catch {
             setErrors({ global: t("auth.reset.error") });
-        } finally {
-            setIsSending(false);
         }
     };
 
@@ -52,24 +50,18 @@ export default function ForgotPassword() {
         setErrors(nextErrors);
         if (Object.values(nextErrors).some(Boolean)) return;
 
-        setIsSending(true);
         try {
-            await $api.post("/auth/reset-password", { email: email.trim(), code: code.trim(), password });
+            await submitNewPassword({ email: email.trim(), code: code.trim(), password });
             setStep("done");
-        } catch (error: any) {
-            const status = error?.response?.status;
+        } catch (error) {
+            const status = isAxiosError(error) ? error.response?.status : undefined;
             setErrors({ global: t(status === 400 ? "auth.reset.invalidCode" : "auth.reset.error") });
-        } finally {
-            setIsSending(false);
         }
     };
 
     return (
         <>
-            <Head>
-                <title>{`${t("auth.reset.title")} — Workzora`}</title>
-                <meta name="robots" content="noindex" />
-            </Head>
+<PageMeta page="forgotPassword" noindex />
 
             <section className="flex min-h-[70vh] items-center justify-center bg-bg px-4 py-28 dark:bg-bg-dark">
                 <div className="flex w-full max-w-[440px] flex-col gap-4 rounded-22 bg-bg-header p-8 shadow-input dark:bg-bg-modalDark dark:shadow-input-dark">

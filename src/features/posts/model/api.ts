@@ -1,4 +1,6 @@
 import { $api } from "@/shared/components/http";
+import { isAxiosError } from "axios";
+import { Post } from "./types";
 
 
 export const getAllPosts = async (
@@ -44,4 +46,16 @@ export const searchPosts = async (searchTerm: string) => {
     });
 
     return res.data;
+};
+
+export type PostLookup = { status: "found"; post: Post } | { status: "missing" } | { status: "unavailable" };
+
+export const findPostForPage = async (idOrSlug: string, baseURL?: string): Promise<PostLookup> => {
+    try {
+        const res = await $api.get<Post>(`/posts/${encodeURIComponent(idOrSlug)}`, baseURL ? { baseURL } : undefined);
+        return { status: "found", post: res.data };
+    } catch (error) {
+        if (isAxiosError(error) && error.response?.status === 404) return { status: "missing" };
+        return { status: "unavailable" };
+    }
 };

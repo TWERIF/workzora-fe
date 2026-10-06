@@ -7,11 +7,11 @@ import {
 } from "@/utils/validators";
 import { useTranslation } from "react-i18next";
 import { useTheme } from "@/utils/useTheme";
-import Head from "next/head";
+import PageMeta from "@/shared/components/seo/PageMeta";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
-import { $api } from "@/shared/components/http";
+import { useEmailVerification } from "@/features/auth/model/useEmailVerification";
 import Logo from "@/shared/components/svg/Logo";
 import LogoRegWhite from "@/shared/components/svg/LogoRegWhite";
 import ButtonGradient from "@/shared/components/ui/Button/ButtonGradientSmall";
@@ -22,6 +22,7 @@ import AuthLayout from "@/shared/components/ui/Layout/AuthLayout";
 import { useAuth } from "@/features/auth/model/useAuth";
 
 export default function Registration() {
+  const { sendCode } = useEmailVerification();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [userName, setUserName] = useState("");
@@ -43,7 +44,7 @@ export default function Registration() {
 
   const sendMail = async () => {
     if (!validateEmailTmp()) return;
-    await $api.post("/auth/confirm-email", { email });
+    await sendCode(email);
   };
 
   const validateEmailTmp = (): boolean => {
@@ -111,9 +112,7 @@ export default function Registration() {
   if (!ready) return null;
   return (
     <>
-      <Head>
-        <title>Workzora | Registration</title>
-      </Head>
+      <PageMeta page="registration" noindex />
       <AuthLayout>
         <div className="flex-1 max-w-[50%] bg-bg opacity-1 z-10 flex flex-col items-end justify-center dark:bg-bg-dark">
           <div className="flex flex-col items-center gap-[30px] mr-[77px]">

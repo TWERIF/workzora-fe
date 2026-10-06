@@ -2,6 +2,7 @@
 
 import { useMemo, useState, type ReactNode, type SVGProps } from 'react';
 import { useTranslation } from 'react-i18next';
+import PageMeta from "@/shared/components/seo/PageMeta";
 
 /**
  * Fees & Commissions page ("Збори та комісії").
@@ -163,6 +164,7 @@ export default function FeesPage() {
 
     return (
         <div className="min-h-screen bg-bg dark:bg-bg-dark">
+            <PageMeta page="fees" />
             <div className="mx-auto max-w-5xl px-6 py-16 md:px-10">
                 {/* Hero */}
                 <header className="mb-10">

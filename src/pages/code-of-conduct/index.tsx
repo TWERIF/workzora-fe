@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { useEffect, useRef, useState, type ReactNode, type RefObject } from "react";
 import { useTranslation } from "react-i18next";
+import PageMeta from "@/shared/components/seo/PageMeta";
 
 /**
  * "Кодекс поведінки" / Code of Conduct page.
@@ -114,6 +115,7 @@ export default function CodeOfConduct({
 
     return (
         <div className="min-h-screen bg-bg text-text dark:bg-bg-dark dark:text-text-dark">
+            <PageMeta page="codeOfConduct" />
             {/* Header */}
             <header className="border-b border-border/60 bg-bg-header dark:border-white/10 dark:bg-bg-dark">
                 <div className="mx-auto max-w-5xl px-6 py-13 sm:px-15">

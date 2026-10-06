@@ -7,15 +7,13 @@ import { PostHero } from "@/features/posts/ui/post/PostHero";
 import { RelatedPosts } from "@/features/posts/ui/post/RelatedPosts";
 import { SubscribeCard } from "@/features/posts/ui/SubscribeCard";
 import { Post } from "@/features/posts/model/types";
-import { $api } from "@/shared/components/http";
+import { findPostForPage } from "@/features/posts/model/api";
 import type { GetServerSideProps } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
 
 const SITE_URL = "https://workzora.com";
-// SSR runs on the server, which may reach the API by an internal address
-const API_URL = process.env.API_INTERNAL_URL || $api.defaults.baseURL;
 
 const stripHtml = (html: string) => html.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
 
@@ -89,27 +87,20 @@ const PostDetailPage = ({ initialPost }: PostDetailPageProps) => {
     );
 };
 
-// Rendered on the server so search engines get the article text and meta tags.
-// Old links by id are permanently redirected to the readable slug link.
 export const getServerSideProps: GetServerSideProps<PostDetailPageProps> = async ({ params, locale, defaultLocale }) => {
     const key = String(params?.slug ?? "");
+    const lookup = await findPostForPage(key, process.env.API_INTERNAL_URL);
 
-    try {
-        const res = await fetch(`${API_URL}/posts/${encodeURIComponent(key)}`);
-        if (res.status === 404) return { notFound: true };
-        if (!res.ok) return { props: { initialPost: null } };
+    if (lookup.status === "missing") return { notFound: true };
+    if (lookup.status === "unavailable") return { props: { initialPost: null } };
 
-        const post: Post = await res.json();
-        if (post.slug && post.slug !== key) {
-            const prefix = locale && locale !== defaultLocale ? `/${locale}` : "";
-            return { redirect: { destination: `${prefix}/news/${post.slug}`, permanent: true } };
-        }
-
-        return { props: { initialPost: post } };
-    } catch {
-        // API unreachable from the server: let the page load the post on the client
-        return { props: { initialPost: null } };
+    const { post } = lookup;
+    if (post.slug && post.slug !== key) {
+        const prefix = locale && locale !== defaultLocale ? `/${locale}` : "";
+        return { redirect: { destination: `${prefix}/news/${post.slug}`, permanent: true } };
     }
+
+    return { props: { initialPost: post } };
 };
 
 export default PostDetailPage;

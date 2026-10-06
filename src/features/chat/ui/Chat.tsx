@@ -3,7 +3,9 @@ import { useCreateEscrow } from "@/features/payment/model/usePayment";
 import { Project, ProjectStatus } from "@/features/projects/model/types";
 import { projectKeys, useProjects } from "@/features/projects/model/useProjects";
 import { walletKeys } from "@/features/finances/model/useWallet";
-import { $api, API_URL } from "@/shared/components/http";
+import { API_URL } from "@/shared/components/http";
+import { useProjectChat, useUploadChatFile } from "../model/useChat";
+import type { ChatMessage } from "../model/types";
 import Breadcrumbs, {
   BreadcrumbItem,
 } from "@/shared/components/ui/BreadCrumbs";
@@ -17,16 +19,6 @@ import { io, Socket } from "socket.io-client";
 import { ChatProjectComplete } from "./ChatProjectComplete";
 import { ChatReviewPrompt } from "./ChatReviewPrompt";
 import Message from "./Message";
-
-interface ChatMessage {
-  id: string;
-  chatId: string;
-  senderId: string;
-  receiverId: string;
-  content: string;
-  fileUrl?: string;
-  createdAt: string;
-}
 
 interface ChatProps {
   project: Project;
@@ -42,7 +34,8 @@ export default function Chat({ project, receiverId }: ChatProps) {
   const [newMessage, setNewMessage] = useState("");
   const { theme } = useTheme();
   const isDark = theme === "dark";
-  const [chatId, setChatId] = useState<string | null>(null);
+  const { chatId, messages: initialMessages } = useProjectChat(project?.id);
+  const uploadFileMutation = useUploadChatFile();
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [socket, setSocket] = useState<Socket | null>(null);
 
@@ -67,26 +60,8 @@ export default function Chat({ project, receiverId }: ChatProps) {
   }, [messages]);
 
   useEffect(() => {
-    const fetchChat = async () => {
-      try {
-        const roomRes = await $api.get(`chat/project/${project?.id}`);
-        const room = roomRes.data;
-        setChatId(room.id);
-
-        const messagesRes = await $api.get(
-          `/chat/${room.id}/messages?amount=50`,
-        );
-        const fetchedMessages = messagesRes.data;
-        setMessages(fetchedMessages);
-      } catch (error) {
-        console.error("Помилка завантаження чату:", error);
-      }
-    };
-
-    if (project?.id) {
-      fetchChat();
-    }
-  }, [project?.id]);
+    if (initialMessages) setMessages(initialMessages);
+  }, [initialMessages]);
 
   useEffect(() => {
     if (!chatId || !currentUserId) return;
@@ -144,15 +119,7 @@ export default function Chat({ project, receiverId }: ChatProps) {
 
     try {
       if (selectedFile) {
-        const formData = new FormData();
-        formData.append("file", selectedFile);
-
-        const response = await $api.post("/chat/upload", formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        });
-        uploadedFileUrl = response.data.fileUrl;
+        uploadedFileUrl = await uploadFileMutation.mutateAsync(selectedFile);
       }
 
       socket.emit("sendMessage", {

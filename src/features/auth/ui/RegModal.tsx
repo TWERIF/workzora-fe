@@ -1,4 +1,4 @@
-import { $api } from "@/shared/components/http";
+import { useEmailVerification } from "@/features/auth/model/useEmailVerification";
 import IconApple from "@/shared/components/svg/IconApple";
 import IconAppleDark from "@/shared/components/svg/IconAppleDark";
 import IconFacebook from "@/shared/components/svg/IconFacebook";
@@ -30,6 +30,7 @@ interface ModalI {
     setIsOpenLogin: (s: boolean) => void;
 }
 export default function RegModal(props: ModalI) {
+    const { sendCode } = useEmailVerification();
     const {
         setIsOpen,
         setIsOpenLogin,
@@ -58,7 +59,7 @@ export default function RegModal(props: ModalI) {
 
     const sendMail = async () => {
         if (!validateEmailTmp()) return;
-        await $api.post('/auth/confirm-email', { email });
+        await sendCode(email);
     }
 
     const validateEmailTmp = (): boolean => {

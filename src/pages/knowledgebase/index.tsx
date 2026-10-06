@@ -13,6 +13,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { ReactNode } from "react";
 import { useTranslation } from "react-i18next";
+import PageMeta from "@/shared/components/seo/PageMeta";
 
 
 interface HelpCategory {
@@ -42,6 +43,7 @@ export default function HelpKnowledgeBase() {
 
     return (
         <section className="bg-white dark:bg-bg-dark px-4 py-28">
+            <PageMeta page="knowledgebase" />
             <div className="mx-auto flex w-full max-w-[1200px] flex-col items-center text-center">
                 <span className="mb-6 rounded-full bg-gradient px-5 py-2 text-sm font-medium text-text-dark">
                     {t("badge")}

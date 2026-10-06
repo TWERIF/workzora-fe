@@ -7,6 +7,7 @@ import Pagination from "@/shared/components/ui/Pagination";
 import { Search } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import PageMeta from "@/shared/components/seo/PageMeta";
 
 
 const LIMIT = 10;
@@ -64,6 +65,7 @@ export default function FindWorkPage() {
 
     return (
         <div className="bg-bg dark:bg-bg-dark min-h-screen px-16 py-24 transition-colors duration-200">
+            <PageMeta page="categories" />
             <Breadcrumbs />
 
             <div className="flex items-center justify-between mt-4">

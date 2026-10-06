@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import PageMeta from "@/shared/components/seo/PageMeta";
 
 export default function ContactsPage() {
     const { t } = useTranslation('common');
@@ -22,6 +23,7 @@ export default function ContactsPage() {
 
     return (
         <main className="min-h-screen bg-bg dark:bg-bg-dark text-text dark:text-text-dark transition-colors duration-300 py-28 px-15 ">
+            <PageMeta page="contacts" />
             <div className="max-w-5xl mx-auto space-y-10">
 
                 {/* ВЕЛИКИЙ ЗАГОЛОВОК СТОРІНКИ */}

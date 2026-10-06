@@ -3,6 +3,7 @@ import ButtonGradient from "@/shared/components/ui/Button/ButtonGradient";
 import KnowledgeBaseCard from "@/shared/components/ui/KnowledgeBase/KnowledgeBaseCard";
 import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
+import PageMeta from "@/shared/components/seo/PageMeta";
 
 interface CardT {
     title: string;
@@ -20,6 +21,7 @@ export default function GettingStarted() {
 
     return (
         <section className="bg-white dark:bg-bg-dark transition-colors duration-300 py-28">
+            <PageMeta page="gettingStarted" />
             <div className="max-w-[1200px] mx-auto px-[16px] md:px-[24px] ">
                 <div className="flex flex-col items-center text-center">
                     <span className="inline-block bg-success text-text-dark text-[13px] font-medium rounded-full px-[18px] py-[6px]">

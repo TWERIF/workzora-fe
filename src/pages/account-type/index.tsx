@@ -1,7 +1,7 @@
 'use client';
 
 
-import { $api } from "@/shared/components/http";
+import { useUsers } from "@/features/users/model/useUsers";
 import IconDoc from "@/shared/components/svg/IconDoc";
 import IconLaptop from "@/shared/components/svg/IconLaptop";
 import AccountTypeCard from "@/shared/components/ui/Card/AccountTypeCard";
@@ -17,6 +17,7 @@ import { useEffect, useState } from "react";
 export default function AccountType() {
 
     const [type, setType] = useState<string>("")
+    const { updateMutaion } = useUsers();
 
     const { t, i18n } = useTranslation('common');
     const [ready, setReady] = useState(false);
@@ -28,13 +29,7 @@ export default function AccountType() {
 
     useEffect(() => {
         if (!type.trim().length) return;
-        const update = async () => {
-            const res = await $api.put('/users/update', {
-                role: type
-            })
-            if (res) router.push(`/${locale}/profile`)
-        }
-        update();
+        updateMutaion.mutate({ role: type }, { onSuccess: () => router.push(`/${locale}/profile`) });
     }, [type])
 
     useEffect(() => {
