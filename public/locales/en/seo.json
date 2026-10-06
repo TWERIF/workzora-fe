@@ -82,5 +82,9 @@
   "comingSoon": {
     "title": "Coming soon",
     "description": "This section is under construction."
+  },
+  "support": {
+    "title": "Support",
+    "description": "Your requests to the Workzora team."
   }
 }

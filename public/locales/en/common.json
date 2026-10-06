@@ -1203,7 +1203,9 @@
       "messageLabel": "Message",
       "messagePlaceholder": "Describe your question or proposal...",
       "submitBtn": "Send Message",
-      "successMessage": "Thank you! Your message has been successfully sent. We will get back to you shortly."
+      "successMessage": "Thank you! Your message has been successfully sent. We will get back to you shortly.",
+      "errorMessage": "Could not send the message, try again later.",
+      "accountHint": "You can follow the answer in the Support section of your account."
     },
     "legalCard": {
       "title": "Legal Information",
@@ -1276,5 +1278,19 @@
       "title": "We couldn't find that article",
       "subtitle": "It may have been moved or removed. Head back to the blog to keep browsing."
     }
+  },
+  "supportPage": {
+    "title": "Support",
+    "subtitle": "Your requests to the Workzora team and our answers.",
+    "empty": "You have no requests yet.",
+    "newRequest": "Write to support",
+    "open": "Open",
+    "closed": "Closed",
+    "you": "You",
+    "team": "Workzora support",
+    "replyPlaceholder": "Your message",
+    "send": "Send",
+    "select": "Select a request",
+    "sendError": "Could not send the message"
   }
 }

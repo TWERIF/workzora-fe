@@ -30,7 +30,7 @@ const settingsItems: NavItem[] = [
 ];
 
 const secondaryItems: NavItem[] = [
-    { icon: "support", labelKey: "support", href: "/contacts" },
+    { icon: "support", labelKey: "support", href: "/support" },
     { icon: "news", labelKey: "news", href: "/news" },
 ];
 

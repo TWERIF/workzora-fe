@@ -17,7 +17,7 @@ const primaryItems: NavItem[] = [
 ];
 
 const secondaryItems: NavItem[] = [
-    { key: "support", href: "/contacts" },
+    { key: "support", href: "/support" },
     { key: "news", href: "/news" },
 ];
 

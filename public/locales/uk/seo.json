@@ -82,5 +82,9 @@
   "comingSoon": {
     "title": "Незабаром",
     "description": "Цей розділ ще в розробці."
+  },
+  "support": {
+    "title": "Підтримка",
+    "description": "Ваші звернення до команди Workzora."
   }
 }

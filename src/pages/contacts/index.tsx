@@ -1,5 +1,6 @@
 "use client";
 
+import { useContactForm } from '@/features/support/model/useSupport';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import PageMeta from "@/shared/components/seo/PageMeta";
@@ -11,13 +12,20 @@ export default function ContactsPage() {
     const [formData, setFormData] = useState({ name: '', email: '', message: '' });
     const [isSubmitted, setIsSubmitted] = useState(false);
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const contactForm = useContactForm();
+    const [sendError, setSendError] = useState(false);
+
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        // Емуляція відправки форми
-        if (formData.name && formData.email && formData.message) {
+        if (!formData.name || !formData.email || !formData.message) return;
+
+        setSendError(false);
+        try {
+            await contactForm.mutateAsync(formData);
             setIsSubmitted(true);
             setFormData({ name: '', email: '', message: '' });
-            setTimeout(() => setIsSubmitted(false), 6000); // Сховати повідомлення про успіх через 6 секунд
+        } catch {
+            setSendError(true);
         }
     };
 
@@ -92,6 +100,9 @@ export default function ContactsPage() {
                                 <p className="text-sm md:text-base font-medium text-success">
                                     {t('contactsPage.form.successMessage')}
                                 </p>
+                                {contactForm.data?.linkedToAccount && (
+                                    <p className="text-xs md:text-sm text-text-light">{t('contactsPage.form.accountHint')}</p>
+                                )}
                             </div>
                         ) : (
                             /* Сама форма */
@@ -142,9 +153,13 @@ export default function ContactsPage() {
                                 </div>
 
                                 {/* Кнопка сабміту з фірмовим градієнтом */}
+                                {sendError && (
+                                    <p className="text-sm text-red-500">{t('contactsPage.form.errorMessage')}</p>
+                                )}
                                 <div className="pt-2">
                                     <button
                                         type="submit"
+                                        disabled={contactForm.isPending}
                                         className="w-full bg-gradient text-white font-semibold px-15 py-13 rounded-20 shadow-input hover:opacity-90 transition-opacity duration-200 text-sm md:text-base"
                                     >
                                         {t('contactsPage.form.submitBtn')}
