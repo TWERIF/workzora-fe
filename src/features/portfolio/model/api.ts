@@ -56,9 +56,7 @@ export const createPortfolio = async (data: FormData) => {
     return res.data;
 };
 
-export const updatePortfolio = async (data: FormData) => {
-    const id = data.get("id");
-
+export const updatePortfolio = async ({ id, data }: { id: string; data: FormData }) => {
     const res = await $api.patch(`/portfolio/${id}`, data, {
         headers: {
             "Content-Type": "multipart/form-data",

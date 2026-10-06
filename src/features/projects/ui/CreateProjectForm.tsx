@@ -67,7 +67,7 @@ export default function CreateProjectForm() {
             }
 
             try {
-                await createMutation.mutateAsync({ ...result.data, clientId: user?.id! });
+                await createMutation.mutateAsync(result.data);
 
                 toast.success(t("toast.success_created"));
 

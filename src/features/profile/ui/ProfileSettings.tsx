@@ -67,13 +67,8 @@ export default function ProfileSettings({
   const showToast = (msg: string) => setToast({ msg, id: Date.now() });
 
   const onPortfolioSubmit = (formData: FormData) => {
-    if (user?.id) {
-      formData.append("userId", user.id);
-    }
-
     if (editingItem) {
-      formData.append("id", editingItem.id);
-      updateMutationPortfolio.mutate(formData, {
+      updateMutationPortfolio.mutate({ id: editingItem.id, data: formData }, {
         onSuccess: () => {
           setIsModalOpen(false);
           showToast(t("workSaved"));

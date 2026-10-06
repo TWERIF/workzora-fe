@@ -58,15 +58,10 @@ export const useUpdatePortfolio = () => {
 
     return useMutation({
         mutationFn: updatePortfolio,
-        onSuccess: (_, variables) => {
+        onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: portfolioKeys.lists });
             queryClient.invalidateQueries({ queryKey: portfolioKeys.myList });
-
-            const userId = variables.get("userId");
-
-            if (userId && typeof userId === "string") {
-                queryClient.invalidateQueries({ queryKey: portfolioKeys.byUserId(userId) });
-            }
+            queryClient.invalidateQueries({ queryKey: ["portfolios-user"] });
         },
     });
 };

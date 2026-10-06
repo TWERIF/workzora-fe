@@ -66,7 +66,6 @@ export default function MyProfile({ user }: { user: User }) {
   };
 
   const onPortfolioSubmit = (formData: FormData) => {
-    formData.append("userId", user.id);
     createMutation.mutate(formData, {
       onSuccess: () => {
         setIsModalOpen(false);

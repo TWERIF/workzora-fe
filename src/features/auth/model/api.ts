@@ -30,7 +30,6 @@ export const register = async ({
     email,
     username: userName,
     locale,
-    isActive,
   });
 
   return res.data;
