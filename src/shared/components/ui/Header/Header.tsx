@@ -1,6 +1,4 @@
-import { logout } from "@/features/auth/model/api";
 import { useAuth } from "@/features/auth/model/useAuth";
-import { useTheme } from "@/utils/useTheme";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -111,44 +109,28 @@ const UserIcon = () => (
   </svg>
 );
 
-const HEADER_SPACER_CLASS = "h-[92px] display-none";
-
 export default function Header() {
-  const { theme } = useTheme();
-  const isDark = theme === "dark";
   const { t } = useTranslation("common");
   const router = useRouter();
-  const { isAuthenticated, user } = useAuth();
+  const { isAuthenticated, user, logout } = useAuth();
 
-  const [mounted, setMounted] = useState(false);
-  const [width, setWidth] = useState(0);
   const [burgerOpen, setBurgerOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const init = () => {
-      setMounted(true);
-      setWidth(window.innerWidth);
-    };
-    init();
-    const handleResize = () => setWidth(window.innerWidth);
-    window.addEventListener("resize", handleResize);
-
     const handleScroll = () => setScrolled(window.scrollY > 8);
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  if (!mounted) return null;
+  useEffect(() => {
+    const close = () => setBurgerOpen(false);
+    router.events.on("routeChangeStart", close);
+    return () => router.events.off("routeChangeStart", close);
+  }, [router.events]);
 
   const locale = router.locale || "en";
-  const isMobile = width < 850;
-
 
   const forClientsItems: NavDropdownLink[] = [
     { label: t("profile.headers.topFreelancers"), href: `/${locale}/freelancers` },
@@ -165,50 +147,49 @@ export default function Header() {
     { label: t("profile.headers.news"), href: `/${locale}/news` },
   ];
 
-  const navLinks = (
-    <>
-      <NavDropdownItem label={t("profile.headers.for_clients")} items={forClientsItems} />
-      {user?.role !== "client" && (
-        <NavDropdownItem label={t("profile.headers.for_freelancers")} items={forFreelancersItems} />
-      )}
-    </>
+  const showFreelancerMenu = user?.role !== "client";
+
+  const logo = (
+    <Link href="/" className="flex-shrink-0" aria-label="WorkZora">
+      <span className="dark:hidden">
+        <Logo />
+      </span>
+      <span className="hidden dark:block">
+        <LogoRegWhite />
+      </span>
+    </Link>
   );
 
-  const mobileNavLinks = (
-    <>
-      <MobileNavAccordionItem label={t("profile.headers.for_clients")} items={forClientsItems} />
-      {user?.role !== "client" && (
-        <MobileNavAccordionItem label={t("profile.headers.for_freelancers")} items={forFreelancersItems} />
-      )}
-    </>
+  const account = (
+    <div className="flex gap-1.5 items-center">
+      <Link href={`/${locale}/profile`} aria-label={t("profile.headers.profile")}>
+        <span className="flex items-center gap-1.5">
+          {user?.avatarUrl ? <img className="w-11 h-11 rounded-full object-cover" src={user.avatarUrl} alt="" /> : <UserIcon />}
+        </span>
+      </Link>
+      <button type="button" className="text-text-light text-[16px] transition-all rounded-[8px]" onClick={() => void logout()}>
+        {t("profile.headers.logout")}
+      </button>
+    </div>
   );
 
   return (
     <>
-
-      {isMobile && burgerOpen && (
-        <div className="fixed inset-0 z-[9997] w-screen h-screen bg-white dark:bg-bg-dark overflow-y-auto">
+      {burgerOpen && (
+        <div className="fixed inset-0 z-[9997] w-screen h-screen bg-white dark:bg-bg-dark overflow-y-auto min-[850px]:hidden">
           <div className="flex min-h-full flex-col items-center px-6 pt-[108px] pb-8">
             <nav className="flex flex-col items-center gap-5 text-center text-text dark:text-text-dark">
-              {mobileNavLinks}
+              <MobileNavAccordionItem label={t("profile.headers.for_clients")} items={forClientsItems} />
+              {showFreelancerMenu && (
+                <MobileNavAccordionItem label={t("profile.headers.for_freelancers")} items={forFreelancersItems} />
+              )}
 
               {isAuthenticated ? (
-                <div className="flex gap-1.5 items-center">
-                  <Link href={`/${locale}/profile`}>
-                    <span className="flex items-center gap-1.5">
-                      {user?.avatarUrl ? <img className="w-11 h-11 rounded-full object-cover" src={user.avatarUrl} /> : <UserIcon />}
-                    </span>
-                  </Link>
-                  <button className="text-text-light text-[16px] transition-all rounded-[8px]" onClick={logout}>{t("profile.headers.logout")} </button>
-                </div>
+                account
               ) : (
                 <>
-                  <LinkHeader onClick={() => setBurgerOpen(false)} href={`/${locale}/login`}>
-                    {t("profile.headers.login")}
-                  </LinkHeader>
-                  <LinkHeader onClick={() => setBurgerOpen(false)} href={`/${locale}/registration`}>
-                    {t("profile.headers.signup")}
-                  </LinkHeader>
+                  <LinkHeader href={`/${locale}/login`}>{t("profile.headers.login")}</LinkHeader>
+                  <LinkHeader href={`/${locale}/registration`}>{t("profile.headers.signup")}</LinkHeader>
                 </>
               )}
             </nav>
@@ -216,6 +197,9 @@ export default function Header() {
             <div className="mt-4">
               <LangButtonNew />
             </div>
+          </div>
+          <div className="fixed inset-x-0 bottom-6 flex justify-center">
+            <ThemeButton />
           </div>
         </div>
       )}
@@ -228,78 +212,62 @@ export default function Header() {
               : "shadow-[0px_6px_18px_rgba(0,0,0,0.2)]"
               }`}
           >
-            <div className="w-full flex items-center justify-between gap-4 px-6 py-3">
-              {isMobile ? (
-                <>
-                  <button
-                    type="button"
-                    onClick={() => setBurgerOpen((prev) => !prev)}
-                    aria-label={burgerOpen ? "Close menu" : "Open menu"}
-                    className="flex-shrink-0 text-success"
-                  >
-                    {burgerOpen ? <IconHeaderClose /> : <GridDotsIcon />}
-                  </button>
+            <div className="w-full flex items-center justify-between gap-4 px-6 py-3 min-[850px]:hidden">
+              <button
+                type="button"
+                onClick={() => setBurgerOpen((prev) => !prev)}
+                aria-label={burgerOpen ? "Close menu" : "Open menu"}
+                aria-expanded={burgerOpen}
+                className="flex-shrink-0 text-success"
+              >
+                {burgerOpen ? <IconHeaderClose /> : <GridDotsIcon />}
+              </button>
 
-                  <Link href="/" className="flex-shrink-0">
-                    {isDark ? <LogoRegWhite /> : <Logo />}
-                  </Link>
+              {logo}
 
-                  <Link
-                    href={`/${locale}/${isAuthenticated ? "profile" : "login"}`}
-                    className="flex-shrink-0 text-success"
-                  >
-                    <IconPerson />
-                  </Link>
-                </>
-              ) : (
-                <>
-                  <Link href="/" className="flex-shrink-0">
-                    {isDark ? <LogoRegWhite /> : <Logo />}
-                  </Link>
+              <Link
+                href={`/${locale}/${isAuthenticated ? "profile" : "login"}`}
+                aria-label={t(isAuthenticated ? "profile.headers.profile" : "profile.headers.login")}
+                className="flex-shrink-0 text-success"
+              >
+                <IconPerson />
+              </Link>
+            </div>
 
-                  <nav className="flex items-center gap-6 text-text dark:text-white">{navLinks}</nav>
+            <div className="hidden w-full items-center justify-between gap-4 px-6 py-3 min-[850px]:flex">
+              {logo}
 
-                  <div className="flex items-center gap-4 ">
-                    {isAuthenticated ? (
-                      <div className="flex gap-1.5 items-center">
-                        <Link href={`/${locale}/profile`}>
-                          <span className="flex items-center gap-1.5">
-                            {user?.avatarUrl ? <img className="w-11 h-11 rounded-full object-cover" src={user.avatarUrl} /> : <UserIcon />}
-                          </span>
-                        </Link>
-                        <button className="text-text-light text-[16px] transition-all rounded-[8px]" onClick={logout}>{t("profile.headers.logout")} </button>
-                      </div>
-                    ) : (
-                      <div className="flex items-center gap-4">
-                        <LinkHeader hover={false} className="flex items-center gap-2 hover:fill-success hover:text-success" href={`/${locale}/login`}>
-                          {t("profile.headers.login")}
-                        </LinkHeader>
+              <nav className="flex items-center gap-6 text-text dark:text-white">
+                <NavDropdownItem label={t("profile.headers.for_clients")} items={forClientsItems} />
+                {showFreelancerMenu && (
+                  <NavDropdownItem label={t("profile.headers.for_freelancers")} items={forFreelancersItems} />
+                )}
+              </nav>
 
-                        <div className="w-[1px] h-[10px] bg-[#E2E2E2] dark:bg-[#444444]" />
+              <div className="flex items-center gap-4">
+                {isAuthenticated ? (
+                  account
+                ) : (
+                  <div className="flex items-center gap-4">
+                    <LinkHeader hover={false} className="flex items-center gap-2 hover:fill-success hover:text-success" href={`/${locale}/login`}>
+                      {t("profile.headers.login")}
+                    </LinkHeader>
 
-                        <LinkHeader hover={false} className="flex items-center gap-2 hover:fill-success hover:text-success" href={`/${locale}/registration`}>
-                          {t("profile.headers.signup")}
-                        </LinkHeader>
+                    <div className="w-[1px] h-[10px] bg-[#E2E2E2] dark:bg-[#444444]" />
 
-                      </div>
-                    )}
-
-                    <LangButtonNew />
-                    <ThemeButton />
+                    <LinkHeader hover={false} className="flex items-center gap-2 hover:fill-success hover:text-success" href={`/${locale}/registration`}>
+                      {t("profile.headers.signup")}
+                    </LinkHeader>
                   </div>
-                </>
-              )}
+                )}
+
+                <LangButtonNew />
+                <ThemeButton />
+              </div>
             </div>
           </header>
         </div>
       </div>
-
-      {isMobile && burgerOpen && (
-        <div className="fixed inset-x-0 bottom-6 z-[9999] flex justify-center">
-          <ThemeButton />
-        </div>
-      )}
-
     </>
   );
 }

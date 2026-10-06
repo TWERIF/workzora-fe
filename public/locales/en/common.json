@@ -11,7 +11,7 @@
       "login": "Log in",
       "signup": "Sign up",
       "postProject": "Post a Project",
-      "logout": "logout",
+      "logout": "Log out",
       "profile": "Profile",
       "activeProjects": "Active projects",
       "chats": "Your chats",
@@ -418,7 +418,7 @@
   },
   "profilePage": {
     "title": "My Account",
-    "logout": "logout",
+    "logout": "Log out",
     "messages": {
       "saving": "Saving",
       "success": "Saved successfully",
