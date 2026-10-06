@@ -1,9 +1,7 @@
 import ProFeatures from "@/features/pro/ui/ProFeatures";
 import ProHero from "@/features/pro/ui/ProHero";
 import ProPricing from "@/features/pro/ui/ProPricing";
-import { GetStaticProps } from "next";
-import { useTranslation } from "next-i18next";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useTranslation } from "react-i18next";
 import Head from "next/head";
 
 

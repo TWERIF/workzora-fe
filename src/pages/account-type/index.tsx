@@ -8,7 +8,7 @@ import AccountTypeCard from "@/shared/components/ui/Card/AccountTypeCard";
 import AuthHeader from "@/shared/components/ui/Header/AuthHeader";
 import AuthLayout from "@/shared/components/ui/Layout/AuthLayout";
 import { useWindowWidth } from "@/utils/useWindowsWidth";
-import { useTranslation } from "next-i18next";
+import { useTranslation } from "react-i18next";
 import Head from "next/head";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";

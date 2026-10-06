@@ -3,7 +3,7 @@ import { Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import type { Post } from "@/features/posts/model/types";
-import { TFunction } from "next-i18next";
+import type { TFunction } from "i18next";
 import "swiper/css";
 import "swiper/css/pagination";
 

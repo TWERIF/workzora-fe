@@ -1,5 +1,5 @@
 import ButtonGradient from "@/shared/components/ui/Button/ButtonGradient";
-import { useTranslation } from "next-i18next";
+import { useTranslation } from "react-i18next";
 import Image from "next/image";
 
 export default function ProHero() {

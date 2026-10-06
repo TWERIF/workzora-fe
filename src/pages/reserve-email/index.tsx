@@ -9,7 +9,7 @@ import AuthLayout from "@/shared/components/ui/Layout/AuthLayout";
 import Link from "@/shared/components/ui/Link/Link";
 import { useWindowWidth } from "@/utils/useWindowsWidth";
 import { validateEmail } from "@/utils/validators";
-import { useTranslation } from "next-i18next";
+import { useTranslation } from "react-i18next";
 import Head from "next/head";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";

@@ -64,8 +64,7 @@ import reviewUk from "../public/locales/uk/review.json";
 import topClientsEn from "../public/locales/en/topClients.json";
 import topClientsUk from "../public/locales/uk/topClients.json";
 
-i18n.use(initReactI18next).init({
-  resources: {
+const resources = {
     en: {
       common: commonEn,
       codeOfConduct: codeOfConductEn,
@@ -116,7 +115,11 @@ i18n.use(initReactI18next).init({
       review: reviewUk,
       topClients: topClientsUk,
     },
-  },
+};
+
+i18n.use(initReactI18next).init({
+  resources,
+  ns: Object.keys(resources.en),
   lng: 'en',
   fallbackLng: 'en',
   interpolation: { escapeValue: false },
