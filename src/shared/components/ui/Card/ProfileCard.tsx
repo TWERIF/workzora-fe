@@ -1,4 +1,4 @@
-import { useTheme } from "next-themes";
+import { useTheme } from "@/utils/useTheme";
 import Image from "next/image";
 import { User } from "@/features/auth/model/types";
 import StarIcon from "../../svg/StarIcon";

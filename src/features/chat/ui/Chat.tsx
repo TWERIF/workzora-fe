@@ -3,12 +3,12 @@ import { useCreateEscrow } from "@/features/payment/model/usePayment";
 import { Project, ProjectStatus } from "@/features/projects/model/types";
 import { projectKeys, useProjects } from "@/features/projects/model/useProjects";
 import { walletKeys } from "@/features/finances/model/useWallet";
-import { $api } from "@/shared/components/http";
+import { $api, API_URL } from "@/shared/components/http";
 import Breadcrumbs, {
   BreadcrumbItem,
 } from "@/shared/components/ui/BreadCrumbs";
 import { useQueryClient } from "@tanstack/react-query";
-import { useTheme } from "next-themes";
+import { useTheme } from "@/utils/useTheme";
 import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -91,16 +91,15 @@ export default function Chat({ project, receiverId }: ChatProps) {
   useEffect(() => {
     if (!chatId || !currentUserId) return;
 
-    const isProd = window.location.origin === "https://workzora.com";
+    // the socket lives next to the REST API: https://workzora.com/api -> path /api/socket.io
+    const apiUrl = new URL(API_URL);
+    const basePath = apiUrl.pathname.replace(/\/$/, "");
 
-    const newSocket = io(
-      isProd ? "https://workzora.com/chat" : "http://localhost:8000/chat",
-      {
-        query: { userId: currentUserId },
-        transports: ["websocket"],
-        path: isProd ? "/api/socket.io" : "/socket.io", 
-      }
-    );
+    const newSocket = io(`${apiUrl.origin}/chat`, {
+      query: { userId: currentUserId },
+      transports: ["websocket"],
+      path: `${basePath}/socket.io`,
+    });
 
     newSocket.on("connect", () => {
       newSocket.emit("joinChat", chatId);

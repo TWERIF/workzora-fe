@@ -6,7 +6,7 @@ import {
   validatePassword,
 } from "@/utils/validators";
 import { useTranslation } from "next-i18next";
-import { useTheme } from "next-themes";
+import { useTheme } from "@/utils/useTheme";
 import Head from "next/head";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";

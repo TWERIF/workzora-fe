@@ -1,5 +1,5 @@
 import React, { InputHTMLAttributes, ReactNode } from 'react';
-import { useTheme } from 'next-themes';
+import { useTheme } from "@/utils/useTheme";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
     label?: string;

@@ -1,5 +1,5 @@
 import { ButtonI } from "@/shared/types";
-import { useTheme } from "next-themes";
+import { useTheme } from "@/utils/useTheme";
 import IconBurger from "../../svg/IconBurger";
 import IconBurgerDark from "../../svg/IconBurgerDark";
 

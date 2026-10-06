@@ -2,7 +2,7 @@
 
 import { Clock } from "@/shared/components/svg/Clock";
 import { Setting } from "@/shared/components/svg/Setting";
-import { useTheme } from "next-themes";
+import { useTheme } from "@/utils/useTheme";
 import { useTranslation } from "react-i18next";
 
 /**

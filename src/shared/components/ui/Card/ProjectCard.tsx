@@ -1,4 +1,4 @@
-import { useTheme } from "next-themes";
+import { useTheme } from "@/utils/useTheme";
 import { useTranslation } from "react-i18next";
 import IconCalendar from "../../svg/IconCalendar";
 import IconViews from "../../svg/IconViews";

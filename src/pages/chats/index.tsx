@@ -8,7 +8,7 @@ import ChatPagination from "@/features/chat/ui/ChatPagination";
 import ChatSearch from "@/features/chat/ui/ChatSearch";
 import AccountSettings from "@/features/profile/ui/AccountSettings";
 import Breadcrumbs from "@/shared/components/ui/BreadCrumbs";
-import { useTheme } from "next-themes";
+import { useTheme } from "@/utils/useTheme";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 

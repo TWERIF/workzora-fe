@@ -2,7 +2,7 @@
 
 import { PortfolioItem } from "@/features/portfolio/model/types";
 import { Triangles } from "@/shared/components/svg/Triangles";
-import { useTheme } from "next-themes";
+import { useTheme } from "@/utils/useTheme";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import ShowcaseItem from "./ShowcaseItem";

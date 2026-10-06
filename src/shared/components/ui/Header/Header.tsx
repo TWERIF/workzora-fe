@@ -2,7 +2,7 @@ import { logout } from "@/features/auth/model/api";
 import { useAuth } from "@/features/auth/model/useAuth";
 import LoginModal from "@/features/auth/ui/LoginModal";
 import RegModal from "@/features/auth/ui/RegModal";
-import { useTheme } from "next-themes";
+import { useTheme } from "@/utils/useTheme";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";

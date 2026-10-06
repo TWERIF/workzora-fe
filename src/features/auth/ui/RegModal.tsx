@@ -14,7 +14,7 @@ import Modal from "@/shared/components/ui/Modal/Modal";
 import Line from "@/shared/components/ui/Separators/Line";
 import Or from "@/shared/components/ui/Separators/Or";
 import { validateConfirmPassword, validateEmail, validatePassword } from "@/utils/validators";
-import { useTheme } from "next-themes";
+import { useTheme } from "@/utils/useTheme";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";

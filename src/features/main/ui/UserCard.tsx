@@ -1,6 +1,6 @@
 import { User } from "@/features/auth/model/types";
 import { Avatar } from "@/features/users/ui/Avatar";
-import { useTheme } from "next-themes";
+import { useTheme } from "@/utils/useTheme";
 import { useTranslation } from "react-i18next";
 
 interface UserCardProps {

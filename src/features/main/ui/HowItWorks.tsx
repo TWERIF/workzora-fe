@@ -5,7 +5,7 @@ import { AddMemberIcon } from "@/shared/components/svg/AddMemberIcon";
 import { HandIcon } from "@/shared/components/svg/HandIcon";
 import { PostIcon } from "@/shared/components/svg/PostIcon";
 import { WorkIcon } from "@/shared/components/svg/WorkIcon";
-import { useTheme } from "next-themes";
+import { useTheme } from "@/utils/useTheme";
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 

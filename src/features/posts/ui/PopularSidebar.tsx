@@ -1,14 +1,13 @@
 import { Clock } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import { Post } from "../model/types";
+import { Post, postPath } from "../model/types";
 import { useLatestPosts } from "../model/usePosts";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 
 export const PopularSidebar = () => {
     const { t } = useTranslation("common");
     const { data: posts, isLoading } = useLatestPosts();
-    const router = useRouter();
 
     return (
         <aside className="flex flex-col gap-4 rounded-20 border border-border bg-input p-15 py-13 dark:bg-input-dark">
@@ -27,7 +26,7 @@ export const PopularSidebar = () => {
 
                 {!isLoading &&
                     (posts as Post[])?.slice(0, 5).map((post) => (
-                        <div onClick={() => router.push(`/news/${post.id}`)} key={post.id} className="flex items-center gap-3">
+                        <Link href={postPath(post)} key={post.id} className="flex items-center gap-3">
                             <div
                                 className="h-12 w-12 shrink-0 rounded-20 bg-gradient bg-cover bg-center"
                                 style={
@@ -45,7 +44,7 @@ export const PopularSidebar = () => {
                                     {t("blog.minRead", { count: post.minutesToRead })}
                                 </span>
                             </div>
-                        </div>
+                        </Link>
                     ))}
             </div>
         </aside>

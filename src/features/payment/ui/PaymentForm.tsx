@@ -4,7 +4,7 @@ import { GooglePay } from "@/shared/components/svg/GooglePay";
 import { IconLock } from "@/shared/components/svg/IconLock";
 import { Paypal } from "@/shared/components/svg/Paypal";
 import { CreditCard, ExternalLink, X } from "lucide-react";
-import { useTheme } from "next-themes";
+import { useTheme } from "@/utils/useTheme";
 import { useEffect, useRef, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";

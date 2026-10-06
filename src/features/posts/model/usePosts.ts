@@ -5,6 +5,7 @@ import {
     getPost,
     searchPosts,
 } from "./api";
+import { Post } from "./types";
 
 
 export const postKeys = {
@@ -30,14 +31,16 @@ export const postKeys = {
 };
 
 
-export const usePost = (id?: string) => {
+export const usePost = (idOrSlug?: string, initialPost?: Post) => {
     const {
         data: post,
         isLoading: isLoadingPost,
-    } = useQuery({
-        queryFn: () => getPost(id!),
-        queryKey: postKeys.one(id!),
-        enabled: !!id,
+    } = useQuery<Post | undefined>({
+        queryFn: () => getPost(idOrSlug!),
+        queryKey: postKeys.one(idOrSlug!),
+        enabled: !!idOrSlug,
+        initialData: initialPost,
+        retry: false,
     });
 
 

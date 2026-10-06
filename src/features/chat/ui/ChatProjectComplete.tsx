@@ -3,7 +3,7 @@ import { ClockChat } from "@/shared/components/svg/ClockChat";
 import ButtonGradient from "@/shared/components/ui/Button/ButtonGradient";
 import dayjs from "dayjs";
 
-import { useTheme } from "next-themes";
+import { useTheme } from "@/utils/useTheme";
 import { useTranslation } from "react-i18next";
 
 export const ChatProjectComplete = ({ createdAt, deadline, onComplete, onArbitration }:

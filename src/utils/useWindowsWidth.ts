@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 
 export function useWindowWidth(): number {
-    const [width, setWidth] = useState(
-        typeof window !== "undefined" ? window.innerWidth : 0
-    );
+    // starts at 0 on the client too, so the first render matches the server; set right after mount
+    const [width, setWidth] = useState(0);
 
     useEffect(() => {
         const handleResize = () => setWidth(window.innerWidth);
+        handleResize();
 
         window.addEventListener("resize", handleResize);
 

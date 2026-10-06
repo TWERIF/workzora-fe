@@ -1,7 +1,7 @@
 import { Fade } from "@/shared/components/svg/Fade";
 import { Vector } from "@/shared/components/svg/Vector";
 import ButtonGradient from "@/shared/components/ui/Button/ButtonGradient";
-import { useTheme } from "next-themes";
+import { useTheme } from "@/utils/useTheme";
 import { useTranslation } from "react-i18next";
 
 interface HeroProps {

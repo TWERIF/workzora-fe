@@ -3,7 +3,7 @@ import { Project } from "@/features/projects/model/types";
 import { useProjects } from "@/features/projects/model/useProjects";
 import IconArrow from "@/shared/components/svg/IconArrow";
 import ProjectCard from "@/shared/components/ui/Card/ProjectCard";
-import { useTheme } from "next-themes";
+import { useTheme } from "@/utils/useTheme";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";

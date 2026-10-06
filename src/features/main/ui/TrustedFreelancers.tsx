@@ -1,5 +1,5 @@
 import ButtonGradient from "@/shared/components/ui/Button/ButtonGradient";
-import { useTheme } from "next-themes";
+import { useTheme } from "@/utils/useTheme";
 import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
 

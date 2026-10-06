@@ -1,6 +1,6 @@
 
 import { ButtonI } from "@/shared/types";
-import { useTheme } from "next-themes";
+import { useTheme } from "@/utils/useTheme";
 import IconCloseDark from "../../svg/IconCloseDark";
 import IconClose from "../../svg/IconClose";
 

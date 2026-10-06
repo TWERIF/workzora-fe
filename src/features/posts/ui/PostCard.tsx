@@ -1,8 +1,8 @@
 import { formatPostDate } from "@/utils/formatPostDate";
 import { Clock } from "lucide-react";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { useTranslation } from "react-i18next";
-import { Post } from "../model/types";
+import { Post, postPath } from "../model/types";
 
 
 interface PostCardProps {
@@ -11,10 +11,9 @@ interface PostCardProps {
 
 export const PostCard = ({ post }: PostCardProps) => {
     const { t, i18n } = useTranslation("common");
-    const router = useRouter();
 
     return (
-        <article onClick={() => router.push(`/news/${post.id}`)} className="flex flex-col overflow-hidden rounded-20 border border-border bg-input dark:bg-input-dark">
+        <Link href={postPath(post)} className="flex flex-col overflow-hidden rounded-20 border border-border bg-input dark:bg-input-dark">
             <div
                 className="h-40 w-full bg-gradient bg-cover bg-center"
                 style={
@@ -44,14 +43,13 @@ export const PostCard = ({ post }: PostCardProps) => {
                         {t("blog.minRead", { count: post.minutesToRead })}
                     </span>
 
-                    <button
-                        type="button"
+                    <span
                         className="rounded-20 bg-gradient px-15 py-1.5 text-xs font-medium text-white"
                     >
                         {t("blog.readMore")}
-                    </button>
+                    </span>
                 </div>
             </div>
-        </article>
+        </Link>
     );
 };

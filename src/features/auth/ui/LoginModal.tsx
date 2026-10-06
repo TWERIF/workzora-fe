@@ -13,7 +13,7 @@ import Modal from "@/shared/components/ui/Modal/Modal";
 import Line from "@/shared/components/ui/Separators/Line";
 import Or from "@/shared/components/ui/Separators/Or";
 import { validatePassword } from "@/utils/validators";
-import { useTheme } from "next-themes";
+import { useTheme } from "@/utils/useTheme";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";

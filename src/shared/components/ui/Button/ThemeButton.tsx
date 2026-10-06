@@ -1,4 +1,4 @@
-import { useTheme } from "next-themes";
+import { useTheme } from "@/utils/useTheme";
 import IconMoon from "../../svg/IconMoon";
 import IconSun from "../../svg/IconSun";
 

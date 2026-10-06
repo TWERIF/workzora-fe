@@ -1,6 +1,5 @@
 import { ButtonI } from "@/shared/types";
-import { useTheme } from "next-themes";
-import { useState } from "react";
+import { useTheme } from "@/utils/useTheme";
 import { useTranslation } from "react-i18next";
 
 export default function ButtonSocial(props: ButtonI) {
@@ -12,9 +11,6 @@ export default function ButtonSocial(props: ButtonI) {
     const { t } = useTranslation("common");
 
 
-    const [mounted, setMounted] = useState(() => typeof window !== 'undefined');
-
-    if (!mounted) return null;
     return (
         <button
             className="w-full rounded-[20px] bg-bg-header dark:bg-bg-modalDark p-[15px]"

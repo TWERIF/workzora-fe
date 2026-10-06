@@ -1,15 +1,12 @@
 import axios from "axios";
 
-// export const $api = axios.create({
-//   baseURL: `https://workzora.com/api`,
-//   timeout: 35000,
-//   headers: { 'Content-Type': 'application/json' },
-//   withCredentials: true
-// });
+// Set NEXT_PUBLIC_API_URL in .env.local (dev) or in the build environment (prod).
+// Without it the production API is used.
+export const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://workzora.com/api";
 
 export const $api = axios.create({
-   baseURL: `http://localhost:8000`,
+  baseURL: API_URL,
   timeout: 35000,
-  headers: {'Content-Type': 'application/json'},
-  withCredentials:true
+  headers: { 'Content-Type': 'application/json' },
+  withCredentials: true
 });

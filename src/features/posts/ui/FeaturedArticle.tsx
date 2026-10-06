@@ -1,8 +1,8 @@
 import { formatPostDate } from "@/utils/formatPostDate";
 import { Clock } from "lucide-react";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { useTranslation } from "react-i18next";
-import { Post } from "../model/types";
+import { Post, postPath } from "../model/types";
 
 
 interface FeaturedArticleProps {
@@ -11,10 +11,9 @@ interface FeaturedArticleProps {
 
 export const FeaturedArticle = ({ post }: FeaturedArticleProps) => {
     const { t, i18n } = useTranslation("common");
-    const router = useRouter();
 
     return (
-        <article onClick={() => router.push(`/news/${post.id}`)} className="grid gap-6 rounded-20 border border-border bg-input p-6 dark:bg-input-dark sm:grid-cols-[1.2fr_1fr]">
+        <Link href={postPath(post)} className="grid gap-6 rounded-20 border border-border bg-input p-6 dark:bg-input-dark sm:grid-cols-[1.2fr_1fr]">
             <div className="flex flex-col gap-4">
                 <span className="w-fit rounded-20 bg-bg px-15 py-1 text-xs font-medium text-success dark:bg-bg-dark">
                     {t("blog.featured.label")}
@@ -43,12 +42,11 @@ export const FeaturedArticle = ({ post }: FeaturedArticleProps) => {
                         {t("blog.minRead", { count: post.minutesToRead })}
                     </span>
 
-                    <button
-                        type="button"
+                    <span
                         className="ml-auto rounded-20 bg-gradient px-15 py-2 text-sm font-medium text-white"
                     >
                         {t("blog.readMore")}
-                    </button>
+                    </span>
                 </div>
             </div>
 
@@ -60,6 +58,6 @@ export const FeaturedArticle = ({ post }: FeaturedArticleProps) => {
                         : undefined
                 }
             />
-        </article>
+        </Link>
     );
 };
