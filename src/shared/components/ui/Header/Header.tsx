@@ -148,6 +148,11 @@ export default function Header() {
     };
   }, []);
 
+  // /?login=1 opens the login form (used after a password reset)
+  useEffect(() => {
+    if (router.isReady && router.query.login === "1") setIsOpenLogin(true);
+  }, [router.isReady, router.query.login]);
+
   if (!mounted) return null;
 
   const locale = router.locale || "en";

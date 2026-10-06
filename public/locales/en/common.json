@@ -51,6 +51,20 @@
       "passwordNumber": "Password must contain a number",
       "email": "Invalid email format",
       "submitRules": "Please confirm that you have read the items above"
+    },
+    "reset": {
+      "title": "Password recovery",
+      "emailStep": "Enter the email of your account and we'll send you a recovery code.",
+      "send": "Send code",
+      "codeStep": "If an account with this email exists, we've sent a 6-digit code to it. Enter the code and a new password.",
+      "newPassword": "New password",
+      "save": "Save new password",
+      "resend": "Send the code again",
+      "done": "Password changed. You can log in with the new password.",
+      "toLogin": "Log in",
+      "invalidCode": "Invalid or expired code",
+      "error": "Something went wrong, try again",
+      "back": "Back to login"
     }
   },
   "profile": {

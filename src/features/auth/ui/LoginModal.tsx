@@ -115,7 +115,7 @@ export default function LoginModal(props: ModalI) {
                         text={
                             <span className="whitespace-normal break-words flex w-full justify-between">
                                 {t("auth.texts.remember")}
-                                <Link href="/agreement" className="hover:underline cursor-pointer">
+                                <Link href="/forgot-password" onClick={() => setIsOpen(false)} className="hover:underline cursor-pointer">
                                     {" " + t("auth.texts.forgot") + " "}
                                 </Link>
                             </span>
@@ -125,8 +125,6 @@ export default function LoginModal(props: ModalI) {
                     <ButtonGradient
                         type="submit"
                         text={isLoggingIn ? "..." : t("profile.headers.login")}
-                        onClick={handleLogin}
-                        disabled={isLoggingIn} // Блокуємо кнопку під час запиту
                     />
                 </form>
 
