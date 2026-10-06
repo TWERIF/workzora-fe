@@ -3,13 +3,9 @@ import { Project } from "@/features/projects/model/types";
 import { useProjects } from "@/features/projects/model/useProjects";
 import IconArrow from "@/shared/components/svg/IconArrow";
 import ProjectCard from "@/shared/components/ui/Card/ProjectCard";
-import { useTheme } from "@/utils/useTheme";
-import Head from "next/head";
 import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
 
-import RegModal from "@/features/auth/ui/RegModal";
-import { useEffect, useState } from "react";
 import Categories from "./Categories";
 import { HomeFeaturesSection } from "./FeatureCards";
 import Hero from "./Hero";
@@ -20,52 +16,19 @@ import TrustedUsers from "./TrustedUsers";
 
 export default function Main() {
   const { t } = useTranslation("main");
-  const { theme } = useTheme();
-  const isDark = theme === "dark";
 
   const { topProjects } = useProjects();
-
-  const [isOpenReg, setIsOpenReg] = useState(false);
-  const [width, setWidth] = useState(0);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    const init = () => {
-      setMounted(true);
-      setWidth(window.innerWidth);
-    };
-    init();
-    const handleResize = () => setWidth(window.innerWidth);
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
-  if (!mounted) return null;
 
   const router = useRouter();
   const locale = router.locale ?? "en";
 
-  const isMobile = width < 1233;
-
   const handleReg = () => {
-    if (!isMobile) {
-      router.push(`/${locale}/registration`);
-    } else {
-      setIsOpenReg(true);
-    }
-  }
+    void router.push(`/${locale}/registration`);
+  };
 
   return (
     <>
-      <Head>
-        <title>WorkZora</title>
-        <meta name="description" content="WorkZora — find the right freelancer or project in minutes" />
-      </Head>
-
-      <main className={`overflow-x-hidden w-full ${isDark ? "bg-bg-dark text-text-dark" : "bg-bg text-text"}`}>
+      <main className="overflow-x-hidden w-full bg-bg text-text dark:bg-bg-dark dark:text-text-dark">
         <Hero handleReg={handleReg} />
 
         <LookingFor />
@@ -80,7 +43,7 @@ export default function Main() {
 
         <TrustedUsers />
 
-        <section className={`py-16 md:py-24 ${isDark ? "bg-bg-dark" : "bg-white"}`}>
+        <section className="py-16 md:py-24 bg-white dark:bg-bg-dark">
           <div className="container mx-auto px-4">
             <h2 className="text-3xl md:text-5xl font-bold mb-12 text-center">
               {t("topProjects.title.topPosted")}{" "}
@@ -108,7 +71,7 @@ export default function Main() {
 
         <FAQSection />
 
-        <section className={`py-12 ${isDark ? "bg-bg-dark text-text-dark" : "bg-white text-[#333333]"}`}>
+        <section className="py-12 bg-white text-[#333333] dark:bg-bg-dark dark:text-text-dark">
           <div className="container mx-auto px-4">
             <p className="text-sm md:text-base text-center max-w-4xl mx-auto font-semibold ">
               {t("imagine-text")}
@@ -119,9 +82,6 @@ export default function Main() {
           </p>
         </section>
       </main>
-      {isOpenReg && (
-        <RegModal maxWidth={width} setIsOpen={setIsOpenReg} setIsOpenLogin={() => { }} />
-      )}
     </>
   );
 }

@@ -45,10 +45,9 @@ function App({ Component, pageProps }: AppProps) {
     }
   }, [locale]);
 
-  const noHeaderRoutes = ['/registration', '/login', '/reserve-email', '/account-type'];
+  const noHeaderRoutes = ['/registration', '/login', '/forgot-password'];
 
-  const showHeader = !noHeaderRoutes.includes(pathname);
-  const showHeaderNew = pathname === "/";
+  const showChrome = !noHeaderRoutes.includes(pathname);
 
   return (
     <ReactQueryProvider>
@@ -61,14 +60,11 @@ function App({ Component, pageProps }: AppProps) {
       <ThemeProvider attribute="class" defaultTheme="light">
         <I18nextProvider i18n={getI18n(locale ?? 'en')}>
           <Layout>
-            {/* {showHeaderNew &&  */}
-            <Header />
-            {/* } */}
-            {/* {showHeader && !showHeaderNew && <HeaderOld />} */}
+            {showChrome && <Header />}
             <main className="font-sans">
               <Component {...pageProps} />
             </main>
-            <Footer />
+            {showChrome && <Footer />}
             <Toaster position="top-right" richColors />
             <Hotjar />
             <VisitTracker />

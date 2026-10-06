@@ -8,8 +8,15 @@ export interface UserCreate {
   email: string;
   userName: string;
   locale: string;
-  isActive: boolean;
+  role: "client" | "freelancer";
 }
+
+export interface LoginCredentials {
+  email: string;
+  password: string;
+  remember?: boolean;
+}
+
 export enum UserRole {
   FREELANCER = "freelancer",
   CLIENT = "client",

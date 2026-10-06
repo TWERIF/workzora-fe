@@ -1,10 +1,8 @@
-"use client";
-
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
-import { useAuth } from "@/features/auth/model/useAuth";
+import ProtectedRoute from "@/features/auth/model/protectedRoute";
 
 import { ProjectStatus, type Project } from "@/features/projects/model/types";
 import { useMyProjects } from "@/features/projects/model/useProjects";
@@ -20,8 +18,7 @@ import UserNavigation from "@/shared/components/ui/UserNavigation";
 
 const ITEMS_PER_PAGE = 10;
 
-export default function ChatsPage() {
-  const { user, isLoading: isAuthLoading } = useAuth();
+function ActiveProjectsContent() {
   const router = useRouter();
   const locale = router.locale || "en";
   const { t } = useTranslation("additions");
@@ -35,18 +32,6 @@ export default function ChatsPage() {
     currentPage,
     ITEMS_PER_PAGE,
   );
-
-  if (isAuthLoading) {
-    return <Loader />;
-  }
-
-  if (!user) {
-    return (
-      <div className="flex h-[100dvh] items-center justify-center text-text-muted">
-        {t("auth.loading", "Авторизація...")}
-      </div>
-    );
-  }
 
   const isSearching = searchResults !== null;
   const projects = isSearching ? searchResults : data?.items || [];
@@ -112,5 +97,13 @@ export default function ChatsPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function ActiveProjectsPage() {
+  return (
+    <ProtectedRoute>
+      <ActiveProjectsContent />
+    </ProtectedRoute>
   );
 }

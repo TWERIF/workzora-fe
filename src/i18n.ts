@@ -2,12 +2,14 @@ import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import codeOfConductEn from "../public/locales/en/codeOfConduct.json";
 import comingSoonEn from "../public/locales/en/comingSoon.json";
+import authEn from "../public/locales/en/auth.json";
 import commonEn from "../public/locales/en/common.json";
 import copyrightPolicyEn from "../public/locales/en/copyrightPolicy.json";
 import feesEn from "../public/locales/en/fees.json";
 import mainEn from "../public/locales/en/main.json";
 import codeOfConductUk from "../public/locales/uk/codeOfConduct.json";
 import comingSoonUk from "../public/locales/uk/comingSoon.json";
+import authUk from "../public/locales/uk/auth.json";
 import commonUk from "../public/locales/uk/common.json";
 import copyrightPolicyUk from "../public/locales/uk/copyrightPolicy.json";
 import feesUk from "../public/locales/uk/fees.json";
@@ -70,6 +72,7 @@ import seoUk from "../public/locales/uk/seo.json";
 const resources = {
     en: {
       common: commonEn,
+      auth: authEn,
       codeOfConduct: codeOfConductEn,
       fees: feesEn,
       copyrightPolicy: copyrightPolicyEn,
@@ -96,6 +99,7 @@ const resources = {
     },
     uk: {
       common: commonUk,
+      auth: authUk,
       codeOfConduct: codeOfConductUk,
       fees: feesUk,
       copyrightPolicy: copyrightPolicyUk,

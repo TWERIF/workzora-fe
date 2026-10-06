@@ -1,72 +1,5 @@
 {
   "minutes": "minutes",
-  "auth": {
-    "placeholders": {
-      "name": "First Name",
-      "surname": "Last Name",
-      "username": "Enter your user name",
-      "email": "Email",
-      "password": "Password",
-      "confirmPassword": "Confirm Password",
-      "code": "Code",
-      "signIn": "Sign up",
-      "login": "Login",
-      "welcome": "Welcome back",
-      "usernameoremail": "Email or Username"
-    },
-    "buttons": {
-      "next": "Next Step",
-      "join": "Join Workzora",
-      "google": "Continue with Google",
-      "facebook": "Continue with Facebook",
-      "apple": "Continue with Apple"
-    },
-    "confirmEmail": {
-      "text": "Enter confirmation code from Email",
-      "button": "Send code"
-    },
-    "texts": {
-      "welcome": "Welcome",
-      "welcomeText": "Please supply a backup email. We'll make sure you don't create duplicate accounts and will use this email to let you know if there's an issue with your account.",
-      "agree": "I agree to the Workzora",
-      "and": "and",
-      "user": "User Agreement",
-      "privacy": "Privacy Policy",
-      "select": "Select account type",
-      "dontWorry": "Don't worry, this can be changed later.",
-      "protected": "This site is protected by reCAPTCHA and the Google",
-      "apply": "apply",
-      "remember": "Remember me",
-      "forgot": "Forgot Password?"
-    },
-    "cards": {
-      "earn": "Earn money",
-      "hire": "Hire a freelancer"
-    },
-    "errors": {
-      "required": "Required",
-      "confirmed": "Passwords do not match",
-      "passwordLength": "Password must be at least 8 characters",
-      "passwordLetter": "Password must contain a letter",
-      "passwordNumber": "Password must contain a number",
-      "email": "Invalid email format",
-      "submitRules": "Please confirm that you have read the items above"
-    },
-    "reset": {
-      "title": "Password recovery",
-      "emailStep": "Enter the email of your account and we'll send you a recovery code.",
-      "send": "Send code",
-      "codeStep": "If an account with this email exists, we've sent a 6-digit code to it. Enter the code and a new password.",
-      "newPassword": "New password",
-      "save": "Save new password",
-      "resend": "Send the code again",
-      "done": "Password changed. You can log in with the new password.",
-      "toLogin": "Log in",
-      "invalidCode": "Invalid or expired code",
-      "error": "Something went wrong, try again",
-      "back": "Back to login"
-    }
-  },
   "profile": {
     "headers": {
       "topFreelancers": "Top freelancers",
@@ -162,13 +95,6 @@
       "skillPlaceholder": "Type a skill and press Enter",
       "removeSkill": "Remove {{skill}}"
     }
-  },
-  "separators": {
-    "or": "or",
-    "haveAnAccountText": "Already have an Account?",
-    "haveAnAccountLink": "Log in",
-    "donthaveAnAccountText": "Don’t have an Account?",
-    "donthaveAnAccountLink": "Sign up"
   },
   "hero": {
     "title": "Hire the best freelancers for any job,online",

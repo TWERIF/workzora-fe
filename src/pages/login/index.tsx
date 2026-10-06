@@ -1,10 +1,12 @@
-import type { GetServerSideProps } from "next";
+import GuestRoute from "@/features/auth/model/guestRoute";
+import LoginForm from "@/features/auth/ui/LoginForm";
+import PageMeta from "@/shared/components/seo/PageMeta";
 
-export default function Login() {
-    return null;
+export default function LoginPage() {
+    return (
+        <GuestRoute>
+            <PageMeta page="login" noindex />
+            <LoginForm />
+        </GuestRoute>
+    );
 }
-
-export const getServerSideProps: GetServerSideProps = async ({ locale, defaultLocale }) => {
-    const prefix = locale && locale !== defaultLocale ? `/${locale}` : "";
-    return { redirect: { destination: `${prefix}/?login=1`, permanent: false } };
-};

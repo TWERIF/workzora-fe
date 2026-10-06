@@ -1,7 +1,5 @@
 import { logout } from "@/features/auth/model/api";
 import { useAuth } from "@/features/auth/model/useAuth";
-import LoginModal from "@/features/auth/ui/LoginModal";
-import RegModal from "@/features/auth/ui/RegModal";
 import { useTheme } from "@/utils/useTheme";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -122,8 +120,6 @@ export default function Header() {
   const router = useRouter();
   const { isAuthenticated, user } = useAuth();
 
-  const [isOpenReg, setIsOpenReg] = useState(false);
-  const [isOpenLogin, setIsOpenLogin] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [width, setWidth] = useState(0);
   const [burgerOpen, setBurgerOpen] = useState(false);
@@ -147,11 +143,6 @@ export default function Header() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-
-  // /?login=1 opens the login form (used after a password reset)
-  useEffect(() => {
-    if (router.isReady && router.query.login === "1") setIsOpenLogin(true);
-  }, [router.isReady, router.query.login]);
 
   if (!mounted) return null;
 
@@ -212,16 +203,10 @@ export default function Header() {
                 </div>
               ) : (
                 <>
-                  <LinkHeader onClick={() => setIsOpenLogin(true)} href="#">
+                  <LinkHeader onClick={() => setBurgerOpen(false)} href={`/${locale}/login`}>
                     {t("profile.headers.login")}
                   </LinkHeader>
-                  <LinkHeader
-                    onClick={() => {
-                      setBurgerOpen(false);
-                      setIsOpenReg(true);
-                    }}
-                    href="#"
-                  >
+                  <LinkHeader onClick={() => setBurgerOpen(false)} href={`/${locale}/registration`}>
                     {t("profile.headers.signup")}
                   </LinkHeader>
                 </>
@@ -260,13 +245,7 @@ export default function Header() {
                   </Link>
 
                   <Link
-                    href={isAuthenticated ? `/${locale}/profile` : "#"}
-                    onClick={(e) => {
-                      if (!isAuthenticated) {
-                        e.preventDefault();
-                        setIsOpenLogin(true);
-                      }
-                    }}
+                    href={`/${locale}/${isAuthenticated ? "profile" : "login"}`}
                     className="flex-shrink-0 text-success"
                   >
                     <IconPerson />
@@ -292,7 +271,7 @@ export default function Header() {
                       </div>
                     ) : (
                       <div className="flex items-center gap-4">
-                        <LinkHeader hover={false} className="flex items-center gap-2 hover:fill-success hover:text-success" onClick={() => setIsOpenLogin(true)} href="#">
+                        <LinkHeader hover={false} className="flex items-center gap-2 hover:fill-success hover:text-success" href={`/${locale}/login`}>
                           {t("profile.headers.login")}
                         </LinkHeader>
 
@@ -321,12 +300,6 @@ export default function Header() {
         </div>
       )}
 
-      {isOpenReg && (
-        <RegModal maxWidth={width} setIsOpen={setIsOpenReg} setIsOpenLogin={setIsOpenLogin} />
-      )}
-      {isOpenLogin && (
-        <LoginModal maxWidth={width} setIsOpen={setIsOpenLogin} setIsOpenReg={setIsOpenReg} />
-      )}
     </>
   );
 }
