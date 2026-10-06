@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
+import { useTranslation } from "react-i18next";
 import placeHolderAvatar from "../../../../public/images/avatar_placeholder.png";
 
 
@@ -11,8 +12,8 @@ export interface ChatItemData {
   date: string;
   time: string;
   avatarUrl: string;
-  userName: string;
-  topic: string;
+  userName: string | null;
+  topic: string | null;
   messageCount: number;
   projectTitle: string | null;
   projectId: string;
@@ -25,6 +26,7 @@ interface ChatItemProps {
 }
 
 export default function ChatItem({ chat, onDelete }: ChatItemProps) {
+  const { t } = useTranslation("chat");
   const params = useParams();
   const locale = params?.locale || "uk";
   const avatar = chat.avatarUrl ?? placeHolderAvatar;
@@ -52,10 +54,10 @@ export default function ChatItem({ chat, onDelete }: ChatItemProps) {
 
         <div className="flex-1 min-w-0">
           <h4 className="text-sm font-semibold text-success group-hover:underline truncate">
-            {chat.userName}
+            {chat.userName ?? t("list.unknownUser")}
           </h4>
           <p className={`text-xs mt-0.5 truncate ${chat.isUnread ? "text-success font-medium" : "text-text-muted dark:text-text-dark/80"}`}>
-            {chat.topic.slice(0, 50) + "..."}
+            {chat.topic ? `${chat.topic.slice(0, 50)}...` : t("list.chatCreated")}
           </p>
         </div>
 

@@ -39,7 +39,7 @@ export interface CreateProjectDto {
   title: string;
   description: string;
   categories: string[];
-  clientId: string;
+  tags?: string[];
   price: number;
 }
 

@@ -9,10 +9,8 @@ import type {
 } from "./types";
 
 export const getPaymentData = async (userId: string): Promise<PaymentData | null> => {
-    const res = await $api.get(`/payment-data/${userId}`);
-
-    // Бек повертає порожню відповідь, якщо картку ще не додавали
-    return res.data ?? null;
+    const res = await $api.get<PaymentData | "">(`/payment-data/${userId}`);
+    return res.data || null;
 };
 
 export const createPaymentData = async (

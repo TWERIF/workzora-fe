@@ -96,8 +96,8 @@ export default function Chat({ project, receiverId }: ChatProps) {
     const basePath = apiUrl.pathname.replace(/\/$/, "");
 
     const newSocket = io(`${apiUrl.origin}/chat`, {
-      query: { userId: currentUserId },
       transports: ["websocket"],
+      withCredentials: true,
       path: `${basePath}/socket.io`,
     });
 
@@ -156,10 +156,8 @@ export default function Chat({ project, receiverId }: ChatProps) {
       }
 
       socket.emit("sendMessage", {
-        chatId: chatId,
-        receiverId: receiverId,
-        content: newMessage.trim() || (uploadedFileUrl ? "Надіслано файл" : ""),
-        senderId: currentUserId,
+        chatId,
+        content: newMessage.trim(),
         fileUrl: uploadedFileUrl,
       });
 
