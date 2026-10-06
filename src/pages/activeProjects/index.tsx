@@ -107,7 +107,7 @@ export default function ChatsPage() {
           </div>
 
           <aside>
-            <UserNavigation activeHref="/chat" />
+            <UserNavigation activeHref="/activeProjects" />
           </aside>
         </div>
       </div>

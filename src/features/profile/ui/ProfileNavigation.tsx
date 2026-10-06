@@ -1,7 +1,10 @@
+import { useAuth } from "@/features/auth/model/useAuth";
+import { useSwitchRole } from "@/features/auth/model/useSwitchRole";
 import NavIcon, { NavIconName } from "@/shared/components/svg/NavIcon";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { useTranslation } from "react-i18next";
+import { toast } from "sonner";
 
 
 interface NavItem {
@@ -14,17 +17,16 @@ interface NavItem {
 const primaryItems: NavItem[] = [
     { icon: "profile", labelKey: "profile", href: "/profile" },
     { icon: "chat", labelKey: "chat", href: "/activeProjects" },
-    { icon: "bids", labelKey: "bids", href: "/bids" },
-    { icon: "reviews", labelKey: "reviews", href: "/reviews" },
+    { icon: "bids", labelKey: "bids", href: "/coming-soon" },
+    { icon: "reviews", labelKey: "reviews", href: "/coming-soon" },
     { icon: "finances", labelKey: "finances", href: "/payment-data" },
 ];
 
 const settingsItems: NavItem[] = [
-    { icon: "lock", labelKey: "security", href: "/security" },
-    { icon: "notifications", labelKey: "notifications", href: "/notifications" },
-    { icon: "settings", labelKey: "privacy", href: "/privacy" },
+    { icon: "lock", labelKey: "security", href: "/coming-soon" },
+    { icon: "notifications", labelKey: "notifications", href: "/coming-soon" },
+    { icon: "settings", labelKey: "privacy", href: "/coming-soon" },
     { icon: "logo", labelKey: "proAccount", href: "/pro" },
-    { icon: "userSwitch", labelKey: "clientAccount", href: "/coming-soon", accent: true },
 ];
 
 const secondaryItems: NavItem[] = [
@@ -69,13 +71,13 @@ export const ProfileNavigation = ({
             <li key={item.labelKey}>
                 {renderLink ? (
                     renderLink({
-                        href: locale + item.href,
+                        href: `/${locale}${item.href}`,
                         className,
                         children: content,
                     })
                 ) : (
                     <Link
-                        href={`${locale}${item.href}`}
+                        href={`/${locale}${item.href}`}
                         className={className}
                         aria-current={isActive ? "page" : undefined}
                     >
@@ -84,6 +86,35 @@ export const ProfileNavigation = ({
                 )}
             </li>
         );
+    };
+
+    const { user } = useAuth();
+    const switchRole = useSwitchRole();
+    const canSwitch = user?.role === "client" || user?.role === "freelancer";
+    const targetRole = user?.role === "client" ? "freelancer" : "client";
+    const targetRoleLabel = t(targetRole === "client" ? "nav.roleClient" : "nav.roleFreelancer");
+
+    const handleSwitchRole = () => {
+        if (switchRole.isPending) return;
+        if (!window.confirm(t("nav.switchConfirm", { role: targetRoleLabel }))) return;
+
+        switchRole.mutate(undefined, {
+            onSuccess: () => toast.success(t("nav.switchSuccess", { role: targetRoleLabel })),
+            onError: (error) => {
+                const status = error.response?.status;
+                const message = error.response?.data?.message ?? "";
+                if (status === 429) {
+                    const date = message.match(/\d{4}-\d{2}-\d{2}T[\d:.]+Z/)?.[0];
+                    toast.error(t("nav.switchTooSoon", {
+                        date: date ? new Date(date).toLocaleString(locale) : "",
+                    }));
+                } else if (status === 409) {
+                    toast.error(t("nav.switchActiveDeals"));
+                } else {
+                    toast.error(t("nav.switchError"));
+                }
+            },
+        });
     };
 
     return (
@@ -100,7 +131,22 @@ export const ProfileNavigation = ({
 
                 <hr className="border-text/10 dark:border-white/10" />
 
-                <ul className="flex flex-col gap-0.5">{settingsItems.map(renderItem)}</ul>
+                <ul className="flex flex-col gap-0.5">
+                    {settingsItems.map(renderItem)}
+                    {canSwitch && (
+                        <li>
+                            <button
+                                type="button"
+                                onClick={handleSwitchRole}
+                                disabled={switchRole.isPending}
+                                className={`${itemClasses(false, true)} w-full text-left disabled:opacity-60`}
+                            >
+                                <NavIcon name="userSwitch" />
+                                {t(targetRole === "client" ? "nav.clientAccount" : "nav.freelancerAccount")}
+                            </button>
+                        </li>
+                    )}
+                </ul>
 
                 <hr className="border-text/10 dark:border-white/10" />
 

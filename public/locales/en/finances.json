@@ -146,6 +146,14 @@
     "proAccount": "PRO Account",
     "support": "Support",
     "news": "News",
-    "clientAccount": "Client account"
+    "clientAccount": "Client account",
+    "freelancerAccount": "Freelancer account",
+    "switchConfirm": "Switch your account to {{role}}? You can switch back in 7 days.",
+    "switchSuccess": "Account switched to {{role}}",
+    "switchTooSoon": "You can switch the account type once every 7 days. Next switch: {{date}}",
+    "switchActiveDeals": "Finish your active projects before switching the account type",
+    "switchError": "Could not switch the account type",
+    "roleClient": "client",
+    "roleFreelancer": "freelancer"
   }
 }

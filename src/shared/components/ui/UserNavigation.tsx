@@ -10,14 +10,14 @@ interface NavItem {
 
 const primaryItems: NavItem[] = [
     { key: "profile", href: "/profile" },
-    { key: "chat", href: "/chat" },
-    { key: "bids", href: "/bids" },
-    { key: "reviews", href: "/reviews" },
+    { key: "chat", href: "/activeProjects" },
+    { key: "bids", href: "/coming-soon" },
+    { key: "reviews", href: "/coming-soon" },
     { key: "finances", href: "/payment-data" },
 ];
 
 const secondaryItems: NavItem[] = [
-    { key: "support", href: "/support" },
+    { key: "support", href: "/contacts" },
     { key: "news", href: "/news" },
 ];
 
@@ -58,13 +58,13 @@ export const UserNavigation = ({
             <li key={item.key}>
                 {renderLink ? (
                     renderLink({
-                        href: locale + item.href,
+                        href: `/${locale}${item.href}`,
                         className,
                         children: content,
                     })
                 ) : (
                     <Link
-                        href={`${locale}${item.href}`}
+                        href={`/${locale}${item.href}`}
                         className={className}
                         aria-current={isActive ? "page" : undefined}
                     >

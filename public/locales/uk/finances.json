@@ -146,6 +146,14 @@
     "proAccount": "PRO Акаунт",
     "support": "Підтримка",
     "news": "Новини",
-    "clientAccount": "Акаунт клієнта"
+    "clientAccount": "Акаунт клієнта",
+    "freelancerAccount": "Акаунт фрилансера",
+    "switchConfirm": "Перемкнути акаунт на {{role}}? Повернутися можна буде через 7 днів.",
+    "switchSuccess": "Акаунт перемкнено: {{role}}",
+    "switchTooSoon": "Тип акаунта можна змінювати раз на 7 днів. Наступна зміна: {{date}}",
+    "switchActiveDeals": "Завершіть активні проєкти перед зміною типу акаунта",
+    "switchError": "Не вдалося змінити тип акаунта",
+    "roleClient": "клієнт",
+    "roleFreelancer": "фрилансер"
   }
 }
