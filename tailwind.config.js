@@ -42,6 +42,18 @@ module.exports = {
         secondary: "#216B52", // Figma: Secondary 100
         star: "#EBB447", // Figma: rating stars / rating ring
         danger: "#EF4C4C", // Figma: "Clear all filters" link and chip close icon
+        main: {
+          100: "rgb(var(--wz-main-100) / <alpha-value>)",
+          90: "rgb(var(--wz-main-90) / <alpha-value>)",
+          50: "rgb(var(--wz-main-50) / <alpha-value>)",
+          10: "rgb(var(--wz-main-10) / <alpha-value>)",
+          5: "rgb(var(--wz-main-5) / <alpha-value>)",
+        },
+        background: "rgb(var(--wz-background) / <alpha-value>)",
+        primary: {
+          DEFAULT: "rgb(var(--wz-primary) / <alpha-value>)",
+          10: "rgb(var(--wz-primary-10) / <alpha-value>)",
+        },
         /* === Status colors (badges, notices) === */
         status: {
           success: "#7EA310",

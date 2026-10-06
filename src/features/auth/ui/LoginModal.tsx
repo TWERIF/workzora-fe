@@ -133,7 +133,7 @@ export default function LoginModal(props: ModalI) {
                 <span className="whitespace-normal break-words text-center">
                     {t("separators.donthaveAnAccountText")}
                     <button
-                        className="text-primary-lime hover:underline cursor-pointer ml-1"
+                        className="text-primary hover:underline cursor-pointer ml-1"
                         onClick={() => { setIsOpen(false); setIsOpenReg(true); }}
                     >
                         {t("separators.donthaveAnAccountLink")}

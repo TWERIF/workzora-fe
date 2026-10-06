@@ -18,20 +18,19 @@ import i18n from '../i18n';
 
 const poppins = Poppins({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700", "800", "900"],
+  style: ["normal", "italic"],
   variable: "--font-poppins",
   display: "swap",
 });
 
 const manrope = Manrope({
   subsets: ["cyrillic", "latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700", "800"],
   variable: "--font-manrope",
   display: "swap",
 });
 
-// One i18n instance per locale (sharing the loaded resources), so a server render of /uk
-// is in Ukrainian and concurrent requests in different languages don't switch each other.
 const i18nByLocale: Record<string, typeof i18n> = {};
 const getI18n = (locale: string) =>
   (i18nByLocale[locale] ??= i18n.cloneInstance({ lng: locale, initImmediate: false }));
@@ -53,6 +52,12 @@ function App({ Component, pageProps }: AppProps) {
 
   return (
     <ReactQueryProvider>
+      <style jsx global>{`
+        :root {
+          --font-poppins: ${poppins.style.fontFamily};
+          --font-manrope: ${manrope.style.fontFamily};
+        }
+      `}</style>
       <ThemeProvider attribute="class" defaultTheme="light">
         <I18nextProvider i18n={getI18n(locale ?? 'en')}>
           <Layout>
@@ -60,7 +65,7 @@ function App({ Component, pageProps }: AppProps) {
             <Header />
             {/* } */}
             {/* {showHeader && !showHeaderNew && <HeaderOld />} */}
-            <main className={`${poppins.variable} ${manrope.variable} font-sans`}>
+            <main className="font-sans">
               <Component {...pageProps} />
             </main>
             <Footer />
