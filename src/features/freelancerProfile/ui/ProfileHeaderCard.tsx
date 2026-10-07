@@ -12,6 +12,31 @@ interface ProfileHeaderCardProps {
     isTop10?: boolean;
 }
 
+const ONLINE_WINDOW_MS = 5 * 60 * 1000;
+
+function OnlineStatus({ lastSeenAt }: { lastSeenAt?: string | null }) {
+    const { t, i18n } = useTranslation("common");
+    if (!lastSeenAt) return null;
+    const diff = Date.now() - new Date(lastSeenAt).getTime();
+    if (diff < ONLINE_WINDOW_MS) {
+        return (
+            <span className="flex items-center gap-1.5 text-success" suppressHydrationWarning>
+                <span className="h-2 w-2 rounded-full bg-success" />
+                {t("profile.header.onlineNow")}
+            </span>
+        );
+    }
+    const format = new Intl.RelativeTimeFormat(i18n.language, { numeric: "auto" });
+    const minutes = Math.round(diff / 60000);
+    const time =
+        minutes < 60 ? format.format(-minutes, "minute") : minutes < 1440 ? format.format(-Math.round(minutes / 60), "hour") : format.format(-Math.round(minutes / 1440), "day");
+    return (
+        <span className="text-text-light" suppressHydrationWarning>
+            {t("profile.header.lastSeen", { time })}
+        </span>
+    );
+}
+
 export const ProfileHeaderCard = ({ user, isPro = false, isTop10 = false }: ProfileHeaderCardProps) => {
     const { t, i18n } = useTranslation("common");
 
@@ -44,7 +69,7 @@ export const ProfileHeaderCard = ({ user, isPro = false, isTop10 = false }: Prof
                         <span className="text-text-light">{t("profile.header.memberSince")}</span>
                         <span className="text-text dark:text-text-dark">{memberSince}</span>
                     </p>
-                    <span className="text-text-light">{t("profile.noData.onlineStatus")}</span>
+                    <OnlineStatus lastSeenAt={user?.lastSeenAt} />
                 </div>
 
                 <div className="flex flex-wrap items-center justify-between gap-3">

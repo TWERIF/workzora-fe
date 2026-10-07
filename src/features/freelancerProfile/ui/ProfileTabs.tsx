@@ -1,21 +1,22 @@
 import { useTranslation } from "react-i18next";
 
-export type ProfileTab = "about" | "portfolio" | "skills" | "reviews";
+export type ProfileTab = "about" | "portfolio" | "skills" | "reviews" | "active" | "completed";
 
 interface ProfileTabsProps {
     active: ProfileTab;
     onChange: (tab: ProfileTab) => void;
     counts?: Partial<Record<ProfileTab, number>>;
+    tabs?: ProfileTab[];
 }
 
-const TABS: ProfileTab[] = ["about", "portfolio", "skills", "reviews"];
+const FREELANCER_TABS: ProfileTab[] = ["about", "portfolio", "skills", "reviews"];
 
-export const ProfileTabs = ({ active, onChange, counts }: ProfileTabsProps) => {
+export const ProfileTabs = ({ active, onChange, counts, tabs = FREELANCER_TABS }: ProfileTabsProps) => {
     const { t } = useTranslation("common");
 
     return (
         <nav className="grid grid-cols-2 gap-[15px] rounded-3xl bg-surface p-3 dark:bg-bg-modalDark sm:flex sm:rounded-full" role="tablist">
-            {TABS.map((tab) => {
+            {tabs.map((tab) => {
                 const isActive = tab === active;
                 const count = counts?.[tab];
                 return (

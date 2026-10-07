@@ -90,5 +90,17 @@
   "notifications": {
     "title": "Сповіщення",
     "description": "Ваші сповіщення у WorkZora."
+  },
+  "security": {
+    "title": "Безпека",
+    "description": "Верифікація та пароль вашого акаунта WorkZora."
+  },
+  "freelancerProfile": {
+    "title": "{{name}}, фрилансер",
+    "description": "Портфоліо, навички, ставка та відгуки {{name}} у WorkZora."
+  },
+  "clientProfile": {
+    "title": "{{name}}, клієнт",
+    "description": "Відгуки та проєкти {{name}} у WorkZora."
   }
 }

@@ -24,7 +24,7 @@ const primaryItems: NavItem[] = [
 ];
 
 const settingsItems: NavItem[] = [
-    { icon: "lock", labelKey: "security", href: "/coming-soon" },
+    { icon: "lock", labelKey: "security", href: "/security" },
     { icon: "notifications", labelKey: "notifications", href: "/notifications" },
     { icon: "settings", labelKey: "privacy", href: "/coming-soon" },
     { icon: "logo", labelKey: "proAccount", href: "/pro" },

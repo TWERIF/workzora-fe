@@ -1,7 +1,7 @@
-"use client";
-
+import { useAuth } from '@/features/auth/model/useAuth';
 import { useContactForm } from '@/features/support/model/useSupport';
-import { useState } from 'react';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import PageMeta from "@/shared/components/seo/PageMeta";
 
@@ -10,6 +10,18 @@ export default function ContactsPage() {
 
     const [formData, setFormData] = useState({ name: '', email: '', message: '' });
     const [isSubmitted, setIsSubmitted] = useState(false);
+    const { query, isReady } = useRouter();
+    const { user } = useAuth();
+    const reportId = typeof query.report === 'string' ? query.report : '';
+
+    useEffect(() => {
+        if (!isReady) return;
+        setFormData((current) => ({
+            name: current.name || [user?.firstName, user?.lastName].filter(Boolean).join(' '),
+            email: current.email || user?.email || '',
+            message: current.message || (reportId ? t('contactsPage.form.reportTemplate', { id: reportId }) : ''),
+        }));
+    }, [isReady, reportId, user, t]);
 
     const contactForm = useContactForm();
     const [sendError, setSendError] = useState(false);

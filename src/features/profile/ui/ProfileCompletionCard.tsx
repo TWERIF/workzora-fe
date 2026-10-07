@@ -1,12 +1,14 @@
 import ButtonPill from "@/shared/components/ui/Button/ButtonPill";
+import type { ReactNode } from "react";
 import { useTranslation } from "react-i18next";
 
 interface ProfileCompletionCardProps {
     progress: number;
-    actionHref: string;
+    actionHref?: string;
+    actions?: ReactNode;
 }
 
-export const ProfileCompletionCard = ({ progress, actionHref }: ProfileCompletionCardProps) => {
+export const ProfileCompletionCard = ({ progress, actionHref, actions }: ProfileCompletionCardProps) => {
     const { t } = useTranslation("profile");
 
     return (
@@ -32,7 +34,7 @@ export const ProfileCompletionCard = ({ progress, actionHref }: ProfileCompletio
                 <p className="text-xs text-text-light">{t("completion.hint")}</p>
             </div>
 
-            <ButtonPill href={actionHref} text={t("completion.action")} className="w-full" />
+            {actions ?? (actionHref && <ButtonPill href={actionHref} text={t("completion.action")} className="w-full" />)}
         </section>
     );
 };

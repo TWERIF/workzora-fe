@@ -1,130 +1,208 @@
 {
-    "logout": "Logout",
-    "changeCardInfo": "Payment info",
-    "workSaved": "Work saved",
-    "userDataUpdated": "User Data updated",
-    "nav": {
-        "basicInfo": "Basic information",
-        "skills": "Skills",
-        "hourlyRate": "Hourly rate",
-        "portfolio": "Portfolio",
-        "workPreferences": "Work preferences"
+  "logout": "Logout",
+  "changeCardInfo": "Payment info",
+  "workSaved": "Work saved",
+  "userDataUpdated": "User Data updated",
+  "nav": {
+    "basicInfo": "Basic information",
+    "skills": "Skills",
+    "hourlyRate": "Hourly rate",
+    "portfolio": "Portfolio ({{count}})",
+    "workPreferences": "Work preferences"
+  },
+  "completion": {
+    "title": "Complete your freelancer profile",
+    "description": "Add your skills, hourly rate, portfolio, and work preferences so clients can better understand your experience and offer you relevant projects.",
+    "progress": "Profile is completed at",
+    "action": "Save",
+    "publicProfile": "View public profile",
+    "label": "Profile completion:",
+    "hint": "Profiles with portfolios and skills get more relevant project offers."
+  },
+  "portfolioModal": {
+    "title": "Portfolio",
+    "addProject": "Add Project",
+    "addProjectDesc": "Showcase your best work",
+    "editProject": "Edit Project",
+    "modalTitleAdd": "Add portfolio project",
+    "modalTitleEdit": "Edit portfolio project",
+    "labelTitle": "Project title",
+    "labelDesc": "Description",
+    "labelImage": "Cover image",
+    "save": "Save project",
+    "cancel": "Cancel",
+    "deleteConfirm": "Are you sure?",
+    "labelTags": "Tags",
+    "tagsPlaceholder": "web, design, UI/UX",
+    "tagsHint": "Up to 5 tags separated by commas",
+    "imageHint": "JPEG/PNG, max size 10Mb",
+    "currentImage": "The current image stays unless you choose a new one.",
+    "imageRequired": "Add a cover image",
+    "close": "Close"
+  },
+  "basicInfo": {
+    "title": "Basic information",
+    "photo": "Profile photo",
+    "upload": "Upload",
+    "delete": "Delete photo",
+    "general": "General information",
+    "firstName": "Name",
+    "lastName": "Surname",
+    "jobTitle": "Login",
+    "email": "E-mail",
+    "phone": "Phone number",
+    "country": "Country",
+    "city": "City",
+    "selectCountry": "Select country",
+    "selectCity": "Select city",
+    "uploadTitle": "Upload new photo",
+    "uploadHint": "JPEG/PNG, max size 4Mb",
+    "cityPlaceholder": "Enter your city"
+  },
+  "skills": {
+    "title": "Skills",
+    "description": "Add the skills that best describe your services and experience. These skills help clients find your profile and understand what kind of projects you can work on.",
+    "placeholder": "Type a skill, for example: Figma, Web Design, SEO, Copywriting",
+    "label": "Search or add skills",
+    "hint": "Choose up to {{max}} skills that best match your services.",
+    "limit": "You can add up to {{max}} skills",
+    "remove": "Remove {{skill}}"
+  },
+  "hourlyRate": {
+    "title": "Hourly rate",
+    "description": "Set the hourly rate you want clients to see on your profile. You can change it later depending on your experience, project type, or availability.",
+    "rateLabel": "Hourly rate",
+    "currencyLabel": "Currency",
+    "rateType": "Rate type",
+    "standard": "Standard rate",
+    "standardDesc": "This rate will be shown on your public profile.",
+    "project": "Project rate",
+    "projectDesc": "We partner with clients on specific tasks",
+    "coverLetter": "Cover letter (optional)",
+    "coverLetterPlaceholder": "Tell us more about your experience...",
+    "perHour": "/hour",
+    "rateHint": "Enter the amount you want to charge per hour.",
+    "from": "“From” rate",
+    "fromDesc": "Clients will see “from ${{rate}} / hour” on your profile.",
+    "note": "Rate note (optional)",
+    "notePlaceholder": "For example: Final price may depend on project scope and timeline.",
+    "tipTitle": "Tip:",
+    "tipText": "Choose a rate that reflects your experience, skill level, and the value you provide. You can update your rate anytime."
+  },
+  "portfolio": {
+    "title": "Portfolio",
+    "addProject": "Add new project",
+    "addProjectDesc": "Showcase your best work to clients."
+  },
+  "workPreferences": {
+    "title": "Work preferences",
+    "description": "Tell clients what type of projects you are open to and how you prefer to work.",
+    "availability": "Availability",
+    "availableNow": "Available now",
+    "openToOffers": "Open to new projects",
+    "busy": "Busy",
+    "notAvailable": "Not available",
+    "projectSize": "Preferred project size",
+    "small": "Small / short-term",
+    "medium": "Medium-term",
+    "large": "Large / long-term",
+    "budgetType": "Preferred budget type",
+    "hourly": "Hourly rate",
+    "fixed": "Fixed budget",
+    "workload": "Workload",
+    "fullTime": "Full-time",
+    "partTime": "Part-time",
+    "flexible": "Flexible",
+    "projectType": "Preferred project type",
+    "ONE_TIME": "One-time projects",
+    "ONGOING": "Ongoing work",
+    "LONG_TERM": "Long-term collaboration",
+    "CONSULTATIONS": "Consultations",
+    "budgetRange": "Preferred budget range",
+    "UNDER_500": "Under $500",
+    "FROM_500_TO_1000": "$500–$1,000",
+    "FROM_1000_TO_3000": "$1,000–$3,000",
+    "OVER_3000": "$3,000+",
+    "workFormat": "Work format",
+    "REMOTE": "Remote",
+    "PARTTIME": "Part-time",
+    "FULLTIME": "Full-time",
+    "FLEXIBLE": "Flexible"
+  },
+  "verifications": {
+    "title": "Verifications"
+  },
+  "overview": {
+    "proBanner": {
+      "title": "Make your profile stand out",
+      "description": "Add a cover image, customize your profile, and unlock more opportunities with Pro."
     },
-    "completion": {
-        "title": "Complete your freelancer profile",
-        "description": "Add your skills, hourly rate, portfolio, and work preferences so clients can better understand your experience and offer you relevant projects.",
-        "progress": "Profile is completed at",
-        "action": "Save",
-        "publicProfile": "View public profile",
-        "label": "Profile completion:",
-        "hint": "Profiles with portfolios and skills get more relevant project offers."
-    },
-    "portfolioModal": {
-        "title": "Portfolio",
-        "addProject": "Add Project",
-        "addProjectDesc": "Showcase your best work",
-        "editProject": "Edit Project",
-        "modalTitleAdd": "Add New Work",
-        "modalTitleEdit": "Edit Work",
-        "labelTitle": "Project Title",
-        "labelDesc": "Description",
-        "labelImage": "Image URL",
-        "save": "Save Project",
-        "cancel": "Cancel",
-        "deleteConfirm": "Are you sure?"
-    },
-    "basicInfo": {
-        "title": "Basic Information",
-        "photo": "Profile photo",
-        "upload": "Upload",
-        "delete": "Delete photo",
-        "general": "General Information",
-        "firstName": "First name",
-        "lastName": "Last name",
-        "jobTitle": "Username",
-        "email": "Email",
-        "phone": "Phone number",
-        "country": "Country",
-        "city": "City",
-        "selectCountry": "Select country",
-        "selectCity": "Select city"
-    },
-    "skills": {
-        "title": "Skills",
-        "description": "Add skills that highlight your expertise.",
-        "placeholder": "e.g. UX/UI Design, Web Development..."
-    },
-    "hourlyRate": {
-        "title": "Hourly rate",
-        "description": "Set your standard hourly rate.",
-        "rateLabel": "Hourly rate",
-        "currencyLabel": "Currency",
-        "rateType": "Rate type",
-        "standard": "Standard rate",
-        "standardDesc": "Your default rate across the platform",
-        "project": "Project rate",
-        "projectDesc": "We partner with clients on specific tasks",
-        "coverLetter": "Cover letter (optional)",
-        "coverLetterPlaceholder": "Tell us more about your experience..."
-    },
-    "portfolio": {
-        "title": "Portfolio",
-        "addProject": "Add new project",
-        "addProjectDesc": "Showcase your best work to clients."
-    },
-    "workPreferences": {
-        "title": "Work preferences",
-        "description": "Let clients know your availability and preferred projects.",
-        "availability": "Availability",
-        "availableNow": "Available now",
-        "openToOffers": "Open to offers",
-        "busy": "Busy",
-        "notAvailable": "Not available",
-        "projectSize": "Preferred project size",
-        "small": "Small / short-term",
-        "medium": "Medium-term",
-        "large": "Large / long-term",
-        "budgetType": "Preferred budget type",
-        "hourly": "Hourly rate",
-        "fixed": "Fixed budget",
-        "workload": "Workload",
-        "fullTime": "Full-time",
-        "partTime": "Part-time",
-        "flexible": "Flexible"
-    },
-    "verifications": {
-        "title": "Verifications"
-    },
-    "overview": {
-        "proBanner": {
-            "title": "Make your profile stand out",
-            "description": "Add a cover image, customize your profile, and unlock more opportunities with Pro."
-        },
-        "cards": {
-            "achievements": {
-                "title": "Achievements",
-                "description": "Track your progress, completed projects, reviews, and profile milestones."
-            },
-            "store": {
-                "title": "Store",
-                "description": "Buy profile boosts, visual upgrades, badges, and other platform features."
-            },
-            "advertising": {
-                "title": "Advertising",
-                "description": "Promote your services, profile, or project to reach more clients."
-            },
-            "settings": {
-                "title": "Settings",
-                "description": "Manage your information, password, notifications, privacy, and more."
-            },
-            "affiliate": {
-                "title": "Affiliate program",
-                "description": "Invite new users to WorkZora and earn rewards for successful referrals."
-            },
-            "bonuses": {
-                "title": "Bonuses",
-                "description": "View your bonus balance, promo codes, and available offers."
-            }
-        }
+    "cards": {
+      "achievements": {
+        "title": "Achievements",
+        "description": "Track your progress, completed projects, reviews, and profile milestones."
+      },
+      "store": {
+        "title": "Store",
+        "description": "Buy profile boosts, visual upgrades, badges, and other platform features."
+      },
+      "advertising": {
+        "title": "Advertising",
+        "description": "Promote your services, profile, or project to reach more clients."
+      },
+      "settings": {
+        "title": "Settings",
+        "description": "Manage your information, password, notifications, privacy, and more."
+      },
+      "affiliate": {
+        "title": "Affiliate program",
+        "description": "Invite new users to WorkZora and earn rewards for successful referrals."
+      },
+      "bonuses": {
+        "title": "Bonuses",
+        "description": "View your bonus balance, promo codes, and available offers."
+      }
     }
+  },
+  "portfolioSection": {
+    "title": "Portfolio",
+    "addTitle": "Add new project",
+    "addText": "Show your best work to help clients understand your style, experience, and the type of results you can deliver.",
+    "addButton": "Add portfolio project",
+    "edit": "Edit",
+    "delete": "Delete",
+    "deleteConfirm": "Delete this project from your portfolio?",
+    "views": "{{count}} views"
+  },
+  "settingsSaved": "Profile saved",
+  "settingsError": "Could not save the profile",
+  "security": {
+    "title": "Security",
+    "kyc": {
+      "title": "Identity verification",
+      "status": {
+        "not_verified": "Not verified",
+        "in_progress": "Under review",
+        "verified": "Verified"
+      },
+      "text": {
+        "not_verified": "Verify your identity to withdraw money and get the verified badge on your profile.",
+        "in_progress": "Your documents were sent. We will check them and update the status.",
+        "verified": "Your identity is confirmed. You can withdraw money from your balance."
+      },
+      "document": "Passport or ID card",
+      "selfie": "Selfie with the document",
+      "selectFile": "Select file",
+      "hint": "Photos must be clear and the document fully visible. Data is used only for verification.",
+      "submit": "Send for review",
+      "sent": "Documents sent for review",
+      "error": "Could not send the documents",
+      "fileError": "Choose an image up to 10 Mb"
+    },
+    "password": {
+      "title": "Password",
+      "text": "To change the password we will send a code to your email.",
+      "action": "Change password"
+    }
+  }
 }

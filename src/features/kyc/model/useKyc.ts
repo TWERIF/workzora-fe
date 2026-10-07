@@ -1,4 +1,5 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { authKeys } from "@/features/auth/model/useAuth";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
     createVerification,
     getVerification
@@ -15,9 +16,11 @@ export const kycKeys = {
 };
 
 export const useKyc = (id?: string) => {
+    const queryClient = useQueryClient();
     const createMutation = useMutation({
         mutationFn: (formData: FormData) =>
             createVerification(formData),
+        onSuccess: () => queryClient.invalidateQueries({ queryKey: authKeys.me }),
     });
 
 

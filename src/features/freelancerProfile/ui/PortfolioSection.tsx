@@ -11,6 +11,7 @@ interface PortfolioSectionProps {
     pageCount?: number;
     onPageChange?: (page: number) => void;
     onAddProject?: () => void;
+    onOpen?: (item: PortfolioItem) => void;
 }
 
 export const PortfolioSection = ({
@@ -19,6 +20,7 @@ export const PortfolioSection = ({
     pageCount = 1,
     onPageChange,
     onAddProject,
+    onOpen,
 }: PortfolioSectionProps) => {
     const { t } = useTranslation("common");
 
@@ -34,7 +36,7 @@ export const PortfolioSection = ({
                 </p>
             ) : (
                 <>
-                    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                    <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-3">
                         {onAddProject && (
                             <div className="flex min-h-[483px] flex-col items-center justify-center gap-3 rounded-3xl border border-dashed border-text-light px-6 text-center">
                                 <div className="flex flex-col gap-[6px] text-text dark:text-text-dark">
@@ -49,7 +51,7 @@ export const PortfolioSection = ({
                             </div>
                         )}
                         {items.map((item) => (
-                            <PortfolioCard key={item.id} item={item} />
+                            <PortfolioCard key={item.id} item={item} onOpen={onOpen} />
                         ))}
                     </div>
                     <Pagination page={page} pageCount={pageCount} onPageChange={onPageChange} />

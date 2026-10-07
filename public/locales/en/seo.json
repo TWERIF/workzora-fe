@@ -90,5 +90,17 @@
   "notifications": {
     "title": "Notifications",
     "description": "Your WorkZora notifications."
+  },
+  "security": {
+    "title": "Security",
+    "description": "Verification and password of your WorkZora account."
+  },
+  "freelancerProfile": {
+    "title": "{{name}}, freelancer",
+    "description": "Portfolio, skills, rate and reviews of {{name}} on WorkZora."
+  },
+  "clientProfile": {
+    "title": "{{name}}, client",
+    "description": "Reviews and projects of {{name}} on WorkZora."
   }
 }

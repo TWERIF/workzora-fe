@@ -1,5 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
+    addPortfolioView,
     createPortfolio,
     deletePortfolio,
     getAllPortfolios,
@@ -77,3 +78,4 @@ export const useDeletePortfolio = () => {
         },
     });
 };
+export const usePortfolioView = () => useMutation({ mutationFn: addPortfolioView });

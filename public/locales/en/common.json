@@ -26,7 +26,9 @@
       "about": "About",
       "portfolio": "Portfolio",
       "skills": "Skills",
-      "reviews": "Reviews"
+      "reviews": "Reviews",
+      "active": "Active projects",
+      "completed": "Completed projects"
     },
     "header": {
       "quickActions": "Quick actions",
@@ -34,7 +36,16 @@
       "message": "Message",
       "block": "Block",
       "report": "Report",
-      "memberSince": "Member since:"
+      "memberSince": "Member since:",
+      "viewProjects": "View active projects",
+      "unblock": "Unblock",
+      "blockConfirm": "Block this user? They will not be able to message you or send proposals to your projects.",
+      "blocked": "User blocked",
+      "unblocked": "User unblocked",
+      "actionError": "Something went wrong, try again",
+      "messageUnavailable": "You can message after you work on a project together",
+      "onlineNow": "Online now",
+      "lastSeen": "Was online {{time}}"
     },
     "about": {
       "title": "About freelancer",
@@ -82,7 +93,8 @@
       "hourRate": "Hourly rate is not set",
       "portfolio": "No portfolio items yet.",
       "skills": "No skills added yet.",
-      "reviews": "No reviews yet."
+      "reviews": "No reviews yet.",
+      "notFound": "This profile does not exist or was removed."
     },
     "edit": {
       "editBio": "Edit description",
@@ -94,6 +106,22 @@
       "skillLabel": "Add a skill",
       "skillPlaceholder": "Type a skill and press Enter",
       "removeSkill": "Remove {{skill}}"
+    },
+    "client": {
+      "aboutTitle": "About client",
+      "posted": "Projects posted",
+      "completed": "Projects completed",
+      "spent": "Total spent",
+      "hiringPreferences": "Hiring preferences",
+      "usuallyHires": "Usually hires for",
+      "activeTitle": "Active projects",
+      "completedTitle": "Completed projects",
+      "statusActive": "Active",
+      "statusCompleted": "Completed",
+      "proposals_one": "{{count}} proposal",
+      "proposals_other": "{{count}} proposals",
+      "noActive": "No active projects right now.",
+      "noCompleted": "No completed projects yet."
     }
   },
   "hero": {
@@ -1131,7 +1159,8 @@
       "submitBtn": "Send Message",
       "successMessage": "Thank you! Your message has been successfully sent. We will get back to you shortly.",
       "errorMessage": "Could not send the message, try again later.",
-      "accountHint": "You can follow the answer in the Support section of your account."
+      "accountHint": "You can follow the answer in the Support section of your account.",
+      "reportTemplate": "I want to report the user with ID {{id}}. Reason: "
     },
     "legalCard": {
       "title": "Legal Information",
