@@ -9,6 +9,7 @@ export interface SettingsFormValues {
     country: string;
     city: string;
     skills: string[];
+    specializations: string[];
     rate: number;
     rateType: RateType;
     rateNote: string;

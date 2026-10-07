@@ -1274,5 +1274,18 @@
     "numbers": "Нумерований список",
     "undo": "Скасувати",
     "redo": "Повторити"
+  },
+  "specializationPicker": {
+    "placeholder": "Пошук спеціалізації",
+    "search": "Знайти",
+    "selected": "Обрано: {{current}}/{{max}}",
+    "notFound": "Нічого не знайдено. Спробуйте інший запит."
+  },
+  "categoryFilter": {
+    "category": "Категорія",
+    "specialization": "Спеціалізація",
+    "showMore": "Показати більше",
+    "showLess": "Згорнути",
+    "remove": "Прибрати {{label}}"
   }
 }

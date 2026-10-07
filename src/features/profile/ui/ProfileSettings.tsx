@@ -27,6 +27,7 @@ const toFormValues = (user: User): SettingsFormValues => ({
   country: user.country ?? "",
   city: user.city ?? "",
   skills: user.skills ?? [],
+  specializations: user.specializations ?? [],
   rate: Number(user.rate) || 0,
   rateType: user.rateType ?? "STANDARD",
   rateNote: user.rateNote ?? "",
@@ -50,6 +51,7 @@ const toPayload = (values: SettingsFormValues, isFreelancer: boolean): Partial<U
   return {
     ...base,
     skills: values.skills,
+    specializations: values.specializations,
     rate: Number.isFinite(values.rate) ? values.rate : 0,
     rateType: values.rateType,
     rateNote: values.rateNote.trim(),
@@ -71,6 +73,7 @@ export default function ProfileSettings({ user }: { user: User }) {
   const { register, handleSubmit, setValue, watch } = useForm<SettingsFormValues>({ values: defaultValues });
 
   const skills = watch("skills");
+  const specializations = watch("specializations");
   const rate = watch("rate");
   const rateNote = watch("rateNote");
   const progress = calcProfileCompletion({ ...user, ...toPayload(watch(), isFreelancer) }, portfolios.length);
@@ -103,7 +106,12 @@ export default function ProfileSettings({ user }: { user: User }) {
         <BasicInfoSection user={user} register={register} />
         {isFreelancer && (
           <>
-            <SkillsSection skills={skills} onChange={(next) => setValue("skills", next, { shouldDirty: true })} />
+            <SkillsSection
+              skills={skills}
+              onChange={(next) => setValue("skills", next, { shouldDirty: true })}
+              specializations={specializations}
+              onSpecializationsChange={(next) => setValue("specializations", next, { shouldDirty: true })}
+            />
             <HourlyRateSection register={register} rate={rate} noteLength={rateNote.length} />
             <PortfolioSettingsSection />
             <WorkPreferencesSection register={register} />

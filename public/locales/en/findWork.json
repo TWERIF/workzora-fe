@@ -17,10 +17,6 @@
     "loading": "Loading projects...",
     "updating": "Updating results...",
     "noResults": "No projects match your search yet. Try adjusting the filters.",
-    "clearAll": "Clear all filters",
-    "removeFilter": "Remove",
-    "specialization": "Specialization",
-    "showMore": "Show more",
-    "showLess": "Show less"
+    "clearAll": "Clear all filters"
   }
 }

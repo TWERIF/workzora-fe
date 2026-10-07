@@ -1266,5 +1266,18 @@
     "numbers": "Numbered list",
     "undo": "Undo",
     "redo": "Redo"
+  },
+  "specializationPicker": {
+    "placeholder": "Search for specialization",
+    "search": "Search",
+    "selected": "Selected: {{current}}/{{max}}",
+    "notFound": "Nothing found. Try a different search."
+  },
+  "categoryFilter": {
+    "category": "Category",
+    "specialization": "Specialization",
+    "showMore": "Show more",
+    "showLess": "Show less",
+    "remove": "Remove {{label}}"
   }
 }

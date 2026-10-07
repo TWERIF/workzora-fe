@@ -1,336 +1,104 @@
-import type { Category as ApiCategory } from "@/features/categories/model/types";
-import { useCategoriesList } from "@/features/categories/model/useData";
+import CategoryTreeFilter, { selectionChips, type CategorySelection } from "@/features/categories/ui/CategoryTreeFilter";
+import FilterChip from "@/features/categories/ui/FilterChip";
+import { useFreelancerCategories, useFreelancers } from "@/features/freelancers/model/useFreelancers";
 import FreelancerCard from "@/features/freelancers/ui/FreelancerCard";
-import { useUsers } from "@/features/main/model/useUsers";
-
-import CloseIcon from "@/shared/components/svg/CloseIcon";
-import IconArrow from "@/shared/components/svg/IconArrow";
-import SearchIcon from "@/shared/components/svg/SearchIcon";
-import Breadcrumbs from "@/shared/components/ui/BreadCrumbs";
-import { useMemo, useState } from "react";
-import { useTranslation } from "react-i18next";
 import PageMeta from "@/shared/components/seo/PageMeta";
+import { IconSearch } from "@/shared/components/svg/UiIcons";
+import Breadcrumbs from "@/shared/components/ui/BreadCrumbs";
+import Pagination from "@/shared/components/ui/Pagination";
+import { useState, type FormEvent } from "react";
+import { useTranslation } from "react-i18next";
 
-const ITEMS_PER_PAGE = 6;
-
-interface Specialization {
-  id: string;
-  name: string;
-  freelancersCount?: number;
-}
-
-interface Category {
-  id: string;
-  name: string;
-  freelancersCount?: number;
-  specializations?: Specialization[];
-}
-
-function toCategory(raw: ApiCategory): Category {
-  return {
-    id: raw.id,
-    name: raw.title,
-    freelancersCount: raw.count,
-    specializations: raw.subcategories.map((sub) => ({ id: sub.name, name: sub.name, freelancersCount: sub.count })),
-  };
-}
+const LIMIT = 6;
+const EMPTY: CategorySelection = { category: null, specializations: [] };
 
 export default function TopFreelancers() {
-  const { t } = useTranslation("topFreelancers");
-  const { topFreelancers } = useUsers();
-  const { data: categoriesData } = useCategoriesList();
+    const { t } = useTranslation("topFreelancers");
+    const [draft, setDraft] = useState("");
+    const [search, setSearch] = useState("");
+    const [selection, setSelection] = useState<CategorySelection>(EMPTY);
+    const [page, setPage] = useState(1);
 
-  const categories: Category[] = useMemo(
-    () => (categoriesData?.items ?? []).map(toCategory),
-    [categoriesData],
-  );
+    const { data: tree = [] } = useFreelancerCategories();
+    const { data, isLoading, isFetching } = useFreelancers({ page, limit: LIMIT, search, ...selection });
+    const freelancers = data?.data ?? [];
+    const chips = selectionChips(tree, selection);
 
-  const [search, setSearch] = useState("");
-  const [selectedCategoryId, setSelectedCategoryId] = useState<string | null>(
-    null,
-  );
-  const [selectedSpecializationId, setSelectedSpecializationId] = useState<
-    string | null
-  >(null);
-  const [showAllSpecializations, setShowAllSpecializations] = useState(false);
-  const [page, setPage] = useState(1);
+    const select = (next: CategorySelection) => {
+        setSelection(next);
+        setPage(1);
+    };
 
-  const selectedCategory = useMemo(
-    () => categories.find((c) => c.id === selectedCategoryId) ?? null,
-    [categories, selectedCategoryId],
-  );
+    const submit = (event: FormEvent) => {
+        event.preventDefault();
+        setSearch(draft);
+        setPage(1);
+    };
 
-  const specializations = selectedCategory?.specializations ?? [];
+    return (
+        <div className="mx-auto w-full max-w-[1360px] px-4 pb-20 pt-28 text-main-100 lg:pt-[140px]">
+            <PageMeta page="freelancers" />
+            <Breadcrumbs />
 
-  const visibleSpecializations = showAllSpecializations
-    ? specializations
-    : specializations.slice(0, 5);
-
-  const selectedSpecialization = useMemo(
-    () =>
-      specializations.find((s) => s.id === selectedSpecializationId) ?? null,
-    [specializations, selectedSpecializationId],
-  );
-
-  const activeChips = [
-    selectedCategory && { id: selectedCategory.id, name: selectedCategory.name, type: "category" as const },
-    selectedSpecialization && {
-      id: selectedSpecialization.id,
-      name: selectedSpecialization.name,
-      type: "specialization" as const,
-    },
-  ].filter(Boolean) as { id: string; name: string; type: "category" | "specialization" }[];
-
-  const filtered = useMemo(() => {
-    const list = topFreelancers ?? [];
-    if (!search.trim()) return list;
-    const query = search.trim().toLowerCase();
-    return list.filter((f) => {
-      const fullName = f.name || `${f.firstName} ${f.lastName}`;
-      return fullName.toLowerCase().includes(query);
-    });
-  }, [topFreelancers, search]);
-
-  const totalPages = Math.max(1, Math.ceil(filtered.length / ITEMS_PER_PAGE));
-  const currentPage = Math.min(page, totalPages);
-  const paginated = filtered.slice(
-    (currentPage - 1) * ITEMS_PER_PAGE,
-    currentPage * ITEMS_PER_PAGE,
-  );
-
-  const pageNumbers = useMemo(() => {
-    const pages: (number | "...")[] = [];
-    for (let i = 1; i <= totalPages; i++) {
-      if (i === 1 || i === totalPages || Math.abs(i - currentPage) <= 1) {
-        pages.push(i);
-      } else if (pages[pages.length - 1] !== "...") {
-        pages.push("...");
-      }
-    }
-    return pages;
-  }, [totalPages, currentPage]);
-
-  const handleSelectCategory = (categoryId: string) => {
-    setSelectedCategoryId((prev) => (prev === categoryId ? null : categoryId));
-    setSelectedSpecializationId(null);
-    setShowAllSpecializations(false);
-    setPage(1);
-  };
-
-  const handleSelectSpecialization = (specializationId: string) => {
-    setSelectedSpecializationId((prev) =>
-      prev === specializationId ? null : specializationId,
-    );
-    setPage(1);
-  };
-
-  const clearFilter = (type: "category" | "specialization") => {
-    if (type === "category") {
-      setSelectedCategoryId(null);
-      setSelectedSpecializationId(null);
-    } else {
-      setSelectedSpecializationId(null);
-    }
-    setPage(1);
-  };
-
-  const clearAllFilters = () => {
-    setSelectedCategoryId(null);
-    setSelectedSpecializationId(null);
-    setPage(1);
-  };
-
-  return (
-    <div className="bg-[#ffffff] text-text dark:bg-bg-dark dark:text-text-dark transition-colors py-20 duration-300 min-h-screen px-0 md:px-20 overflow-x-hidden">
-      <PageMeta page="freelancers" />
-      <div className="container mx-auto px-4 pt-6">
-        <Breadcrumbs />
-      </div>
-
-      <div className="container mx-auto px-4 pt-4 pb-4 flex items-center justify-between">
-        <h1 className="text-3xl md:text-[40px] font-bold">{t("title")}</h1>
-        <span className="text-success font-bold text-lg">
-          ({topFreelancers?.length ?? 0})
-        </span>
-      </div>
-
-      <div className="container mx-auto px-4 pb-16 flex flex-col lg:flex-row gap-6 lg:gap-8 min-w-0">
-        <aside className="w-full lg:w-[280px] shrink-0 min-w-0">
-          <div className="rounded-2xl bg-bg-header dark:bg-bg-modalDark shadow-card dark:shadow-card-dark p-5 flex flex-col gap-5 transition-colors">
-            <div className="flex items-center justify-between">
-              <span className="font-bold">{t("filters.title")}</span>
-              <button
-                type="button"
-                onClick={clearAllFilters}
-                className="text-xs text-error hover:underline"
-              >
-                {t("filters.clearAll")}
-              </button>
+            <div className="mb-6 mt-5 flex items-center justify-between gap-4">
+                <h1 className="text-3xl font-bold sm:text-[40px] sm:leading-tight">{t("title")}</h1>
+                <span className="text-lg font-semibold text-primary">({data?.total ?? 0})</span>
             </div>
 
-            {activeChips.length > 0 && (
-              <div className="flex flex-wrap gap-2">
-                {activeChips.map((chip) => (
-                  <span
-                    key={`${chip.type}-${chip.id}`}
-                    className="flex items-center gap-1 rounded-full border border-border px-3 py-1.5 text-sm"
-                  >
-                    {chip.name}
-                    <button
-                      type="button"
-                      onClick={() => clearFilter(chip.type)}
-                      aria-label="remove filter"
-                    >
-                      <CloseIcon />
-                    </button>
-                  </span>
-                ))}
-              </div>
-            )}
+            <div className="flex flex-col gap-6 lg:flex-row lg:items-start">
+                <aside className="h-fit w-full shrink-0 rounded-20 border border-main-10 bg-background p-4 lg:w-[272px]">
+                    <div className="flex items-center justify-between gap-2">
+                        <h2 className="text-sm font-semibold">{t("filters.title")}</h2>
+                        {chips.length > 0 && (
+                            <button type="button" onClick={() => select(EMPTY)} className="border-b border-dashed border-status-danger text-[11px] text-status-danger">
+                                {t("filters.clearAll")}
+                            </button>
+                        )}
+                    </div>
+                    {chips.length > 0 && (
+                        <div className="mt-3 flex flex-wrap gap-1.5">
+                            {chips.map((chip) => (
+                                <FilterChip key={chip.id} label={chip.label} onRemove={() => select(chip.next)} />
+                            ))}
+                        </div>
+                    )}
+                    <CategoryTreeFilter tree={tree} {...selection} onChange={select} />
+                </aside>
 
-            <div className="flex flex-col gap-3">
-              <span className="font-bold">{t("filters.category")}</span>
-              {categories.map((c) => (
-                <label
-                  key={c.id}
-                  className="flex items-center justify-between gap-2 cursor-pointer text-sm"
-                >
-                  <span className="flex items-center gap-2">
-                    <input
-                      type="radio"
-                      name="category"
-                      checked={selectedCategoryId === c.id}
-                      onChange={() => handleSelectCategory(c.id)}
-                      className="accent-success w-4 h-4"
-                    />
-                    {c.name}
-                  </span>
-                  {typeof c.freelancersCount === "number" && (
-                    <span className="text-success">
-                      ({c.freelancersCount})
-                    </span>
-                  )}
-                </label>
-              ))}
+                <div className="flex min-w-0 flex-1 flex-col gap-4">
+                    <form onSubmit={submit} role="search" className="flex gap-2.5">
+                        <label className="flex h-[50px] min-w-0 flex-1 items-center gap-2 rounded-20 border border-main-10 bg-background px-4 focus-within:border-primary">
+                            <IconSearch size={18} className="shrink-0 text-primary" />
+                            <input
+                                type="search"
+                                value={draft}
+                                onChange={(event) => {
+                                    setDraft(event.target.value);
+                                    if (!event.target.value) {
+                                        setSearch("");
+                                        setPage(1);
+                                    }
+                                }}
+                                placeholder={t("search.placeholder")}
+                                aria-label={t("search.placeholder")}
+                                className="h-full min-w-0 flex-1 bg-transparent text-sm outline-none placeholder:text-main-50"
+                            />
+                        </label>
+                        <button type="submit" className="h-[50px] shrink-0 rounded-full bg-gradient px-6 text-sm text-white transition-opacity hover:opacity-90 sm:px-10">
+                            {t("search.button")}
+                        </button>
+                    </form>
+
+                    <div className={`flex flex-col gap-4 transition-opacity ${isFetching && !isLoading ? "opacity-60" : ""}`}>
+                        {isLoading
+                            ? Array.from({ length: 3 }, (_, index) => <div key={index} className="h-[180px] animate-pulse rounded-[24px] bg-main-5" />)
+                            : freelancers.map((freelancer) => <FreelancerCard key={freelancer.id} freelancer={freelancer} />)}
+                        {!isLoading && freelancers.length === 0 && <p className="py-10 text-center text-main-50">{t("empty")}</p>}
+                    </div>
+
+                    <Pagination page={page} totalPages={data?.totalPages ?? 1} onPageChange={setPage} />
+                </div>
             </div>
-
-            {selectedCategory && specializations.length > 0 && (
-              <div className="flex flex-col gap-3">
-                <span className="font-bold">
-                  {t("filters.specialization")}
-                </span>
-                {visibleSpecializations.map((s) => (
-                  <label
-                    key={s.id}
-                    className="flex items-center gap-2 cursor-pointer text-sm"
-                  >
-                    <input
-                      type="radio"
-                      name="specialization"
-                      checked={selectedSpecializationId === s.id}
-                      onChange={() => handleSelectSpecialization(s.id)}
-                      className="accent-success w-4 h-4"
-                    />
-                    {s.name}
-                  </label>
-                ))}
-                {specializations.length > 5 && (
-                  <button
-                    type="button"
-                    onClick={() => setShowAllSpecializations((v) => !v)}
-                    className="text-success text-sm text-left"
-                  >
-                    {showAllSpecializations
-                      ? t("filters.showLess")
-                      : t("filters.showMore")}{" "}
-                    ⌄
-                  </button>
-                )}
-              </div>
-            )}
-          </div>
-        </aside>
-
-        <div className="flex-1 flex flex-col gap-6 min-w-0">
-          <div className="flex items-center gap-3 flex-wrap sm:flex-nowrap min-w-0">
-            <div className="flex-1 min-w-0 flex items-center gap-2 rounded-2xl bg-input dark:bg-input-dark shadow-input dark:shadow-input-dark px-4 py-3 transition-colors">
-              <SearchIcon />
-              <input
-                type="text"
-                value={search}
-                onChange={(e) => {
-                  setSearch(e.target.value);
-                  setPage(1);
-                }}
-                placeholder={t("search.placeholder")}
-                className="flex-1 min-w-0 bg-transparent outline-none text-sm placeholder:text-text-light dark:placeholder:text-text-muted"
-              />
-            </div>
-            <button
-              type="button"
-              className="bg-gradient text-white font-bold rounded-2xl px-6 py-3 shrink-0"
-            >
-              {t("search.button")}
-            </button>
-          </div>
-
-          <div className="flex flex-col gap-6">
-            {paginated.length > 0 ? (
-              paginated.map((freelancer) => (
-                <FreelancerCard key={freelancer.id} freelancer={freelancer} />
-              ))
-            ) : (
-              <p className="text-text-light dark:text-text-muted py-10 text-center">
-                {t("empty")}
-              </p>
-            )}
-          </div>
-
-          {totalPages > 1 && (
-            <div className="mx-auto mt-4 flex flex-wrap items-center justify-center gap-3 max-w-full">
-              <button
-                type="button"
-                aria-label={t("pagination.prev")}
-                disabled={currentPage === 1}
-                onClick={() => setPage((p) => Math.max(1, p - 1))}
-                className="w-9 h-9 rounded-full border border-border flex items-center justify-center disabled:opacity-40 rotate-180"
-              >
-                <IconArrow />
-              </button>
-
-              {pageNumbers.map((p, idx) =>
-                p === "..." ? (
-                  <span key={`ellipsis-${idx}`} className="px-1">
-                    …
-                  </span>
-                ) : (
-                  <button
-                    key={p}
-                    type="button"
-                    onClick={() => setPage(p)}
-                    className={`w-9 h-9 rounded-full flex items-center justify-center text-sm font-medium transition-colors ${p === currentPage
-                      ? "border border-success text-success"
-                      : "text-text dark:text-text-dark"
-                      }`}
-                  >
-                    {p}
-                  </button>
-                ),
-              )}
-
-              <button
-                type="button"
-                aria-label={t("pagination.next")}
-                disabled={currentPage === totalPages}
-                onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
-                className="w-9 h-9 rounded-full bg-success flex items-center justify-center disabled:opacity-40"
-              >
-                <IconArrow color="#ffffff" />
-              </button>
-            </div>
-          )}
         </div>
-      </div>
-    </div>
-  );
+    );
 }

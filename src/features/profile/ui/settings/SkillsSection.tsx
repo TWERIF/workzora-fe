@@ -1,12 +1,21 @@
 import { SKILLS_MAX } from "@/features/auth/model/types";
+import SpecializationPicker from "@/features/categories/ui/SpecializationPicker";
 import { IconClose } from "@/shared/components/svg/UiIcons";
 import { useId, useState, type KeyboardEvent } from "react";
 import { useTranslation } from "react-i18next";
 import { SettingsSection } from "./SettingsFields";
 
 const SKILL_MAX_LENGTH = 60;
+const SPECIALIZATIONS_MAX = 5;
 
-export default function SkillsSection({ skills, onChange }: { skills: string[]; onChange: (skills: string[]) => void }) {
+interface SkillsSectionProps {
+    skills: string[];
+    onChange: (skills: string[]) => void;
+    specializations: string[];
+    onSpecializationsChange: (ids: string[]) => void;
+}
+
+export default function SkillsSection({ skills, onChange, specializations, onSpecializationsChange }: SkillsSectionProps) {
     const { t } = useTranslation("profile");
     const id = useId();
     const [input, setInput] = useState("");
@@ -29,6 +38,9 @@ export default function SkillsSection({ skills, onChange }: { skills: string[]; 
 
     return (
         <SettingsSection id="skills" title={t("skills.title")} description={t("skills.description")}>
+            <div className="mb-6">
+                <SpecializationPicker label={t("skills.specializations")} max={SPECIALIZATIONS_MAX} value={specializations} onChange={onSpecializationsChange} />
+            </div>
             <div className="flex flex-col gap-1.5">
                 <label htmlFor={id} className="text-sm leading-[26px]">
                     {t("skills.label")}

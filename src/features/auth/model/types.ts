@@ -78,6 +78,7 @@ export interface User {
   isActive: boolean;
 
   skills: string[];
+  specializations?: string[];
 
   ratings: number;
 

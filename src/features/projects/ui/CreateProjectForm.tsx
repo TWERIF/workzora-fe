@@ -12,7 +12,7 @@ import TipTapEditor from "@/shared/components/ui/TipTapEditor";
 
 import { FormValues, schema } from "../model/schema";
 import { useProjects } from "../model/useProjects";
-import CategoryPicker from "./CategoryPicker";
+import SpecializationPicker from "@/features/categories/ui/SpecializationPicker";
 
 import ChevronDownIcon from "@/shared/components/svg/ChevronDownIcon";
 import UsFlagIcon from "@/shared/components/svg/UsFlagIcon";
@@ -204,7 +204,9 @@ export default function CreateProjectForm() {
                             },
                         }}
                         children={(field) => (
-                            <CategoryPicker
+                            <SpecializationPicker
+                                label={t("form.categories_label")}
+                                max={3}
                                 value={field.state.value as string[]}
                                 onChange={field.handleChange}
                                 error={field.state.meta.errors[0]}

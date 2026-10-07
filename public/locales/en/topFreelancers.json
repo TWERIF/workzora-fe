@@ -10,11 +10,7 @@
   },
   "filters": {
     "title": "Filters",
-    "clearAll": "Clear all filters",
-    "category": "Category",
-    "specialization": "Specialization",
-    "showMore": "Show more",
-    "showLess": "Show less"
+    "clearAll": "Clear all filters"
   },
   "card": {
     "goToProfile": "Go to profile",

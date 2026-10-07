@@ -69,7 +69,8 @@
     "label": "Search or add skills",
     "hint": "Choose up to {{max}} skills that best match your services.",
     "limit": "You can add up to {{max}} skills",
-    "remove": "Remove {{skill}}"
+    "remove": "Remove {{skill}}",
+    "specializations": "Categories and specializations (up to 5). Clients find you by them in Top freelancers"
   },
   "hourlyRate": {
     "title": "Hourly rate",
