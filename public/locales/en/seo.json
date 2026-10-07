@@ -106,5 +106,9 @@
   "chats": {
     "title": "Chats",
     "description": "Your projects, chats and blocked users."
+  },
+  "topProjects": {
+    "title": "Top projects",
+    "description": "Featured and most viewed open projects on Workzora."
   }
 }

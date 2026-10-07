@@ -62,6 +62,8 @@ module.exports = {
           dangerSoft: "#CC40401A",
           info: "#6987E9",
           infoSoft: "#486BDD1A",
+          warning: "#E08A00",
+          warningSoft: "#F5A6231F",
         },
       },
       fontFamily: {

@@ -21,7 +21,8 @@
       "topClients": "Топ клієнтів",
       "categories": "Категорії",
       "contests": "Конкурси",
-      "findJob": "Знайти роботу"
+      "findJob": "Знайти роботу",
+      "topProjects": "Топ проєктів"
     },
     "tabs": {
       "about": "Про фрилансера",
@@ -528,7 +529,8 @@
     "discussion": "Обговорення проекту",
     "payment-data": "Фінанси",
     "top-clients": "Топ клієнти",
-    "review": "Відгук"
+    "review": "Відгук",
+    "top-projects": "Топ проєктів"
   },
   "graphicDesignPage": {
     "hero": {

@@ -88,7 +88,7 @@ export default function FindWorkPage() {
                             </p>
                         ) : data && data.data.length > 0 ? (
                             data.data.map((project) => (
-                                <ProjectCard key={project.id} project={project} t={t} />
+                                <ProjectCard key={project.id} project={project} />
                             ))
                         ) : (
                             <p className="text-text-light dark:text-text-muted">

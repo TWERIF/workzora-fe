@@ -21,7 +21,8 @@
       "topClients": "Top clients",
       "categories": "Categories",
       "contests": "Contests",
-      "findJob": "Find a job"
+      "findJob": "Find a job",
+      "topProjects": "Top projects"
     },
     "tabs": {
       "about": "About",
@@ -524,7 +525,8 @@
     "discussion": "Project discussion",
     "payment-data": "Finances",
     "top-clients": "Top clients",
-    "review": "Review"
+    "review": "Review",
+    "top-projects": "Top projects"
   },
   "graphicDesignPage": {
     "hero": {

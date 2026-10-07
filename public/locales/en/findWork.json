@@ -17,6 +17,9 @@
     "loading": "Loading projects...",
     "updating": "Updating results...",
     "noResults": "No projects match your search yet. Try adjusting the filters.",
-    "clearAll": "Clear all filters"
+    "clearAll": "Clear all filters",
+    "featured": "Featured project",
+    "asap": "ASAP",
+    "topTitle": "Top projects"
   }
 }

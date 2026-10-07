@@ -54,6 +54,7 @@ export default function CreateProjectForm() {
             description: "",
             price: 0,
             categories: [] as string[],
+            isUrgent: false as boolean,
         } satisfies FormValues,
 
         onSubmit: async ({ value }) => {
@@ -237,6 +238,24 @@ export default function CreateProjectForm() {
                                 </div>
                             );
                         }}
+                    />
+
+                    <form.Field
+                        name="isUrgent"
+                        children={(field) => (
+                            <label className="flex cursor-pointer items-start gap-3 rounded-20 border border-main-10 p-4 transition-colors hover:border-primary">
+                                <input
+                                    type="checkbox"
+                                    checked={field.state.value}
+                                    onChange={(event) => field.handleChange(event.target.checked)}
+                                    className="mt-0.5 h-4 w-4 shrink-0 cursor-pointer accent-primary"
+                                />
+                                <span>
+                                    <span className="block text-sm font-semibold">{t("form.urgent_label")}</span>
+                                    <span className="block text-xs text-main-50">{t("form.urgent_hint")}</span>
+                                </span>
+                            </label>
+                        )}
                     />
                 </div>
             </div>

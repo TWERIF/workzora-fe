@@ -48,7 +48,7 @@ export const count = async (): Promise<number> => {
 export const findAllProjects = async (
   params: FindProjectsParams,
 ): Promise<PaginatedProjects> => {
-  const { search, page = 1, limit = 10, categories, tags, minPrice, maxPrice } = params;
+  const { search, page = 1, limit = 10, categories, tags, minPrice, maxPrice, sort } = params;
 
   const res = await $api.get("/projects", {
     params: {
@@ -59,6 +59,7 @@ export const findAllProjects = async (
       tags: tags && tags.length ? tags.join(",") : undefined,
       minPrice: minPrice || undefined,
       maxPrice: maxPrice || undefined,
+      sort,
     },
   });
 

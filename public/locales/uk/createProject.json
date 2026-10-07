@@ -17,7 +17,9 @@
     "categories_label": "Категорія та спеціалізація (до 3)",
     "description_label": "Опис",
     "button_create": "Опублікувати проєкт",
-    "button_creating": "Публікуємо..."
+    "button_creating": "Публікуємо...",
+    "urgent_label": "Терміново (ASAP)",
+    "urgent_hint": "Проєкт терміновий. У списках він отримає позначку ASAP."
   },
   "checklist": {
     "title": "Чекліст опису проєкту",

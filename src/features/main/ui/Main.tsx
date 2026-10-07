@@ -57,7 +57,7 @@ export default function Main() {
             </div>
 
             <div className="flex flex-col items-center mt-12">
-              <button className="group flex flex-col items-center gap-2" onClick={() => router.push(`/${locale}/categories`)}>
+              <button className="group flex flex-col items-center gap-2" onClick={() => router.push(`/${locale}/top-projects`)}>
                 <span className="text-xs font-bold uppercase text-success">
                   {t("topProjects.exploreAllBtn")}
                 </span>

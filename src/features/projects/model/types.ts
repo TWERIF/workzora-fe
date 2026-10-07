@@ -25,6 +25,8 @@ export interface Project {
   tags?: string[];
   startedAt?: string | null;
   completedAt?: string | null;
+  isUrgent?: boolean;
+  isFeatured?: boolean;
 }
 
 export interface MyProjectsPage {
@@ -46,6 +48,7 @@ export interface CreateProjectDto {
   categories: string[];
   tags?: string[];
   price: number;
+  isUrgent?: boolean;
 }
 
 export interface FindProjectsParams {
@@ -56,6 +59,7 @@ export interface FindProjectsParams {
   tags?: string[];
   minPrice?: number;
   maxPrice?: number;
+  sort?: "new" | "top";
 }
 
 export interface PaginatedProjects {
@@ -63,4 +67,5 @@ export interface PaginatedProjects {
   total: number;
   page: number;
   limit: number;
+  totalPages: number;
 }
