@@ -8,7 +8,7 @@ export const HISTORY_TABS: HistoryTab[] = [
 
 export const HISTORY_PERIODS: HistoryPeriod[] = ["1m", "3m", "6m", "12m"];
 
-export const MAX_LINKED_CARDS = 1;
+export const MAX_LINKED_CARDS = 5;
 
 export const STATUS_STYLES: Record<WithdrawalStatus, string> = {
     completed: "bg-status-successSoft text-status-success",

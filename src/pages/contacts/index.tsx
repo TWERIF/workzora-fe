@@ -13,15 +13,22 @@ export default function ContactsPage() {
     const { query, isReady } = useRouter();
     const { user } = useAuth();
     const reportId = typeof query.report === 'string' ? query.report : '';
+    const withdrawalId = typeof query.withdrawal === 'string' ? query.withdrawal : '';
 
     useEffect(() => {
         if (!isReady) return;
         setFormData((current) => ({
             name: current.name || [user?.firstName, user?.lastName].filter(Boolean).join(' '),
             email: current.email || user?.email || '',
-            message: current.message || (reportId ? t('contactsPage.form.reportTemplate', { id: reportId }) : ''),
+            message:
+                current.message ||
+                (reportId
+                    ? t('contactsPage.form.reportTemplate', { id: reportId })
+                    : withdrawalId
+                      ? t('contactsPage.form.withdrawalTemplate', { id: withdrawalId })
+                      : ''),
         }));
-    }, [isReady, reportId, user, t]);
+    }, [isReady, reportId, withdrawalId, user, t]);
 
     const contactForm = useContactForm();
     const [sendError, setSendError] = useState(false);

@@ -1,5 +1,7 @@
 
 import { useState } from "react";
+import { toast } from "sonner";
+import { useCardActions } from "../model/usePaymentData";
 import { useTranslation } from "react-i18next";
 import { MAX_LINKED_CARDS } from "../model/constants";
 import { LinkedCard } from "../model/types";
@@ -12,40 +14,27 @@ import VerificationNotice from "./VerificationNotice";
 interface LinkedCardsSectionProps {
     cards: LinkedCard[];
     isVerified: boolean;
-    userId?: string;
-    existingCardNumber?: string;
     isLoading?: boolean;
     isError?: boolean;
 }
 
-export const LinkedCardsSection = ({
-    cards,
-    isVerified,
-    userId,
-    existingCardNumber,
-    isLoading,
-    isError,
-}: LinkedCardsSectionProps) => {
+export const LinkedCardsSection = ({ cards, isVerified, isLoading, isError }: LinkedCardsSectionProps) => {
     const { t } = useTranslation("finances");
-    const [editingCard, setEditingCard] = useState<LinkedCard | null>(null);
     const [isFormOpen, setIsFormOpen] = useState(false);
+    const { makePrimary, remove } = useCardActions();
 
     const isLimitReached = cards.length >= MAX_LINKED_CARDS;
-    const isEditing = editingCard !== null;
+    const openCreate = () => setIsFormOpen(true);
+    const closeForm = () => setIsFormOpen(false);
 
-    const openCreate = () => {
-        setEditingCard(null);
-        setIsFormOpen(true);
+    const onRemove = (card: LinkedCard) => {
+        if (!card.id || !window.confirm(t("cards.removeConfirm", { last4: card.last4 }))) return;
+        remove.mutate(card.id, { onError: () => toast.error(t("cards.actionFailed")) });
     };
 
-    const openEdit = (card: LinkedCard) => {
-        setEditingCard(card);
-        setIsFormOpen(true);
-    };
-
-    const closeForm = () => {
-        setIsFormOpen(false);
-        setEditingCard(null);
+    const onMakePrimary = (card: LinkedCard) => {
+        if (!card.id) return;
+        makePrimary.mutate(card.id, { onError: () => toast.error(t("cards.actionFailed")) });
     };
 
     return (
@@ -80,14 +69,10 @@ export const LinkedCardsSection = ({
                 cards.length > 0 ? (
                     <ul className="flex flex-col gap-3">
                         {cards.map((card) => (
-                            <LinkedCardRow key={card.id} card={card} onEdit={openEdit} />
+                            <LinkedCardRow key={card.id} card={card} onMakePrimary={onMakePrimary} onRemove={onRemove} />
                         ))}
                     </ul>
-                ) : existingCardNumber ? <LinkedCardRow key={existingCardNumber} card={{
-                    last4: existingCardNumber,
-                    brand: "unknown",
-                    isPrimary: true
-                }} onEdit={openEdit} /> : (
+                ) : (
                     <div className="rounded-20 border border-dashed border-border p-8 text-center dark:border-white/15">
                         <p className="font-medium text-text dark:text-text-dark">
                             {t("cards.empty.title")}
@@ -101,18 +86,8 @@ export const LinkedCardsSection = ({
 
             <VerificationNotice isVerified={isVerified} />
 
-            <Modal
-                isOpen={isFormOpen}
-                title={isEditing ? t("modal.editTitle") : t("modal.addTitle")}
-                closeLabel={t("modal.close")}
-                onClose={closeForm}
-            >
-                <PaymentDataForm
-                    key={isEditing ? "edit" : "create"}
-                    userId={userId}
-                    existingCardNumber={isEditing ? existingCardNumber : undefined}
-                    onSuccess={closeForm}
-                />
+            <Modal isOpen={isFormOpen} title={t("modal.addTitle")} closeLabel={t("modal.close")} onClose={closeForm}>
+                <PaymentDataForm onSuccess={closeForm} />
             </Modal>
         </section>
     );

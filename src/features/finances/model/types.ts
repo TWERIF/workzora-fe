@@ -52,19 +52,19 @@ export interface Balance {
     uahEquivalent: number;
 }
 
-export type CardBrand = "visa" | "mastercard" | "unknown";
+export type CardBrand = "visa" | "mastercard" | "amex" | "unknown";
 
-export interface CardPayload {
+export interface NewCardPayload {
     cardNumber: string;
+    expiry?: string;
 }
 
-export interface PaymentData {
+export interface PaymentCard {
     id: string;
     userId: string;
-    cardNumberEncrypted: string;
-    cardNumberIv: string;
-    cardNumberAuthTag: string;
     maskedCardNumber: string;
-    updatedAt: Date;
-    createdAt: Date;
+    brand: string;
+    expiry: string | null;
+    isPrimary: boolean;
+    createdAt: string;
 }

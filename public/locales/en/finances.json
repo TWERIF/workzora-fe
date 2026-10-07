@@ -32,7 +32,8 @@
       "label": "Card actions",
       "makePrimary": "Make primary",
       "delete": "Delete card",
-      "edit": "Edit card"
+      "edit": "Edit card",
+      "remove": "Remove"
     },
     "verified": {
       "title": "Your profile is verified",
@@ -42,7 +43,9 @@
       "title": "Your profile is not verified",
       "description": "Verify your profile to create withdrawal requests."
     },
-    "card": "Card"
+    "card": "Card",
+    "removeConfirm": "Remove the card ending in {{last4}}?",
+    "actionFailed": "Could not update the card, try again"
   },
   "modal": {
     "addTitle": "Add card",
@@ -126,7 +129,13 @@
       "withdrawal_refund": "Rejected withdrawal refund",
       "bonus": "Bonuses"
     },
-    "error": "Failed to load history. Try refreshing the page."
+    "error": "Failed to load history. Try refreshing the page.",
+    "actions": {
+      "label": "Withdrawal actions",
+      "copy": "Copy ID",
+      "copied": "ID copied",
+      "support": "Ask support"
+    }
   },
   "pro": {
     "title": "Get more insights with WorkZora Pro",

@@ -9,7 +9,7 @@ import UserNavigation from "@/shared/components/ui/UserNavigation";
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { toLinkedCards } from "../model/MapPaymentData";
-import { usePaymentData } from "../model/usePaymentData";
+import { useCards } from "../model/usePaymentData";
 import { useExchangeRate, useWalletSummary } from "../model/useWallet";
 import WalletBalanceOverview from "./WalletBalanceOverview";
 import HistorySection from "./HistorySection";
@@ -26,16 +26,12 @@ export const FinancesPage = ({ userId }: FinancesPageProps) => {
     const { user } = useAuth();
     const isVerified = user?.verification?.status === VerificationStatus.VERIFIED;
 
-    const {
-        data: paymentData,
-        isLoading: isCardsLoading,
-        isError: isCardsError,
-    } = usePaymentData(userId);
+    const { data: paymentCards, isLoading: isCardsLoading, isError: isCardsError } = useCards(Boolean(userId));
 
     const { data: wallet, isLoading: isWalletLoading } = useWalletSummary(Boolean(userId));
     const { data: exchangeRate } = useExchangeRate();
 
-    const cards = useMemo(() => toLinkedCards(paymentData), [paymentData]);
+    const cards = useMemo(() => toLinkedCards(paymentCards), [paymentCards]);
 
     const balance = wallet?.balance ?? 0;
     const rate = exchangeRate?.rate ?? 0;
@@ -64,8 +60,6 @@ export const FinancesPage = ({ userId }: FinancesPageProps) => {
                             <LinkedCardsSection
                                 cards={cards}
                                 isVerified={isVerified}
-                                userId={userId}
-                                existingCardNumber={paymentData?.maskedCardNumber}
                                 isLoading={isCardsLoading}
                                 isError={isCardsError}
                             />

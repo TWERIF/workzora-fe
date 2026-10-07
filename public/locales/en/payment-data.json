@@ -1,13 +1,17 @@
 {
-    "paymentData": {
-        "cardNumber": "Card number",
-        "add": "Add card",
-        "update": "Update card",
-        "saving": "Saving...",
-        "errors": {
-            "required": "Enter your card number",
-            "invalid": "Invalid card number",
-            "saveFailed": "Failed to save card details"
-        }
-    }
+  "paymentData": {
+    "cardNumber": "Card number",
+    "add": "Add card",
+    "update": "Update card",
+    "saving": "Saving...",
+    "errors": {
+      "required": "Enter your card number",
+      "invalid": "Invalid card number",
+      "saveFailed": "Failed to save card details",
+      "expiry": "Enter the date as MM/YY",
+      "expired": "The card has expired",
+      "limit": "You can link up to 5 cards"
+    },
+    "expiry": "Expiry date"
+  }
 }

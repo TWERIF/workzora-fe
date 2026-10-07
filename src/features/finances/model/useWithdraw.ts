@@ -11,7 +11,7 @@ export const useCreateWithdrawal = () => {
     const queryClient = useQueryClient();
 
     return useMutation({
-        mutationFn: ({ amount }: CreateWithdrawalPayload) => createWithdrawal(amount),
+        mutationFn: ({ amount, cardId }: CreateWithdrawalPayload) => createWithdrawal({ amount, cardId }),
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: walletKeys.all });
         },

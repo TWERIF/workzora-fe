@@ -1,31 +1,30 @@
 import { $api } from "@/shared/components/http";
 import type {
-    CardPayload,
     ExchangeRate,
-    PaymentData,
+    NewCardPayload,
+    PaymentCard,
     WalletSummary,
     WalletTransaction,
     WithdrawalRecord,
 } from "./types";
 
-export const getPaymentData = async (userId: string): Promise<PaymentData | null> => {
-    const res = await $api.get<PaymentData | "">(`/payment-data/${userId}`);
-    return res.data || null;
-};
-
-export const createPaymentData = async (
-    data: CardPayload,
-): Promise<PaymentData> => {
-    const res = await $api.post("/payment-data", data);
-
+export const getCards = async (): Promise<PaymentCard[]> => {
+    const res = await $api.get<PaymentCard[]>("/payment-data/cards");
     return res.data;
 };
 
-export const updatePaymentData = async (
-    data: CardPayload,
-): Promise<PaymentData> => {
-    const res = await $api.put("/payment-data", data);
+export const addCard = async (data: NewCardPayload): Promise<PaymentCard> => {
+    const res = await $api.post<PaymentCard>("/payment-data/cards", data);
+    return res.data;
+};
 
+export const setPrimaryCard = async (id: string): Promise<PaymentCard[]> => {
+    const res = await $api.patch<PaymentCard[]>(`/payment-data/cards/${id}/primary`);
+    return res.data;
+};
+
+export const removeCard = async (id: string): Promise<PaymentCard[]> => {
+    const res = await $api.delete<PaymentCard[]>(`/payment-data/cards/${id}`);
     return res.data;
 };
 
@@ -52,7 +51,7 @@ export const getTransactions = async (
     return res.data;
 };
 
-export const createWithdrawal = async (amount: number): Promise<WithdrawalRecord> => {
-    const res = await $api.post("/wallet/withdrawals", { amount });
+export const createWithdrawal = async ({ amount, cardId }: { amount: number; cardId?: string }): Promise<WithdrawalRecord> => {
+    const res = await $api.post<WithdrawalRecord>("/wallet/withdrawals", { amount, cardId: cardId || undefined });
     return res.data;
 };

@@ -1170,7 +1170,8 @@
       "successMessage": "Thank you! Your message has been successfully sent. We will get back to you shortly.",
       "errorMessage": "Could not send the message, try again later.",
       "accountHint": "You can follow the answer in the Support section of your account.",
-      "reportTemplate": "I want to report the user with ID {{id}}. Reason: "
+      "reportTemplate": "I want to report the user with ID {{id}}. Reason: ",
+      "withdrawalTemplate": "I have a question about withdrawal {{id}}: "
     },
     "legalCard": {
       "title": "Legal Information",
