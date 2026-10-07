@@ -1,46 +1,31 @@
-import { useState } from "react";
 import { useTranslation } from "react-i18next";
-
-const CATEGORY_KEYS = [
-    "blog.categories.all",
-    "blog.categories.freelance",
-    "blog.categories.marketing",
-    "blog.categories.ai",
-    "blog.categories.telegram",
-    "blog.categories.caseStudies",
-] as const;
+import { BLOG_TAGS } from "../model/types";
 
 interface CategoryTabsProps {
-    onChange?: (categoryKey: string) => void;
+    value: string | null;
+    onChange: (tag: string | null) => void;
 }
 
-export const CategoryTabs = ({ onChange }: CategoryTabsProps) => {
+export const CategoryTabs = ({ value, onChange }: CategoryTabsProps) => {
     const { t } = useTranslation("common");
-    const [active, setActive] = useState<string>(CATEGORY_KEYS[0]);
-
-    const handleSelect = (key: string) => {
-        setActive(key);
-        onChange?.(key);
-    };
+    const items = [{ value: null, key: "all" }, ...BLOG_TAGS];
 
     return (
-        <div className="flex flex-wrap gap-3">
-            {CATEGORY_KEYS.map((key) => {
-                const isActive = key === active;
-
+        <div role="tablist" className="flex gap-2 overflow-x-auto rounded-full bg-main-5 p-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            {items.map((item) => {
+                const active = item.value === value;
                 return (
                     <button
-                        key={key}
+                        key={item.key}
                         type="button"
-                        onClick={() => handleSelect(key)}
-                        className={[
-                            "rounded-20 px-15 py-2 text-sm font-medium transition-colors",
-                            isActive
-                                ? "bg-gradient text-white"
-                                : "border border-border bg-transparent text-text hover:border-success/60 hover:text-success dark:text-text-dark",
-                        ].join(" ")}
+                        role="tab"
+                        aria-selected={active}
+                        onClick={() => onChange(item.value)}
+                        className={`h-[45px] min-w-[110px] flex-1 shrink-0 whitespace-nowrap rounded-full px-4 text-sm transition-colors ${
+                            active ? "bg-gradient text-white" : "bg-background hover:text-primary"
+                        }`}
                     >
-                        {t(key)}
+                        {t(`blog.categories.${item.key}`)}
                     </button>
                 );
             })}

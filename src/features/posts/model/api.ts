@@ -1,21 +1,20 @@
 import { $api } from "@/shared/components/http";
 import { isAxiosError } from "axios";
+import type { PaginatedPosts, PostListQuery } from "./types-paginated-posts";
 import { Post } from "./types";
 
 
-export const getAllPosts = async (
-    page: number = 1,
-    limit: number = 10,
-) => {
-    const res = await $api.get("/posts", {
-        params: {
-            page,
-            limit,
-        },
-    });
+export const getAllPosts = async ({ page, limit, tag, exclude }: PostListQuery): Promise<PaginatedPosts> =>
+    (await $api.get<PaginatedPosts>("/posts", { params: { page, limit, ...(tag && { tag }), ...(exclude && { exclude }) } })).data;
 
-    return res.data;
-};
+export const getPopularPosts = async (): Promise<Post[]> => (await $api.get<Post[]>("/posts/popular")).data;
+
+export const addPostView = async (id: string) => (await $api.post(`/posts/${id}/view`)).data;
+
+export const subscribeToBlog = async (body: { email: string; locale: string }) => (await $api.post("/newsletter/subscribe", body)).data;
+
+export const unsubscribeFromBlog = async (token: string): Promise<{ success: boolean }> =>
+    (await $api.post<{ success: boolean }>("/newsletter/unsubscribe", { token })).data;
 
 
 export const getPost = async (id: string) => {

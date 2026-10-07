@@ -1219,7 +1219,9 @@
       "title": "Subscribe to new articles",
       "subtitle": "Get the most useful materials first. No spam, only practical tips and updates.",
       "placeholder": "Your email",
-      "button": "Subscribe"
+      "button": "Subscribe",
+      "success": "You are subscribed. New articles will come to your email.",
+      "error": "Could not subscribe. Check the email and try again."
     },
     "pagination": {
       "label": "Blog pages",
@@ -1228,7 +1230,16 @@
     },
     "searchResultsFor": "Search results for \"{{term}}\"",
     "searching": "Searching…",
-    "emptyState": "No articles found."
+    "emptyState": "No articles found.",
+    "author": "Author:",
+    "unsubscribe": {
+      "pending": "Unsubscribing…",
+      "doneTitle": "You are unsubscribed",
+      "doneText": "We will not send you new articles anymore. You can subscribe again on the blog page.",
+      "errorTitle": "The link does not work",
+      "errorText": "The link is wrong or you have already unsubscribed.",
+      "back": "Go to the blog"
+    }
   },
   "post": {
     "backToBlog": "Back to blog",
