@@ -1287,5 +1287,8 @@
     "showMore": "Показати більше",
     "showLess": "Згорнути",
     "remove": "Прибрати {{label}}"
+  },
+  "userCard": {
+    "goToProfile": "Перейти до профілю"
   }
 }

@@ -13,9 +13,7 @@
     "clearAll": "Clear all filters"
   },
   "card": {
-    "goToProfile": "Go to profile",
-    "lastWork": "Last work",
-    "outOf": "5,0"
+    "lastWork": "Last work"
   },
   "pagination": {
     "prev": "Previous page",

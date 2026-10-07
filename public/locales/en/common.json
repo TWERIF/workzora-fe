@@ -1279,5 +1279,8 @@
     "showMore": "Show more",
     "showLess": "Show less",
     "remove": "Remove {{label}}"
+  },
+  "userCard": {
+    "goToProfile": "Go to profile"
   }
 }

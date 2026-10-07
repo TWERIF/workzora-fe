@@ -9,6 +9,7 @@ export const LastReviewBlock = ({ review }: { review: ProjectReview }) => {
     const { t } = useTranslation("topClients");
     const { t: tCommon } = useTranslation("common");
     const card = toReviewCard(review);
+    const criteria = CRITERIA.filter((key) => card.criteria[key] > 0);
 
     return (
         <div className="flex flex-col gap-3">
@@ -24,10 +25,10 @@ export const LastReviewBlock = ({ review }: { review: ProjectReview }) => {
                 </div>
 
                 <div className="grid grid-cols-1 gap-[6px] sm:grid-cols-2">
-                    {CRITERIA.map((key, i) => (
+                    {criteria.map((key, i) => (
                         <div
                             key={key}
-                            className={`flex items-center justify-between gap-3 rounded-xl bg-surface px-6 py-3 dark:bg-bg-modalDark ${i === CRITERIA.length - 1 ? "sm:col-span-2" : ""
+                            className={`flex items-center justify-between gap-3 rounded-xl bg-surface px-6 py-3 dark:bg-bg-modalDark ${i === criteria.length - 1 && criteria.length % 2 === 1 ? "sm:col-span-2" : ""
                                 }`}
                         >
                             <span className="text-sm text-text dark:text-text-dark">

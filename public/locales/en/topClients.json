@@ -12,7 +12,6 @@
     "remove": "Remove the {{stars}} stars filter"
   },
   "card": {
-    "goToProfile": "Go to profile",
     "lastReview": "Last client review",
     "lastActivity": "Last activity",
     "anonymous": "Client",
