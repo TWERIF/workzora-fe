@@ -1,7 +1,7 @@
-import { useCategoriesList } from "@/features/categories/model/useData";
+import { useCategoryTree } from "@/features/categories/model/useData";
 import { useAllProjects } from "@/features/projects/model/useProjects";
 import ProjectCard from "@/features/projects/ui/ProjectCard";
-import ProjectFilters from "@/features/projects/ui/ProjectFilters";
+import ProjectFilters, { EMPTY_FILTERS, type ProjectFilterState } from "@/features/projects/ui/ProjectFilters";
 import Breadcrumbs from "@/shared/components/ui/BreadCrumbs";
 import Pagination from "@/shared/components/ui/Pagination";
 import { Search } from "lucide-react";
@@ -17,47 +17,29 @@ export default function FindWorkPage() {
 
     const [searchInput, setSearchInput] = useState("");
     const [search, setSearch] = useState("");
-    const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
-    const [tags, setTags] = useState<string[]>([]);
-    const [minPrice, setMinPrice] = useState("");
-    const [maxPrice, setMaxPrice] = useState("");
+    const [filters, setFilters] = useState<ProjectFilterState>(EMPTY_FILTERS);
     const [page, setPage] = useState(1);
 
-    const { data: categoriesData } = useCategoriesList();
+    const { data: tree = [] } = useCategoryTree();
+    const categoryFilter = filters.specializations.length ? filters.specializations : filters.category ? [filters.category] : [];
 
     const { data, isLoading, isFetching } = useAllProjects({
         search,
         page,
         limit: LIMIT,
-        categories: selectedCategories,
-        tags,
-        minPrice: minPrice ? Number(minPrice) : undefined,
-        maxPrice: maxPrice ? Number(maxPrice) : undefined,
+        categories: categoryFilter,
+        tags: filters.tags,
+        minPrice: filters.minPrice ? Number(filters.minPrice) : undefined,
+        maxPrice: filters.maxPrice ? Number(filters.maxPrice) : undefined,
     });
 
     useEffect(() => {
         setPage(1);
-    }, [search, selectedCategories, tags, minPrice, maxPrice]);
+    }, [search, filters]);
 
     const handleSearchSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         setSearch(searchInput.trim());
-    };
-
-    const toggleCategory = (categoryId: string) => {
-        setSelectedCategories((prev) =>
-            prev.includes(categoryId)
-                ? prev.filter((id) => id !== categoryId)
-                : [...prev, categoryId],
-        );
-    };
-
-    const addTag = (tag: string) => {
-        setTags((prev) => (prev.includes(tag) ? prev : [...prev, tag]));
-    };
-
-    const removeTag = (tag: string) => {
-        setTags((prev) => prev.filter((t) => t !== tag));
     };
 
     const totalPages = data ? Math.max(1, Math.ceil(data.total / LIMIT)) : 1;
@@ -77,19 +59,7 @@ export default function FindWorkPage() {
             </div>
 
             <div className="mt-8 flex flex-col lg:flex-row gap-6 items-start">
-                <ProjectFilters
-                    t={t}
-                    categories={categoriesData?.items ?? []}
-                    selectedCategories={selectedCategories}
-                    onToggleCategory={toggleCategory}
-                    tags={tags}
-                    onAddTag={addTag}
-                    onRemoveTag={removeTag}
-                    minPrice={minPrice}
-                    maxPrice={maxPrice}
-                    onMinPriceChange={setMinPrice}
-                    onMaxPriceChange={setMaxPrice}
-                />
+                <ProjectFilters tree={tree} value={filters} onChange={setFilters} />
 
                 <div className="flex-1 w-full">
                     <form onSubmit={handleSearchSubmit} className="flex items-center gap-3 mb-6">

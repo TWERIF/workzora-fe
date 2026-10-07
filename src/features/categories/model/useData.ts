@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import { findAll, findOne, searchCategories } from './http';
+import { findAll, findOne, getCategoryTree, searchCategories } from './http';
 
 export const CATEGORY_KEYS = {
     all: ['categories'] as const,
@@ -54,3 +54,5 @@ export const useCategoryDetail = (id: string) => {
         enabled: !!id,
     });
 };
+export const useCategoryTree = () =>
+    useQuery({ queryKey: [...CATEGORY_KEYS.all, 'tree'], queryFn: getCategoryTree, staleTime: 5 * 60 * 1000 });

@@ -24,3 +24,16 @@ export type Category = {
     count: number;
     subcategories: Subcategory[];
 };
+export interface SpecializationNode {
+    id: string;
+    title: string;
+    count: number;
+}
+
+export interface CategoryNode {
+    id: string;
+    title: string;
+    description: string;
+    count: number;
+    specializations: SpecializationNode[];
+}
