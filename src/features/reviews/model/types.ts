@@ -1,6 +1,15 @@
 export const REVIEW_CRITERIA = ["quality", "professionalism", "communication", "price", "deadlines"] as const;
 export type ReviewCriterion = (typeof REVIEW_CRITERIA)[number];
 
+export const CLIENT_REVIEW_CRITERIA = ["communication", "quality", "price", "professionalism"] as const satisfies readonly ReviewCriterion[];
+
+export const CLIENT_CRITERION_LABELS: Record<(typeof CLIENT_REVIEW_CRITERIA)[number], string> = {
+    communication: "sociability",
+    quality: "requirements",
+    price: "payment",
+    professionalism: "professionalism",
+};
+
 export type ReviewScores = Record<ReviewCriterion, number>;
 
 export interface ProjectReview extends ReviewScores {
@@ -12,6 +21,8 @@ export interface ProjectReview extends ReviewScores {
     authorRole: "client" | "freelancer";
     rating: number;
     text: string;
+    response?: string | null;
+    respondedAt?: string | null;
     createdAt: string;
     author?: {
         id: string;
@@ -20,7 +31,8 @@ export interface ProjectReview extends ReviewScores {
     } | null;
 }
 
-export interface CreateReviewDto extends ReviewScores {
+export interface CreateReviewDto extends Omit<ReviewScores, "deadlines"> {
+    deadlines?: number;
     projectId: string;
     text: string;
     privateFeedback?: string;

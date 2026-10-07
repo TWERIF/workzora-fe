@@ -1,4 +1,5 @@
 import { User } from "@/features/auth/model/types";
+import { useAuth } from "@/features/auth/model/useAuth";
 import Top10BadgeIcon from "@/shared/components/svg/Profile/Top10BadgeIcon";
 import VerifiedBadgeIcon from "@/shared/components/svg/Profile/VerifiedBadgeIcon";
 import Image from "next/image";
@@ -14,11 +15,11 @@ interface ProfileHeaderCardProps {
 
 const ONLINE_WINDOW_MS = 5 * 60 * 1000;
 
-function OnlineStatus({ lastSeenAt }: { lastSeenAt?: string | null }) {
+function OnlineStatus({ lastSeenAt, isSelf }: { lastSeenAt?: string | null; isSelf: boolean }) {
     const { t, i18n } = useTranslation("common");
-    if (!lastSeenAt) return null;
-    const diff = Date.now() - new Date(lastSeenAt).getTime();
-    if (diff < ONLINE_WINDOW_MS) {
+    if (!lastSeenAt && !isSelf) return null;
+    const diff = lastSeenAt ? Date.now() - new Date(lastSeenAt).getTime() : 0;
+    if (isSelf || diff < ONLINE_WINDOW_MS) {
         return (
             <span className="flex items-center gap-1.5 text-success" suppressHydrationWarning>
                 <span className="h-2 w-2 rounded-full bg-success" />
@@ -39,6 +40,7 @@ function OnlineStatus({ lastSeenAt }: { lastSeenAt?: string | null }) {
 
 export const ProfileHeaderCard = ({ user, isPro = false, isTop10 = false }: ProfileHeaderCardProps) => {
     const { t, i18n } = useTranslation("common");
+    const { user: viewer } = useAuth();
 
     const fullName =
         user?.firstName || user?.lastName
@@ -69,7 +71,7 @@ export const ProfileHeaderCard = ({ user, isPro = false, isTop10 = false }: Prof
                         <span className="text-text-light">{t("profile.header.memberSince")}</span>
                         <span className="text-text dark:text-text-dark">{memberSince}</span>
                     </p>
-                    <OnlineStatus lastSeenAt={user?.lastSeenAt} />
+                    <OnlineStatus lastSeenAt={user?.lastSeenAt} isSelf={Boolean(user && viewer?.id === user.id)} />
                 </div>
 
                 <div className="flex flex-wrap items-center justify-between gap-3">

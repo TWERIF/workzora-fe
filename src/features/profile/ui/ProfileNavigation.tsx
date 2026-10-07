@@ -23,12 +23,20 @@ const primaryItems: NavItem[] = [
     { icon: "finances", labelKey: "finances", href: "/payment-data" },
 ];
 
+const clientPrimaryItems: NavItem[] = [
+    { icon: "profile", labelKey: "profile", href: "/profile" },
+    { icon: "chat", labelKey: "chat", href: "/chats" },
+    { icon: "bids", labelKey: "projects", href: "/activeProjects" },
+];
+
 const settingsItems: NavItem[] = [
     { icon: "lock", labelKey: "security", href: "/security" },
     { icon: "notifications", labelKey: "notifications", href: "/notifications" },
     { icon: "settings", labelKey: "privacy", href: "/coming-soon" },
     { icon: "logo", labelKey: "proAccount", href: "/pro" },
 ];
+
+const clientSettingsItems = settingsItems.filter((item) => item.labelKey !== "proAccount");
 
 const secondaryItems: NavItem[] = [
     { icon: "support", labelKey: "support", href: "/support" },
@@ -104,6 +112,7 @@ export const ProfileNavigation = ({
     const { user } = useAuth();
     const switchRole = useSwitchRole();
     const canSwitch = user?.role === "client" || user?.role === "freelancer";
+    const isClient = user?.role === "client";
     const targetRole = user?.role === "client" ? "freelancer" : "client";
     const targetRoleLabel = t(targetRole === "client" ? "nav.roleClient" : "nav.roleFreelancer");
 
@@ -140,12 +149,12 @@ export const ProfileNavigation = ({
             </h2>
 
             <div className="flex flex-col gap-3">
-                <ul className="flex flex-col gap-0.5">{primaryItems.map(renderItem)}</ul>
+                <ul className="flex flex-col gap-0.5">{(isClient ? clientPrimaryItems : primaryItems).map(renderItem)}</ul>
 
                 <hr className="border-text/10 dark:border-white/10" />
 
                 <ul className="flex flex-col gap-0.5">
-                    {settingsItems.map(renderItem)}
+                    {(isClient ? clientSettingsItems : settingsItems).map(renderItem)}
                     {canSwitch && (
                         <li>
                             <button

@@ -246,7 +246,17 @@ export default function Header() {
 
               <div className="flex items-center gap-4">
                 {isAuthenticated ? (
-                  account
+                  <>
+                    {account}
+                    {(user?.role === "client" || user?.role === "freelancer") && (
+                      <Link
+                        href={`/${locale}/${user.role === "client" ? "create-project" : "categories"}`}
+                        className="flex h-[42px] items-center rounded-full bg-gradient px-5 text-sm text-white transition-opacity hover:opacity-90"
+                      >
+                        {t(user.role === "client" ? "profile.headers.postProject" : "profile.headers.findJob")}
+                      </Link>
+                    )}
+                  </>
                 ) : (
                   <div className="flex items-center gap-4">
                     <LinkHeader hover={false} className="flex items-center gap-2 hover:fill-success hover:text-success" href={`/${locale}/login`}>

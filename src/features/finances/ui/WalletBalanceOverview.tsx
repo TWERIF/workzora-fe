@@ -1,7 +1,7 @@
 import { useExchangeRate, useWalletSummary } from "../model/useWallet";
 import BalanceOverview from "./BalanceOverview";
 
-export const WalletBalanceOverview = () => {
+export const WalletBalanceOverview = ({ showMain = true }: { showMain?: boolean }) => {
     const { data: wallet } = useWalletSummary();
     const { data: exchangeRate } = useExchangeRate();
 
@@ -13,6 +13,7 @@ export const WalletBalanceOverview = () => {
             balance={{ amount: balance, uahEquivalent: Math.round(balance * rate * 100) / 100 }}
             bonuses={wallet?.bonus ?? 0}
             rate={rate}
+            showMain={showMain}
         />
     );
 };

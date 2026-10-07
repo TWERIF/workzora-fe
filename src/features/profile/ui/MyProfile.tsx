@@ -5,17 +5,18 @@ import { AboutSection } from "@/features/freelancerProfile/ui/AboutSection";
 import { PortfolioSection } from "@/features/freelancerProfile/ui/PortfolioSection";
 import { ProfileHeaderCard } from "@/features/freelancerProfile/ui/ProfileHeaderCard";
 import { ProfileTab, ProfileTabs } from "@/features/freelancerProfile/ui/ProfileTabs";
-import { ReviewsSection } from "@/features/freelancerProfile/ui/ReviewsSection";
+import { UserReviews } from "@/features/reviews/ui/UserReviews";
 import { SkillsSection } from "@/features/freelancerProfile/ui/SkillsSection";
 import { useCreatePortfolio, useMyPortfolios } from "@/features/portfolio/model/usePortfolio";
 import PortfolioModal from "@/features/portfolio/ui/PortfolioModal";
-import { useUsers } from "@/features/users/model/useUsers";
+import ClientSections from "@/features/clientProfile/ui/ClientSections";
+import { useUser, useUsers } from "@/features/users/model/useUsers";
 import ProBanner from "@/shared/components/ui/ProBanner";
 import Toast from "@/shared/components/ui/Toast";
 import { useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { calcProfileCompletion } from "../model/completion";
+import { calcClientCompletion, calcProfileCompletion } from "../model/completion";
 import ProfileCompletionCard from "./ProfileCompletionCard";
 import ProfileInfoCards from "./ProfileInfoCards";
 import ProfileNavigation from "./ProfileNavigation";
@@ -31,6 +32,7 @@ export default function MyProfile({ user }: { user: User }) {
   const isFreelancer = user.role === UserRole.FREELANCER;
 
   const { data: portfolios = [] } = useMyPortfolios();
+  const { data: publicProfile } = useUser(user.id);
   const createMutation = useCreatePortfolio();
   const { updateMutaion } = useUsers();
   const queryClient = useQueryClient();
@@ -79,27 +81,32 @@ export default function MyProfile({ user }: { user: User }) {
         <div className="flex min-w-0 flex-col gap-6">
           <ProfileHeaderCard user={user} />
 
-          <WalletBalanceOverview />
+          <WalletBalanceOverview showMain={isFreelancer} />
 
           <ProfileInfoCards />
 
-          <ProBanner
-            title={t("overview.proBanner.title")}
-            description={t("overview.proBanner.description")}
-            href={`/${locale}/pro`}
-          />
+          {isFreelancer && (
+            <ProBanner
+              title={t("overview.proBanner.title")}
+              description={t("overview.proBanner.description")}
+              href={`/${locale}/pro`}
+            />
+          )}
+
+          {!isFreelancer && publicProfile && <ClientSections user={publicProfile} />}
 
           {isFreelancer && (
             <>
               <ProfileTabs
                 active={activeTab}
                 onChange={handleTabChange}
-                counts={{ portfolio: portfolios.length }}
+                counts={{ portfolio: portfolios.length, reviews: Number(user.rates) || 0 }}
               />
 
               <div id={sectionId("about")} className="scroll-mt-32">
                 <AboutSection
                   user={user}
+                  stats={publicProfile?.stats}
                   onSaveBio={(bio) => updateProfile({ bio })}
                   isSaving={updateMutaion.isPending}
                 />
@@ -124,7 +131,7 @@ export default function MyProfile({ user }: { user: User }) {
               </div>
 
               <div id={sectionId("reviews")} className="scroll-mt-32">
-                <ReviewsSection />
+                <UserReviews userId={user.id} />
               </div>
             </>
           )}
@@ -132,9 +139,11 @@ export default function MyProfile({ user }: { user: User }) {
 
         <aside className="flex flex-col gap-3">
           <ProfileNavigation activeHref="/profile" />
-          {isFreelancer && (
-            <ProfileCompletionCard progress={progress} actionHref={`/${locale}/profile/settings`} />
-          )}
+          <ProfileCompletionCard
+            progress={isFreelancer ? progress : calcClientCompletion(user)}
+            actionHref={`/${locale}/profile/settings`}
+            variant={isFreelancer ? "freelancer" : "client"}
+          />
         </aside>
       </main>
 

@@ -154,6 +154,7 @@
     "switchActiveDeals": "Finish your active projects before switching the account type",
     "switchError": "Could not switch the account type",
     "roleClient": "client",
-    "roleFreelancer": "freelancer"
+    "roleFreelancer": "freelancer",
+    "projects": "Projects"
   }
 }

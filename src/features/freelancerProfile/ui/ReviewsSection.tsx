@@ -8,6 +8,9 @@ interface ReviewsSectionProps {
     page?: number;
     pageCount?: number;
     onPageChange?: (page: number) => void;
+    ownerName?: string;
+    canRespond?: boolean;
+    onRespond?: (id: string, text: string) => Promise<unknown>;
 }
 
 export const ReviewsSection = ({
@@ -15,6 +18,9 @@ export const ReviewsSection = ({
     page = 1,
     pageCount = 1,
     onPageChange,
+    ownerName,
+    canRespond,
+    onRespond,
 }: ReviewsSectionProps) => {
     const { t } = useTranslation("common");
 
@@ -32,7 +38,13 @@ export const ReviewsSection = ({
                 <>
                     <div className="flex flex-col gap-3">
                         {reviews.map((review) => (
-                            <ReviewCard key={review.id} review={review} />
+                            <ReviewCard
+                                key={review.id}
+                                review={review}
+                                ownerName={ownerName}
+                                canRespond={canRespond}
+                                onRespond={onRespond ? (text) => onRespond(review.id, text) : undefined}
+                            />
                         ))}
                     </div>
                     <Pagination page={page} pageCount={pageCount} onPageChange={onPageChange} />

@@ -20,7 +20,8 @@
       "news": "Новини",
       "topClients": "Топ клієнтів",
       "categories": "Категорії",
-      "contests": "Конкурси"
+      "contests": "Конкурси",
+      "findJob": "Знайти роботу"
     },
     "tabs": {
       "about": "Про фрилансера",
@@ -77,8 +78,17 @@
         "professionalism": "Професіоналізм",
         "price": "Ціна",
         "sociability": "Комунікабельність",
-        "deadlines": "Дедлайни"
-      }
+        "deadlines": "Дедлайни",
+        "requirements": "Вимоги",
+        "payment": "Оплата"
+      },
+      "yourResponse": "Ваша відповідь",
+      "authorResponse": "Відповідь {{name}}",
+      "responsePlaceholder": "Подякуйте або уточніть деталі проєкту",
+      "send": "Опублікувати відповідь",
+      "cancel": "Скасувати",
+      "sent": "Відповідь опубліковано",
+      "error": "Не вдалося опублікувати відповідь"
     },
     "pagination": {
       "previous": "Попередня сторінка",

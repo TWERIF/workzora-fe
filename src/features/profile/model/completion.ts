@@ -22,3 +22,16 @@ export const calcProfileCompletion = (values: Partial<User>, portfolioCount = 0)
 
   return Math.min(baseProgress + portfolioBonus, 100);
 };
+
+export const calcClientCompletion = (values: Partial<User>) => {
+  const checks = [
+    values.firstName?.trim(),
+    values.lastName?.trim(),
+    values.phone?.trim(),
+    values.country?.trim(),
+    values.city?.trim(),
+    values.bio?.trim(),
+    values.avatarUrl,
+  ];
+  return Math.round((checks.filter(Boolean).length / checks.length) * 100);
+};

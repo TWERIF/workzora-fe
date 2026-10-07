@@ -12,3 +12,8 @@ export const getUserReviews = async (userId: string, page: number, limit: number
 export const getMyProjectReview = async (projectId: string): Promise<ProjectReview | null> => {
     return (await $api.get(`/reviews/project/${projectId}/mine`)).data.review;
 };
+
+export const respondToReview = async ({ id, text }: { id: string; text: string }) => {
+    const res = await $api.post<{ id: string; response: string; respondedAt: string }>(`/reviews/${id}/response`, { text });
+    return res.data;
+};

@@ -1,6 +1,6 @@
 import { authKeys } from "@/features/auth/model/useAuth";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { createReview, getMyProjectReview, getUserReviews } from "./api";
+import { createReview, getMyProjectReview, getUserReviews, respondToReview } from "./api";
 import type { CreateReviewDto } from "./types";
 
 export const reviewKeys = {
@@ -33,5 +33,13 @@ export const useCreateReview = () => {
             queryClient.invalidateQueries({ queryKey: reviewKeys.all });
             queryClient.invalidateQueries({ queryKey: authKeys.findUser(review.targetId) });
         },
+    });
+};
+
+export const useRespondToReview = () => {
+    const queryClient = useQueryClient();
+    return useMutation({
+        mutationFn: respondToReview,
+        onSuccess: () => queryClient.invalidateQueries({ queryKey: reviewKeys.all }),
     });
 };

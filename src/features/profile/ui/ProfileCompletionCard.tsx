@@ -6,17 +6,18 @@ interface ProfileCompletionCardProps {
     progress: number;
     actionHref?: string;
     actions?: ReactNode;
+    variant?: "freelancer" | "client";
 }
 
-export const ProfileCompletionCard = ({ progress, actionHref, actions }: ProfileCompletionCardProps) => {
+export const ProfileCompletionCard = ({ progress, actionHref, actions, variant = "freelancer" }: ProfileCompletionCardProps) => {
     const { t } = useTranslation("profile");
 
     return (
         <section className="flex flex-col gap-4 rounded-22 bg-surface p-6 dark:bg-input-dark">
             <h3 className="text-22 font-semibold text-text dark:text-text-dark">
-                {t("completion.title")}
+                {t(variant === "client" ? "completion.clientTitle" : "completion.title")}
             </h3>
-            <p className="text-sm text-text dark:text-text-dark">{t("completion.description")}</p>
+            <p className="text-sm text-text dark:text-text-dark">{t(variant === "client" ? "completion.clientDescription" : "completion.description")}</p>
 
             <div className="flex flex-col gap-2">
                 <p className="text-sm font-semibold leading-[21px] text-text dark:text-text-dark">
@@ -31,7 +32,7 @@ export const ProfileCompletionCard = ({ progress, actionHref, actions }: Profile
                 >
                     <div className="h-2.5 rounded-full bg-success" style={{ width: `${progress}%` }} />
                 </div>
-                <p className="text-xs text-text-light">{t("completion.hint")}</p>
+                <p className="text-xs text-text-light">{t(variant === "client" ? "completion.clientHint" : "completion.hint")}</p>
             </div>
 
             {actions ?? (actionHref && <ButtonPill href={actionHref} text={t("completion.action")} className="w-full" />)}

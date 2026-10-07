@@ -85,5 +85,23 @@
     "notCompleted": "You can leave a review once the project is completed.",
     "alreadyReviewed": "You have already reviewed this project. Thank you!"
   },
-  "success": "Thank you! Your review has been published."
+  "success": "Thank you! Your review has been published.",
+  "clientCriteria": {
+    "sociability": {
+      "title": "Sociability",
+      "description": "How easy was it to talk to the client and get answers?"
+    },
+    "requirements": {
+      "title": "Requirements",
+      "description": "How clear and complete were the task and materials?"
+    },
+    "payment": {
+      "title": "Payment",
+      "description": "Was the budget fair and the payment on time?"
+    },
+    "professionalism": {
+      "title": "Professionalism",
+      "description": "How professional was the client during the project?"
+    }
+  }
 }

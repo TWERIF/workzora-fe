@@ -17,7 +17,10 @@
     "action": "Save",
     "publicProfile": "View public profile",
     "label": "Profile completion:",
-    "hint": "Profiles with portfolios and skills get more relevant project offers."
+    "hint": "Profiles with portfolios and skills get more relevant project offers.",
+    "clientTitle": "Complete your client profile",
+    "clientDescription": "Add your photo, contacts and a short description so freelancers know who they work with and send better proposals.",
+    "clientHint": "Clients with a full profile get proposals faster."
   },
   "portfolioModal": {
     "title": "Portfolio",

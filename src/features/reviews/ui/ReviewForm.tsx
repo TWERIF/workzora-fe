@@ -7,7 +7,7 @@ import ButtonGradient from "@/shared/components/ui/Button/ButtonGradient";
 import type { AxiosError } from "axios";
 import { ReactNode, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { REVIEW_CRITERIA, ReviewCriterion, ReviewScores } from "../model/types";
+import { CLIENT_CRITERION_LABELS, CLIENT_REVIEW_CRITERIA, REVIEW_CRITERIA, ReviewCriterion, ReviewScores } from "../model/types";
 import { useCreateReview } from "../model/useReviews";
 import { ReviewCriterionRow } from "./ReviewCriterionRow";
 import { ReviewTextarea } from "./ReviewTextarea";
@@ -38,7 +38,11 @@ export const ReviewForm = ({ projectId, reviewing, onCancel, onSuccess }: Review
     const [privateFeedback, setPrivateFeedback] = useState("");
     const [submitted, setSubmitted] = useState(false);
 
-    const missingScores = REVIEW_CRITERIA.filter((key) => scores[key] === 0);
+    const isClientReview = reviewing === "client";
+    const criteria: readonly ReviewCriterion[] = isClientReview ? CLIENT_REVIEW_CRITERIA : REVIEW_CRITERIA;
+    const labelKey = (key: ReviewCriterion) =>
+        isClientReview ? `clientCriteria.${CLIENT_CRITERION_LABELS[key as keyof typeof CLIENT_CRITERION_LABELS]}` : `criteria.${key}`;
+    const missingScores = criteria.filter((key) => scores[key] === 0);
     const textError = submitted && !text.trim() ? t("errors.textRequired") : undefined;
 
     const handleSubmit = (e: React.FormEvent) => {
@@ -47,7 +51,13 @@ export const ReviewForm = ({ projectId, reviewing, onCancel, onSuccess }: Review
         if (missingScores.length || !text.trim()) return;
 
         createReview.mutate(
-            { projectId, ...scores, text: text.trim(), privateFeedback: privateFeedback.trim() || undefined },
+            {
+                projectId,
+                ...scores,
+                deadlines: isClientReview ? undefined : scores.deadlines,
+                text: text.trim(),
+                privateFeedback: privateFeedback.trim() || undefined,
+            },
             { onSuccess },
         );
     };
@@ -62,12 +72,12 @@ export const ReviewForm = ({ projectId, reviewing, onCancel, onSuccess }: Review
                 </h2>
 
                 <div className="flex flex-col gap-3">
-                    {REVIEW_CRITERIA.map((key) => (
+                    {criteria.map((key) => (
                         <ReviewCriterionRow
                             key={key}
                             icon={CRITERIA_ICONS[key]}
-                            title={t(`criteria.${key}.title`)}
-                            description={t(`criteria.${key}.description.${reviewing}`)}
+                            title={t(`${labelKey(key)}.title`)}
+                            description={isClientReview ? t(`${labelKey(key)}.description`) : t(`criteria.${key}.description.${reviewing}`)}
                             value={scores[key]}
                             onChange={(value) => setScores((prev) => ({ ...prev, [key]: value }))}
                             hasError={submitted && scores[key] === 0}

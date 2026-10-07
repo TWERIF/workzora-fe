@@ -14,6 +14,8 @@ export const toReviewCard = (review: ProjectReview): Review => ({
     text: review.text,
     authorName: review.author?.name ?? "",
     authorAvatarUrl: review.author?.avatarUrl ?? undefined,
+    aboutClient: review.authorRole === "freelancer",
+    response: review.response ?? null,
     criteria: {
         quality: review.quality,
         professionalism: review.professionalism,

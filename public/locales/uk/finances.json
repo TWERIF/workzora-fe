@@ -154,6 +154,7 @@
     "switchActiveDeals": "Завершіть активні проєкти перед зміною типу акаунта",
     "switchError": "Не вдалося змінити тип акаунта",
     "roleClient": "клієнт",
-    "roleFreelancer": "фрилансер"
+    "roleFreelancer": "фрилансер",
+    "projects": "Проєкти"
   }
 }

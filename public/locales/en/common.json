@@ -10,7 +10,7 @@
       "contacts": "Contacts",
       "login": "Log in",
       "signup": "Sign up",
-      "postProject": "Post a Project",
+      "postProject": "Post a project",
       "logout": "Log out",
       "profile": "Profile",
       "activeProjects": "Active projects",
@@ -20,7 +20,8 @@
       "news": "News",
       "topClients": "Top clients",
       "categories": "Categories",
-      "contests": "Contests"
+      "contests": "Contests",
+      "findJob": "Find a job"
     },
     "tabs": {
       "about": "About",
@@ -75,8 +76,17 @@
         "professionalism": "Professionalism",
         "price": "Price",
         "sociability": "Sociability",
-        "deadlines": "Deadlines"
-      }
+        "deadlines": "Deadlines",
+        "requirements": "Requirements",
+        "payment": "Payment"
+      },
+      "yourResponse": "Your response",
+      "authorResponse": "Response from {{name}}",
+      "responsePlaceholder": "Thank the client or clarify the details of the project",
+      "send": "Publish response",
+      "cancel": "Cancel",
+      "sent": "Response published",
+      "error": "Could not publish the response"
     },
     "pagination": {
       "previous": "Previous page",
