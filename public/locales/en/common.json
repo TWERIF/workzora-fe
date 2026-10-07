@@ -1258,5 +1258,13 @@
     "send": "Send",
     "select": "Select a request",
     "sendError": "Could not send the message"
+  },
+  "editor": {
+    "bold": "Bold",
+    "italic": "Italic",
+    "bullets": "Bulleted list",
+    "numbers": "Numbered list",
+    "undo": "Undo",
+    "redo": "Redo"
   }
 }

@@ -14,7 +14,7 @@ export default function CreateProjectPage() {
     return (
         <ProtectedRoute role={UserRole.CLIENT}>
             <PageMeta page="createProject" />
-            <div className="mx-auto w-full max-w-[1360px] px-4 py-16 ">
+            <div className="mx-auto w-full max-w-[1360px] px-4 pb-16 pt-28 lg:pt-[140px]">
                 <nav aria-label={t("page.breadcrumb_label")} className="mb-8">
                     <ol className="flex items-center gap-3 text-sm text-text dark:text-text-dark">
                         <li>
