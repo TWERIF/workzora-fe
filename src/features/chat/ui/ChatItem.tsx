@@ -11,7 +11,7 @@ export interface ChatItemData {
   id: string;
   date: string;
   time: string;
-  avatarUrl: string;
+  avatarUrl: string | null;
   userName: string | null;
   topic: string | null;
   messageCount: number;

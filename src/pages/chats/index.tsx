@@ -30,27 +30,30 @@ export default function ChatsPage() {
 
     const totalPages = Math.ceil(totalItems / limit);
 
-    const handleSearch = (value: string) => {
-        console.log("Searching for:", value);
-    };
+    const [search, setSearch] = useState("");
+    const handleDeleteChat = () => undefined;
 
-    const handleDeleteChat = (id: string) => {
-        console.log("Delete chat trigger for ID:", id);
-    };
+    const needle = search.trim().toLowerCase();
+    const visibleChats = needle
+        ? rawChats.filter((chat) =>
+              [chat.userName, chat.projectTitle, chat.topic].some((value) => value?.toLowerCase().includes(needle)),
+          )
+        : rawChats;
 
-    const chatsList: ChatItemData[] = rawChats.map((chat: any) => {
-        const chatDate = new Date(chat.updatedAt || Date.now());
+    const chatsList: ChatItemData[] = visibleChats.map((chat) => {
+        const chatDate = new Date(chat.updatedAt);
 
         return {
             id: chat.id,
             date: chatDate.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }),
             time: chatDate.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' }),
-            avatarUrl: chat.avatarUrl || null,
-            userName: chat.projectTitle || chat.userName || "Unknown User",
+            avatarUrl: chat.avatarUrl,
+            userName: chat.userName,
+            projectTitle: chat.projectTitle,
             projectId: chat.projectId,
-            topic: chat.topic || "Conversation",
-            messageCount: chat.messageCount || 0,
-            isUnread: chat.isUnread || false,
+            topic: chat.topic,
+            messageCount: chat.messageCount,
+            isUnread: chat.isUnread,
         };
     });
 
@@ -65,7 +68,7 @@ export default function ChatsPage() {
 
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                     <div className="order-2 lg:order-1 lg:col-span-8 flex flex-col gap-5">
-                        <ChatSearch onSearch={handleSearch} />
+                        <ChatSearch onSearch={setSearch} />
 
                         <div className="flex flex-col gap-3 mt-2">
                             {isLoading ? (

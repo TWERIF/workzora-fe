@@ -6,8 +6,8 @@ import {
   Project,
 } from "./types";
 
-export const getTopProjects = async () => {
-  const res = await $api.get("/projects/topProjects");
+export const getTopProjects = async (): Promise<Project[]> => {
+  const res = await $api.get<Project[]>("/projects/topProjects");
   return res.data;
 };
 export const update = async (id: string, body: Partial<Project>) => {

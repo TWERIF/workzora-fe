@@ -18,8 +18,14 @@ import SupportIcon from "@/shared/components/svg/AccountSettings/SupportIcon";
 import IconArrowSmall from "@/shared/components/svg/IconArrowSmall";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useState, type ComponentType } from "react";
 import { useTranslation } from "react-i18next";
+
+interface SettingsLink {
+  name: string;
+  icon: ComponentType;
+  link: string;
+}
 
 const AccountSettings = ({ user }: { user: User }) => {
   const { t } = useTranslation("common");
@@ -32,7 +38,7 @@ const AccountSettings = ({ user }: { user: User }) => {
 
   const activePath = router.asPath;
 
-  const initialLinks = [
+  const initialLinks: SettingsLink[] = [
     {
       name: t("profilePage.settings_menu.cabinet"),
       icon: CabinetIcon,
@@ -78,7 +84,7 @@ const AccountSettings = ({ user }: { user: User }) => {
     ? initialLinks.filter((item) => !item.link.includes("bids") && !item.link.includes('portfolio'))
     : initialLinks;
 
-  const secondaryLinks = [
+  const secondaryLinks: SettingsLink[] = [
     {
       name: t("profilePage.settings_menu.profile_desc"),
       icon: ProfileDescIcon,
@@ -116,13 +122,13 @@ const AccountSettings = ({ user }: { user: User }) => {
     },
   ];
 
-  const NavItem = ({ link }: { link: any }) => {
+  const NavItem = ({ link }: { link: SettingsLink }) => {
     const Icon = link.icon;
     const isActive =
       activePath === link.link ||
-      activePath === link.link?.replace(`/${locale}`, "");
+      activePath === link.link.replace(`/${locale}`, "");
 
-    const href = link.link || "#";
+    const href = link.link;
 
     return (
       <Link href={href}>

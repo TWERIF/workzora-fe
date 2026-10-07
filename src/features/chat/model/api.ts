@@ -1,8 +1,8 @@
 import { $api } from "@/shared/components/http";
-import { ChatMessage, ChatRoom } from "./types";
+import { ChatList, ChatMessage, ChatRoom } from "./types";
 
-export const getChats = async (params: { page?: number; limit?: number }) => {
-    const res = await $api.get("/chat", { params });
+export const getChats = async (params: { page?: number; limit?: number }): Promise<ChatList> => {
+    const res = await $api.get<ChatList>("/chat", { params });
     return res.data;
 };
 

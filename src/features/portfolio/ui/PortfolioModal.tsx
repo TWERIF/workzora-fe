@@ -12,10 +12,16 @@ interface PortfolioModalProps {
   isLoading: boolean;
 }
 
+interface PortfolioFormValues {
+  title: string;
+  description: string;
+  image: FileList | undefined;
+}
+
 export default function PortfolioModal({ isOpen, onClose, onSubmit, initialData, isLoading }: PortfolioModalProps) {
   const { t } = useTranslation("profile");
 
-  const { register, handleSubmit, reset, watch } = useForm({
+  const { register, handleSubmit, reset, watch } = useForm<PortfolioFormValues>({
     defaultValues: {
       title: "",
       description: "",
@@ -35,7 +41,7 @@ export default function PortfolioModal({ isOpen, onClose, onSubmit, initialData,
 
   if (!isOpen) return null;
 
-  const submitHandler = (data: any) => {
+  const submitHandler = (data: PortfolioFormValues) => {
     const formData = new FormData();
     formData.append("title", data.title);
     formData.append("description", data.description);

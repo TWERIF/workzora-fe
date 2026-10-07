@@ -1,3 +1,4 @@
+import type { Category as ApiCategory } from "@/features/categories/model/types";
 import { useCategoriesList } from "@/features/categories/model/useData";
 import FreelancerCard from "@/features/freelancers/ui/FreelancerCard";
 import { useUsers } from "@/features/main/model/useUsers";
@@ -25,28 +26,12 @@ interface Category {
   specializations?: Specialization[];
 }
 
-// Loosely typed raw item coming from the API/hook, before normalization.
-type RawCategory = Record<string, any>;
-
-function normalizeSpecialization(raw: RawCategory): Specialization {
+function toCategory(raw: ApiCategory): Category {
   return {
     id: raw.id,
-    name: raw.name ?? raw.title ?? "",
-    freelancersCount:
-      raw.freelancersCount ?? raw.freelancerCount ?? raw.count ?? undefined,
-  };
-}
-
-function normalizeCategory(raw: RawCategory): Category {
-  const rawSpecializations: RawCategory[] =
-    raw.specializations ?? raw.subcategories ?? [];
-
-  return {
-    id: raw.id,
-    name: raw.name ?? raw.title ?? "",
-    freelancersCount:
-      raw.freelancersCount ?? raw.freelancerCount ?? raw.count ?? undefined,
-    specializations: rawSpecializations.map(normalizeSpecialization),
+    name: raw.title,
+    freelancersCount: raw.count,
+    specializations: raw.subcategories.map((sub) => ({ id: sub.name, name: sub.name, freelancersCount: sub.count })),
   };
 }
 
@@ -55,13 +40,9 @@ export default function TopFreelancers() {
   const { topFreelancers } = useUsers();
   const { data: categoriesData } = useCategoriesList();
 
-  const rawCategories: RawCategory[] = Array.isArray(categoriesData)
-    ? categoriesData
-    : ((categoriesData as { items?: RawCategory[] } | undefined)?.items ?? []);
-
   const categories: Category[] = useMemo(
-    () => rawCategories.map(normalizeCategory),
-    [rawCategories],
+    () => (categoriesData?.items ?? []).map(toCategory),
+    [categoriesData],
   );
 
   const [search, setSearch] = useState("");

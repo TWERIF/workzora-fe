@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
+import type { TFunction } from "i18next";
 import { useTranslation } from "react-i18next";
 import { LogoGreen } from "../../svg/LogoGreen";
 import FooterMeta from "./FooterMeta";
@@ -112,7 +113,7 @@ const FooterColumn = ({
 }: {
   columnKey: ColumnKey;
   hrefs: string[];
-  t: (key: string, opts?: any) => any;
+  t: TFunction<"footer">;
 }) => {
   const title = t(`columns.${columnKey}.title`);
   const links = t(`columns.${columnKey}.links`, { returnObjects: true }) as string[];

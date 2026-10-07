@@ -117,7 +117,7 @@ export const PaymentForm = ({
         const payload: CreateEscrowPayload = { projectId };
 
         createEscrow(payload, {
-            onSuccess: (escrow: any) => {
+            onSuccess: (escrow) => {
                 // escrow.pageUrl / escrow.invoiceId come straight through
                 // from Monobank's "Створення рахунку" response — wire the
                 // backend to pass both fields back unchanged.

@@ -37,3 +37,28 @@ export interface ChatMessage {
   senderAvatar?: string | null;
   createdAt: string;
 }
+
+interface ChatParticipant {
+  id: string | null;
+  name: string | null;
+  avatarUrl: string | null;
+}
+
+export interface ChatListItem {
+  id: string;
+  updatedAt: string;
+  projectTitle: string | null;
+  projectId: string;
+  avatarUrl: string | null;
+  userName: string | null;
+  client: ChatParticipant;
+  freelancer: ChatParticipant;
+  topic: string | null;
+  messageCount: number;
+  isUnread: boolean;
+}
+
+export interface ChatList {
+  data: ChatListItem[];
+  total: number;
+}

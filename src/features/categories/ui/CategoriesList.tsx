@@ -23,7 +23,7 @@ export default function ProjectsList(props: CategoriesProps) {
 
     const projectsData = isSearching ? searchResults : topProjects;
 
-    const projectsList = Array.isArray(projectsData) ? projectsData : projectsData?.items;
+    const projectsList = projectsData ?? [];
 
     return (
         <div className="w-full">
@@ -42,7 +42,7 @@ export default function ProjectsList(props: CategoriesProps) {
             ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-full gap-8 py-12">
                     {projectsList && projectsList.length > 0 ? (
-                        projectsList.map((project: any) => (
+                        projectsList.map((project) => (
                             <ProjectCard
                                 key={project.id}
                                 project={project}
