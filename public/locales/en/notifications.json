@@ -1,0 +1,61 @@
+{
+  "title": "Notifications",
+  "tabs": {
+    "all": "All",
+    "projects": "Projects",
+    "messages": "Messages",
+    "payments": "Payments",
+    "system": "System"
+  },
+  "markAll": "Mark all as read",
+  "new": "New",
+  "empty": "No notifications here yet.",
+  "error": "Could not load notifications.",
+  "items": {
+    "welcome": {
+      "title": "Welcome to WorkZora! 👋",
+      "text": "New to WorkZora? Our Knowledge Base has everything you need to get started. Learn how the platform works, create your profile, find projects, work with clients, manage payments, and use all the main features of WorkZora.",
+      "action": "Explore Knowledge Base"
+    },
+    "newMessage": {
+      "title": "You have a new message from {{name}}",
+      "text": "Project “{{project}}”"
+    },
+    "bidReceived": {
+      "title": "New proposals on your project",
+      "text": "Freelancers are sending proposals for “{{project}}”."
+    },
+    "freelancerSelected": {
+      "title": "You were chosen for a project",
+      "text": "The client chose you for “{{project}}”. Work starts once the payment is reserved."
+    },
+    "fundsReserved": {
+      "title": "Payment reserved",
+      "text": "The client reserved the payment for “{{project}}”. You can start working."
+    },
+    "projectCompleted": {
+      "title": "Project completed",
+      "text": "The project “{{project}}” has been marked as completed. You can now leave a review."
+    },
+    "paymentReceived": {
+      "title": "Payment received",
+      "text": "${{amount}} has been added to your WorkZora balance for the completed project."
+    },
+    "withdrawalCompleted": {
+      "title": "Withdrawal completed",
+      "text": "${{amount}} has been sent to your card."
+    },
+    "withdrawalRejected": {
+      "title": "Withdrawal rejected",
+      "text": "${{amount}} has been returned to your balance. Contact support if you have questions."
+    },
+    "reviewReceived": {
+      "title": "You received a new review ⭐",
+      "text": "{{name}} rated your work {{rating}} out of 5 for “{{project}}”."
+    },
+    "unknown": {
+      "title": "Notification",
+      "text": ""
+    }
+  }
+}

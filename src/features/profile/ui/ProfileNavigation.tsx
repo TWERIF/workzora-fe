@@ -1,5 +1,6 @@
 import { useAuth } from "@/features/auth/model/useAuth";
 import { useSwitchRole } from "@/features/auth/model/useSwitchRole";
+import { useUnreadNotifications } from "@/features/notifications/model/useNotifications";
 import NavIcon, { NavIconName } from "@/shared/components/svg/NavIcon";
 import Link from "next/link";
 import type { ReactNode } from "react";
@@ -24,7 +25,7 @@ const primaryItems: NavItem[] = [
 
 const settingsItems: NavItem[] = [
     { icon: "lock", labelKey: "security", href: "/coming-soon" },
-    { icon: "notifications", labelKey: "notifications", href: "/coming-soon" },
+    { icon: "notifications", labelKey: "notifications", href: "/notifications" },
     { icon: "settings", labelKey: "privacy", href: "/coming-soon" },
     { icon: "logo", labelKey: "proAccount", href: "/pro" },
 ];
@@ -49,6 +50,8 @@ export const ProfileNavigation = ({
 }: UserNavigationProps) => {
     const { t, i18n } = useTranslation("finances");
     const locale = i18n.language;
+    const { data: unread } = useUnreadNotifications();
+    const unreadCount = unread?.total ?? 0;
 
     const itemClasses = (isActive: boolean, accent?: boolean) =>
         `flex items-center gap-2 rounded-2xl py-[14px] text-sm transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-success ${isActive
@@ -60,10 +63,20 @@ export const ProfileNavigation = ({
         const isActive = item.href === activeHref;
         const className = itemClasses(isActive, item.accent);
 
+        const badge = item.icon === "notifications" ? unreadCount : 0;
         const content = (
             <>
                 <NavIcon name={item.icon} />
                 {t(`nav.${item.labelKey}`)}
+                {badge > 0 && (
+                    <span
+                        className={`ml-auto flex h-5 min-w-5 items-center justify-center rounded-full px-1.5 text-[10px] font-semibold ${
+                            isActive ? "bg-white text-success" : "bg-success text-white"
+                        }`}
+                    >
+                        {badge > 99 ? "99+" : badge}
+                    </span>
+                )}
             </>
         );
 

@@ -17,12 +17,14 @@ const primaryItems: NavItem[] = [
 ];
 
 const secondaryItems: NavItem[] = [
+    { key: "notifications", href: "/notifications" },
     { key: "support", href: "/support" },
     { key: "news", href: "/news" },
 ];
 
 interface UserNavigationProps {
     activeHref: string;
+    notificationsCount?: number;
     renderLink?: (item: {
         href: string;
         className: string;
@@ -32,6 +34,7 @@ interface UserNavigationProps {
 
 export const UserNavigation = ({
     activeHref,
+    notificationsCount = 0,
     renderLink,
 }: UserNavigationProps) => {
     const { t, i18n } = useTranslation("finances");
@@ -47,10 +50,20 @@ export const UserNavigation = ({
         const isActive = item.href === activeHref;
         const className = itemClasses(isActive);
 
+        const badge = item.key === "notifications" ? notificationsCount : 0;
         const content = (
             <>
                 <NavIcon name={item.key} />
                 {t(`nav.${item.key}`)}
+                {badge > 0 && (
+                    <span
+                        className={`ml-auto flex h-5 min-w-5 items-center justify-center rounded-full px-1.5 text-[10px] font-semibold ${
+                            isActive ? "bg-white text-success" : "bg-success text-white"
+                        }`}
+                    >
+                        {badge > 99 ? "99+" : badge}
+                    </span>
+                )}
             </>
         );
 

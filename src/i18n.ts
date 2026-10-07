@@ -3,6 +3,7 @@ import { initReactI18next } from "react-i18next";
 import codeOfConductEn from "../public/locales/en/codeOfConduct.json";
 import comingSoonEn from "../public/locales/en/comingSoon.json";
 import authEn from "../public/locales/en/auth.json";
+import notificationsEn from "../public/locales/en/notifications.json";
 import commonEn from "../public/locales/en/common.json";
 import copyrightPolicyEn from "../public/locales/en/copyrightPolicy.json";
 import feesEn from "../public/locales/en/fees.json";
@@ -10,6 +11,7 @@ import mainEn from "../public/locales/en/main.json";
 import codeOfConductUk from "../public/locales/uk/codeOfConduct.json";
 import comingSoonUk from "../public/locales/uk/comingSoon.json";
 import authUk from "../public/locales/uk/auth.json";
+import notificationsUk from "../public/locales/uk/notifications.json";
 import commonUk from "../public/locales/uk/common.json";
 import copyrightPolicyUk from "../public/locales/uk/copyrightPolicy.json";
 import feesUk from "../public/locales/uk/fees.json";
@@ -73,6 +75,7 @@ const resources = {
     en: {
       common: commonEn,
       auth: authEn,
+      notifications: notificationsEn,
       codeOfConduct: codeOfConductEn,
       fees: feesEn,
       copyrightPolicy: copyrightPolicyEn,
@@ -100,6 +103,7 @@ const resources = {
     uk: {
       common: commonUk,
       auth: authUk,
+      notifications: notificationsUk,
       codeOfConduct: codeOfConductUk,
       fees: feesUk,
       copyrightPolicy: copyrightPolicyUk,

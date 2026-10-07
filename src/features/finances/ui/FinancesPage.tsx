@@ -1,3 +1,4 @@
+import { useUnreadNotifications } from "@/features/notifications/model/useNotifications";
 
 import { useAuth } from "@/features/auth/model/useAuth";
 import { VerificationStatus } from "@/features/kyc/model/types";
@@ -20,6 +21,7 @@ interface FinancesPageProps {
 }
 
 export const FinancesPage = ({ userId }: FinancesPageProps) => {
+    const { data: unreadNotifications } = useUnreadNotifications();
     const { t } = useTranslation("finances");
     const { user } = useAuth();
     const isVerified = user?.verification?.status === VerificationStatus.VERIFIED;
@@ -81,7 +83,7 @@ export const FinancesPage = ({ userId }: FinancesPageProps) => {
                     </div>
 
                     <aside className="lg:sticky lg:top-24">
-                        <UserNavigation activeHref={`/payment-data`} />
+                        <UserNavigation activeHref={`/payment-data`} notificationsCount={unreadNotifications?.total ?? 0} />
                     </aside>
                 </div>
             </main>

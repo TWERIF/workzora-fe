@@ -1,3 +1,4 @@
+import { useUnreadNotifications } from "@/features/notifications/model/useNotifications";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -19,6 +20,7 @@ import UserNavigation from "@/shared/components/ui/UserNavigation";
 const ITEMS_PER_PAGE = 10;
 
 function ActiveProjectsContent() {
+    const { data: unreadNotifications } = useUnreadNotifications();
   const router = useRouter();
   const locale = router.locale || "en";
   const { t } = useTranslation("additions");
@@ -92,7 +94,7 @@ function ActiveProjectsContent() {
           </div>
 
           <aside>
-            <UserNavigation activeHref="/activeProjects" />
+            <UserNavigation activeHref="/activeProjects" notificationsCount={unreadNotifications?.total ?? 0} />
           </aside>
         </div>
       </div>
