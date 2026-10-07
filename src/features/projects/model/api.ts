@@ -1,10 +1,5 @@
 import { $api } from "@/shared/components/http";
-import {
-  CreateProjectDto,
-  FindProjectsParams,
-  PaginatedProjects,
-  Project,
-} from "./types";
+import { CreateProjectDto, FindProjectsParams, MyProjectsPage, PaginatedProjects, Project } from "./types";
 
 export const getTopProjects = async (): Promise<Project[]> => {
   const res = await $api.get<Project[]>("/projects/topProjects");
@@ -27,8 +22,8 @@ export const getOne = async (id: string): Promise<Project | undefined> => {
   const res = await $api.get(`/projects/${id}`);
   return res.data;
 };
-export const getMyProjects = async (params: { status: string; page?: number; limit?: number }) => {
-  const res = await $api.get("/projects/my", { params });
+export const getMyProjects = async (params: { status?: string; group?: "deals"; page?: number; limit?: number }): Promise<MyProjectsPage> => {
+  const res = await $api.get<MyProjectsPage>("/projects/my", { params });
   return res.data;
 };
 export const searchProjects = async (searchTerm: string): Promise<Project[]> => {

@@ -102,5 +102,9 @@
   "clientProfile": {
     "title": "{{name}}, клієнт",
     "description": "Відгуки та проєкти {{name}} у WorkZora."
+  },
+  "chats": {
+    "title": "Чати",
+    "description": "Ваші проєкти, чати й заблоковані користувачі."
   }
 }

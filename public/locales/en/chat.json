@@ -20,5 +20,41 @@
     "chatCreated": "Chat created"
   },
   "sendError": "Message was not sent, try again",
-  "paymentError": "Could not create the payment, try again"
+  "paymentError": "Could not create the payment, try again",
+  "hub": {
+    "title": "Chat",
+    "search": "Search for message",
+    "searchButton": "Search",
+    "tabs": {
+      "projects": "Active projects",
+      "chats": "Chats",
+      "blocked": "Blocked"
+    },
+    "status": {
+      "awaiting_payment": "Money reservation",
+      "in_progress": "Working on project",
+      "completed": "Archive project"
+    },
+    "deadline": "Project deadline",
+    "timeLeft": "Time left",
+    "daysLeft_one": "{{count}} day left",
+    "daysLeft_other": "{{count}} days left",
+    "overdue": "Overdue",
+    "duration_one": "{{count}} day",
+    "duration_other": "{{count}} days",
+    "afterPayment": "After payment",
+    "finished": "Finished",
+    "workingChat": "Working chat",
+    "emptyProjects": "No projects with a chosen freelancer yet.",
+    "emptyChats": "No chats yet. A chat opens when a freelancer is chosen for a project.",
+    "emptyBlocked": "You have not blocked anyone.",
+    "emptySearch": "Nothing found on this page.",
+    "unblock": "Unblock",
+    "blockedOn": "Blocked {{date}}",
+    "online": "Online",
+    "read": "Read",
+    "sent": "Sent",
+    "unread_one": "{{count}} unread message",
+    "unread_other": "{{count}} unread messages"
+  }
 }

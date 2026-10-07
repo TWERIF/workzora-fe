@@ -23,6 +23,13 @@ export interface Project {
   time?: number | null;
   proposalsCount?: number;
   tags?: string[];
+  startedAt?: string | null;
+  completedAt?: string | null;
+}
+
+export interface MyProjectsPage {
+  items: Project[];
+  meta: { total: number; page: number; limit: number; totalPages: number };
 }
 
 export enum ProjectStatus {

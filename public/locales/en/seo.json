@@ -102,5 +102,9 @@
   "clientProfile": {
     "title": "{{name}}, client",
     "description": "Reviews and projects of {{name}} on WorkZora."
+  },
+  "chats": {
+    "title": "Chats",
+    "description": "Your projects, chats and blocked users."
   }
 }

@@ -10,7 +10,7 @@ interface NavItem {
 
 const primaryItems: NavItem[] = [
     { key: "profile", href: "/profile" },
-    { key: "chat", href: "/activeProjects" },
+    { key: "chat", href: "/chats" },
     { key: "bids", href: "/coming-soon" },
     { key: "reviews", href: "/coming-soon" },
     { key: "finances", href: "/payment-data" },

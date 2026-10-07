@@ -1,7 +1,7 @@
 import { User } from "@/features/auth/model/types";
 import { authKeys } from "@/features/auth/model/useAuth";
 import { keepPreviousData, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { blockUser, count, findOne, getClientProjects, getRelation, removeAvatar, unblockUser, update, uploadAvatar } from "./api";
+import { blockUser, count, findOne, getBlockedUsers, getClientProjects, getRelation, removeAvatar, unblockUser, update, uploadAvatar } from "./api";
 
 export const useUsers = () => {
   const queryClient = useQueryClient();
@@ -66,3 +66,16 @@ export const useClientProjects = (id: string | undefined, status: "active" | "co
     enabled: Boolean(id),
     placeholderData: keepPreviousData,
   });
+
+export const useBlockedUsers = (enabled = true) => {
+  const queryClient = useQueryClient();
+  const list = useQuery({ queryKey: ["blocked-users"], queryFn: getBlockedUsers, enabled });
+  const unblock = useMutation({
+    mutationFn: unblockUser,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["blocked-users"] });
+      queryClient.invalidateQueries({ queryKey: ["user-relation"] });
+    },
+  });
+  return { blocked: list.data ?? [], isLoading: list.isLoading, unblock: unblock.mutate, isUnblocking: unblock.isPending };
+};

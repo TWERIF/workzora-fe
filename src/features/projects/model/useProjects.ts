@@ -93,6 +93,13 @@ export const useMyProjects = (status: string = ProjectStatus.OPEN, page: number 
   });
 };
 
+export const useMyDeals = (page = 1, limit = 10) =>
+  useQuery({
+    queryFn: () => getMyProjects({ group: "deals", page, limit }),
+    queryKey: [...projectKeys.myProjects("deals", page, limit)],
+    placeholderData: (previous) => previous,
+  });
+
 export const useSearchProjects = (searchTerm: string) => {
   return useQuery({
     queryFn: () => searchProjects(searchTerm),

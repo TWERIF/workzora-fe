@@ -96,3 +96,36 @@ export const IconImage = make(
         <path d="m21 16-5-5-9 9" />
     </>,
 );
+
+export const IconCalendar = make(
+    <>
+        <rect x="3" y="5" width="18" height="16" rx="3" />
+        <path d="M8 3v4" />
+        <path d="M16 3v4" />
+        <path d="M3 10h18" />
+        <path d="M8 14h.01M12 14h.01M16 14h.01M8 17.5h.01M12 17.5h.01" />
+    </>,
+);
+
+export const IconClock = make(
+    <>
+        <circle cx="12" cy="12" r="9" />
+        <path d="M12 7v5l3 2" />
+    </>,
+);
+
+export const IconChecks = make(
+    <>
+        <path d="m2 12.5 4.5 4.5L15 8.5" />
+        <path d="m10.5 16 1 1L20 8.5" />
+    </>,
+);
+
+export const IconCheck = make(<path d="m5 12.5 4.5 4.5L19 7.5" />);
+
+export const IconSearch = make(
+    <>
+        <circle cx="11" cy="11" r="7" />
+        <path d="m20 20-3.5-3.5" />
+    </>,
+);

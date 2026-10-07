@@ -17,7 +17,7 @@ interface NavItem {
 
 const primaryItems: NavItem[] = [
     { icon: "profile", labelKey: "profile", href: "/profile" },
-    { icon: "chat", labelKey: "chat", href: "/activeProjects" },
+    { icon: "chat", labelKey: "chat", href: "/chats" },
     { icon: "bids", labelKey: "bids", href: "/coming-soon" },
     { icon: "reviews", labelKey: "reviews", href: "/coming-soon" },
     { icon: "finances", labelKey: "finances", href: "/payment-data" },

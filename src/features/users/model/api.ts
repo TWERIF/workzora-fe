@@ -49,3 +49,13 @@ export const getClientProjects = async (id: string, status: "active" | "complete
   const res = await $api.get<ClientProjectsPage>(`/users/${id}/projects`, { params: { status, page, limit } });
   return res.data;
 };
+
+export interface BlockedUser {
+  blockedAt: string;
+  user: { id: string; firstName: string; lastName: string; avatarUrl: string | null; role: string };
+}
+
+export const getBlockedUsers = async () => {
+  const res = await $api.get<BlockedUser[]>("/users/blocked");
+  return res.data;
+};

@@ -20,5 +20,47 @@
     "chatCreated": "Чат створено"
   },
   "sendError": "Повідомлення не надіслано, спробуйте ще раз",
-  "paymentError": "Не вдалося створити оплату, спробуйте ще раз"
+  "paymentError": "Не вдалося створити оплату, спробуйте ще раз",
+  "hub": {
+    "title": "Чат",
+    "search": "Пошук повідомлень",
+    "searchButton": "Знайти",
+    "tabs": {
+      "projects": "Активні проєкти",
+      "chats": "Чати",
+      "blocked": "Заблоковані"
+    },
+    "status": {
+      "awaiting_payment": "Резервування коштів",
+      "in_progress": "Робота над проєктом",
+      "completed": "Архівний проєкт"
+    },
+    "deadline": "Дедлайн проєкту",
+    "timeLeft": "Залишилось",
+    "daysLeft_one": "{{count}} день",
+    "daysLeft_few": "{{count}} дні",
+    "daysLeft_many": "{{count}} днів",
+    "daysLeft_other": "{{count}} дня",
+    "overdue": "Прострочено",
+    "duration_one": "{{count}} день",
+    "duration_few": "{{count}} дні",
+    "duration_many": "{{count}} днів",
+    "duration_other": "{{count}} дня",
+    "afterPayment": "Після оплати",
+    "finished": "Завершено",
+    "workingChat": "Робочий чат",
+    "emptyProjects": "Поки немає проєктів з обраним виконавцем.",
+    "emptyChats": "Поки немає чатів. Чат з’являється, коли для проєкту обрано виконавця.",
+    "emptyBlocked": "Ви нікого не заблокували.",
+    "emptySearch": "На цій сторінці нічого не знайдено.",
+    "unblock": "Розблокувати",
+    "blockedOn": "Заблоковано {{date}}",
+    "online": "Онлайн",
+    "read": "Прочитано",
+    "sent": "Надіслано",
+    "unread_one": "{{count}} непрочитане повідомлення",
+    "unread_few": "{{count}} непрочитані повідомлення",
+    "unread_many": "{{count}} непрочитаних повідомлень",
+    "unread_other": "{{count}} непрочитаного повідомлення"
+  }
 }

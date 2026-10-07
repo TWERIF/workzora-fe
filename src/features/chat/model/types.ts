@@ -56,6 +56,10 @@ export interface ChatListItem {
   topic: string | null;
   messageCount: number;
   isUnread: boolean;
+  counterpartId: string | null;
+  counterpartLastSeenAt: string | null;
+  lastMessageFromMe: boolean;
+  lastMessageRead: boolean;
 }
 
 export interface ChatList {
