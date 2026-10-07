@@ -61,11 +61,11 @@ function App({ Component, pageProps }: AppProps) {
         <I18nextProvider i18n={getI18n(locale ?? 'en')}>
           <Layout>
             {showChrome && <Header />}
-            <main className="font-sans">
+            <div className="font-sans">
               <Component {...pageProps} />
-            </main>
+            </div>
             {showChrome && <Footer />}
-            <Toaster position="top-right" richColors />
+            <Toaster position="top-right" richColors offset={112} style={{ zIndex: 10001 }} />
             <Hotjar />
             <VisitTracker />
           </Layout>

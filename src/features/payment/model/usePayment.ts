@@ -5,6 +5,7 @@ import {
     createEscrow,
     getEscrow,
     getInvoiceStatus,
+    getProjectEscrow,
     openDispute,
     resolveDispute,
 } from "./api";
@@ -130,5 +131,16 @@ export const useResolveDispute = (id: string) => {
         onSuccess: (escrow) => {
             queryClient.setQueryData(escrowKeys.one(id), escrow);
         },
+    });
+};
+export const useProjectDispute = (projectId: string) => {
+    const queryClient = useQueryClient();
+    return useMutation({
+        mutationFn: async ({ initiatorId, reason }: OpenDisputePayload) => {
+            const escrow = await getProjectEscrow(projectId);
+            if (!escrow) throw new Error("No escrow for this project");
+            return openDispute(escrow.id, { initiatorId, reason });
+        },
+        onSuccess: (escrow) => queryClient.setQueryData(escrowKeys.one(escrow.id), escrow),
     });
 };
