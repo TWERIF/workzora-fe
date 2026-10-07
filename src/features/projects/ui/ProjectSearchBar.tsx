@@ -6,7 +6,6 @@ import { useSearchProjects } from "../model/useProjects";
 import type { Project } from "../model/types";
 
 interface ProjectSearchBarProps {
-  /** Pass `null` to clear search and fall back to the status-filtered list. */
   onResults: (results: Project[] | null) => void;
 }
 

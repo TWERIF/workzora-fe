@@ -5,7 +5,6 @@ import HistoryEmpty from "./HistoryEmpty";
 
 interface TransactionsTableProps {
     records: WalletTransaction[];
-    /** бонуси — цілі бали, а не долари */
     isBonus?: boolean;
 }
 

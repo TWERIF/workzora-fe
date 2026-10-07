@@ -7,7 +7,6 @@ const formatReviewDate = (iso: string) => {
     return `${pad(date.getDate())}.${pad(date.getMonth() + 1)}.${date.getFullYear()}`;
 };
 
-/** API-відгук → формат картки з профілю (у дизайні "Communication" підписано як "Sociability") */
 export const toReviewCard = (review: ProjectReview): Review => ({
     id: review.id,
     title: review.projectTitle,

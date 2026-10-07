@@ -21,9 +21,9 @@ export default function LangButton() {
             type="button"
             onClick={toggleLang}
             className="
-                w-[22px] h-[22px]          /* фіксовані розміри */
-                rounded-full       /* круглий бордер */
-                p-[1px]            /* невеликий паддінг для градієнту */
+                w-[22px] h-[22px]
+                rounded-full
+                p-[1px]
                 bg-gradient-to-b from-[#216B52] to-[#7EA310]
                 flex items-center justify-center
             "

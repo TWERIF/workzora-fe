@@ -17,10 +17,8 @@ interface Step {
 
 type Tab = "clients" | "freelancers";
 
-// Icon assigned per step index (same order for both tabs)
 const STEP_ICONS = [PostIcon, HandIcon, AddMemberIcon, WorkIcon];
 
-// TODO: swap these placeholder paths for the real photos from the design
 const STEP_IMAGES: Record<Tab, string[]> = {
   clients: [
     "/images/how-it-works/clients-1.png",
@@ -36,7 +34,6 @@ const STEP_IMAGES: Record<Tab, string[]> = {
   ],
 };
 
-// Reveals children once they scroll into view
 function useInView<T extends HTMLElement>(threshold = 0.2) {
   const ref = useRef<T | null>(null);
   const [inView, setInView] = useState(false);
@@ -77,7 +74,6 @@ function useScrollProgress<T extends HTMLElement>() {
       const rect = el.getBoundingClientRect();
       const viewportH = window.innerHeight;
 
-      // Trigger point: center of the viewport
       const covered = viewportH * 0.5 - rect.top;
       const total = rect.height;
       const pct = Math.min(1, Math.max(0, covered / total));
@@ -168,7 +164,6 @@ function StepRow({ step, index, tab }: { step: Step; index: number; tab: Tab }) 
       className={`transition-all duration-700 ease-out ${inView ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
         }`}
     >
-      {/* Desktop / tablet: zig-zag timeline */}
       <div className="hidden md:grid md:grid-cols-[minmax(0,1fr)_56px_minmax(0,1fr)] md:items-center md:gap-6">
         {imageFirst ? (
           <>
@@ -185,7 +180,6 @@ function StepRow({ step, index, tab }: { step: Step; index: number; tab: Tab }) 
         )}
       </div>
 
-      {/* Mobile: stacked */}
       <div className="space-y-4 md:hidden">
         {image}
         <div className="flex items-center gap-3">

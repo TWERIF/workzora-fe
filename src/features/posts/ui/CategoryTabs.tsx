@@ -1,11 +1,6 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
-// NOTE: `Post` currently has no `category` field (see types.ts), so these
-// tabs are presentational only — they highlight a selection but don't
-// filter `usePostList`'s results yet. Wire `onChange` up to your query
-// once the API exposes a category to filter by.
-
 const CATEGORY_KEYS = [
     "blog.categories.all",
     "blog.categories.freelance",

@@ -1,6 +1,5 @@
 import type { SVGProps } from "react";
 
-// Figma: fluent:handshake-20-regular (28x28)
 export default function HandshakeIcon(props: SVGProps<SVGSVGElement>) {
     return (
         <svg aria-hidden="true" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>

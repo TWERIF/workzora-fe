@@ -5,16 +5,9 @@ import { Setting } from "@/shared/components/svg/Setting";
 import { useTheme } from "@/utils/useTheme";
 import { useTranslation } from "react-i18next";
 
-/**
- * Small helper so we don't repeat `isDark ? a : b` everywhere.
- */
 function cx(...classes: Array<string | false | undefined>) {
     return classes.filter(Boolean).join(" ");
 }
-
-/* -------------------------------------------------------------------------- */
-/*  1. "Quality work" — neutral card with an overlapping check badge          */
-/* -------------------------------------------------------------------------- */
 
 export function QualityWorkCard() {
     const { t } = useTranslation("main");
@@ -47,7 +40,6 @@ export function QualityWorkCard() {
                 </p>
             </div>
 
-            {/* 3D check badge, overlapping the top edge of the card. Swap for a real illustration/asset if you have one. */}
             <div className="absolute -top-6 right-2 h-16 w-16 sm:h-20 sm:w-20">
                 <img
                     alt=""
@@ -58,10 +50,6 @@ export function QualityWorkCard() {
         </div>
     );
 }
-
-/* -------------------------------------------------------------------------- */
-/*  2. "Be in control" — neutral card, icon + title on the same row           */
-/* -------------------------------------------------------------------------- */
 
 export function BeInControlCard() {
     const { t } = useTranslation("main");
@@ -94,10 +82,6 @@ export function BeInControlCard() {
         </div>
     );
 }
-
-/* -------------------------------------------------------------------------- */
-/*  3. "Fast bids" — same family as BeInControlCard, different icon           */
-/* -------------------------------------------------------------------------- */
 
 export function FastBidsCard() {
     const { t } = useTranslation("main");
@@ -150,7 +134,6 @@ export function BestTalentCard() {
                 isDark ? "bg-card-dark" : "bg-card"
             )}
         >
-            {/* decorative arcs */}
             <svg
                 className="pointer-events-none absolute right-0 top-0 h-full w-2/3 opacity-30"
                 viewBox="0 0 400 300"
@@ -195,10 +178,6 @@ export function BestTalentCard() {
     );
 }
 
-/* -------------------------------------------------------------------------- */
-/*  5. "Make it real with WorkZora" — CTA banner                              */
-/* -------------------------------------------------------------------------- */
-
 export function WorkZoraBanner() {
     const { t } = useTranslation("main");
     const { theme } = useTheme();
@@ -225,7 +204,6 @@ export function WorkZoraBanner() {
                     </span>
                 </h2>
 
-                {/* Ideally add a dedicated token for this dark green (e.g. colors.brand.dark: "#216B52") in tailwind.config.js */}
                 <button
                     type="button"
                     className="mt-5 rounded-full bg-[#216B52] px-5 py-2.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"

@@ -18,5 +18,7 @@
   "list": {
     "unknownUser": "User",
     "chatCreated": "Chat created"
-  }
+  },
+  "sendError": "Message was not sent, try again",
+  "paymentError": "Could not create the payment, try again"
 }

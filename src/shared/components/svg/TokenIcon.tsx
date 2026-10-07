@@ -1,6 +1,5 @@
 import type { SVGProps } from "react";
 
-/** Внутрішня валюта платформи (T) */
 export const TokenIcon = (props: SVGProps<SVGSVGElement>) => (
     <svg
         width="28"

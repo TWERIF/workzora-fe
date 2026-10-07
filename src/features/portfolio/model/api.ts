@@ -1,7 +1,6 @@
 import { User } from "@/features/auth/model/types";
 import { $api } from "@/shared/components/http";
 
-// Основний інтерфейс (як ви вказали)
 export interface PortfolioItem {
     id: string;
     userId: string;
@@ -11,7 +10,6 @@ export interface PortfolioItem {
     user?: User;
 }
 
-// DTO для створення
 export interface CreatePortfolioDto {
     title: string;
     description: string;
@@ -19,7 +17,6 @@ export interface CreatePortfolioDto {
     userId: string;
 }
 
-// DTO для оновлення
 export interface UpdatePortfolioDto extends Partial<CreatePortfolioDto> {
     id: string;
 }

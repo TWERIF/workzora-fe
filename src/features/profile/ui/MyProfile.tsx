@@ -20,7 +20,6 @@ import ProfileCompletionCard from "./ProfileCompletionCard";
 import ProfileInfoCards from "./ProfileInfoCards";
 import ProfileNavigation from "./ProfileNavigation";
 
-// The "add project" card takes the first grid cell, so 5 works fill the 3x2 grid.
 const PORTFOLIO_PAGE_SIZE = 5;
 
 const sectionId = (tab: ProfileTab) => `profile-${tab}`;

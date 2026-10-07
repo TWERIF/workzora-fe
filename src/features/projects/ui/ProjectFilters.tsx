@@ -46,7 +46,6 @@ export default function ProjectFilters({
                 {t("findWork.filters")}
             </h2>
 
-            {/* Category */}
             <div className="mt-5">
                 <h3 className="font-semibold text-text dark:text-text-dark mb-3">
                     {t("findWork.category")}
@@ -79,7 +78,6 @@ export default function ProjectFilters({
                 </div>
             </div>
 
-            {/* Tags */}
             <div className="mt-6">
                 <h3 className="font-semibold text-text dark:text-text-dark mb-3">
                     {t("findWork.tags")}
@@ -114,7 +112,6 @@ export default function ProjectFilters({
                 )}
             </div>
 
-            {/* Budget */}
             <div className="mt-6">
                 <h3 className="font-semibold text-text dark:text-text-dark mb-3">
                     {t("findWork.budget")}

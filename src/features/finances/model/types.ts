@@ -12,7 +12,6 @@ export interface LinkedCard {
     isPrimary?: boolean;
 }
 
-/** GET /wallet/withdrawals — суми в USD */
 export interface WithdrawalRecord {
     id: string;
     amount: number;
@@ -25,7 +24,6 @@ export interface WithdrawalRecord {
 
 export type TransactionType = "project_payout" | "withdrawal" | "withdrawal_refund" | "bonus";
 
-/** GET /wallet/transactions — USD для балансу, бали для бонусів; amount зі знаком */
 export interface WalletTransaction {
     id: string;
     type: TransactionType;
@@ -37,14 +35,12 @@ export interface WalletTransaction {
     createdAt: string;
 }
 
-/** GET /wallet/me */
 export interface WalletSummary {
     balance: number;
     bonus: number;
     pendingWithdrawals: number;
 }
 
-/** GET /wallet/rate — курс USD→UAH з Monobank */
 export interface ExchangeRate {
     currency: "USD";
     rate: number;

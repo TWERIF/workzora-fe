@@ -8,7 +8,6 @@ import PageMeta from "@/shared/components/seo/PageMeta";
 export default function ContactsPage() {
     const { t } = useTranslation('common');
 
-    // Стейт для обробки форми
     const [formData, setFormData] = useState({ name: '', email: '', message: '' });
     const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -34,7 +33,6 @@ export default function ContactsPage() {
             <PageMeta page="contacts" />
             <div className="max-w-5xl mx-auto space-y-10">
 
-                {/* ВЕЛИКИЙ ЗАГОЛОВОК СТОРІНКИ */}
                 <div className="text-center max-w-2xl mx-auto space-y-4">
                     <h1 className="text-3xl md:text-4xl font-bold bg-gradient text-transparent bg-clip-text pb-1">
                         {t('contactsPage.title')}
@@ -44,13 +42,10 @@ export default function ContactsPage() {
                     </p>
                 </div>
 
-                {/* ДВОКОЛОНКОВИЙ ЛЕЯУТ ДЛЯ ДЕСТКОПІВ */}
                 <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 items-start">
 
-                    {/* ЛІВА КОЛОНКА: ІНФОРМАЦІЙНІ КАРТКИ (Займає 2 частини з 5) */}
                     <div className="lg:col-span-2 space-y-6">
 
-                        {/* Картка Email */}
                         <div className="bg-bg-header dark:bg-bg-modalDark rounded-20 px-15 py-13 md:p-6 border border-border shadow-input dark:shadow-input-dark transition-all duration-300 space-y-3">
                             <div className="flex items-center gap-3">
                                 <span className="text-2xl select-none">✉️</span>
@@ -69,7 +64,6 @@ export default function ContactsPage() {
                             </a>
                         </div>
 
-                        {/* Картка Юридичної інформації */}
                         <div className="bg-bg-header dark:bg-bg-modalDark rounded-20 px-15 py-13 md:p-6 border border-border shadow-input dark:shadow-input-dark transition-all duration-300 space-y-3">
                             <div className="flex items-center gap-3">
                                 <span className="text-2xl select-none">⚖️</span>
@@ -84,7 +78,6 @@ export default function ContactsPage() {
 
                     </div>
 
-                    {/* ПРАВА КОЛОНКА: ІНТЕРАКТИВНА ФОРМА ЗВОРOТНОГО ЗВ'ЯЗКУ (Займає 3 частини з 5) */}
                     <div className="lg:col-span-3 bg-bg-header dark:bg-bg-modalDark rounded-20 px-15 py-13 md:p-8 border border-border shadow-input dark:shadow-input-dark transition-all duration-300">
                         <h2 className="text-xl md:text-2xl font-bold mb-6 flex items-center gap-2">
                             <span className="select-none">✏️</span>
@@ -92,7 +85,6 @@ export default function ContactsPage() {
                         </h2>
 
                         {isSubmitted ? (
-                            /* Повідомлення про успішну відправку */
                             <div className="bg-bg dark:bg-bg-dark border border-success/30 rounded-20 p-6 text-center space-y-3 animate-fade-in">
                                 <div className="w-12 h-12 bg-success text-white rounded-full flex items-center justify-center text-xl mx-auto shadow-input">
                                     ✓
@@ -105,9 +97,7 @@ export default function ContactsPage() {
                                 )}
                             </div>
                         ) : (
-                            /* Сама форма */
                             <form onSubmit={handleSubmit} className="space-y-5">
-                                {/* Поле: Ім'я */}
                                 <div className="flex flex-col space-y-2">
                                     <label className="text-xs md:text-sm font-semibold text-text dark:text-text-dark">
                                         {t('contactsPage.form.nameLabel')}
@@ -122,7 +112,6 @@ export default function ContactsPage() {
                                     />
                                 </div>
 
-                                {/* Поле: Email */}
                                 <div className="flex flex-col space-y-2">
                                     <label className="text-xs md:text-sm font-semibold text-text dark:text-text-dark">
                                         {t('contactsPage.form.emailLabel')}
@@ -137,7 +126,6 @@ export default function ContactsPage() {
                                     />
                                 </div>
 
-                                {/* Поле: Повідомлення */}
                                 <div className="flex flex-col space-y-2">
                                     <label className="text-xs md:text-sm font-semibold text-text dark:text-text-dark">
                                         {t('contactsPage.form.messageLabel')}
@@ -152,7 +140,6 @@ export default function ContactsPage() {
                                     />
                                 </div>
 
-                                {/* Кнопка сабміту з фірмовим градієнтом */}
                                 {sendError && (
                                     <p className="text-sm text-red-500">{t('contactsPage.form.errorMessage')}</p>
                                 )}

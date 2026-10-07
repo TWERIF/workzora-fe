@@ -14,7 +14,6 @@ export const HistorySection = () => {
     const [activeTab, setActiveTab] = useState<HistoryTab>("withdrawals");
     const [period, setPeriod] = useState<HistoryPeriod>("3m");
 
-    // тягнемо лише дані активної вкладки
     const withdrawals = useWithdrawals(period, activeTab === "withdrawals");
     const transactions = useTransactions("balance", period, activeTab === "transactions");
     const bonuses = useTransactions("bonus", period, activeTab === "bonuses");

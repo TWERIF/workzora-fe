@@ -4,13 +4,7 @@ import { useTranslation } from "react-i18next";
 
 interface OrderSummaryProps {
     projectBudget: number;
-    // Kept as a rate rather than a fixed amount so it stays correct if the
-    // budget changes — swap for a fee value straight from the invoice once
-    // the backend returns one.
     platformFeeRate?: number;
-    // Currency should ideally be derived from the invoice's currencyCode
-    // (ISO 4217 numeric) via a shared formatter; defaulted to "$" here to
-    // match the design until that mapping exists in the project.
     currencySymbol?: string;
 }
 
@@ -41,9 +35,6 @@ export const OrderSummary = ({
                 <div className="flex items-center justify-between text-text dark:text-text-dark">
                     <span className="flex items-center gap-1">
                         {t("orderSummary.platformFee")}
-                        {/* Tooltip copy isn't specified anywhere — wire this up to
-                            the project's tooltip component if one exists, this is
-                            just a static hint for now. */}
                         <Info
                             size={14}
                             className="text-text-muted"

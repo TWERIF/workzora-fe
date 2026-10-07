@@ -59,7 +59,6 @@ export const ClientFilters = ({ selected, counts, onToggle, onClear }: ClientFil
                                     onChange={() => onToggle(stars)}
                                     className="peer sr-only"
                                 />
-                                {/* Figma checkbox: white circle with a grey outline, a thick green ring when checked */}
                                 <span
                                     aria-hidden="true"
                                     className={`size-[14px] shrink-0 rounded-full bg-bg-header peer-focus-visible:ring-2 peer-focus-visible:ring-success/40 ${isChecked ? "border-4 border-success" : "border border-border-light dark:border-white/20"

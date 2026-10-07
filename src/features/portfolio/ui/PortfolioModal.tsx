@@ -85,7 +85,6 @@ export default function PortfolioModal({ isOpen, onClose, onSubmit, initialData,
             />
           </div>
 
-          {/* Завантаження картинки */}
           <div className="flex flex-col gap-1.5">
             <label className="text-sm font-medium text-text-muted">{t("portfolioModal.labelImage")}</label>
             <input
@@ -95,7 +94,6 @@ export default function PortfolioModal({ isOpen, onClose, onSubmit, initialData,
               className="w-full px-4 py-2.5 rounded-20 border border-border bg-input dark:bg-input-dark focus:ring-2 focus:ring-success outline-none file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-success/10 file:text-success hover:file:bg-success/20 cursor-pointer"
             />
 
-            {/* Повідомлення, якщо ми в режимі редагування і фото вже є, але нове не вибрано */}
             {initialData?.imageUrl && (!selectedFile || selectedFile.length === 0) && (
               <span className="text-xs text-text-muted ml-2">
                 Поточне фото завантажено. Оберіть нове, щоб замінити його.

@@ -2,7 +2,7 @@ import ButtonPill from "@/shared/components/ui/Button/ButtonPill";
 import { useTranslation } from "react-i18next";
 
 interface ProfileCompletionCardProps {
-    progress: number; // 0..100
+    progress: number;
     actionHref: string;
 }
 

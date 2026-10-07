@@ -13,7 +13,6 @@ export enum WonDispute {
     FREELANCER,
 }
 
-// Amount, currency and the parties are taken from the project on the backend.
 export interface CreateEscrowPayload {
     projectId: string;
     description?: string;

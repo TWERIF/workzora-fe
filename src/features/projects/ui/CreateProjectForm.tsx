@@ -124,7 +124,6 @@ export default function CreateProjectForm() {
                         }}
                     />
 
-                    {/* Бюджет + валюта */}
                     <div className="grid items-start gap-x-3 gap-y-6 sm:grid-cols-2">
                         <form.Field
                             name="price"
@@ -240,7 +239,6 @@ export default function CreateProjectForm() {
                 </div>
             </div>
 
-            {/* Права колонка: чекліст + кнопка відправки */}
             <ProjectBriefChecklist isPending={createMutation.isPending} />
         </form>
     );

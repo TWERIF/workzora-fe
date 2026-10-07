@@ -1,8 +1,8 @@
-import { isAxiosError } from "axios";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState, type FormEvent } from "react";
 import { useTranslation } from "react-i18next";
+import { httpStatus, requestErrorKey } from "../model/errors";
 import { useAuthRedirect } from "../model/useAuthRedirect";
 import { useCooldown } from "../model/useCooldown";
 import { usePasswordReset } from "../model/useEmailVerification";
@@ -63,8 +63,8 @@ export default function PasswordRecovery() {
             await sendCode();
             setCode("");
             setStep("code");
-        } catch {
-            setErrors({ form: "errors.generic" });
+        } catch (error) {
+            setErrors({ form: requestErrorKey(error) });
         }
     };
 
@@ -83,8 +83,8 @@ export default function PasswordRecovery() {
             }
             setErrors({});
             setStep("password");
-        } catch {
-            setErrors({ form: "errors.generic" });
+        } catch (error) {
+            setErrors({ form: requestErrorKey(error) });
         }
     };
 
@@ -98,19 +98,19 @@ export default function PasswordRecovery() {
             await resetPassword({ email: email.trim(), code, password });
             setStep("done");
         } catch (error) {
-            if (isAxiosError(error) && error.response?.status === 400) {
+            if (httpStatus(error) === 400) {
                 setCode("");
                 setStep("code");
                 setErrors({ code: "recovery.invalidCode" });
                 return;
             }
-            setErrors({ form: "errors.generic" });
+            setErrors({ form: requestErrorKey(error) });
         }
     };
 
     const resend = () => {
         setErrors({});
-        sendCode().catch(() => setErrors({ form: "errors.generic" }));
+        sendCode().catch((error: unknown) => setErrors({ form: requestErrorKey(error) }));
     };
 
     const formError = errors.form && (

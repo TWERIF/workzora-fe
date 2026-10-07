@@ -9,7 +9,6 @@ export const getUserReviews = async (userId: string, page: number, limit: number
     return (await $api.get(`/reviews/user/${userId}`, { params: { page, limit } })).data;
 };
 
-/** Мій відгук на проєкт або null, якщо ще не залишав */
 export const getMyProjectReview = async (projectId: string): Promise<ProjectReview | null> => {
     return (await $api.get(`/reviews/project/${projectId}/mine`)).data.review;
 };

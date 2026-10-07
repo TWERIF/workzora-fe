@@ -87,7 +87,6 @@ export default function FreelancerCard({ freelancer }: FreelancerCardProps) {
             </p>
           )}
           <p>
-            {/* {freelancer.} */}
           </p>
         </div>
       </div>

@@ -1,7 +1,7 @@
-import { isAxiosError } from "axios";
 import Link from "next/link";
 import { useState, type FormEvent } from "react";
 import { useTranslation } from "react-i18next";
+import { httpStatus, requestErrorKey } from "../model/errors";
 import { useAuth } from "../model/useAuth";
 import { useAuthRedirect } from "../model/useAuthRedirect";
 import { emailError, requiredError } from "../model/validation";
@@ -36,8 +36,7 @@ export default function LoginForm() {
             await login({ email: email.trim(), password, remember });
             redirectAfterAuth();
         } catch (error) {
-            const unauthorized = isAxiosError(error) && error.response?.status === 401;
-            setErrors({ form: t(unauthorized ? "login.invalid" : "errors.generic") });
+            setErrors({ form: t(httpStatus(error) === 401 ? "login.invalid" : requestErrorKey(error)) });
         }
     };
 

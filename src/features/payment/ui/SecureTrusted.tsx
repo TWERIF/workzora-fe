@@ -28,24 +28,6 @@ export const SecureTrusted = () => {
                 ))}
             </ul>
 
-            {/* Provider / compliance badges. No official brand assets (Stripe
-                wordmark, PCI DSS seal, SSL seal) are available in this project —
-                these are plain text/icon stand-ins. Replace with the real logos
-                when available, e.g.:
-                <img src="/badges/stripe.svg" alt="Stripe" className="h-6" /> */}
-            {/* <div className="mt-4 flex flex-wrap items-center gap-2">
-                <span className="rounded-20 border border-border px-15 py-2 text-sm font-semibold italic text-text-muted dark:text-text-dark">
-                    stripe
-                </span>
-                <span className="flex items-center gap-1 rounded-20 border border-success px-15 py-2 text-xs font-semibold text-success">
-                    <ShieldCheck size={14} />
-                    PCI DSS
-                </span>
-                <span className="flex items-center gap-1 rounded-20 border border-border px-15 py-2 text-xs font-semibold text-text-muted dark:text-text-dark">
-                    <Lock size={14} />
-                    256-bit SSL
-                </span>
-            </div> */}
         </div>
     );
 };

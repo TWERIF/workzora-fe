@@ -90,16 +90,6 @@ const AccountSettings = ({ user }: { user: User }) => {
       icon: ProfileDescIcon,
       link: `/${locale}/settings/description`,
     },
-    // {
-    //   name: t("profilePage.settings_menu.performer_profile"),
-    //   icon: PerformerProfileIcon,
-    //   link: `/${locale}/settings/performer`,
-    // },
-    // {
-    //   name: t("profilePage.settings_menu.customer_profile"),
-    //   icon: CustomerProfileIcon,
-    //   link: `/${locale}/settings/customer`,
-    // },
     {
       name: t("profilePage.settings_menu.settings"),
       icon: SettingsIcon,

@@ -2,7 +2,6 @@ import { useTranslation } from "react-i18next";
 
 interface AddCardButtonProps {
     onClick: () => void;
-    /** Ліміт прив'язаних карток вичерпано */
     isLimitReached: boolean;
 }
 
@@ -24,11 +23,6 @@ export const AddCardButton = ({ onClick, isLimitReached }: AddCardButtonProps) =
                 {t("cards.add")}
             </button>
 
-            {/* {isLimitReached && (
-                <p className="text-xs text-text-light dark:text-text-muted">
-                    {t("cards.limitReached")}
-                </p>
-            )} */}
         </div>
     );
 };

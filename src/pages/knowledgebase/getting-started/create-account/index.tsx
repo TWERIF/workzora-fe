@@ -96,7 +96,6 @@ export default function CreateAccountPage() {
                             </p>
                         </div>
 
-                        {/* Step 3 */}
                         <div>
                             <h2 className="text-[22px] font-bold text-text dark:text-text-dark md:text-[26px]">
                                 {t("steps.step3.title")}
@@ -106,7 +105,6 @@ export default function CreateAccountPage() {
                             </p>
                         </div>
 
-                        {/* Step 4 */}
                         <div>
                             <h2 className="text-[22px] font-bold text-text dark:text-text-dark md:text-[26px]">
                                 {t("steps.step4.title")}
@@ -119,7 +117,6 @@ export default function CreateAccountPage() {
                             </p>
                         </div>
 
-                        {/* Step 5 */}
                         <div>
                             <h2 className="text-[22px] font-bold text-text dark:text-text-dark md:text-[26px]">
                                 {t("steps.step5.title")}
@@ -135,7 +132,6 @@ export default function CreateAccountPage() {
                             </p>
                         </div>
 
-                        {/* Step 6 */}
                         <div>
                             <h2 className="text-[22px] font-bold text-text dark:text-text-dark md:text-[26px]">
                                 {t("steps.step6.title")}
@@ -151,7 +147,6 @@ export default function CreateAccountPage() {
                             </p>
                         </div>
 
-                        {/* Tips */}
                         <div>
                             <h2 className="text-[22px] font-bold text-text dark:text-text-dark md:text-[26px]">
                                 {t("tipsTitle")}
@@ -169,7 +164,6 @@ export default function CreateAccountPage() {
                             </ul>
                         </div>
 
-                        {/* Need help box */}
                         <div className="rounded-20 bg-status-successSoft p-6">
                             <div className="flex items-center gap-2">
                                 <div className="h-4 w-4 shrink-0 bg-black dark:bg-white" />
@@ -183,9 +177,7 @@ export default function CreateAccountPage() {
                         </div>
                     </article>
 
-                    {/* Sidebar */}
                     <aside className="space-y-6">
-                        {/* Details card */}
                         <div className="rounded-20 bg-bg p-5 dark:bg-bg-modalDark">
                             <h3 className="text-[15px] font-semibold text-text dark:text-text-dark">
                                 {t("details.title")}
@@ -277,10 +269,3 @@ export default function CreateAccountPage() {
     );
 }
 
-// export const getStaticProps: GetStaticProps = async ({ locale }) => {
-//     return {
-//         props: {
-//             ...(await serverSideTranslations(locale ?? "en", ["createAccount"])),
-//         },
-//     };
-// };

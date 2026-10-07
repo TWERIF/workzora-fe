@@ -68,10 +68,3 @@ export default function GettingStarted() {
     );
 }
 
-// export const getStaticProps: GetStaticProps = async ({ locale }) => {
-//     return {
-//         props: {
-//             ...(await serverSideTranslations(locale ?? "en", ["getting-started"])),
-//         },
-//     };
-// };

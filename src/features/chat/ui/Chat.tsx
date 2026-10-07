@@ -66,7 +66,6 @@ export default function Chat({ project, receiverId }: ChatProps) {
   useEffect(() => {
     if (!chatId || !currentUserId) return;
 
-    // the socket lives next to the REST API: https://workzora.com/api -> path /api/socket.io
     const apiUrl = new URL(API_URL);
     const basePath = apiUrl.pathname.replace(/\/$/, "");
 
@@ -130,8 +129,8 @@ export default function Chat({ project, receiverId }: ChatProps) {
 
       setNewMessage("");
       removeSelectedFile();
-    } catch (error) {
-      console.error("Помилка відправлення повідомлення:", error);
+    } catch {
+      toast.error(tChat("sendError"));
     } finally {
       setIsUploading(false);
     }
@@ -156,14 +155,13 @@ export default function Chat({ project, receiverId }: ChatProps) {
       if (escrow.pageUrl) {
         window.location.href = escrow.pageUrl;
       }
-    } catch (error) {
-      console.error("Не вдалося створити рахунок для оплати:", error);
+    } catch {
+      toast.error(tChat("paymentError"));
     }
   };
   const queryClient = useQueryClient();
   const { t: tChat } = useTranslation("chat");
   const { toCompletedMutation } = useProjects(project.id);
-  // Completing releases the escrow to the freelancer's balance; then the client is asked for a review.
   const handleCopmlete = () => {
     toCompletedMutation.mutate(
       { id: project.id },

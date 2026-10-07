@@ -7,7 +7,6 @@ export interface CreateWithdrawalPayload {
     cardId: string;
 }
 
-/** Кошти списуються з балансу одразу й чекають, поки адмін виплатить їх на картку */
 export const useCreateWithdrawal = () => {
     const queryClient = useQueryClient();
 

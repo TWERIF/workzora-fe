@@ -60,7 +60,7 @@ export default function Discussion() {
 
     const locale = router.locale || "en";
     const { t } = useTranslation("common");
-    const { t: td } = useTranslation("discussion"); // додано, поки не використовується напряму в цьому компоненті
+    const { t: td } = useTranslation("discussion");
     const { user, isLoading } = useAuth();
     const { project, isLoadingProjectData } = useProjects(id as string);
 

@@ -4,11 +4,10 @@ interface StatRingProps {
     label: string;
     sublabel: string;
     centerText: string;
-    progress: number; // 0..1
+    progress: number;
     color?: StatRingColor;
 }
 
-// Geometry taken from the Figma ring assets: 78px ring, 8.54px track, arc starts at 3 o'clock.
 const SIZE = 78;
 const STROKE = 8.54;
 const RADIUS = (SIZE - STROKE) / 2;

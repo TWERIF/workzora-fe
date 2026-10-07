@@ -13,7 +13,6 @@ export const walletKeys = {
 
 const PERIOD_MONTHS: Record<HistoryPeriod, number> = { "1m": 1, "3m": 3, "6m": 6, "12m": 12 };
 
-/** Початок періоду історії у форматі ISO, який розуміє бек (?from=) */
 const periodStart = (period: HistoryPeriod) => {
     const date = new Date();
     date.setMonth(date.getMonth() - PERIOD_MONTHS[period]);
@@ -27,7 +26,6 @@ export const useWalletSummary = (enabled = true) =>
         enabled,
     });
 
-/** Курс оновлюється на беку раз на 5 хв (обмеження Monobank), частіше питати сенсу немає */
 export const useExchangeRate = () =>
     useQuery({
         queryKey: walletKeys.rate(),

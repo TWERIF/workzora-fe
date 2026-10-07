@@ -30,7 +30,6 @@ const formatCardNumber = (value: string): string => {
 
 interface PaymentDataFormProps {
     userId?: string;
-    /** Передайте номер, щоб форма пішла в PUT замість POST */
     existingCardNumber?: string;
     onSuccess?: () => void;
 }

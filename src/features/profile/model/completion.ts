@@ -1,6 +1,5 @@
 import { User } from "@/features/auth/model/types";
 
-// Required profile fields give up to 85%, a portfolio of 5+ works adds the remaining 15%.
 export const calcProfileCompletion = (values: Partial<User>, portfolioCount = 0) => {
   let filledFields = 0;
   const totalFields = 9;

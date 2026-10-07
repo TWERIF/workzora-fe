@@ -38,7 +38,6 @@ export const WithdrawFundsCard = ({
                 toast.success(t("withdraw.success"));
                 formApi.reset();
             } catch {
-                // повідомлення про помилку рендериться нижче з mutation.isError
             }
         },
     });

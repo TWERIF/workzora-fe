@@ -6,9 +6,6 @@ interface WorkzoraMarkIconProps {
   className?: string;
 }
 
-// Note: source asset for this badge was a rasterized PNG embedded inside an
-// SVG pattern fill. It has been extracted to /public/icons/workzora-mark.png
-// (place it there in the project) and is rendered here via next/image.
 export default function WorkzoraMarkIcon({
   w = 20,
   h = 20,

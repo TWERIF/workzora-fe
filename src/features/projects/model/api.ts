@@ -50,15 +50,6 @@ export const count = async (): Promise<number> => {
   return res.data;
 };
 
-/**
- * Public "Find Work" listing with search + filters.
- *
- * NOTE for backend: this currently hits GET /projects and sends
- * `categories` / `tags` as comma-separated strings (e.g. "cat1,cat2") and
- * `minPrice` / `maxPrice` as numbers. The endpoint needs to be extended to
- * parse these and filter accordingly. Until then it will simply be ignored
- * by the API and behave like an unfiltered list.
- */
 export const findAllProjects = async (
   params: FindProjectsParams,
 ): Promise<PaginatedProjects> => {

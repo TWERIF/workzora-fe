@@ -3,7 +3,6 @@ export type ReviewCriterion = (typeof REVIEW_CRITERIA)[number];
 
 export type ReviewScores = Record<ReviewCriterion, number>;
 
-/** Відгук, як його повертає GET /reviews/user/:userId */
 export interface ProjectReview extends ReviewScores {
     id: string;
     projectId: string;
@@ -11,7 +10,6 @@ export interface ProjectReview extends ReviewScores {
     authorId: string;
     targetId: string;
     authorRole: "client" | "freelancer";
-    /** середнє з п'яти критеріїв */
     rating: number;
     text: string;
     createdAt: string;

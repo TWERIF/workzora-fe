@@ -1,6 +1,5 @@
 import type { SVGProps } from "react";
 
-// Figma: majesticons:note-text-line (18x18)
 export default function NoteTextIcon(props: SVGProps<SVGSVGElement>) {
     return (
         <svg aria-hidden="true" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>

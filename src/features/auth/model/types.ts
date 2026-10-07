@@ -96,7 +96,6 @@ export interface User {
 
   country?: string;
 
-  // null for accounts registered before the field was introduced
   createdAt?: Date | string | null;
   updatedAt?: Date;
 }

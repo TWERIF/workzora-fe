@@ -35,7 +35,6 @@ export default function FindWorkPage() {
         maxPrice: maxPrice ? Number(maxPrice) : undefined,
     });
 
-    // Any filter change should reset pagination back to page 1.
     useEffect(() => {
         setPage(1);
     }, [search, selectedCategories, tags, minPrice, maxPrice]);

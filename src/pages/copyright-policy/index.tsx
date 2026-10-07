@@ -59,7 +59,6 @@ export default function CopyrightPolicyPage() {
         <main className="min-h-screen bg-bg text-text dark:bg-bg-dark dark:text-text-dark">
             <PageMeta page="copyrightPolicy" />
             <div className="mx-auto max-w-5xl px-6 py-16 md:py-24">
-                {/* Header */}
                 <header className="mb-14 max-w-2xl">
                     <div className="mb-4 flex items-center gap-3">
                         <span className="h-[3px] w-10 rounded-full bg-gradient" />
@@ -76,7 +75,6 @@ export default function CopyrightPolicyPage() {
                 </header>
 
                 <div className="grid grid-cols-1 gap-10 lg:grid-cols-[220px_1fr]">
-                    {/* TOC */}
                     <aside className="order-first lg:order-none">
                         <nav className="lg:sticky lg:top-24">
                             <p className="mb-3 text-xs font-semibold uppercase tracking-[0.1em] text-muted dark:text-text-dark/50">
@@ -115,7 +113,6 @@ export default function CopyrightPolicyPage() {
                         </nav>
                     </aside>
 
-                    {/* Content */}
                     <div>
                         {sections.map((section, index) => (
                             <section
@@ -153,7 +150,6 @@ export default function CopyrightPolicyPage() {
                             </section>
                         ))}
 
-                        {/* Contact card */}
                         <div className="mt-4 rounded-20 border border-border bg-input p-15 dark:border-border dark:bg-input-dark">
                             <h3 className="text-base font-semibold">
                                 {t("contactCard.heading")}
@@ -183,11 +179,6 @@ export default function CopyrightPolicyPage() {
     );
 }
 
-/**
- * Small helper to render a translated sentence that contains a mailto link
- * in the middle, without breaking i18n interpolation or copyright-safe
- * plain-text storage in the JSON files.
- */
 function Trans({
     before,
     after,

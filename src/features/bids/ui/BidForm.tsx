@@ -87,7 +87,6 @@ export default function BidForm({ projectId, projectPrice, isOpen, onClose, init
                             e.stopPropagation();
                             form.handleSubmit();
                         }}
-                        // Додано dark:shadow-input-dark
                         className="space-y-6 rounded-20 bg-bg-header p-6 shadow-input dark:shadow-input-dark dark:bg-bg-modalDark border border-border transition-colors"
                     >
                         <div className="flex items-center justify-between">
@@ -127,7 +126,6 @@ export default function BidForm({ projectId, projectPrice, isOpen, onClose, init
                                                 const parsedValue = onlyDigits ? parseInt(onlyDigits, 10) : 0;
                                                 field.handleChange(parsedValue);
                                             }}
-                                            // Додано text-text
                                             className={`
                                                 w-full rounded-xl border px-4 py-3 outline-none focus:ring-2 dark:bg-input-dark text-text dark:text-text-dark bg-input transition-colors
                                                 ${field.state.meta.errors.length > 0
@@ -168,7 +166,6 @@ export default function BidForm({ projectId, projectPrice, isOpen, onClose, init
                                                 const parsedValue = onlyDigits ? parseInt(onlyDigits, 10) : 0;
                                                 field.handleChange(parsedValue);
                                             }}
-                                            // Додано text-text
                                             className={`
                                                 w-full rounded-xl border px-4 py-3 outline-none focus:ring-2 dark:bg-input-dark text-text dark:text-text-dark bg-input transition-colors
                                                 ${field.state.meta.errors.length > 0

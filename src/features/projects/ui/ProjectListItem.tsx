@@ -21,11 +21,6 @@ const STATUS_BADGE_CLASSES: Record<ProjectStatus, string> = {
   [ProjectStatus.CLOSED]: "border-border text-text-muted bg-transparent",
 };
 
-/**
- * `project.time` is the number of days the project was allotted (from
- * creation). There's no separate deadline-date field yet, so the deadline
- * date and the days-left countdown are both derived from it.
- */
 function getDeadlineDate(project: Project): Date | null {
   if (!project.time) return null;
   const deadline = new Date(project.createdAt);

@@ -63,7 +63,6 @@ const Breadcrumbs = ({ customItems }: BreadcrumbsProps) => {
   return (
     <nav aria-label="Breadcrumb" className="mb-6 my-4">
       <ol className="flex flex-wrap items-center gap-2 text-sm">
-        {/* Головна сторінка */}
         <li className="flex items-center">
           <Link
             href="/"

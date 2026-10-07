@@ -56,7 +56,6 @@ export const ProfileHeaderCard = ({ user, isPro = false, isTop10 = false }: Prof
                             {user?.verification && <VerifiedBadgeIcon />}
                             {isPro && (
                                 <span className="flex p-0.5">
-                                    {/* Figma crop of the WZ_colors raster inside a 32px frame */}
                                     <span className="relative size-8 overflow-hidden">
                                         <img
                                             src="/images/profile/wz-badge.png"

@@ -17,7 +17,6 @@ export const Search = (props: SearchProps) => {
                     placeholder={placeholder}
                 />
             </div>
-            {/* <ButtonGradientSmall onClick={onClick} text={t("search.button")} /> */}
         </div>
     )
 }

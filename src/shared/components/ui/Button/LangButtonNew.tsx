@@ -35,7 +35,6 @@ export default function LangButtonNew() {
         i18n.changeLanguage(nextLocale);
     };
 
-    // Закриваємо список при кліку поза компонентом
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
             if (
@@ -50,7 +49,6 @@ export default function LangButtonNew() {
         return () => document.removeEventListener("mousedown", handleClickOutside);
     }, []);
 
-    // Закриваємо список по Escape
     useEffect(() => {
         const handleKeyDown = (event: KeyboardEvent) => {
             if (event.key === "Escape") setIsOpen(false);

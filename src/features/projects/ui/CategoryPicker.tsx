@@ -11,7 +11,6 @@ import SearchIcon from "@/shared/components/svg/SearchIcon";
 import ButtonGradient from "@/shared/components/ui/Button/ButtonGradient";
 import { fieldClass, labelClass } from "../model/fieldStyles";
 
-
 const MAX_CATEGORIES = 3;
 const CATEGORIES_LIMIT = 50;
 
@@ -71,7 +70,6 @@ export default function CategoryPicker({ value, onChange, error }: CategoryPicke
                         value={searchInput}
                         onChange={(e) => handleSearchInputChange(e.target.value)}
                         onKeyDown={(e) => {
-                            // Enter у полі пошуку не має відправляти всю форму
                             if (e.key === "Enter") {
                                 e.preventDefault();
                                 applySearch();

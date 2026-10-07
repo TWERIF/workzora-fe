@@ -1,9 +1,9 @@
 import { IconBriefcase, IconHandshake } from "@/shared/components/svg/AuthIcons";
-import { isAxiosError } from "axios";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState, type FormEvent, type ReactNode } from "react";
 import { useTranslation } from "react-i18next";
+import { httpStatus, requestErrorKey } from "../model/errors";
 import type { UserCreate } from "../model/types";
 import { useAuth } from "../model/useAuth";
 import { useAuthRedirect } from "../model/useAuthRedirect";
@@ -89,8 +89,8 @@ export default function RegistrationForm() {
             await requestCode();
             setCode("");
             setStep("code");
-        } catch {
-            setErrors({ form: "errors.generic" });
+        } catch (error) {
+            setErrors({ form: requestErrorKey(error) });
         }
     };
 
@@ -118,14 +118,13 @@ export default function RegistrationForm() {
             });
             redirectAfterAuth();
         } catch (error) {
-            const conflict = isAxiosError(error) && error.response?.status === 409;
-            setErrors({ form: conflict ? "registration.exists" : "errors.generic" });
+            setErrors({ form: httpStatus(error) === 409 ? "registration.exists" : requestErrorKey(error) });
         }
     };
 
     const resend = () => {
         setErrors({});
-        requestCode().catch(() => setErrors({ form: "errors.generic" }));
+        requestCode().catch((error: unknown) => setErrors({ form: requestErrorKey(error) }));
     };
 
     const formError = errors.form && (

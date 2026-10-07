@@ -21,9 +21,7 @@ export interface Project {
   status: ProjectStatus;
   clientName: string;
   time?: number | null;
-  /** Number of proposals submitted for this project. Optional until backend adds it. */
   proposalsCount?: number;
-  /** Tags attached to the project, used for search/filtering. */
   tags?: string[];
 }
 
@@ -43,18 +41,11 @@ export interface CreateProjectDto {
   price: number;
 }
 
-/**
- * Query params for the public "Find Work" / "All projects" listing.
- * Frontend already sends these; backend needs to add support for
- * `categories`, `tags`, `minPrice` and `maxPrice` (see api.ts findAllProjects).
- */
 export interface FindProjectsParams {
   search?: string;
   page?: number;
   limit?: number;
-  /** Category ids, multi-select. Sent as a comma-separated string, e.g. "cat1,cat2". */
   categories?: string[];
-  /** Free-text tags, multi-select. Sent as a comma-separated string. */
   tags?: string[];
   minPrice?: number;
   maxPrice?: number;

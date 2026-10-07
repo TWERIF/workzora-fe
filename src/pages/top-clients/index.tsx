@@ -13,7 +13,6 @@ import PageMeta from "@/shared/components/seo/PageMeta";
 
 const ITEMS_PER_PAGE = 8;
 
-// Counterpart of /freelancers: clients ranked by the rating freelancers gave them in reviews.
 export default function TopClients() {
     const { t } = useTranslation("topClients");
 

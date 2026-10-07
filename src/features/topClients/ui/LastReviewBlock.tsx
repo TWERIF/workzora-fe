@@ -3,7 +3,6 @@ import { toReviewCard } from "@/features/reviews/model/mapReview";
 import type { ProjectReview } from "@/features/reviews/model/types";
 import { useTranslation } from "react-i18next";
 
-// order and labels follow the Figma "Last client review" grid
 const CRITERIA = ["quality", "professionalism", "price", "sociability", "deadlines"] as const;
 
 export const LastReviewBlock = ({ review }: { review: ProjectReview }) => {

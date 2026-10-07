@@ -5,7 +5,6 @@ import { useUserReviews } from "../model/useReviews";
 
 const REVIEWS_PER_PAGE = 5;
 
-/** Відгуки про користувача з пагінацією — для публічного профілю */
 export const UserReviews = ({ userId }: { userId?: string }) => {
     const [page, setPage] = useState(1);
     const { data } = useUserReviews(userId, page, REVIEWS_PER_PAGE);

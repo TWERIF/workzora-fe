@@ -7,10 +7,6 @@ interface PaginationProps {
     onPageChange?: (page: number) => void;
 }
 
-/**
- * Figma shows "1 2 3 ... 6": up to 5 pages are listed in full, otherwise the current
- * page with its neighbours plus the first/last page, gaps collapsed into "...".
- */
 const getPageItems = (page: number, pageCount: number): (number | "...")[] => {
     if (pageCount <= 5) return Array.from({ length: pageCount }, (_, i) => i + 1);
     if (page <= 3) return [1, 2, 3, "...", pageCount];

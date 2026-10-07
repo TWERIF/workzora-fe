@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { useCategoriesList } from "../model/useData";
 
-// Іконка тепер використовує адаптивний text-success колір
 const ChevronIcon = ({ isOpen }: { isOpen: boolean }) => (
     <svg
         className={`w-5 h-5 transition-transform duration-200 text-success ${isOpen ? "transform rotate-180" : ""

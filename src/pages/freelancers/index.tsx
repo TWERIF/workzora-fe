@@ -251,7 +251,6 @@ export default function TopFreelancers() {
           </div>
         </aside>
 
-        {/* Main content */}
         <div className="flex-1 flex flex-col gap-6 min-w-0">
           <div className="flex items-center gap-3 flex-wrap sm:flex-nowrap min-w-0">
             <div className="flex-1 min-w-0 flex items-center gap-2 rounded-2xl bg-input dark:bg-input-dark shadow-input dark:shadow-input-dark px-4 py-3 transition-colors">

@@ -31,7 +31,6 @@ export const useCreateReview = () => {
         mutationFn: (data: CreateReviewDto) => createReview(data),
         onSuccess: (review) => {
             queryClient.invalidateQueries({ queryKey: reviewKeys.all });
-            // рейтинг користувача перераховується на беку
             queryClient.invalidateQueries({ queryKey: authKeys.findUser(review.targetId) });
         },
     });

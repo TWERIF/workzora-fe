@@ -107,11 +107,6 @@ export const useCountProjects = () => {
   });
 };
 
-/**
- * Drives the "Find Work" / "All projects" page: search text, multi-category
- * filter, tags filter and a budget range, all sent as query params to the
- * backend (see api.ts findAllProjects for the exact contract).
- */
 export const useAllProjects = (params: FindProjectsParams) => {
   return useQuery({
     queryFn: () => findAllProjects(params),

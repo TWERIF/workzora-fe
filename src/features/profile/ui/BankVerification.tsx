@@ -36,7 +36,6 @@ const BankVerification = () => {
                                         : 'border-gray-200 hover:border-gray-300'
                                         }`}
                                 >
-                                    {/* Радіо-кнопка вгорі */}
                                     <div className="absolute top-3 flex justify-center">
                                         <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${selectedBank === bank.name ? 'border-lime-500' : 'border-gray-200'
                                             }`}>
@@ -46,7 +45,6 @@ const BankVerification = () => {
                                         </div>
                                     </div>
 
-                                    {/* Логотип (Placeholder) */}
                                     <div className="mt-6 flex items-center justify-center w-full">
                                         <img src={bank.logo} alt={bank.name} className="max-h-8 object-contain grayscale opacity-80" />
                                     </div>

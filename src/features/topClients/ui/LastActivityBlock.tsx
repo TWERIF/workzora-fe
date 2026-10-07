@@ -12,7 +12,6 @@ const formatDate = (date: Date | string) => {
     return `${pad(d.getDate())}.${pad(d.getMonth() + 1)}.${d.getFullYear()}`;
 };
 
-// descriptions are rich text from the TipTap editor
 const stripHtml = (html: string) => html.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
 
 export const LastActivityBlock = ({ project }: { project: NonNullable<TopClient["lastProject"]> }) => {

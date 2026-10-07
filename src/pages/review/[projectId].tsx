@@ -26,7 +26,6 @@ export default function LeaveReviewPage() {
 
     if (!router.isReady || isUserLoading || isLoadingProjectData || isReviewLoading) return <Loader />;
 
-    // GET /projects/:id replaces clientId with the populated client
     const clientId = project?.client?.id;
     const isClient = !!user && user.id === clientId;
     const isFreelancer = !!user && !!project?.freelancerId && user.id === project.freelancerId;

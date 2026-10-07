@@ -24,7 +24,6 @@ export const SkillsSection = ({ skills = [], onSaveSkills, isSaving }: SkillsSec
         setIsEditing(true);
     };
 
-    // The backend stores skills as a comma-separated list, so a comma always separates skills.
     const addFromInput = () => {
         const next = input
             .split(",")

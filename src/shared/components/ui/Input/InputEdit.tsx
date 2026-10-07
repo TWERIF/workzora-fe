@@ -5,7 +5,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
     label?: string;
     error?: string;
     isFullWidth?: boolean;
-    icon?: ReactNode; // Опціональна іконка
+    icon?: ReactNode;
 }
 
 const InputEdit = React.forwardRef<HTMLInputElement, InputProps>(
@@ -26,7 +26,7 @@ const InputEdit = React.forwardRef<HTMLInputElement, InputProps>(
                         ref={ref}
                         className={`
               w-full p-4 rounded-2xl border outline-none transition-all duration-300
-              ${icon ? 'pr-12' : ''}  /* Додаємо відступ справа, якщо є іконка */
+              ${icon ? 'pr-12' : ''}
               ${isDark
                                 ? "bg-[#1A1A1A] border-white/10 text-white placeholder:text-gray-600 focus:border-success focus:ring-1 focus:ring-success"
                                 : "bg-gray-50 border-gray-100 text-[#333333] placeholder:text-gray-400 focus:border-[#7EA310] focus:ring-1 focus:ring-[#7EA310]"}
@@ -36,7 +36,6 @@ const InputEdit = React.forwardRef<HTMLInputElement, InputProps>(
                         {...props}
                     />
 
-                    {/* Контейнер для іконки */}
                     {icon && (
                         <div className={`
               absolute right-4 top-1/2 -translate-y-1/2 flex items-center justify-center

@@ -33,7 +33,6 @@ export default function FreelancerProfilePage() {
         <div className="min-h-screen bg-bg px-4 dark:bg-bg-dark sm:px-8 py-28">
             <div className="mx-auto grid max-w-6xl grid-cols-1 gap-4 lg:grid-cols-[minmax(0,1fr)_280px]">
                 <ProfileHeaderCard user={isLoading ? undefined : user} />
-                {/* {user?.role === "freelancer" && <QuickActionsCard />} */}
 
                 {user?.role === "freelancer" && <div className="lg:col-span-2">
                     <ProfileTabs active={activeTab} onChange={setActiveTab} />
@@ -46,7 +45,6 @@ export default function FreelancerProfilePage() {
                     </div>
                 </div>}
 
-                {/* clients have no portfolio/skills tabs, only reviews left by freelancers */}
                 {user?.role === "client" && (
                     <div className="lg:col-span-2">
                         <UserReviews userId={user.id} />

@@ -3,7 +3,6 @@ import ButtonGradient from "@/shared/components/ui/Button/ButtonGradient";
 import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
 
-/** Shown in the chat of a finished project: invites both parties to review each other. */
 export const ChatReviewPrompt = ({ projectId }: { projectId: string }) => {
     const { t } = useTranslation("chat");
     const router = useRouter();

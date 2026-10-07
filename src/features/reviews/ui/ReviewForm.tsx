@@ -12,7 +12,6 @@ import { useCreateReview } from "../model/useReviews";
 import { ReviewCriterionRow } from "./ReviewCriterionRow";
 import { ReviewTextarea } from "./ReviewTextarea";
 
-// Figma icons: ci:wavy-check, solar:case-outline, fluent:handshake, hugeicons:money-03, flowbite:clock-outline
 const CRITERIA_ICONS: Record<ReviewCriterion, ReactNode> = {
     quality: <VerifiedIcon w={28} h={28} />,
     professionalism: <SolarCaseOutline width={28} height={28} className="text-success" />,
@@ -25,7 +24,6 @@ const EMPTY_SCORES: ReviewScores = { quality: 0, professionalism: 0, communicati
 
 interface ReviewFormProps {
     projectId: string;
-    /** хто кого оцінює: клієнт — фрилансера, фрилансер — клієнта */
     reviewing: "freelancer" | "client";
     onCancel: () => void;
     onSuccess: () => void;

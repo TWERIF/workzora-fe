@@ -44,7 +44,6 @@ export default function ThemeButton() {
                 )}
             </span>
 
-            {/* Гурток-перемикач */}
             <span
                 className={`
                     relative

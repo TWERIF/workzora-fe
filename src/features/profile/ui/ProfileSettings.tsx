@@ -224,7 +224,6 @@ export default function ProfileSettings({
                 </div>
               </div>
 
-              {/* Загальна інформація */}
               <div className="bg-white dark:bg-bg-modalDark p-6 rounded-20 shadow-sm border border-border">
                 <h3 className="font-semibold mb-4">{t("basicInfo.general")}</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -289,7 +288,6 @@ export default function ProfileSettings({
                   <div className="bg-white dark:bg-bg-modalDark p-6 rounded-20 shadow-sm border border-border">
                     <p className="text-sm text-text-muted mb-4">{t("skills.description")}</p>
 
-                    {/* Інпут більше не використовує register, він контролюється локально */}
                     <input
                       type="text"
                       value={skillInput}
@@ -299,7 +297,6 @@ export default function ProfileSettings({
                       className="w-full px-4 py-2.5 rounded-20 border border-border bg-input dark:bg-input-dark focus:ring-2 focus:ring-success outline-none mb-4"
                     />
 
-                    {/* Відображення списку доданих навичок */}
                     {currentSkills.length > 0 && (
                       <div className="flex flex-wrap gap-2">
                         {currentSkills.map((skill, index) => (
@@ -367,7 +364,6 @@ export default function ProfileSettings({
                   <h2 className="text-2xl font-bold mb-6">{t("portfolioModal.title")}</h2>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {/* Картки існуючих робіт */}
                     {portfolios?.map((item: PortfolioItem) => (
                       <div key={item.id} className="group relative bg-white dark:bg-bg-modalDark rounded-20 border border-border overflow-hidden shadow-sm">
                         <div className="aspect-video w-full bg-bg dark:bg-bg-dark">
@@ -408,7 +404,6 @@ export default function ProfileSettings({
                       </div>
                     ))}
 
-                    {/* Кнопка додавання */}
                     <button
                       type="button"
                       onClick={handleOpenAdd}
@@ -515,7 +510,6 @@ export default function ProfileSettings({
                   className="mt-2"
                   onClick={() => { router.push(`/${locale}/public-profile/${user.id}`) }}
                 />
-                {/* {user.role === UserRole.FREELANCER && <Link className="mt-5 max-w-fit hover:underline" href={`/${locale}/payment-data`}>{t("changeCardInfo")}</Link>} */}
               </div>
             </div>
           </div>

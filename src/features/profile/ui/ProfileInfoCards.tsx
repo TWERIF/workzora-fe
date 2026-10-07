@@ -14,8 +14,6 @@ interface InfoCard {
     href: string;
 }
 
-// Figma exported the megaphone and users-three layers empty, so those two are
-// rendered through Iconify by the exact icon names used in the design.
 const cards: InfoCard[] = [
     { key: "achievements", icon: <RocketIcon />, href: "/coming-soon" },
     { key: "store", icon: <ShoppingBagIcon />, href: "/coming-soon" },

@@ -11,8 +11,6 @@ interface ButtonPillProps {
   className?: string;
 }
 
-// Gradient pill button from the redesign (Figma "button" component):
-// 24/12 padding, 6px icon gap, 14px label with the same hover text slide as ButtonGradient.
 export default function ButtonPill({
   text,
   icon,

@@ -19,9 +19,6 @@ interface IconDef {
     content: ReactElement;
 }
 
-// Each entry holds ONLY the inner markup (path/g/defs), never a nested <svg>,
-// and uses currentColor (where the icon is a tintable line icon) so the
-// wrapping component controls the color.
 const icons: Record<NavIconName, IconDef> = {
     profile: {
         viewBox: "0 0 15 17",

@@ -12,19 +12,6 @@ import { useEffect, useRef, useState, type ReactNode, type RefObject } from "rea
 import { useTranslation } from "react-i18next";
 import PageMeta from "@/shared/components/seo/PageMeta";
 
-/**
- * "Кодекс поведінки" / Code of Conduct page.
- *
- * - Fully driven by i18n (namespace: "codeOfConduct"). Drop the provided
- *   uk/en JSON files into your i18n resources under that namespace.
- * - Light/dark theme via Tailwind's `class` strategy — every color comes
- *   from the design tokens already defined in tailwind.config.js
- *   (bg / text / border / success / error / gradient).
- * - The left rail is a scroll-spy table of contents whose vertical line
- *   fills with the brand gradient as the reader progresses — a small,
- *   functional signature for a page whose only job is "help me find and
- *   read this section."
- */
 
 type SectionKey = "general" | "contacts" | "prohibited" | "sanctions" | "report" | "changes";
 type Accent = "success" | "error";
@@ -53,12 +40,6 @@ interface CodeOfConductProps {
     supportHref?: string;
 }
 
-/**
- * i18next's `returnObjects: true` should give back an array, but if the
- * "codeOfConduct" namespace hasn't finished loading yet (async backends,
- * SSR hydration, missing key, etc.) it falls back to returning the key
- * itself as a string. Guard against that so `.map` never blows up.
- */
 function toArray(value: unknown): string[] {
     return Array.isArray(value) ? (value as string[]) : [];
 }
@@ -73,7 +54,6 @@ export default function CodeOfConduct({
     const sectionRefs = useRef<SectionRefsMap>({});
     const articleRef = useRef<HTMLElement | null>(null);
 
-    // Scroll-spy: highlight the section currently in view.
     useEffect(() => {
         const observer = new IntersectionObserver(
             (entries) => {
@@ -94,7 +74,6 @@ export default function CodeOfConduct({
         return () => observer.disconnect();
     }, []);
 
-    // Reading progress for the rail's gradient line.
     useEffect(() => {
         const onScroll = () => {
             const el = articleRef.current;
@@ -116,7 +95,6 @@ export default function CodeOfConduct({
     return (
         <div className="min-h-screen bg-bg text-text dark:bg-bg-dark dark:text-text-dark">
             <PageMeta page="codeOfConduct" />
-            {/* Header */}
             <header className="border-b border-border/60 bg-bg-header dark:border-white/10 dark:bg-bg-dark">
                 <div className="mx-auto max-w-5xl px-6 py-13 sm:px-15">
                     <div className="h-1 w-14 rounded-full bg-gradient" aria-hidden="true" />
@@ -133,7 +111,6 @@ export default function CodeOfConduct({
             </header>
 
             <div className="mx-auto max-w-5xl gap-10 px-6 py-10 sm:px-15 lg:flex lg:items-start">
-                {/* Mobile TOC */}
                 <details className="mb-8 rounded-20 border border-border/60 bg-bg-header p-4 shadow-input dark:border-white/10 dark:bg-bg-modalDark dark:shadow-input-dark lg:hidden">
                     <summary className="cursor-pointer select-none text-sm font-medium">
                         {t("toc.label")}
@@ -151,7 +128,6 @@ export default function CodeOfConduct({
                     </nav>
                 </details>
 
-                {/* Desktop rail */}
                 <nav aria-label={t("toc.label")} className="sticky top-10 hidden w-64 shrink-0 lg:block">
                     <p className="mb-4 text-xs font-semibold uppercase tracking-wider text-muted">
                         {t("toc.label")}
@@ -187,7 +163,6 @@ export default function CodeOfConduct({
                     </div>
                 </nav>
 
-                {/* Article */}
                 <article ref={articleRef} className="min-w-0 flex-1 space-y-10">
                     <Section
                         id="general"

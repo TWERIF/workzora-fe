@@ -1,6 +1,5 @@
 import Script from "next/script";
 
-// Site ID from Hotjar: Settings -> Sites & Organizations. Nothing is loaded without it.
 const HOTJAR_ID = process.env.NEXT_PUBLIC_HOTJAR_ID;
 
 export default function Hotjar() {

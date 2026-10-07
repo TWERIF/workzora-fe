@@ -5,8 +5,6 @@ import { useTranslation } from "react-i18next";
 import { LogoGreen } from "../../svg/LogoGreen";
 import FooterMeta from "./FooterMeta";
 
-// Кожен ключ відповідає секції "columns.<key>" у /public/locales/{lng}/footer.json
-// href-и лишаються тут, у коді (не в перекладах), бо це не текст, а маршрутизація.
 type ColumnKey = "freelancer" | "about" | "terms";
 
 export default function Footer() {

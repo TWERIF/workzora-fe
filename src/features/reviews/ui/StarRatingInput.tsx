@@ -8,7 +8,6 @@ interface StarRatingInputProps {
     max?: number;
 }
 
-/** Row of 42px stars from the Figma "Rate your experience" block; hover previews the score. */
 export const StarRatingInput = ({ value, onChange, label, max = 5 }: StarRatingInputProps) => {
     const [hovered, setHovered] = useState<number | null>(null);
     const shown = hovered ?? value;

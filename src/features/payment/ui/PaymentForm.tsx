@@ -21,9 +21,6 @@ interface CardFormValues {
     cardholderName: string;
 }
 
-// Escrow context that doesn't come from the form itself — this is the
-// invoice being paid, passed down from whatever page renders the form
-// (project checkout page, dispute payout, etc).
 interface PaymentFormProps {
     amount: number;
     currencyCode: number;
@@ -31,19 +28,12 @@ interface PaymentFormProps {
     clientId: string;
     freelancerId: string;
     onSuccess?: (escrow: Escrow) => void;
-    // Lets the page put the actual "Submit payment" button somewhere else
-    // in the layout (e.g. the order summary sidebar) while it still
-    // triggers this <form>'s submit via the native `form="..."` attribute.
     formId?: string;
-    // Surfaces isPending so an external submit button (see formId above)
-    // can show its own "Processing..." state and disable itself.
     onPendingChange?: (isPending: boolean) => void;
 }
 
 const PAYMENT_METHODS: PaymentMethod[] = ["card", "apple-pay", "google-pay", "paypal"];
 
-// Monobank acquiring doesn't support PayPal as a payment method — kept in
-// the UI to match the design, but disabled.
 const DISABLED_METHODS: PaymentMethod[] = ["paypal"];
 
 const formatCardNumber = (value: string) =>
@@ -74,10 +64,6 @@ export const PaymentForm = ({
     const { t } = useTranslation("payment");
     const [activeMethod, setActiveMethod] = useState<PaymentMethod>("card");
 
-    // Escrow invoice created via Monobank — pageUrl is the hosted checkout
-    // page, embedded below in an iframe instead of a full-page redirect so
-    // the user stays on this screen. invoiceId is polled for status since
-    // a cross-origin iframe can't tell us when the payment finished.
     const [checkoutInvoice, setCheckoutInvoice] = useState<{
         invoiceId: string;
         pageUrl: string;
@@ -106,21 +92,10 @@ export const PaymentForm = ({
     }, [isPending, onPendingChange]);
 
     const onSubmit = () => {
-        // NOTE: card number / CVV fields above are never sent to our own
-        // backend — Monobank requires an active PCI DSS certificate to
-        // accept raw card data on a merchant-hosted form (their
-        // /invoice/payment-direct endpoint enforces this). Without that
-        // certificate, card entry has to happen on Monobank's own
-        // checkout page. Submitting here just creates the escrow
-        // invoice; the actual card entry happens inside the embedded
-        // checkout below.
         const payload: CreateEscrowPayload = { projectId };
 
         createEscrow(payload, {
             onSuccess: (escrow) => {
-                // escrow.pageUrl / escrow.invoiceId come straight through
-                // from Monobank's "Створення рахунку" response — wire the
-                // backend to pass both fields back unchanged.
                 if (escrow?.pageUrl && escrow?.invoiceId) {
                     setCheckoutInvoice({
                         invoiceId: escrow.invoiceId,
@@ -210,8 +185,6 @@ export const PaymentForm = ({
                                     />
                                 )}
                             />
-                            {/* Card network icons (Visa / Mastercard) — no assets
-                                available, drop them in here as small <img>/<svg> */}
                             <div className="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-text-muted">
                                 VISA • MC
                             </div>
@@ -307,12 +280,6 @@ export const PaymentForm = ({
                 </div>
             )}
 
-            {/* Card's own submit is intentionally omitted — per the design, a
-                single "Submit payment" button lives in the order summary
-                sidebar and triggers this form via the `form` attribute
-                (see formId prop). Apple Pay / Google Pay keep dedicated
-                buttons below since they kick off a different, wallet-specific
-                flow, but both submit this same <form>. */}
 
             {activeMethod === "apple-pay" && (
                 <button
@@ -320,9 +287,6 @@ export const PaymentForm = ({
                     disabled={isPending}
                     className="w-full rounded-20 bg-bg-dark px-15 py-13 text-white disabled:opacity-60 dark:bg-white dark:text-bg-dark"
                 >
-                    {/* Requires Apple Pay JS session + aToken flow, see
-                        Monobank docs. This button just kicks off invoice
-                        creation for now. */}
                     {isPending ? t("processing") : t("payWithApplePay")}
                 </button>
             )}
@@ -333,9 +297,6 @@ export const PaymentForm = ({
                     disabled={isPending}
                     className="w-full rounded-20 bg-bg-dark px-15 py-13 text-white disabled:opacity-60 dark:bg-white dark:text-bg-dark"
                 >
-                    {/* Requires Google Pay JS API tokenization, see
-                        Monobank docs. This button just kicks off invoice
-                        creation for now. */}
                     {isPending ? t("processing") : t("payWithGooglePay")}
                 </button>
             )}
@@ -357,12 +318,6 @@ export const PaymentForm = ({
     );
 };
 
-// Embeds Monobank's hosted checkout (pageUrl) in an iframe instead of
-// redirecting the whole page. Monobank doesn't document a stance on
-// framing that page, so this can't be guaranteed to render everywhere —
-// some browsers/banks may block it via X-Frame-Options / frame-ancestors.
-// The "open in a new tab" fallback link covers that case; consider
-// swapping to a full-page redirect if you see it triggering often.
 const CheckoutModal = ({
     invoiceId,
     pageUrl,
@@ -379,12 +334,7 @@ const CheckoutModal = ({
     const onSettledRef = useRef(onSettled);
     onSettledRef.current = onSettled;
 
-    // TODO: implement this hook against your backend (which holds the
-    // Monobank X-Token — never call api.monobank.ua's status endpoint
-    // from the browser). It should poll GET /invoice/status?invoiceId=…
-    // server-side every few seconds and expose the latest status here.
     const { status, escrow } = useInvoiceStatus(invoiceId, {
-        // stop polling once the modal is closed
         enabled: true,
         intervalMs: 3000,
     });
