@@ -1,5 +1,5 @@
-import ScrollRow from "@/shared/components/ui/ScrollRow";
 "use client";
+import ScrollRow from "@/shared/components/ui/ScrollRow";
 
 import { useTranslation } from "react-i18next";
 import { ProjectStatus } from "../model/types";
