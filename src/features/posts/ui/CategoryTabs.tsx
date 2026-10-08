@@ -1,3 +1,4 @@
+import ScrollRow from "@/shared/components/ui/ScrollRow";
 import { useTranslation } from "react-i18next";
 import { BLOG_TAGS } from "../model/types";
 
@@ -11,7 +12,7 @@ export const CategoryTabs = ({ value, onChange }: CategoryTabsProps) => {
     const items = [{ value: null, key: "all" }, ...BLOG_TAGS];
 
     return (
-        <div role="tablist" className="flex gap-2 overflow-x-auto rounded-full bg-main-5 p-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <ScrollRow role="tablist" className="flex gap-2 rounded-full bg-main-5 p-2">
             {items.map((item) => {
                 const active = item.value === value;
                 return (
@@ -29,6 +30,6 @@ export const CategoryTabs = ({ value, onChange }: CategoryTabsProps) => {
                     </button>
                 );
             })}
-        </div>
+        </ScrollRow>
     );
 };

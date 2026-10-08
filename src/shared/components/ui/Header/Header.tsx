@@ -142,7 +142,6 @@ export default function Header() {
   const forFreelancersItems: NavDropdownLink[] = [
     { label: t("profile.headers.topProjects"), href: `/${locale}/top-projects` },
     { label: t("profile.headers.topClients"), href: `/${locale}/top-clients` },
-    { label: t("profile.headers.categories"), href: `/${locale}/categories` },
     { label: t("profile.headers.contests"), href: `/${locale}/coming-soon` },
     { label: t("profile.headers.contacts"), href: `/${locale}/contacts` },
     { label: t("profile.headers.news"), href: `/${locale}/news` },

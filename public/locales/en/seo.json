@@ -27,10 +27,6 @@
     "title": "Getting started",
     "description": "How to create an account, set up your profile and start using Workzora."
   },
-  "createAccount": {
-    "title": "How to create a Workzora account",
-    "description": "Step by step guide to signing up and choosing an account type."
-  },
   "faq": {
     "title": "FAQ",
     "description": "Answers to common questions about Workzora."

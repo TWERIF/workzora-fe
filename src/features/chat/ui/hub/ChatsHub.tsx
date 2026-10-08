@@ -1,3 +1,4 @@
+import ScrollRow from "@/shared/components/ui/ScrollRow";
 import { useUnreadNotifications } from "@/features/notifications/model/useNotifications";
 import ProfileNavigation from "@/features/profile/ui/ProfileNavigation";
 import { Pagination } from "@/features/freelancerProfile/ui/Pagination";
@@ -76,7 +77,7 @@ export default function ChatsHub() {
                     </button>
                 </form>
 
-                <div role="tablist" className="grid grid-cols-3 gap-2 rounded-full bg-main-5 p-2.5">
+                <ScrollRow role="tablist" className="flex gap-2 rounded-full bg-main-5 p-2.5">
                     {TABS.map((item) => (
                         <button
                             key={item}
@@ -84,14 +85,14 @@ export default function ChatsHub() {
                             role="tab"
                             aria-selected={tab === item}
                             onClick={() => selectTab(item)}
-                            className={`h-[45px] min-w-0 truncate rounded-full px-2 text-xs transition-colors sm:text-sm ${
+                            className={`h-[45px] flex-1 shrink-0 whitespace-nowrap rounded-full px-4 text-xs transition-colors sm:text-sm ${
                                 tab === item ? "bg-primary text-white" : "bg-background hover:text-primary"
                             }`}
                         >
                             {t(`hub.tabs.${item}`)}
                         </button>
                     ))}
-                </div>
+                </ScrollRow>
 
                 {tab === "projects" &&
                     (deals.isLoading ? (

@@ -44,7 +44,7 @@ export default function TopClients() {
     };
 
     return (
-        <div className="min-h-screen overflow-x-hidden bg-bg-header px-4 pb-24 pt-24 text-text transition-colors duration-300 dark:bg-bg-dark dark:text-text-dark sm:px-8">
+        <div className="min-h-screen overflow-x-clip bg-bg-header px-4 pb-24 pt-24 text-text transition-colors duration-300 dark:bg-bg-dark dark:text-text-dark sm:px-8">
             <PageMeta page="topClients" />
             <div className="mx-auto flex max-w-[1360px] flex-col gap-6">
                 <div>

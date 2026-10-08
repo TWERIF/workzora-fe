@@ -1,3 +1,4 @@
+import ScrollRow from "@/shared/components/ui/ScrollRow";
 import ProfileNavigation from "@/features/profile/ui/ProfileNavigation";
 import ProjectsPagination from "@/features/projects/ui/ProjectPagination";
 import Loader from "@/shared/components/ui/Loader";
@@ -39,10 +40,7 @@ export default function NotificationsPage() {
                 </header>
 
                 <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                    <div
-                        role="tablist"
-                        className="flex min-w-0 gap-1 overflow-x-auto rounded-full bg-main-5 p-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-                    >
+                    <ScrollRow role="tablist" className="flex gap-1 rounded-full bg-main-5 p-1">
                         {FILTERS.map((item) => (
                             <button
                                 key={item}
@@ -57,7 +55,7 @@ export default function NotificationsPage() {
                                 {t(`tabs.${item}`)}
                             </button>
                         ))}
-                    </div>
+                    </ScrollRow>
                     <button
                         type="button"
                         onClick={() => markAllRead(filter)}

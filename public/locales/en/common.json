@@ -1295,5 +1295,9 @@
   },
   "userCard": {
     "goToProfile": "Go to profile"
+  },
+  "scroll": {
+    "left": "Scroll left",
+    "right": "Scroll right"
   }
 }

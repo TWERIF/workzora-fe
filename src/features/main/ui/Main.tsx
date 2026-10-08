@@ -28,7 +28,7 @@ export default function Main() {
 
   return (
     <>
-      <main className="overflow-x-hidden w-full bg-bg text-text dark:bg-bg-dark dark:text-text-dark">
+      <main className="overflow-x-clip w-full bg-bg text-text dark:bg-bg-dark dark:text-text-dark">
         <Hero handleReg={handleReg} />
 
         <LookingFor />

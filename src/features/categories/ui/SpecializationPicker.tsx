@@ -1,3 +1,4 @@
+import ScrollRow from "@/shared/components/ui/ScrollRow";
 import type { CategoryNode } from "@/features/categories/model/types";
 import { useCategoryTree } from "@/features/categories/model/useData";
 import { IconCheck, IconSearch } from "@/shared/components/svg/UiIcons";
@@ -78,7 +79,7 @@ export default function SpecializationPicker({ label, max, value, onChange, erro
             </div>
 
             {!needle && tree.length > 0 && (
-                <div role="tablist" className="mt-2.5 flex gap-2 overflow-x-auto rounded-full bg-main-5 p-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+                <ScrollRow role="tablist" wrapperClassName="mt-2.5" className="flex gap-2 rounded-full bg-main-5 p-2">
                     {tree.map((node) => {
                         const selectedHere = optionsOf(node).filter((option) => value.includes(option.id)).length;
                         return (
@@ -97,7 +98,7 @@ export default function SpecializationPicker({ label, max, value, onChange, erro
                             </button>
                         );
                     })}
-                </div>
+                </ScrollRow>
             )}
 
             <div role="group" aria-label={label} className="mt-3 flex flex-wrap gap-2">

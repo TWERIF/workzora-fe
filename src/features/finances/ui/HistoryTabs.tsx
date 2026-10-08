@@ -1,3 +1,4 @@
+import ScrollRow from "@/shared/components/ui/ScrollRow";
 import { useTranslation } from "react-i18next";
 import { HISTORY_TABS } from "../model/constants";
 import { HistoryTab } from "../model/types";
@@ -12,7 +13,7 @@ export const HistoryTabs = ({ active, onChange }: HistoryTabsProps) => {
     const { t } = useTranslation("finances");
 
     return (
-        <div role="tablist" className="flex min-w-0 gap-2 overflow-x-auto border-b border-border dark:border-white/10">
+        <ScrollRow role="tablist" className="flex gap-2 border-b border-border dark:border-white/10">
             {HISTORY_TABS.map((tab) => {
                 const isActive = tab === active;
 
@@ -35,7 +36,7 @@ export const HistoryTabs = ({ active, onChange }: HistoryTabsProps) => {
                     </button>
                 );
             })}
-        </div>
+        </ScrollRow>
     );
 };
 

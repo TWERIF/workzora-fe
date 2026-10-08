@@ -45,5 +45,35 @@
       "title": "Технічна підтримка",
       "description": "Отримайте допомогу щодо проблем із входом, сповіщень, помилок та функціональності платформи."
     }
+  },
+  "searchResults": "Результати пошуку «{{term}}»",
+  "searching": "Шукаємо…",
+  "nothingFound": "Нічого не знайдено. Спробуйте інші слова або перегляньте розділи.",
+  "articlesCount_one": "{{count}} стаття",
+  "articlesCount_few": "{{count}} статті",
+  "articlesCount_many": "{{count}} статей",
+  "articlesCount_other": "{{count}} статті",
+  "categoryNotFound": "Такого розділу довідки немає",
+  "emptyCategory": "У цьому розділі поки немає статей.",
+  "article": {
+    "details": "Деталі",
+    "readTime": "Час читання",
+    "updated": "Оновлено",
+    "minutes_one": "{{count}} хв",
+    "minutes_few": "{{count}} хв",
+    "minutes_many": "{{count}} хв",
+    "minutes_other": "{{count}} хв",
+    "feedback": "Ця стаття відповіла на ваше питання?",
+    "thanks": "Дякуємо за відгук!",
+    "reactions": {
+      "no": "Ні",
+      "maybe": "Частково",
+      "yes": "Так"
+    },
+    "needHelp": "Потрібна допомога?",
+    "needHelpText": "Якщо щось лишилося незрозумілим,",
+    "contactSupport": "напишіть у підтримку WorkZora.",
+    "notFound": "Статтю не знайдено",
+    "back": "До бази знань"
   }
 }

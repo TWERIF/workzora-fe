@@ -25,10 +25,10 @@ export const LastActivityBlock = ({ project }: { project: NonNullable<TopClient[
 
             <Link
                 href={`/${locale}/activeProjects/discussion/${project.id}`}
-                className="flex flex-col gap-4 rounded-[28px] bg-bg-header p-6 transition-shadow hover:shadow-card dark:bg-input-dark sm:p-9"
+                className="flex min-w-0 flex-col gap-4 rounded-[24px] bg-bg-header p-4 transition-shadow hover:shadow-card dark:bg-input-dark sm:rounded-[28px] sm:p-9"
             >
-                <div className="flex items-start gap-6">
-                    <p className="flex-1 text-xl font-medium leading-[26px] text-text dark:text-text-dark">
+                <div className="flex items-start gap-3 sm:gap-6">
+                    <p className="min-w-0 flex-1 break-words text-lg font-medium leading-[26px] text-text dark:text-text-dark sm:text-xl">
                         {project.title}
                     </p>
                     <div className="flex shrink-0 items-center gap-3">

@@ -12,7 +12,7 @@ export const ClientCard = ({ client }: { client: TopClient }) => {
     const about = client.bio || client.position;
 
     return (
-        <article className="flex flex-col justify-center gap-6 rounded-36 bg-surface p-6 transition-colors dark:bg-bg-modalDark sm:p-9">
+        <article className="flex flex-col justify-center gap-6 rounded-[24px] bg-surface p-4 transition-colors sm:rounded-36 sm:p-9 dark:bg-bg-modalDark">
             <UserCardHeader id={client.id} name={fullName} avatarUrl={client.avatarUrl} about={about} rating={rating} isVerified={Boolean(client.isVerified)} />
 
             {client.lastReview ? (

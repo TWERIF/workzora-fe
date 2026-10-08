@@ -1,3 +1,4 @@
+import ScrollRow from "@/shared/components/ui/ScrollRow";
 import { useEffect, useState, type MouseEvent } from "react";
 
 interface SettingsTab {
@@ -34,7 +35,7 @@ export default function SettingsTabs({ items }: { items: SettingsTab[] }) {
     };
 
     return (
-        <nav className="sticky top-[112px] z-30 overflow-x-auto rounded-full bg-main-5/95 p-2.5 backdrop-blur [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <ScrollRow as="nav" wrapperClassName="sticky top-[112px] z-30" className="rounded-full bg-main-5/95 p-2.5 backdrop-blur">
             <ul className="flex min-w-max gap-2.5">
                 {items.map((item) => (
                     <li key={item.id} className="flex-1">
@@ -51,6 +52,6 @@ export default function SettingsTabs({ items }: { items: SettingsTab[] }) {
                     </li>
                 ))}
             </ul>
-        </nav>
+        </ScrollRow>
     );
 }

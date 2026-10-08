@@ -18,7 +18,7 @@ export default function FreelancerCard({ freelancer }: { freelancer: FreelancerL
     const work = freelancer.portfolio;
 
     return (
-        <article className="flex flex-col justify-center gap-6 rounded-36 bg-surface p-6 transition-colors dark:bg-bg-modalDark sm:p-9">
+        <article className="flex flex-col justify-center gap-6 rounded-[24px] bg-surface p-4 transition-colors dark:bg-bg-modalDark sm:rounded-36 sm:p-9">
             <UserCardHeader
                 id={freelancer.id}
                 name={name}

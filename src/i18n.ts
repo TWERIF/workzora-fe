@@ -50,11 +50,11 @@ import proUk from "../public/locales/uk/pro.json";
 import topFreelancersEn from "../public/locales/en/topFreelancers.json";
 import topFreelancersUk from "../public/locales/uk/topFreelancers.json";
 
-import gettingStartedEn from "../public/locales/en/getting-started.json";
-import gettingStartedUk from "../public/locales/uk/getting-started.json";
 
-import createAccountEn from "../public/locales/en/createAccount.json";
-import createAccountUk from "../public/locales/uk/createAccount.json";
+
+
+
+
 
 import helpEn from "../public/locales/en/help.json";
 import helpUk from "../public/locales/uk/help.json";
@@ -92,8 +92,6 @@ const resources = {
       createProject: createProjectEn,
       pro: proEn,
       topFreelancers: topFreelancersEn,
-      "getting-started": gettingStartedEn,
-      createAccount: createAccountEn,
       help: helpEn,
       footer: footerEn,
       review: reviewEn,
@@ -120,8 +118,6 @@ const resources = {
       createProject: createProjectUk,
       pro: proUk,
       topFreelancers: topFreelancersUk,
-      "getting-started": gettingStartedUk,
-      createAccount: createAccountUk,
       help: helpUk,
       footer: footerUk,
       review: reviewUk,
