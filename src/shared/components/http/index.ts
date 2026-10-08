@@ -1,15 +1,10 @@
 import axios from "axios";
 
+export const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://workzora.com/api";
+
 export const $api = axios.create({
-  baseURL: `https://workzora.com/api`,
+  baseURL: API_URL,
   timeout: 35000,
   headers: { 'Content-Type': 'application/json' },
   withCredentials: true
 });
-
-// export const $api = axios.create({
-//    baseURL: `http://localhost:8000`,
-//   timeout: 35000,
-//   headers: {'Content-Type': 'application/json'},
-//   withCredentials:true
-// });

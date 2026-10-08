@@ -1,19 +1,20 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
+import { useEffect, useRef } from "react";
+import type { PostListQuery } from "./types-paginated-posts";
 import {
+    addPostView,
     getAllPosts,
+    getPopularPosts,
+    subscribeToBlog,
+    unsubscribeFromBlog,
     getLatestPosts,
     getPost,
     searchPosts,
 } from "./api";
+import { Post } from "./types";
 
 
 export const postKeys = {
-    all: (page: number, limit: number) => [
-        "posts",
-        page,
-        limit,
-    ],
-
     one: (id: string) => [
         "post",
         id,
@@ -30,14 +31,16 @@ export const postKeys = {
 };
 
 
-export const usePost = (id?: string) => {
+export const usePost = (idOrSlug?: string, initialPost?: Post) => {
     const {
         data: post,
         isLoading: isLoadingPost,
-    } = useQuery({
-        queryFn: () => getPost(id!),
-        queryKey: postKeys.one(id!),
-        enabled: !!id,
+    } = useQuery<Post | undefined>({
+        queryFn: () => getPost(idOrSlug!),
+        queryKey: postKeys.one(idOrSlug!),
+        enabled: !!idOrSlug,
+        initialData: initialPost,
+        retry: false,
     });
 
 
@@ -50,17 +53,29 @@ export const usePost = (id?: string) => {
 
 
 
-export const usePostList = (
-    page: number = 1,
-    limit: number = 10,
-) => {
-    return useQuery({
-        queryFn: () => getAllPosts(page, limit),
-        queryKey: postKeys.all(page, limit),
+export const usePostList = (query: PostListQuery, enabled = true) =>
+    useQuery({
+        queryFn: () => getAllPosts(query),
+        queryKey: ["posts", query],
+        placeholderData: (previous) => previous,
+        enabled,
     });
+
+export const usePopularPosts = () =>
+    useQuery({ queryFn: getPopularPosts, queryKey: ["posts", "popular"], staleTime: 5 * 60 * 1000 });
+
+export const usePostView = (id?: string) => {
+    const counted = useRef<string | null>(null);
+    useEffect(() => {
+        if (!id || counted.current === id) return;
+        counted.current = id;
+        addPostView(id).catch(() => undefined);
+    }, [id]);
 };
 
+export const useBlogSubscription = () => useMutation({ mutationFn: subscribeToBlog });
 
+export const useUnsubscribe = () => useMutation({ mutationFn: unsubscribeFromBlog });
 
 export const useLatestPosts = () => {
     return useQuery({

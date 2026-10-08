@@ -21,10 +21,17 @@ export interface Project {
   status: ProjectStatus;
   clientName: string;
   time?: number | null;
-  /** Number of proposals submitted for this project. Optional until backend adds it. */
   proposalsCount?: number;
-  /** Tags attached to the project, used for search/filtering. */
   tags?: string[];
+  startedAt?: string | null;
+  completedAt?: string | null;
+  isUrgent?: boolean;
+  isFeatured?: boolean;
+}
+
+export interface MyProjectsPage {
+  items: Project[];
+  meta: { total: number; page: number; limit: number; totalPages: number };
 }
 
 export enum ProjectStatus {
@@ -39,25 +46,20 @@ export interface CreateProjectDto {
   title: string;
   description: string;
   categories: string[];
-  clientId: string;
+  tags?: string[];
   price: number;
+  isUrgent?: boolean;
 }
 
-/**
- * Query params for the public "Find Work" / "All projects" listing.
- * Frontend already sends these; backend needs to add support for
- * `categories`, `tags`, `minPrice` and `maxPrice` (see api.ts findAllProjects).
- */
 export interface FindProjectsParams {
   search?: string;
   page?: number;
   limit?: number;
-  /** Category ids, multi-select. Sent as a comma-separated string, e.g. "cat1,cat2". */
   categories?: string[];
-  /** Free-text tags, multi-select. Sent as a comma-separated string. */
   tags?: string[];
   minPrice?: number;
   maxPrice?: number;
+  sort?: "new" | "top";
 }
 
 export interface PaginatedProjects {
@@ -65,4 +67,5 @@ export interface PaginatedProjects {
   total: number;
   page: number;
   limit: number;
+  totalPages: number;
 }

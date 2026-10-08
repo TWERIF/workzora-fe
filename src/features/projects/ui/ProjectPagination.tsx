@@ -43,7 +43,7 @@ export default function ProjectsPagination({
 
     return (
         <nav
-            aria-label={t("chats.pagination.title", "Pagination")}
+            aria-label={t("chats.pagination.title")}
             className="mt-8 flex items-center justify-center gap-3 pb-8"
         >
             <button

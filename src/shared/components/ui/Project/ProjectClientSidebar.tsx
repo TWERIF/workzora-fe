@@ -24,7 +24,7 @@ export const ClientSidebar = ({ client }: { client: User }) => {
 
                 <div className="flex items-start gap-3 mb-4">
                     <div className="w-12 h-12 rounded-full bg-gray-200 dark:bg-gray-700 overflow-hidden flex-shrink-0">
-                        <Image width={150} height={150} src={avatar} alt="profile icon" className="w-full h-full object-cover" />
+                        <Image width={150} height={150} src={avatar} alt="" className="w-full h-full object-cover" />
                     </div>
                     <div>
                         <div className="flex items-center gap-1.5 font-bold text-text dark:text-text-dark">

@@ -1,18 +1,13 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
-import { login, logout, register, verify } from "./api";
-import { UserCreate } from "./types";
+import { login, loginWithGoogle, logout, register, verify } from "./api";
+import { LoginCredentials, UserCreate } from "./types";
 
 export const authKeys = {
   me: ["me"] as const,
   countUsers: () => ["countUsers"] as const,
   findUser: (id: string) => ["user", id] as const,
 };
-
-interface LoginCredentials {
-  email: string;
-  password: string;
-}
 
 export const useAuth = () => {
   const queryClient = useQueryClient();
@@ -26,14 +21,7 @@ export const useAuth = () => {
     refetch,
   } = useQuery({
     queryKey: authKeys.me,
-    queryFn: async () => {
-      try {
-        const response = await verify();
-        return response;
-      } catch (error) {
-        return null;
-      }
-    },
+    queryFn: () => verify().catch(() => null),
     retry: false,
     staleTime: 1000 * 60 * 5,
     refetchOnWindowFocus: true,
@@ -41,18 +29,17 @@ export const useAuth = () => {
 
   const loginMutation = useMutation({
     mutationFn: (credentials: LoginCredentials) => login(credentials),
-    onSuccess: async () => {
-      await refetch();
-      router.push("/profile");
-    },
+    onSuccess: () => refetch(),
+  });
+
+  const googleLoginMutation = useMutation({
+    mutationFn: loginWithGoogle,
+    onSuccess: () => refetch(),
   });
 
   const registerMutation = useMutation({
     mutationFn: (userData: UserCreate) => register(userData),
-    onSuccess: async () => {
-      await refetch(); 
-      router.push("/profile");
-    },
+    onSuccess: () => refetch(),
   });
 
   const logoutMutation = useMutation({
@@ -68,6 +55,7 @@ export const useAuth = () => {
     user,
     isAuthenticated: !!user,
     login: loginMutation.mutateAsync,
+    loginWithGoogle: googleLoginMutation.mutateAsync,
     register: registerMutation.mutateAsync,
     logout: logoutMutation.mutateAsync,
     refetchMe: refetch,

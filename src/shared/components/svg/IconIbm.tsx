@@ -5,7 +5,7 @@ export default function IconIbm() {
         <svg width="103" height="42" viewBox="0 0 103 42" fill="none" xmlns="http://www.w3.org/2000/svg">
             <mask
                 id="mask0_540_18594"
-                style={{ maskType: 'luminance' }} // Виправлено: об'єкт замість рядка
+                style={{ maskType: 'luminance' }}
                 maskUnits="userSpaceOnUse"
                 x="0"
                 y="0"
@@ -20,7 +20,7 @@ export default function IconIbm() {
                 <path
                     d="M0 1.5127H106.091V6.99564H0M0 12.4786H100.426V17.9625H0V23.4445H100.426V28.9264H0M0 34.4103H106.091V39.8943H0"
                     stroke="white"
-                    strokeWidth="3" // Виправлено: camelCase
+                    strokeWidth="3"
                 />
             </g>
         </svg>

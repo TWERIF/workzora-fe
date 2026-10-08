@@ -48,5 +48,6 @@
     "closeLabel": "Close checkout",
     "loading": "Loading secure checkout…",
     "troubleLoading": "Trouble loading? Open checkout in a new tab"
-  }
+  },
+  "checkoutFrame": "Monobank payment page"
 }

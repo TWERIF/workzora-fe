@@ -6,6 +6,9 @@ export interface PortfolioItem {
     title: string;
     description: string;
     imageUrl: string;
+    tags?: string[];
+    views?: number;
+    createdAt?: string;
     user?: User;
 }
 

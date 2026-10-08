@@ -1,5 +1,5 @@
 import { $api } from "@/shared/components/http";
-import { Category } from "./types";
+import { Category, CategoryNode } from "./types";
 
 export const findAll = async ({ page = 1, limit = 20 }: { page: number, limit: number }): Promise<{ items: Category[] }> => {
     return (await $api.get("/categories", {
@@ -33,3 +33,4 @@ export const searchCategories = async ({
 
     return res.data;
 };
+export const getCategoryTree = async (): Promise<CategoryNode[]> => (await $api.get<CategoryNode[]>("/categories/tree")).data;

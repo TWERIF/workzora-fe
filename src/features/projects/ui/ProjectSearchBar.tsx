@@ -1,12 +1,11 @@
 "use client";
 
-import { useEffect, useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import { useTranslation } from "react-i18next";
 import { useSearchProjects } from "../model/useProjects";
 import type { Project } from "../model/types";
 
 interface ProjectSearchBarProps {
-  /** Pass `null` to clear search and fall back to the status-filtered list. */
   onResults: (results: Project[] | null) => void;
 }
 
@@ -16,11 +15,12 @@ export default function ProjectSearchBar({ onResults }: ProjectSearchBarProps) {
   const [submittedTerm, setSubmittedTerm] = useState("");
 
   const { data } = useSearchProjects(submittedTerm);
+  const report = useRef(onResults);
+  report.current = onResults;
 
   useEffect(() => {
     if (!submittedTerm) return;
-    onResults(data ?? []);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    report.current(data ?? []);
   }, [data, submittedTerm]);
 
   const handleSubmit = (event: FormEvent) => {

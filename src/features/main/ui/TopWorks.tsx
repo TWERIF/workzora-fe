@@ -2,7 +2,7 @@
 
 import { PortfolioItem } from "@/features/portfolio/model/types";
 import { Triangles } from "@/shared/components/svg/Triangles";
-import { useTheme } from "next-themes";
+import { useTheme } from "@/utils/useTheme";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import ShowcaseItem from "./ShowcaseItem";
@@ -48,7 +48,6 @@ export const TopWorks = ({ items }: TopWorksProps) => {
     const goNext = useCallback(() => scrollToIndex(activeIndex + 1), [activeIndex, scrollToIndex]);
     const goPrev = useCallback(() => scrollToIndex(activeIndex - 1), [activeIndex, scrollToIndex]);
 
-    // Autoplay — advances one card at a time, pauses while the pointer is over the section.
     useEffect(() => {
         if (items.length <= 1) return;
         const id = setInterval(() => {
@@ -59,7 +58,6 @@ export const TopWorks = ({ items }: TopWorksProps) => {
         return () => clearInterval(id);
     }, [activeIndex, items.length, scrollToIndex]);
 
-    // Keeps the dots/active state in sync if the person swipes/drags the track manually.
     const handleScroll = () => {
         if (isSyncingScroll.current) {
             isSyncingScroll.current = false;
@@ -118,7 +116,6 @@ export const TopWorks = ({ items }: TopWorksProps) => {
                 ))}
             </div>
 
-            {/* Mobile: dots + arrows below the track, matching the reference layout. */}
             <div className="relative z-10 mt-6 flex items-center justify-center gap-4 sm:hidden">
                 <ArrowButton direction="prev" onClick={goPrev} />
                 <div className="flex items-center gap-1.5">

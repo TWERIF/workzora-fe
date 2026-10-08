@@ -12,7 +12,7 @@ import TipTapEditor from "@/shared/components/ui/TipTapEditor";
 
 import { FormValues, schema } from "../model/schema";
 import { useProjects } from "../model/useProjects";
-import CategoryPicker from "./CategoryPicker";
+import SpecializationPicker from "@/features/categories/ui/SpecializationPicker";
 
 import ChevronDownIcon from "@/shared/components/svg/ChevronDownIcon";
 import UsFlagIcon from "@/shared/components/svg/UsFlagIcon";
@@ -54,6 +54,7 @@ export default function CreateProjectForm() {
             description: "",
             price: 0,
             categories: [] as string[],
+            isUrgent: false as boolean,
         } satisfies FormValues,
 
         onSubmit: async ({ value }) => {
@@ -67,7 +68,7 @@ export default function CreateProjectForm() {
             }
 
             try {
-                await createMutation.mutateAsync({ ...result.data, clientId: user?.id! });
+                await createMutation.mutateAsync(result.data);
 
                 toast.success(t("toast.success_created"));
 
@@ -124,7 +125,6 @@ export default function CreateProjectForm() {
                         }}
                     />
 
-                    {/* Бюджет + валюта */}
                     <div className="grid items-start gap-x-3 gap-y-6 sm:grid-cols-2">
                         <form.Field
                             name="price"
@@ -205,7 +205,9 @@ export default function CreateProjectForm() {
                             },
                         }}
                         children={(field) => (
-                            <CategoryPicker
+                            <SpecializationPicker
+                                label={t("form.categories_label")}
+                                max={3}
                                 value={field.state.value as string[]}
                                 onChange={field.handleChange}
                                 error={field.state.meta.errors[0]}
@@ -237,10 +239,27 @@ export default function CreateProjectForm() {
                             );
                         }}
                     />
+
+                    <form.Field
+                        name="isUrgent"
+                        children={(field) => (
+                            <label className="flex cursor-pointer items-start gap-3 rounded-20 border border-main-10 p-4 transition-colors hover:border-primary">
+                                <input
+                                    type="checkbox"
+                                    checked={field.state.value}
+                                    onChange={(event) => field.handleChange(event.target.checked)}
+                                    className="mt-0.5 h-4 w-4 shrink-0 cursor-pointer accent-primary"
+                                />
+                                <span>
+                                    <span className="block text-sm font-semibold">{t("form.urgent_label")}</span>
+                                    <span className="block text-xs text-main-50">{t("form.urgent_hint")}</span>
+                                </span>
+                            </label>
+                        )}
+                    />
                 </div>
             </div>
 
-            {/* Права колонка: чекліст + кнопка відправки */}
             <ProjectBriefChecklist isPending={createMutation.isPending} />
         </form>
     );

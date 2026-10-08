@@ -7,19 +7,17 @@ export const CurrentRateCard = ({ rate }: { rate: number }) => {
     const { t, i18n } = useTranslation("finances");
 
     return (
-        <article className="flex flex-col gap-3 rounded-20 border border-border p-6 dark:border-white/10">
-            <h3 className="text-base font-medium text-text dark:text-text-dark">
+        <article className="flex min-h-[190px] flex-col gap-3 rounded-3xl border border-border-light px-4 py-6 dark:border-white/10">
+            <h3 className="text-base font-medium leading-[29px] text-text dark:text-text-dark">
                 {t("balance.rate.title")}
             </h3>
 
-            <p className="flex items-center gap-2 text-text dark:text-text-dark">
-                <UsdtIcon/>
-                <span className="font-medium">
-                    1 ≈ ₴{formatNumber(rate, i18n.language)}
-                </span>
+            <p className="flex items-center gap-3 text-lg font-medium leading-[1.461] text-text dark:text-text-dark">
+                <UsdtIcon width={25} height={25} />
+                <span>1 ≈ ₴{formatNumber(rate, i18n.language)}</span>
             </p>
 
-            <p className="mt-auto text-sm leading-relaxed text-text-light dark:text-text-muted">
+            <p className="mt-[6px] text-xs text-text-light dark:text-text-muted">
                 {t("balance.rate.hint")}
             </p>
         </article>

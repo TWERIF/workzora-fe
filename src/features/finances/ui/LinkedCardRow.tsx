@@ -6,10 +6,11 @@ import ActionsMenu from "./ActionsMenu";
 
 interface LinkedCardRowProps {
     card: LinkedCard;
-    onEdit: (card: LinkedCard) => void;
+    onMakePrimary: (card: LinkedCard) => void;
+    onRemove: (card: LinkedCard) => void;
 }
 
-export const LinkedCardRow = ({ card, onEdit }: LinkedCardRowProps) => {
+export const LinkedCardRow = ({ card, onMakePrimary, onRemove }: LinkedCardRowProps) => {
     const { t } = useTranslation("finances");
 
     return (
@@ -36,11 +37,8 @@ export const LinkedCardRow = ({ card, onEdit }: LinkedCardRowProps) => {
             <ActionsMenu
                 label={t("cards.actions.label")}
                 items={[
-                    {
-                        key: "edit",
-                        label: t("cards.actions.edit"),
-                        onSelect: () => onEdit(card),
-                    },
+                    ...(card.isPrimary ? [] : [{ key: "primary", label: t("cards.actions.makePrimary"), onSelect: () => onMakePrimary(card) }]),
+                    { key: "remove", label: t("cards.actions.remove"), onSelect: () => onRemove(card), danger: true },
                 ]}
             />
         </li>

@@ -5,6 +5,7 @@ import {
     createEscrow,
     getEscrow,
     getInvoiceStatus,
+    getProjectEscrow,
     openDispute,
     resolveDispute,
 } from "./api";
@@ -61,10 +62,6 @@ export const useCreateEscrow = () => {
 };
 
 
-// Polls GET /escrow/status/:invoiceId (backend hits Monobank / our DB, see
-// InvoicesService.getStatus) while the embedded checkout modal is open.
-// invoiceId here is the Monobank invoice id returned from createEscrow
-// (escrow.invoiceId in PaymentForm), not our internal escrow id.
 export const useInvoiceStatus = (
     invoiceId: string,
     options: { enabled?: boolean; intervalMs?: number } = {},
@@ -80,8 +77,6 @@ export const useInvoiceStatus = (
         queryFn: () => getInvoiceStatus(invoiceId),
         queryKey: invoiceStatusKeys.one(invoiceId),
         enabled: enabled && !!invoiceId,
-        // Stop polling once we've reached a terminal state — no point
-        // hammering the backend (and Monobank behind it) after that.
         refetchInterval: (query) => {
             const status = query.state.data?.status;
             if (status === "success" || status === "failure") return false;
@@ -89,9 +84,6 @@ export const useInvoiceStatus = (
         },
     });
 
-    // Once the payment lands, seed the escrow cache so any component reading
-    // useEscrow(id) picks up the HELD status immediately instead of waiting
-    // for its own refetch.
     useEffect(() => {
         if (data?.status === "success" && data.escrow) {
             queryClient.setQueryData(escrowKeys.one(data.escrow.id), data.escrow);
@@ -139,5 +131,16 @@ export const useResolveDispute = (id: string) => {
         onSuccess: (escrow) => {
             queryClient.setQueryData(escrowKeys.one(id), escrow);
         },
+    });
+};
+export const useProjectDispute = (projectId: string) => {
+    const queryClient = useQueryClient();
+    return useMutation({
+        mutationFn: async ({ initiatorId, reason }: OpenDisputePayload) => {
+            const escrow = await getProjectEscrow(projectId);
+            if (!escrow) throw new Error("No escrow for this project");
+            return openDispute(escrow.id, { initiatorId, reason });
+        },
+        onSuccess: (escrow) => queryClient.setQueryData(escrowKeys.one(escrow.id), escrow),
     });
 };

@@ -1,11 +1,13 @@
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
+import PageMeta from "@/shared/components/seo/PageMeta";
 
 export default function ComingSoonPage() {
     const { t } = useTranslation("comingSoon");
 
     return (
         <main className="flex min-h-screen flex-col items-center justify-center bg-bg px-6 text-center text-text dark:bg-bg-dark dark:text-text-dark">
+            <PageMeta page="comingSoon" />
             <div className="relative mb-10 flex h-28 w-28 items-center justify-center rounded-full sm:h-32 sm:w-32">
                 <div
                     className="absolute inset-0 rounded-full bg-gradient opacity-90 animate-[pulse_3.5s_ease-in-out_infinite]"

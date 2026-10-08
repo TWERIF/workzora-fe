@@ -1,41 +1,55 @@
-import { Mail } from "lucide-react";
+import { useRouter } from "next/router";
 import { useState, type FormEvent } from "react";
 import { useTranslation } from "react-i18next";
+import { toast } from "sonner";
+import { useBlogSubscription } from "../model/usePosts";
 
 export const SubscribeCard = () => {
     const { t } = useTranslation("common");
+    const { locale = "en" } = useRouter();
     const [email, setEmail] = useState("");
+    const subscription = useBlogSubscription();
 
-    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    const submit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        setEmail("");
+        subscription.mutate(
+            { email: email.trim(), locale: locale === "uk" ? "uk" : "en" },
+            {
+                onSuccess: () => {
+                    setEmail("");
+                    toast.success(t("blog.subscribe.success"));
+                },
+                onError: () => toast.error(t("blog.subscribe.error")),
+            },
+        );
     };
 
     return (
-        <div className="flex flex-col gap-4 rounded-20 bg-gradient p-15 py-13 text-white">
-            <Mail className="h-8 w-8" />
-
-            <div className="flex flex-col gap-1">
-                <h3 className="text-base font-semibold">{t("blog.subscribe.title")}</h3>
-                <p className="text-sm text-white/85">{t("blog.subscribe.subtitle")}</p>
+        <section className="relative mt-10 flex flex-col gap-4 rounded-22 bg-main-5 p-6">
+            <img src="/images/blog/subscribe.png" alt="" aria-hidden className="pointer-events-none absolute -top-10 right-4 h-[125px] w-[125px] object-contain" />
+            <div className="flex flex-col gap-1.5">
+                <h3 className="max-w-[146px] text-lg font-semibold leading-[25px]">{t("blog.subscribe.title")}</h3>
+                <p className="text-sm leading-[26px]">{t("blog.subscribe.subtitle")}</p>
             </div>
-
-            <form onSubmit={handleSubmit} className="flex items-center gap-2">
+            <form onSubmit={submit} className="flex h-[54px] items-center gap-2 rounded-full border border-main-10 bg-background pl-6 pr-2 focus-within:border-primary">
                 <input
                     value={email}
                     onChange={(event) => setEmail(event.target.value)}
                     type="email"
                     required
+                    maxLength={254}
+                    aria-label={t("blog.subscribe.placeholder")}
                     placeholder={t("blog.subscribe.placeholder")}
-                    className="w-full rounded-20 bg-white/95 px-15 py-2 text-sm text-text outline-none placeholder:text-muted"
+                    className="h-full min-w-0 flex-1 bg-transparent text-sm outline-none placeholder:text-main-50"
                 />
                 <button
                     type="submit"
-                    className="shrink-0 rounded-20 bg-bg-dark px-15 py-2 text-sm font-medium text-white"
+                    disabled={subscription.isPending}
+                    className="h-[38px] shrink-0 rounded-full bg-gradient px-5 text-xs text-white transition-opacity hover:opacity-90 disabled:opacity-60"
                 >
                     {t("blog.subscribe.button")}
                 </button>
             </form>
-        </div>
+        </section>
     );
 };

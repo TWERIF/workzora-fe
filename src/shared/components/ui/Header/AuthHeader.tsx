@@ -1,7 +1,6 @@
 
-import { useTheme } from "next-themes";
+import { useTheme } from "@/utils/useTheme";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
 import ButtonBack from "../Button/ButtonBack";
 import Logo from "../../svg/Logo";
 import LogoRegWhite from "../../svg/LogoRegWhite";
@@ -13,9 +12,6 @@ export default function AuthHeader(props: HeaderI) {
     const { backUrl } = props;
     const router = useRouter();
     const { theme } = useTheme();
-    const [mounted, setMounted] = useState(() => typeof window !== 'undefined');
-
-    if (!mounted) return null;
     return (
         <div className="flex w-full justify-between items-center">
             <ButtonBack text={<></>} onClick={() => router.push(backUrl)} />

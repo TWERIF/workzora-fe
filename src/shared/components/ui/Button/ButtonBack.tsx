@@ -1,5 +1,5 @@
 import { ButtonI } from "@/shared/types";
-import { useTheme } from "next-themes";
+import { useTheme } from "@/utils/useTheme";
 import IconBack from "../../svg/IconBack";
 import IconBackLight from "../../svg/IconBackLight";
 

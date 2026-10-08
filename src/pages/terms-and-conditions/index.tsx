@@ -1,4 +1,5 @@
-import { useTranslation } from 'next-i18next';
+import { useTranslation } from "react-i18next";
+import PageMeta from "@/shared/components/seo/PageMeta";
 
 export default function TermsPage() {
     const { t } = useTranslation('common');
@@ -7,14 +8,15 @@ export default function TermsPage() {
 
     return (
         <main className="min-h-screen bg-bg dark:bg-bg-dark text-text dark:text-text-dark transition-colors duration-200 ease-in-out py-12 px-4 sm:px-6 lg:px-8">
+            <PageMeta page="terms" />
             <div className="max-w-6xl mx-auto">
 
                 <div className="mb-10 text-center relative pb-6">
                     <h1 className="text-3xl font-extrabold sm:text-4xl tracking-tight">
-                        {t('terms.title', 'Terms of Service для WorkZora.com')}
+                        {t('terms.title')}
                     </h1>
                     <p className="mt-3 text-sm text-text-muted">
-                        {t('terms.lastUpdated', 'Останнє оновлення: [08.06.2026]')}
+                        {t('terms.lastUpdated')}
                     </p>
                     <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient rounded-full" />
                 </div>

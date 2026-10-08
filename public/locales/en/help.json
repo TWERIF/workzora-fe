@@ -45,5 +45,31 @@
       "title": "Technical support",
       "description": "Get help with login issues, notifications, bugs, and platform functionality."
     }
+  },
+  "searchResults": "Search results for \"{{term}}\"",
+  "searching": "Searching…",
+  "nothingFound": "Nothing found. Try other words or browse the topics.",
+  "articlesCount_one": "{{count}} article",
+  "articlesCount_other": "{{count}} articles",
+  "categoryNotFound": "This help topic does not exist",
+  "emptyCategory": "There are no articles in this topic yet.",
+  "article": {
+    "details": "Details",
+    "readTime": "Time to read",
+    "updated": "Updated",
+    "minutes_one": "{{count}} min",
+    "minutes_other": "{{count}} min",
+    "feedback": "Did this answer your question?",
+    "thanks": "Thank you for the feedback!",
+    "reactions": {
+      "no": "No",
+      "maybe": "Partly",
+      "yes": "Yes"
+    },
+    "needHelp": "Need help?",
+    "needHelpText": "If something is still not clear,",
+    "contactSupport": "contact the WorkZora support team.",
+    "notFound": "We could not find this article",
+    "back": "Back to the knowledge base"
   }
 }

@@ -1,4 +1,4 @@
-import { useTheme } from 'next-themes';
+import { useTheme } from "@/utils/useTheme";
 import React from 'react'
 
 export default function SkillPin({ skill }: { skill: string }) {

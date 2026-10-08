@@ -8,6 +8,7 @@ export const schema = z.object({
         .array(z.string())
         .min(1, "createProject.validation.select_at_least_one_category")
         .max(3, "createProject.validation.max_3_categories"),
+    isUrgent: z.boolean(),
 });
 
 export type FormValues = z.infer<typeof schema>;

@@ -93,6 +93,13 @@ export const useMyProjects = (status: string = ProjectStatus.OPEN, page: number 
   });
 };
 
+export const useMyDeals = (page = 1, limit = 10) =>
+  useQuery({
+    queryFn: () => getMyProjects({ group: "deals", page, limit }),
+    queryKey: [...projectKeys.myProjects("deals", page, limit)],
+    placeholderData: (previous) => previous,
+  });
+
 export const useSearchProjects = (searchTerm: string) => {
   return useQuery({
     queryFn: () => searchProjects(searchTerm),
@@ -107,11 +114,6 @@ export const useCountProjects = () => {
   });
 };
 
-/**
- * Drives the "Find Work" / "All projects" page: search text, multi-category
- * filter, tags filter and a budget range, all sent as query params to the
- * backend (see api.ts findAllProjects for the exact contract).
- */
 export const useAllProjects = (params: FindProjectsParams) => {
   return useQuery({
     queryFn: () => findAllProjects(params),

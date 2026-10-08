@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import PageMeta from "@/shared/components/seo/PageMeta";
 
 export default function AboutUsPage() {
     const { t } = useTranslation('common');
@@ -19,6 +20,7 @@ export default function AboutUsPage() {
 
     return (
         <main id="about-us" className="min-h-screen bg-bg dark:bg-bg-dark text-text dark:text-text-dark transition-colors duration-300 py-13 px-15 md:py-20">
+            <PageMeta page="aboutUs" />
             <div className="max-w-4xl mx-auto space-y-8">
 
                 <section className="bg-bg-header dark:bg-bg-modalDark rounded-20 px-15 py-13 shadow-input dark:shadow-input-dark border border-border">

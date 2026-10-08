@@ -1,4 +1,4 @@
-import { useTheme } from "next-themes";
+import { useTheme } from "@/utils/useTheme";
 import IconMoon from "../../svg/IconMoon";
 import IconSun from "../../svg/IconSun";
 
@@ -44,7 +44,6 @@ export default function ThemeButton() {
                 )}
             </span>
 
-            {/* Гурток-перемикач */}
             <span
                 className={`
                     relative

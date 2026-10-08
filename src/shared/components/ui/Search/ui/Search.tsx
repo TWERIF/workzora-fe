@@ -1,4 +1,4 @@
-import { SearchIcon } from "@/shared/components/svg/SearchIcon";
+import SearchIcon from "@/shared/components/svg/SearchIcon";
 import ButtonGradientSmall from "../../Button/ButtonGradientSmall";
 import Input from "../../Input/Input";
 import { SearchProps } from "../model/types";
@@ -17,7 +17,6 @@ export const Search = (props: SearchProps) => {
                     placeholder={placeholder}
                 />
             </div>
-            {/* <ButtonGradientSmall onClick={onClick} text={t("search.button")} /> */}
         </div>
     )
 }

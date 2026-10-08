@@ -60,3 +60,7 @@ export const getInvoiceStatus = async (invoiceId: string) => {
     const res = await $api.get<{ data: InvoiceStatusResponse }>(`/escrow/status/${invoiceId}`).then((r) => r.data);
     return res.data;
 }
+export const getProjectEscrow = async (projectId: string) => {
+    const res = await $api.get<{ id: string; status: number } | null>(`/escrow/project/${projectId}`);
+    return res.data || null;
+};

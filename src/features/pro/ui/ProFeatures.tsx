@@ -1,4 +1,4 @@
-import { useTranslation } from "next-i18next";
+import { useTranslation } from "react-i18next";
 import { ProIcon1, ProIcon2, ProIcon3, ProIcon4, ProIcon5, ProIcon6, ProIcon7, ProIcon8 } from "./icons/pro";
 
 

@@ -1,5 +1,5 @@
 import IconCheck from "@/shared/components/svg/IconCheck";
-import { useTheme } from "next-themes";
+import { useTheme } from "@/utils/useTheme";
 import { useTranslation } from "react-i18next";
 
 export default function Features() {

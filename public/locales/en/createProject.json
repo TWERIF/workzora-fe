@@ -15,15 +15,11 @@
       "USD": "USD - US Dollar"
     },
     "categories_label": "Category and specialization (up to 3)",
-    "categories_search_placeholder": "Search for specialization",
-    "categories_search_button": "Search",
-    "categories_empty_selected": "Pick up to 3 categories from the list below",
-    "categories_selected": "Selected: {{current}}/{{max}}",
-    "categories_remove": "Remove {{title}}",
-    "categories_not_found": "Nothing found. Try a different search.",
     "description_label": "Description",
     "button_create": "Post a project",
-    "button_creating": "Posting..."
+    "button_creating": "Posting...",
+    "urgent_label": "ASAP",
+    "urgent_hint": "The project is urgent. It gets the ASAP badge in the lists."
   },
   "checklist": {
     "title": "Project brief checklist",

@@ -10,7 +10,7 @@ interface CardI {
 export default function AccountTypeCard(props: CardI) {
     const { children, type, setTypeValue, typeValue } = props;
 
-    const active = typeValue === type; // активний стан похідний від typeValue
+    const active = typeValue === type;
 
     const changeType = () => {
         if (typeValue !== type) {

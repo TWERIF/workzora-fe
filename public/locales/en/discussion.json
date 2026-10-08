@@ -1,28 +1,37 @@
 {
-    "complain": "Report project",
-    "bids": "bids",
-    "closeForm": "Close form",
-    "bidOnProject": "Bid on the project",
-    "projectId": "Project ID: {{id}}",
-    "status": {
-        "open": "Open",
-        "awaiting_payment": "Awaiting payment",
-        "in_progress": "In progress",
-        "completed": "Completed",
-        "closed": "Closed"
-    },
-    "clientSidebar": {
-        "postSameProject": "Post the same project",
-        "aboutClient": "About Client",
-        "reviewsCount": "{{count}} review",
-        "reviewsCount_other": "{{count}} reviews",
-        "memberSince": "Member since {{date}}",
-        "sendMessage": "Send message",
-        "makeNote": "Make note (visible for you only)",
-        "blockUser": "Block user",
-        "complain": "Complain"
-    },
-    "bidList": {
-        "applications": "Applications"
-    }
+  "complain": "Report project",
+  "bids": "bids",
+  "closeForm": "Close form",
+  "bidOnProject": "Bid on the project",
+  "projectId": "Project ID: {{id}}",
+  "status": {
+    "open": "Open",
+    "awaiting_payment": "Awaiting payment",
+    "in_progress": "In progress",
+    "completed": "Completed",
+    "closed": "Closed"
+  },
+  "clientSidebar": {
+    "postSameProject": "Post the same project",
+    "aboutClient": "About Client",
+    "reviewsCount": "{{count}} review",
+    "reviewsCount_other": "{{count}} reviews",
+    "memberSince": "Member since {{date}}",
+    "sendMessage": "Send message",
+    "makeNote": "Make note (visible for you only)",
+    "blockUser": "Block user",
+    "complain": "Complain"
+  },
+  "bidList": {
+    "applications": "Applications"
+  },
+  "winnerModal": {
+    "title": "Choose this freelancer as the performer?",
+    "yes": "Yes",
+    "no": "No"
+  },
+  "bid": {
+    "rates_one": "{{count}} rating",
+    "rates_other": "{{count}} ratings"
+  }
 }

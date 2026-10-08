@@ -1,15 +1,12 @@
-import Head from "next/head";
+import GuestRoute from "@/features/auth/model/guestRoute";
+import LoginForm from "@/features/auth/ui/LoginForm";
+import PageMeta from "@/shared/components/seo/PageMeta";
 
-export default function Login() {
+export default function LoginPage() {
     return (
-        <>
-            <Head>
-                <title>Workzora | Login</title>
-                <meta name="description" content="Workzora | Login" />
-                <meta name="viewport" content="width=device-width, initial-scale=1" />
-                <link rel="icon" href="/favicon.ico" />
-            </Head>
-
-        </>
+        <GuestRoute>
+            <PageMeta page="login" noindex />
+            <LoginForm />
+        </GuestRoute>
     );
 }

@@ -1,0 +1,146 @@
+{
+  "home": {
+    "title": "Find freelancers and projects",
+    "description": "Workzora is a platform to find projects, freelancers and specialists. Post tasks, hire performers or get new orders quickly and safely."
+  },
+  "news": {
+    "title": "Blog: freelancing, marketing and AI",
+    "description": "Useful articles about freelancing, online work, marketing, AI tools and remote collaboration from the Workzora team."
+  },
+  "freelancers": {
+    "title": "Top freelancers",
+    "description": "Find verified freelancers with ratings, reviews and portfolios."
+  },
+  "topClients": {
+    "title": "Top clients",
+    "description": "Clients with the best ratings and reviews from freelancers on Workzora."
+  },
+  "categories": {
+    "title": "All projects",
+    "description": "Open projects by category, budget and tags. Find work that fits your skills."
+  },
+  "knowledgebase": {
+    "title": "Knowledge base",
+    "description": "Guides on accounts, projects, payments, escrow and safety on Workzora."
+  },
+  "faq": {
+    "title": "FAQ",
+    "description": "Answers to common questions about Workzora."
+  },
+  "fees": {
+    "title": "Fees and charges",
+    "description": "Workzora commissions and payment terms."
+  },
+  "contacts": {
+    "title": "Contacts",
+    "description": "Contact the Workzora team."
+  },
+  "aboutUs": {
+    "title": "About us",
+    "description": "Who we are, how Workzora works and what we are building."
+  },
+  "privacyPolicy": {
+    "title": "Privacy policy",
+    "description": "How Workzora collects and protects personal data."
+  },
+  "terms": {
+    "title": "Terms and conditions",
+    "description": "Rules for using the Workzora platform."
+  },
+  "codeOfConduct": {
+    "title": "Code of conduct",
+    "description": "How clients and freelancers work together on Workzora."
+  },
+  "copyrightPolicy": {
+    "title": "Copyright policy",
+    "description": "Copyright rules for content on Workzora."
+  },
+  "createProject": {
+    "title": "Post a project",
+    "description": "Describe your task, set a budget and receive proposals from freelancers."
+  },
+  "registration": {
+    "title": "Sign up",
+    "description": "Create a Workzora account as a client or a freelancer."
+  },
+  "login": {
+    "title": "Log in",
+    "description": "Log in to your Workzora account."
+  },
+  "forgotPassword": {
+    "title": "Password recovery",
+    "description": "Reset your Workzora password."
+  },
+  "comingSoon": {
+    "title": "Coming soon",
+    "description": "This section is under construction."
+  },
+  "support": {
+    "title": "Support",
+    "description": "Your requests to the Workzora team."
+  },
+  "notifications": {
+    "title": "Notifications",
+    "description": "Your WorkZora notifications."
+  },
+  "security": {
+    "title": "Security",
+    "description": "Verification and password of your WorkZora account."
+  },
+  "freelancerProfile": {
+    "title": "{{name}}, freelancer",
+    "description": "Portfolio, skills, rate and reviews of {{name}} on WorkZora."
+  },
+  "clientProfile": {
+    "title": "{{name}}, client",
+    "description": "Reviews and projects of {{name}} on WorkZora."
+  },
+  "chats": {
+    "title": "Chats",
+    "description": "Your projects, chats and blocked users."
+  },
+  "topProjects": {
+    "title": "Top projects",
+    "description": "Featured and most viewed open projects on Workzora."
+  },
+  "notFound": {
+    "title": "Page not found",
+    "description": "The page you are looking for does not exist or was moved."
+  },
+  "activeProjects": {
+    "title": "My projects",
+    "description": "Your projects and deals on WorkZora."
+  },
+  "project": {
+    "title": "Project",
+    "description": "Project details and proposals on WorkZora."
+  },
+  "unsubscribe": {
+    "title": "Unsubscribe",
+    "description": "Unsubscribe from new blog articles."
+  },
+  "payment": {
+    "title": "Payment",
+    "description": "Pay for a project to escrow."
+  },
+  "finances": {
+    "title": "Finances",
+    "description": "Wallet, cards and withdrawals."
+  },
+  "payments": {
+    "title": "Payment history",
+    "description": "History of your payments on WorkZora."
+  },
+  "profile": {
+    "title": "My profile",
+    "description": "Your WorkZora profile."
+  },
+  "profileSettings": {
+    "title": "Edit profile",
+    "description": "Profile settings on WorkZora."
+  },
+  "review": {
+    "title": "Leave a review",
+    "description": "Rate your work together on WorkZora."
+  }
+}

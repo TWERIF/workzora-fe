@@ -3,10 +3,11 @@
     "badge": "WORKZORA PRO",
     "titleLine1": "More opportunities for",
     "titleLine2": "your growth",
-    "description": "Unlock advanced tools for analytics, profile customization, and financial insights. WorkZora Pro helps you work smarter, get more clients, and achieve better results.",
+    "description": "Advanced analytics, profile customization and financial reports. WorkZora Pro helps you get more clients and better results.",
     "cta": "Start PRO",
     "tagMoreClients": "More clients",
-    "tagAdvancedAnalytics": "Advanced analytics"
+    "tagAdvancedAnalytics": "Advanced analytics",
+    "imageAlt": "Freelancer with a WorkZora Pro account"
   },
   "features": {
     "title": "What’s included in Pro",

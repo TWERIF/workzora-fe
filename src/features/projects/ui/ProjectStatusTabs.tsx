@@ -1,3 +1,4 @@
+import ScrollRow from "@/shared/components/ui/ScrollRow";
 "use client";
 
 import { useTranslation } from "react-i18next";
@@ -15,7 +16,7 @@ export default function ProjectStatusTabs({
   const { t } = useTranslation("additions");
 
   return (
-    <div className="mb-6 flex gap-3 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+    <ScrollRow wrapperClassName="mb-6" className="flex gap-3 pb-1">
       {Object.values(ProjectStatus).map((status) => {
         const isActive = currentStatus === status;
 
@@ -35,6 +36,6 @@ export default function ProjectStatusTabs({
           </button>
         );
       })}
-    </div>
+    </ScrollRow>
   );
 }

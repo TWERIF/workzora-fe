@@ -8,7 +8,6 @@ interface Props {
 export const FAQItem = ({ question, answer, isOpen, handleToggle }: Props) => {
     return (
         <div className="w-full flex flex-col gap-3">
-            {/* Блок питання */}
             <div
                 className={`w-full rounded-3xl overflow-hidden transition-all duration-300 ease-in-out ${
                     isOpen
@@ -47,7 +46,6 @@ export const FAQItem = ({ question, answer, isOpen, handleToggle }: Props) => {
                 </button>
             </div>
 
-            {/* Блок відповіді — окрема картка, розкривається під питанням */}
             <div
                 className={`grid transition-all duration-500 ease-in-out ${
                     isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"

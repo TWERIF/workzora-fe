@@ -2,8 +2,8 @@
 
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import PageMeta from "@/shared/components/seo/PageMeta";
 
-// Налаштування іконок для кожної категорії відповідно до документа
 const CATEGORIES = [
     { key: 'general', icon: 'ℹ️' },
     { key: 'gettingStarted', icon: '🚀' },
@@ -53,9 +53,9 @@ export default function FAQPage() {
 
     return (
         <main className="min-h-screen bg-bg dark:bg-bg-dark text-text dark:text-text-dark transition-colors duration-300 py-13 px-15 md:py-20">
+            <PageMeta page="faq" />
             <div className="max-w-3xl mx-auto space-y-12">
 
-                {/* HEADER SECTION */}
                 <div className="text-center space-y-4">
                     <h1 className="text-3xl md:text-4xl font-bold bg-gradient text-transparent bg-clip-text pb-1">
                         {t('faqPage.title')}
@@ -71,13 +71,10 @@ export default function FAQPage() {
                     </div>
                 </div>
 
-                {/* FAQ CATEGORIES */}
                 <div className="space-y-10">
                     {CATEGORIES.map((cat) => {
-                        // Отримуємо масив питань для поточної категорії
                         const items = t(`faqPage.categories.${cat.key}.items`, { returnObjects: true });
 
-                        // Якщо масив порожній (наприклад, для 'account' або 'about' у поточному JSON), не рендеримо блок
                         if (!Array.isArray(items) || items.length === 0) return null;
 
                         return (
@@ -100,7 +97,6 @@ export default function FAQPage() {
                     })}
                 </div>
 
-                {/* CONTACT & LEGAL BLOCK */}
                 <section className="bg-bg-header dark:bg-bg-modalDark rounded-20 px-15 py-13 md:p-8 shadow-input dark:shadow-input-dark border border-border text-center mt-12">
                     <h2 className="text-2xl md:text-3xl font-bold mb-2 text-text dark:text-text-dark pb-1">
                         {t('faqPage.contactBlock.title')}

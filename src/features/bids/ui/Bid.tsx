@@ -3,6 +3,7 @@ import StarIcon from '@/shared/components/svg/StarIcon';
 import Usdt from '@/shared/components/svg/Usdt';
 import Image from "next/image";
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import placeHolderAvatar from "../../../../public/images/avatar_placeholder.png";
 import { Bid as BidType } from '../model/types';
 
@@ -14,6 +15,7 @@ interface BidProps {
 }
 
 export const Bid: React.FC<BidProps> = ({ bid, onClick, isClickable, isInactive }) => {
+    const { t } = useTranslation("discussion");
     const avatar = bid.user?.avatarUrl ?? placeHolderAvatar;
 
     return (
@@ -25,14 +27,13 @@ export const Bid: React.FC<BidProps> = ({ bid, onClick, isClickable, isInactive 
         >
             <div className="flex items-start gap-4">
                 <div className="w-12 h-12 rounded-full bg-gray-200 dark:bg-gray-700 overflow-hidden flex-shrink-0">
-                    <Image width={150} height={150} src={avatar} alt="profile icon" className="w-full h-full object-cover" />
+                    <Image width={150} height={150} src={avatar} alt="" className="w-full h-full object-cover" />
                 </div>
                 <div className="flex flex-col">
                     <h3 className="text-success text-xl font-semibold leading-tight">
                         {bid.user.lastName} {bid.user.firstName}
                     </h3>
                     <p className="text-text-muted text-sm mt-0.5">{bid.user.position}</p>
-                    <p className="text-text-muted text-xs mt-0.5">Was there. 6 hours ago</p>
                     <div className="prose dark:prose-invert max-w-none text-text dark:text-text-dark text-[15px] leading-relaxed">
                         <div dangerouslySetInnerHTML={{ __html: bid.description! }} />
                     </div>
@@ -44,7 +45,7 @@ export const Bid: React.FC<BidProps> = ({ bid, onClick, isClickable, isInactive 
                     <div className="flex items-center gap-1 mt-1 text-xs font-semibold text-text dark:text-text-dark">
                         <StarIcon />
                         <span>{bid.user.ratings}</span>
-                        <span className="text-text-muted font-normal">({bid.user.rates} rates)</span>
+                        <span className="text-text-muted font-normal">({t("bid.rates", { count: Number(bid.user.rates) || 0 })})</span>
                     </div>
                 </div>
             </div>

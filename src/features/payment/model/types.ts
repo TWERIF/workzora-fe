@@ -14,11 +14,7 @@ export enum WonDispute {
 }
 
 export interface CreateEscrowPayload {
-    amount: number;
-    currencyCode: number;
     projectId: string;
-    clientId: string;
-    freelancerId: string;
     description?: string;
 }
 

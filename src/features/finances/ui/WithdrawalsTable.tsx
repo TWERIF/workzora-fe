@@ -1,41 +1,30 @@
 import StatusBadge from "@/shared/components/ui/StatusBadge";
+import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
-import { formatDate, formatMoney, maskedCard } from "../model/format";
-import { WithdrawalRecord } from "../model/types";
+import { toast } from "sonner";
 import ActionsMenu from "./ActionsMenu";
-
-
-const brandLabel = { visa: "Visa", mastercard: "Mastercard" } as const;
+import { formatDate, formatMoney } from "../model/format";
+import { WithdrawalRecord } from "../model/types";
+import HistoryEmpty from "./HistoryEmpty";
 
 export const WithdrawalsTable = ({ records }: { records: WithdrawalRecord[] }) => {
     const { t, i18n } = useTranslation("finances");
+    const router = useRouter();
 
-    if (records.length === 0) {
-        return (
-            <div className="rounded-20 border border-dashed border-border p-10 text-center dark:border-white/15">
-                <p className="font-medium text-text dark:text-text-dark">
-                    {t("history.empty.title")}
-                </p>
-                <p className="mt-1 text-sm text-text-light dark:text-text-muted">
-                    {t("history.empty.description")}
-                </p>
-            </div>
-        );
-    }
+    if (records.length === 0) return <HistoryEmpty />;
 
     const columns = ["id", "amount", "card", "date", "status", "actions"] as const;
 
     return (
         <div className="overflow-x-auto">
-            <table className="w-full min-w-[720px] border-collapse text-left">
+            <table className="w-full min-w-[640px] border-collapse text-left">
                 <thead>
                     <tr className="bg-black/[0.03] dark:bg-white/[0.04]">
                         {columns.map((column) => (
                             <th
                                 key={column}
                                 scope="col"
-                                className={`px-4 py-3 text-sm font-medium text-text-light dark:text-text-muted ${column === "actions" ? "text-right" : ""
-                                    }`}
+                                className="px-4 py-3 text-sm font-medium text-text-light dark:text-text-muted"
                             >
                                 {t(`history.columns.${column}`)}
                             </th>
@@ -49,45 +38,39 @@ export const WithdrawalsTable = ({ records }: { records: WithdrawalRecord[] }) =
                             key={record.id}
                             className="border-b border-border last:border-b-0 dark:border-white/10"
                         >
-                            <td className="px-4 py-4 text-text dark:text-text-dark">
-                                #{record.id}
+                            <td className="px-4 py-4 text-text dark:text-text-dark" title={record.id}>
+                                #{record.id.slice(0, 8).toUpperCase()}
                             </td>
                             <td className="px-4 py-4 text-text dark:text-text-dark">
                                 {formatMoney(record.amount, i18n.language)}
                             </td>
                             <td className="px-4 py-4 text-text dark:text-text-dark">
-                                {brandLabel[record.brand]} {maskedCard(record.last4)}
+                                {record.maskedCard}
                             </td>
                             <td className="px-4 py-4 text-text dark:text-text-dark">
-                                {formatDate(record.date, i18n.language)}
+                                {formatDate(record.createdAt, i18n.language)}
                             </td>
-                            <td className="px-4 py-4">
+                            <td className="px-4 py-4" title={record.note ?? undefined}>
                                 <StatusBadge status={record.status} />
                             </td>
-                            <td className="px-4 py-4">
-                                <div className="flex justify-end">
-                                    <ActionsMenu
-                                        label={t("history.rowActions.label")}
-                                        items={[
-                                            {
-                                                key: "details",
-                                                label: t("history.rowActions.details"),
-                                                onSelect: () => undefined,
+                            <td className="px-4 py-2">
+                                <ActionsMenu
+                                    label={t("history.actions.label")}
+                                    items={[
+                                        {
+                                            key: "copy",
+                                            label: t("history.actions.copy"),
+                                            onSelect: () => {
+                                                void navigator.clipboard?.writeText(record.id).then(() => toast.success(t("history.actions.copied")));
                                             },
-                                            {
-                                                key: "receipt",
-                                                label: t("history.rowActions.receipt"),
-                                                onSelect: () => undefined,
-                                                disabled: record.status !== "completed",
-                                            },
-                                            {
-                                                key: "repeat",
-                                                label: t("history.rowActions.repeat"),
-                                                onSelect: () => undefined,
-                                            },
-                                        ]}
-                                    />
-                                </div>
+                                        },
+                                        {
+                                            key: "support",
+                                            label: t("history.actions.support"),
+                                            onSelect: () => void router.push(`/${router.locale ?? "en"}/contacts?withdrawal=${record.id}`),
+                                        },
+                                    ]}
+                                />
                             </td>
                         </tr>
                     ))}

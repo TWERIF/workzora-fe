@@ -1,11 +1,10 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
+import type { TFunction } from "i18next";
 import { useTranslation } from "react-i18next";
 import { LogoGreen } from "../../svg/LogoGreen";
 import FooterMeta from "./FooterMeta";
 
-// Кожен ключ відповідає секції "columns.<key>" у /public/locales/{lng}/footer.json
-// href-и лишаються тут, у коді (не в перекладах), бо це не текст, а маршрутизація.
 type ColumnKey = "freelancer" | "about" | "terms";
 
 export default function Footer() {
@@ -26,6 +25,7 @@ export default function Footer() {
       `/${locale}/about-us#team`,
       `/${locale}/about-us#vision`,
       `/${locale}/about-us#contacts`,
+      `/${locale}/knowledgebase`,
     ],
     terms: [
       `/${locale}/privacy-policy`,
@@ -111,7 +111,7 @@ const FooterColumn = ({
 }: {
   columnKey: ColumnKey;
   hrefs: string[];
-  t: (key: string, opts?: any) => any;
+  t: TFunction<"footer">;
 }) => {
   const title = t(`columns.${columnKey}.title`);
   const links = t(`columns.${columnKey}.links`, { returnObjects: true }) as string[];

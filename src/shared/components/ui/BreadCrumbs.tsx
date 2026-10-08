@@ -23,7 +23,7 @@ const Breadcrumbs = ({ customItems }: BreadcrumbsProps) => {
 
   if (customItems && customItems.length > 0) {
     return (
-      <nav aria-label="Breadcrumb" className="mb-6 my-4">
+      <nav aria-label={t("breadcrumbs.label")} className="mb-6 my-4">
         <ol className="flex flex-wrap items-center gap-2 text-sm">
           {customItems.map((item, index) => {
             const isLast = index === customItems.length - 1;
@@ -61,9 +61,8 @@ const Breadcrumbs = ({ customItems }: BreadcrumbsProps) => {
   const pathSegments = pathname.split("/").filter((segment) => segment !== "");
 
   return (
-    <nav aria-label="Breadcrumb" className="mb-6 my-4">
+    <nav aria-label={t("breadcrumbs.label")} className="mb-6 my-4">
       <ol className="flex flex-wrap items-center gap-2 text-sm">
-        {/* Головна сторінка */}
         <li className="flex items-center">
           <Link
             href="/"

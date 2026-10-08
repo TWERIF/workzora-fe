@@ -5,6 +5,7 @@ import ProtectedRoute from "@/features/auth/model/protectedRoute";
 import { UserRole } from "@/features/auth/model/types";
 import CreateProjectForm from "@/features/projects/ui/CreateProjectForm";
 import ChevronDownIcon from "@/shared/components/svg/ChevronDownIcon";
+import PageMeta from "@/shared/components/seo/PageMeta";
 
 
 export default function CreateProjectPage() {
@@ -12,7 +13,8 @@ export default function CreateProjectPage() {
 
     return (
         <ProtectedRoute role={UserRole.CLIENT}>
-            <div className="mx-auto w-full max-w-[1360px] px-4 py-16 ">
+            <PageMeta page="createProject" />
+            <div className="mx-auto w-full max-w-[1360px] px-4 pb-16 pt-28 lg:pt-[140px]">
                 <nav aria-label={t("page.breadcrumb_label")} className="mb-8">
                     <ol className="flex items-center gap-3 text-sm text-text dark:text-text-dark">
                         <li>

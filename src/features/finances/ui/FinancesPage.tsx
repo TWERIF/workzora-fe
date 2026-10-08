@@ -1,4 +1,7 @@
+import { useUnreadNotifications } from "@/features/notifications/model/useNotifications";
 
+import { useAuth } from "@/features/auth/model/useAuth";
+import { VerificationStatus } from "@/features/kyc/model/types";
 import Breadcrumbs from "@/shared/components/ui/BreadCrumbs";
 import Loader from "@/shared/components/ui/Loader";
 import ProBanner from "@/shared/components/ui/ProBanner";
@@ -6,15 +9,9 @@ import UserNavigation from "@/shared/components/ui/UserNavigation";
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import { toLinkedCards } from "../model/MapPaymentData";
-import {
-    mockAvailableToWithdraw,
-    mockBonusBalance,
-    mockMainBalance,
-    mockRate,
-    mockWithdrawals,
-} from "../model/mock";
-import { usePaymentData } from "../model/usePaymentData";
-import BalanceOverview from "./BalanceOverview";
+import { useCards } from "../model/usePaymentData";
+import { useExchangeRate, useWalletSummary } from "../model/useWallet";
+import WalletBalanceOverview from "./WalletBalanceOverview";
 import HistorySection from "./HistorySection";
 import LinkedCardsSection from "./LinkedCardsSection";
 import WithdrawFundsCard from "./WithdrawFundsCard";
@@ -24,19 +21,22 @@ interface FinancesPageProps {
 }
 
 export const FinancesPage = ({ userId }: FinancesPageProps) => {
-    const { t, i18n } = useTranslation("finances");
+    const { data: unreadNotifications } = useUnreadNotifications();
+    const { t } = useTranslation("finances");
+    const { user } = useAuth();
+    const isVerified = user?.verification?.status === VerificationStatus.VERIFIED;
 
-    const {
-        data: paymentData,
-        isLoading: isCardsLoading,
-        isError: isCardsError,
-    } = usePaymentData(userId);
+    const { data: paymentCards, isLoading: isCardsLoading, isError: isCardsError } = useCards(Boolean(userId));
 
-    const cards = useMemo(() => toLinkedCards(paymentData), [paymentData]);
+    const { data: wallet, isLoading: isWalletLoading } = useWalletSummary(Boolean(userId));
+    const { data: exchangeRate } = useExchangeRate();
 
-    const locale = i18n.language;
+    const cards = useMemo(() => toLinkedCards(paymentCards), [paymentCards]);
 
-    if (isCardsLoading) return <Loader />
+    const balance = wallet?.balance ?? 0;
+    const rate = exchangeRate?.rate ?? 0;
+
+    if (isCardsLoading || isWalletLoading) return <Loader />
 
     return (
         <div className="min-h-screen bg-white dark:bg-bg-dark">
@@ -54,36 +54,30 @@ export const FinancesPage = ({ userId }: FinancesPageProps) => {
                             </p>
                         </header>
 
-                        <BalanceOverview
-                            balance={mockMainBalance}
-                            bonuses={mockBonusBalance}
-                            rate={mockRate}
-                        />
+                        <WalletBalanceOverview />
 
                         <div className="grid min-w-0 gap-6 xl:grid-cols-[minmax(0,1fr)_380px] xl:items-start">
                             <LinkedCardsSection
                                 cards={cards}
-                                isVerified
-                                userId={userId}
-                                existingCardNumber={paymentData?.maskedCardNumber}
+                                isVerified={isVerified}
                                 isLoading={isCardsLoading}
                                 isError={isCardsError}
                             />
 
                             <WithdrawFundsCard
                                 cards={cards}
-                                available={mockAvailableToWithdraw}
-                                rate={mockRate}
+                                available={balance}
+                                rate={rate}
                             />
                         </div>
 
-                        <HistorySection withdrawals={mockWithdrawals} />
+                        <HistorySection />
 
                         <ProBanner />
                     </div>
 
                     <aside className="lg:sticky lg:top-24">
-                        <UserNavigation activeHref={`/payment-data`} />
+                        <UserNavigation activeHref={`/payment-data`} notificationsCount={unreadNotifications?.total ?? 0} />
                     </aside>
                 </div>
             </main>

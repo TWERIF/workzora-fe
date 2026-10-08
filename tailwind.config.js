@@ -9,7 +9,6 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        /* === Base tokens === */
         bg: {
           DEFAULT: "#F7F7F7",
           dark: "#333333",
@@ -26,14 +25,32 @@ module.exports = {
           DEFAULT: "#ffffff",
           dark: "#3B3B3B",
         },
-        /* === Semantic colors === */
         success: "#7EA310",
         error: "#FF0000",
         checkbox: "#C8C7C7",
         border: {
           DEFAULT: "rgba(200, 199, 199, 1)",
+          light: "#E2E2E2",
         },
-        /* === Status colors (badges, notices) === */
+        surface: {
+          DEFAULT: "#F5F5F5",
+          success: "#F2F6E7",
+        },
+        secondary: "#216B52",
+        star: "#EBB447",
+        danger: "#EF4C4C",
+        main: {
+          100: "rgb(var(--wz-main-100) / <alpha-value>)",
+          90: "rgb(var(--wz-main-90) / <alpha-value>)",
+          50: "rgb(var(--wz-main-50) / <alpha-value>)",
+          10: "rgb(var(--wz-main-10) / <alpha-value>)",
+          5: "rgb(var(--wz-main-5) / <alpha-value>)",
+        },
+        background: "rgb(var(--wz-background) / <alpha-value>)",
+        primary: {
+          DEFAULT: "rgb(var(--wz-primary) / <alpha-value>)",
+          10: "rgb(var(--wz-primary-10) / <alpha-value>)",
+        },
         status: {
           success: "#7EA310",
           successSoft: "#7EA3101A",
@@ -41,6 +58,8 @@ module.exports = {
           dangerSoft: "#CC40401A",
           info: "#6987E9",
           infoSoft: "#486BDD1A",
+          warning: "#E08A00",
+          warningSoft: "#F5A6231F",
         },
       },
       fontFamily: {
@@ -60,13 +79,19 @@ module.exports = {
         marquee: "marquee 20s linear infinite",
       },
       borderRadius: {
-        '20': '20px', // для rounded-20
+        '20': '20px',
+        '18': '18px',
+        '22': '22px',
+        '36': '36px',
+      },
+      fontSize: {
+        '22': ['22px', '31px'],
+        '25': '25px',
       },
       spacing: {
-        '13': '13px', // для py-13
-        '15': '15px', // для px-15
+        '13': '13px',
+        '15': '15px',
       },
-      /* === Gradients === */
       backgroundImage: {
         gradient: "linear-gradient(90deg, #216B52 0%, #7EA310 100%)",
         gradientReverse: "linear-gradient(90deg, #7EA310 0%, #216B52 100%)",
@@ -76,7 +101,6 @@ module.exports = {
       border: {
         gradient: "linear-gradient(180deg, rgba(33, 107, 82, 1), rgba(126, 163, 16, 1))",
       },
-      /* === Shadows (якщо з Figma) === */
       boxShadow: {
         input: "0px 0px 20px rgba(0, 0, 0, 0.25)",
         "input-dark": "0px 0px 20px rgba(0, 0, 0, 0.5)",

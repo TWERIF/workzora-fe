@@ -1,136 +1,70 @@
-import { TopFreelancer } from "@/features/auth/model/types";
-import RatingStarIcon from "@/shared/components/svg/RatingStarIcon";
-import VerifiedIcon from "@/shared/components/svg/VerifiedIcon";
-import WorkzoraMarkIcon from "@/shared/components/svg/WorkzoraMarkIcon";
-import ButtonGradientSmall from "@/shared/components/ui/Button/ButtonGradientSmall";
-import Image from "next/image";
+import UserCardHeader from "@/features/directory/ui/UserCardHeader";
+import type { FreelancerListItem } from "@/features/freelancers/model/types";
+import { IconEye, IconImage } from "@/shared/components/svg/UiIcons";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
 
-interface FreelancerCardProps {
-  freelancer: TopFreelancer;
-}
+const formatDate = (value: string) => {
+    const date = new Date(value);
+    const pad = (part: number) => String(part).padStart(2, "0");
+    return `${pad(date.getDate())}.${pad(date.getMonth() + 1)}.${date.getFullYear()}`;
+};
 
-export default function FreelancerCard({ freelancer }: FreelancerCardProps) {
-  const { t } = useTranslation("topFreelancers");
-  const router = useRouter();
-  const locale = router.locale ?? "en";
+export default function FreelancerCard({ freelancer }: { freelancer: FreelancerListItem }) {
+    const { t } = useTranslation("topFreelancers");
+    const { locale = "en" } = useRouter();
+    const name = [freelancer.firstName, freelancer.lastName].filter(Boolean).join(" ") || freelancer.username;
+    const work = freelancer.portfolio;
 
-  const gotoProfile = (id: string) => {
-    router.push(`/${locale}/public-profile/${id}`)
-  }
-
-  const fullName =
-    freelancer.name || `${freelancer.firstName} ${freelancer.lastName}`;
-  const ratingRounded = Math.round(freelancer.ratings || 0);
-  const ratingLabel = (freelancer.ratings || 0)
-    .toFixed(1)
-    .replace(".", ",");
-
-  return (
-    <div className="rounded-3xl bg-bg dark:bg-bg-dark p-5 md:p-6 flex flex-col gap-6 transition-colors">
-      <div className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-5">
-        <div className="relative w-16 h-16 shrink-0 rounded-full overflow-hidden bg-input dark:bg-input-dark">
-          {freelancer.avatarUrl ? (
-            <Image
-              src={freelancer.avatarUrl}
-              alt={fullName}
-              fill
-              className="object-cover"
+    return (
+        <article className="flex flex-col justify-center gap-6 rounded-[24px] bg-surface p-4 transition-colors dark:bg-bg-modalDark sm:rounded-36 sm:p-9">
+            <UserCardHeader
+                id={freelancer.id}
+                name={name}
+                avatarUrl={freelancer.avatarUrl}
+                about={freelancer.bio?.trim() || freelancer.position}
+                rating={Number(freelancer.ratings) || 0}
+                isVerified={freelancer.isVerified}
             />
-          ) : (
-            <div className="w-full h-full flex items-center justify-center text-text-muted font-bold text-xl">
-              {fullName.charAt(0)}
-            </div>
-          )}
-        </div>
 
-        <div className="flex-1 flex flex-col gap-2">
-          <div className="flex flex-wrap items-center justify-between gap-3">
-            <div className="flex items-center gap-2">
-              <span className="font-bold text-lg text-text dark:text-text-dark">
-                {fullName}
-              </span>
-              {freelancer.verification && (
-                <>
-                  <VerifiedIcon w={18} h={18} />
-                  <WorkzoraMarkIcon w={18} h={18} />
-                </>
-              )}
-            </div>
-
-            <div className="flex flex-col sm:flex-col items-center gap-3">
-              <div className="flex items-center gap-2">
-                <div className="flex gap-0.5">
-                  {Array.from({ length: 5 }).map((_, i) => (
-                    <RatingStarIcon key={i} filled={i < ratingRounded} />
-                  ))}
-                </div>
-                <span className="text-sm text-text dark:text-text-dark">
-                  <span className="font-bold">{ratingLabel}</span>{" "}
-                  <span className="text-text-light dark:text-text-muted">
-                    / {t("card.outOf")}
-                  </span>
-                </span>
-              </div>
-
-              <ButtonGradientSmall
-                text={t("card.goToProfile")}
-                onClick={() => { gotoProfile(freelancer.id) }}
-              />
-            </div>
-          </div>
-
-          {freelancer.position && (
-            <p className="text-sm text-text-light dark:text-text-muted leading-relaxed max-w-2xl">
-              {freelancer.position}
-            </p>
-          )}
-          <p>
-            {/* {freelancer.} */}
-          </p>
-        </div>
-      </div>
-
-      {freelancer.portfolio && (
-        <div className="flex flex-col gap-3">
-          <h3 className="font-bold text-base text-text dark:text-text-dark">
-            {t("card.lastWork")}
-          </h3>
-
-          <div className="rounded-2xl overflow-hidden bg-input dark:bg-input-dark flex flex-col md:flex-row">
-            <div className="relative w-full md:w-[230px] h-[150px] md:h-auto shrink-0">
-              <Image
-                src={freelancer.portfolio.imageUrl}
-                alt={freelancer.portfolio.title}
-                fill
-                className="object-cover"
-              />
-            </div>
-
-            <div className="flex-1 p-4 flex flex-col gap-2">
-              <h4 className="font-bold text-text dark:text-text-dark">
-                {freelancer.portfolio.title}
-              </h4>
-              {freelancer.skills && freelancer.skills.length > 0 && (
-                <div className="flex flex-wrap gap-2">
-                  {freelancer.skills.slice(0, 3).map((skill) => (
-                    <span
-                      key={skill}
-                      className="text-xs px-2 py-1 rounded-full bg-status-successSoft text-success"
+            {work && (
+                <div className="flex flex-col gap-3">
+                    <h3 className="text-xl font-bold">{t("card.lastWork")}</h3>
+                    <Link
+                        href={`/public-profile/${freelancer.id}`}
+                        className="flex flex-col overflow-hidden rounded-[28px] bg-bg-header transition-shadow hover:shadow-card dark:bg-input-dark sm:flex-row"
                     >
-                      #{skill}
-                    </span>
-                  ))}
+                        {work.imageUrl ? (
+                            <img src={work.imageUrl} alt={work.title} loading="lazy" className="aspect-[16/10] w-full object-cover object-top sm:w-[320px] sm:shrink-0" />
+                        ) : (
+                            <span className="flex aspect-[16/10] w-full items-center justify-center bg-main-10 text-main-50 sm:w-[320px] sm:shrink-0">
+                                <IconImage size={40} />
+                            </span>
+                        )}
+                        <div className="flex min-w-0 flex-1 flex-col gap-3 p-6">
+                            <div className="flex items-center justify-between gap-2 text-xs text-main-50">
+                                <span className="flex items-center gap-1.5">
+                                    <IconEye size={18} className="text-primary" />
+                                    {(work.views ?? 0).toLocaleString(locale === "uk" ? "uk-UA" : "en-US")}
+                                </span>
+                                {work.createdAt && <time dateTime={work.createdAt}>{formatDate(work.createdAt)}</time>}
+                            </div>
+                            <h4 className="break-words text-xl font-medium">{work.title}</h4>
+                            {work.tags && work.tags.length > 0 && (
+                                <ul className="flex flex-wrap gap-2">
+                                    {work.tags.slice(0, 4).map((tag) => (
+                                        <li key={tag} className="rounded-full bg-primary-10 px-3 py-1 text-xs text-primary">
+                                            #{tag}
+                                        </li>
+                                    ))}
+                                </ul>
+                            )}
+                            {work.description && <p className="line-clamp-3 break-words text-sm">{work.description}</p>}
+                        </div>
+                    </Link>
                 </div>
-              )}
-              <p className="text-sm text-text-light dark:text-text-muted leading-relaxed">
-                {freelancer.portfolio.description}
-              </p>
-            </div>
-          </div>
-        </div>
-      )}
-    </div>
-  );
+            )}
+        </article>
+    );
 }

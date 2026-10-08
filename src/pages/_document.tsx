@@ -10,7 +10,6 @@ export default function Document(props: DocumentProps & { locale?: string }) {
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-        <script src="https://accounts.google.com/gsi/client" async defer />
       </Head>
       <body className="relative">
         <Main />

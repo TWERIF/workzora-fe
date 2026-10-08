@@ -1,15 +1,17 @@
 'use client'
 
 import { useTranslation } from 'react-i18next'; 
+import PageMeta from "@/shared/components/seo/PageMeta";
 
 export default function PrivacyPolicyPage() {
     const { t } = useTranslation('common'); 
 
     return (
         <main className="min-h-screen bg-bg dark:bg-bg-dark py-10 px-15 sm:px-6 lg:px-8 transition-colors duration-300">
-            <div className="max-w-4xl mx-auto bg-bg-header dark:bg-bg-modalDark rounded-20 p-8 sm:p-12 shadow-input dark:shadow-input-dark transition-all duration-300">
+            <PageMeta page="privacyPolicy" />
+            <div className="max-w-4xl mx-auto bg-bg-header dark:bg-bg-modalDark rounded-20 p-5 sm:p-12 shadow-input dark:shadow-input-dark transition-all duration-300">
 
-                <article className="prose prose-slate dark:prose-invert max-w-none text-text dark:text-text-dark prose-headings:text-text prose-headings:dark:text-text-dark prose-a:text-success prose-a:no-underline hover:prose-a:underline">
+                <article className="break-words prose prose-slate dark:prose-invert max-w-none text-text dark:text-text-dark prose-headings:text-text prose-headings:dark:text-text-dark prose-a:text-success prose-a:no-underline hover:prose-a:underline">
 
                     <h1>{t('privacy.title')}</h1>
                     <p className="text-text-muted dark:text-text-muted text-sm">

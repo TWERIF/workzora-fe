@@ -1,52 +1,59 @@
+type StatRingColor = "success" | "star" | "secondary";
+
 interface StatRingProps {
     label: string;
     sublabel: string;
     centerText: string;
-    progress: number; // 0..1
+    progress: number;
+    color?: StatRingColor;
 }
 
-const SIZE = 64;
-const STROKE = 6;
+const SIZE = 78;
+const STROKE = 8.54;
 const RADIUS = (SIZE - STROKE) / 2;
 const CIRCUMFERENCE = 2 * Math.PI * RADIUS;
 
-export const StatRing = ({ label, sublabel, centerText, progress }: StatRingProps) => {
+const ARC_COLORS: Record<StatRingColor, string> = {
+    success: "stroke-success",
+    star: "stroke-star",
+    secondary: "stroke-secondary",
+};
+
+export const StatRing = ({ label, sublabel, centerText, progress, color = "success" }: StatRingProps) => {
     const offset = CIRCUMFERENCE * (1 - Math.min(Math.max(progress, 0), 1));
 
     return (
-        <div className="flex flex-1 items-center gap-4 rounded-20 border border-border bg-bg-header px-15 py-13 dark:bg-bg-modalDark">
-            <svg width={SIZE} height={SIZE} className="shrink-0 -rotate-90">
-                <circle
-                    cx={SIZE / 2}
-                    cy={SIZE / 2}
-                    r={RADIUS}
-                    strokeWidth={STROKE}
-                    className="fill-none stroke-checkbox/40"
-                />
-                <circle
-                    cx={SIZE / 2}
-                    cy={SIZE / 2}
-                    r={RADIUS}
-                    strokeWidth={STROKE}
-                    strokeLinecap="round"
-                    strokeDasharray={CIRCUMFERENCE}
-                    strokeDashoffset={offset}
-                    className="fill-none stroke-success transition-[stroke-dashoffset] duration-500"
-                />
-                <text
-                    x="50%"
-                    y="50%"
-                    textAnchor="middle"
-                    dominantBaseline="central"
-                    className="rotate-90 fill-text text-[11px] font-semibold dark:fill-text-dark"
-                    style={{ transform: "rotate(90deg)", transformOrigin: "center" }}
-                >
+        <div className="flex min-h-[110px] flex-1 items-center justify-between gap-4 rounded-3xl bg-surface py-4 pl-6 pr-4 dark:bg-bg-modalDark">
+            <div className="flex min-w-0 flex-col gap-[6px]">
+                <p className="text-base font-medium leading-[29px] text-text dark:text-text-dark">{label}</p>
+                <p className="text-sm text-text-light">{sublabel}</p>
+            </div>
+
+            <div className="relative size-[78px] shrink-0">
+                <svg width={SIZE} height={SIZE} viewBox={`0 0 ${SIZE} ${SIZE}`} aria-hidden="true">
+                    <circle
+                        cx={SIZE / 2}
+                        cy={SIZE / 2}
+                        r={RADIUS}
+                        strokeWidth={STROKE}
+                        className="fill-none stroke-border-light dark:stroke-white/10"
+                    />
+                    {progress > 0 && (
+                        <circle
+                            cx={SIZE / 2}
+                            cy={SIZE / 2}
+                            r={RADIUS}
+                            strokeWidth={STROKE}
+                            strokeLinecap="round"
+                            strokeDasharray={CIRCUMFERENCE}
+                            strokeDashoffset={offset}
+                            className={`fill-none transition-[stroke-dashoffset] duration-500 ${ARC_COLORS[color]}`}
+                        />
+                    )}
+                </svg>
+                <span className="absolute inset-0 flex items-center justify-center text-xs text-text-light">
                     {centerText}
-                </text>
-            </svg>
-            <div className="min-w-0">
-                <p className="truncate text-sm font-medium text-text dark:text-text-dark">{label}</p>
-                <p className="truncate text-xs text-text-muted">{sublabel}</p>
+                </span>
             </div>
         </div>
     );

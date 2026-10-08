@@ -1,0 +1,146 @@
+{
+  "home": {
+    "title": "Пошук фрилансерів і проєктів",
+    "description": "Workzora: платформа для пошуку проєктів, фрилансерів і спеціалістів. Публікуйте завдання, знаходьте виконавців або отримуйте нові замовлення швидко й безпечно."
+  },
+  "news": {
+    "title": "Блог: фриланс, маркетинг і AI",
+    "description": "Корисні статті про фриланс, онлайн-роботу, маркетинг, AI-інструменти та віддалену співпрацю від команди Workzora."
+  },
+  "freelancers": {
+    "title": "Топ фрилансерів",
+    "description": "Знаходьте перевірених фрилансерів з рейтингом, відгуками та портфоліо."
+  },
+  "topClients": {
+    "title": "Топ клієнтів",
+    "description": "Клієнти з найкращим рейтингом і відгуками фрилансерів на Workzora."
+  },
+  "categories": {
+    "title": "Усі проєкти",
+    "description": "Відкриті проєкти за категоріями, бюджетом і тегами. Знайдіть роботу під свої навички."
+  },
+  "knowledgebase": {
+    "title": "База знань",
+    "description": "Інструкції щодо акаунта, проєктів, оплат, ескроу та безпеки на Workzora."
+  },
+  "faq": {
+    "title": "Питання та відповіді",
+    "description": "Відповіді на поширені питання про Workzora."
+  },
+  "fees": {
+    "title": "Тарифи та комісії",
+    "description": "Комісії Workzora та умови оплати."
+  },
+  "contacts": {
+    "title": "Контакти",
+    "description": "Звʼязок з командою Workzora."
+  },
+  "aboutUs": {
+    "title": "Про нас",
+    "description": "Хто ми, як працює Workzora і що ми будуємо."
+  },
+  "privacyPolicy": {
+    "title": "Політика конфіденційності",
+    "description": "Як Workzora збирає та захищає персональні дані."
+  },
+  "terms": {
+    "title": "Умови використання",
+    "description": "Правила користування платформою Workzora."
+  },
+  "codeOfConduct": {
+    "title": "Кодекс поведінки",
+    "description": "Як клієнти та фрилансери співпрацюють на Workzora."
+  },
+  "copyrightPolicy": {
+    "title": "Політика авторських прав",
+    "description": "Правила щодо авторських прав на контент Workzora."
+  },
+  "createProject": {
+    "title": "Опублікувати проєкт",
+    "description": "Опишіть завдання, вкажіть бюджет і отримуйте пропозиції від фрилансерів."
+  },
+  "registration": {
+    "title": "Реєстрація",
+    "description": "Створіть акаунт Workzora як клієнт або фрилансер."
+  },
+  "login": {
+    "title": "Вхід",
+    "description": "Увійдіть в акаунт Workzora."
+  },
+  "forgotPassword": {
+    "title": "Відновлення пароля",
+    "description": "Скидання пароля від акаунта Workzora."
+  },
+  "comingSoon": {
+    "title": "Незабаром",
+    "description": "Цей розділ ще в розробці."
+  },
+  "support": {
+    "title": "Підтримка",
+    "description": "Ваші звернення до команди Workzora."
+  },
+  "notifications": {
+    "title": "Сповіщення",
+    "description": "Ваші сповіщення у WorkZora."
+  },
+  "security": {
+    "title": "Безпека",
+    "description": "Верифікація та пароль вашого акаунта WorkZora."
+  },
+  "freelancerProfile": {
+    "title": "{{name}}, фрилансер",
+    "description": "Портфоліо, навички, ставка та відгуки {{name}} у WorkZora."
+  },
+  "clientProfile": {
+    "title": "{{name}}, клієнт",
+    "description": "Відгуки та проєкти {{name}} у WorkZora."
+  },
+  "chats": {
+    "title": "Чати",
+    "description": "Ваші проєкти, чати й заблоковані користувачі."
+  },
+  "topProjects": {
+    "title": "Топ проєктів",
+    "description": "Рекомендовані та найпопулярніші відкриті проєкти на Workzora."
+  },
+  "notFound": {
+    "title": "Сторінку не знайдено",
+    "description": "Сторінки, яку ви шукаєте, немає або її перенесено."
+  },
+  "activeProjects": {
+    "title": "Мої проєкти",
+    "description": "Ваші проєкти та угоди у WorkZora."
+  },
+  "project": {
+    "title": "Проєкт",
+    "description": "Опис проєкту та пропозиції у WorkZora."
+  },
+  "unsubscribe": {
+    "title": "Відписка",
+    "description": "Відписка від нових статей блогу."
+  },
+  "payment": {
+    "title": "Оплата",
+    "description": "Оплата проєкту в ескроу."
+  },
+  "finances": {
+    "title": "Фінанси",
+    "description": "Гаманець, картки та виведення коштів."
+  },
+  "payments": {
+    "title": "Історія платежів",
+    "description": "Історія ваших платежів у WorkZora."
+  },
+  "profile": {
+    "title": "Мій профіль",
+    "description": "Ваш профіль у WorkZora."
+  },
+  "profileSettings": {
+    "title": "Редагування профілю",
+    "description": "Налаштування профілю у WorkZora."
+  },
+  "review": {
+    "title": "Залишити відгук",
+    "description": "Оцініть спільну роботу у WorkZora."
+  }
+}

@@ -11,9 +11,6 @@ export default function Payment() {
     const { t } = useTranslation("payment");
     const [isSubmitting, setIsSubmitting] = useState(false);
 
-    // TODO: replace with real data — projectId/clientId/freelancerId and the
-    // invoice's amount/currencyCode should come from route params / a query
-    // for the project being paid for, not be hardcoded here.
     const projectId = "";
     const clientId = "";
     const freelancerId = "";

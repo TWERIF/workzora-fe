@@ -1,7 +1,5 @@
-"use client";
-
 import Loader from "@/shared/components/ui/Loader";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { UserRole } from "./types";
 import { useAuth } from "./useAuth";
@@ -20,13 +18,12 @@ export default function ProtectedRoute({
     if (isLoading) return;
 
     if (!isAuthenticated) {
-      router.push("/");
+      void router.replace(`/login?next=${encodeURIComponent(router.asPath)}`);
       return;
     }
 
     if (role && user?.role !== role) {
-      router.push("/");
-      return;
+      void router.replace("/");
     }
   }, [isLoading, isAuthenticated, user, role, router]);
 

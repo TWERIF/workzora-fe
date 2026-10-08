@@ -1,13 +1,8 @@
 import { $api } from "@/shared/components/http";
-import {
-  CreateProjectDto,
-  FindProjectsParams,
-  PaginatedProjects,
-  Project,
-} from "./types";
+import { CreateProjectDto, FindProjectsParams, MyProjectsPage, PaginatedProjects, Project } from "./types";
 
-export const getTopProjects = async () => {
-  const res = await $api.get("/projects/topProjects");
+export const getTopProjects = async (): Promise<Project[]> => {
+  const res = await $api.get<Project[]>("/projects/topProjects");
   return res.data;
 };
 export const update = async (id: string, body: Partial<Project>) => {
@@ -27,8 +22,8 @@ export const getOne = async (id: string): Promise<Project | undefined> => {
   const res = await $api.get(`/projects/${id}`);
   return res.data;
 };
-export const getMyProjects = async (params: { status: string; page?: number; limit?: number }) => {
-  const res = await $api.get("/projects/my", { params });
+export const getMyProjects = async (params: { status?: string; group?: "deals"; page?: number; limit?: number }): Promise<MyProjectsPage> => {
+  const res = await $api.get<MyProjectsPage>("/projects/my", { params });
   return res.data;
 };
 export const searchProjects = async (searchTerm: string): Promise<Project[]> => {
@@ -50,19 +45,10 @@ export const count = async (): Promise<number> => {
   return res.data;
 };
 
-/**
- * Public "Find Work" listing with search + filters.
- *
- * NOTE for backend: this currently hits GET /projects and sends
- * `categories` / `tags` as comma-separated strings (e.g. "cat1,cat2") and
- * `minPrice` / `maxPrice` as numbers. The endpoint needs to be extended to
- * parse these and filter accordingly. Until then it will simply be ignored
- * by the API and behave like an unfiltered list.
- */
 export const findAllProjects = async (
   params: FindProjectsParams,
 ): Promise<PaginatedProjects> => {
-  const { search, page = 1, limit = 10, categories, tags, minPrice, maxPrice } = params;
+  const { search, page = 1, limit = 10, categories, tags, minPrice, maxPrice, sort } = params;
 
   const res = await $api.get("/projects", {
     params: {
@@ -73,6 +59,7 @@ export const findAllProjects = async (
       tags: tags && tags.length ? tags.join(",") : undefined,
       minPrice: minPrice || undefined,
       maxPrice: maxPrice || undefined,
+      sort,
     },
   });
 

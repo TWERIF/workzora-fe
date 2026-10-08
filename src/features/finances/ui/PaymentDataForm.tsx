@@ -1,144 +1,102 @@
-import ButtonGradient from "@/shared/components/ui/Button/ButtonGradient";
-import { useForm } from "@tanstack/react-form";
+import { isAxiosError } from "axios";
+import { useState, type FormEvent } from "react";
 import { useTranslation } from "react-i18next";
-import { useCreatePaymentData, useUpdatePaymentData } from "../model/usePaymentData";
+import { useCardActions } from "../model/usePaymentData";
 
-const isValidCardNumber = (value: string): boolean => {
-    const digits = value.replace(/\s/g, "");
-    if (!/^\d{16,19}$/.test(digits)) return false;
-
+const passesLuhn = (digits: string) => {
     let sum = 0;
-    let shouldDouble = false;
-
-    for (let i = digits.length - 1; i >= 0; i--) {
-        let digit = parseInt(digits[i], 10);
-        if (shouldDouble) {
+    for (let i = 0; i < digits.length; i++) {
+        let digit = Number(digits[digits.length - 1 - i]);
+        if (i % 2 === 1) {
             digit *= 2;
             if (digit > 9) digit -= 9;
         }
         sum += digit;
-        shouldDouble = !shouldDouble;
     }
-
     return sum % 10 === 0;
 };
 
-const formatCardNumber = (value: string): string => {
-    const digits = value.replace(/\D/g, "").slice(0, 19);
-    return digits.replace(/(.{4})/g, "$1 ").trim();
+const formatCardNumber = (value: string) =>
+    value
+        .replace(/\D/g, "")
+        .slice(0, 19)
+        .replace(/(.{4})/g, "$1 ")
+        .trim();
+
+const formatExpiry = (value: string) => {
+    const digits = value.replace(/\D/g, "").slice(0, 4);
+    return digits.length > 2 ? `${digits.slice(0, 2)}/${digits.slice(2)}` : digits;
 };
 
-interface PaymentDataFormProps {
-    userId?: string;
-    /** Передайте номер, щоб форма пішла в PUT замість POST */
-    existingCardNumber?: string;
-    onSuccess?: () => void;
-}
+const expiryError = (value: string) => {
+    if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(value)) return "paymentData.errors.expiry";
+    const [month, year] = value.split("/").map(Number);
+    return new Date(2000 + year, month, 1).getTime() <= Date.now() ? "paymentData.errors.expired" : null;
+};
 
-export const PaymentDataForm = ({
-    userId,
-    existingCardNumber,
-    onSuccess,
-}: PaymentDataFormProps = {}) => {
+const fieldClass =
+    "h-[50px] w-full rounded-20 border bg-background px-15 text-sm outline-none transition-colors placeholder:text-main-50 focus:border-primary";
+
+export const PaymentDataForm = ({ onSuccess }: { onSuccess?: () => void }) => {
     const { t } = useTranslation("payment-data");
+    const { add } = useCardActions();
+    const [number, setNumber] = useState("");
+    const [expiry, setExpiry] = useState("");
+    const [errors, setErrors] = useState<{ number?: string; expiry?: string; form?: string }>({});
 
-    const isEditing = !!existingCardNumber;
+    const submit = async (event: FormEvent) => {
+        event.preventDefault();
+        const digits = number.replace(/\s/g, "");
+        const next = {
+            number: !digits ? "paymentData.errors.required" : !/^\d{12,19}$/.test(digits) || !passesLuhn(digits) ? "paymentData.errors.invalid" : undefined,
+            expiry: expiryError(expiry) ?? undefined,
+        };
+        setErrors(next);
+        if (next.number || next.expiry) return;
 
-    const createMutation = useCreatePaymentData(userId);
-    const updateMutation = useUpdatePaymentData(userId);
-
-    const mutation = isEditing ? updateMutation : createMutation;
-
-    const form = useForm({
-        defaultValues: {
-            cardNumber: existingCardNumber ?? "",
-        },
-        onSubmit: async ({ value }) => {
-            await mutation.mutateAsync({
-                cardNumber: value.cardNumber.replace(/\s/g, ""),
-            });
+        try {
+            await add.mutateAsync({ cardNumber: digits, expiry });
             onSuccess?.();
-        },
-    });
+        } catch (error) {
+            const message = isAxiosError<{ message?: string | string[] }>(error) ? error.response?.data?.message : undefined;
+            setErrors({ form: typeof message === "string" && /up to/.test(message) ? "paymentData.errors.limit" : "paymentData.errors.saveFailed" });
+        }
+    };
 
     return (
-        <form
-            onSubmit={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                form.handleSubmit();
-            }}
-            className="flex w-full max-w-sm flex-col gap-3"
-        >
-            <form.Field
-                name="cardNumber"
-                validators={{
-                    onChange: ({ value }) => {
-                        if (!value.trim()) {
-                            return t("paymentData.errors.required");
-                        }
-                        if (!isValidCardNumber(value)) {
-                            return t("paymentData.errors.invalid");
-                        }
-                        return undefined;
-                    },
-                }}
+        <form onSubmit={submit} noValidate className="flex w-full flex-col gap-3">
+            <label className="flex flex-col gap-1.5 text-sm">
+                {t("paymentData.cardNumber")}
+                <input
+                    inputMode="numeric"
+                    autoComplete="cc-number"
+                    placeholder="0000 0000 0000 0000"
+                    value={number}
+                    onChange={(event) => setNumber(formatCardNumber(event.target.value))}
+                    className={`${fieldClass} ${errors.number ? "border-status-danger" : "border-main-10"}`}
+                />
+                {errors.number && <span className="text-xs text-status-danger">{t(errors.number)}</span>}
+            </label>
+            <label className="flex flex-col gap-1.5 text-sm">
+                {t("paymentData.expiry")}
+                <input
+                    inputMode="numeric"
+                    autoComplete="cc-exp"
+                    placeholder={t("expiryPlaceholder")}
+                    value={expiry}
+                    onChange={(event) => setExpiry(formatExpiry(event.target.value))}
+                    className={`${fieldClass} max-w-[140px] ${errors.expiry ? "border-status-danger" : "border-main-10"}`}
+                />
+                {errors.expiry && <span className="text-xs text-status-danger">{t(errors.expiry)}</span>}
+            </label>
+            {errors.form && <p className="text-sm text-status-danger">{t(errors.form)}</p>}
+            <button
+                type="submit"
+                disabled={add.isPending}
+                className="mt-1 h-[45px] w-full rounded-full bg-gradient text-sm text-white transition-opacity hover:opacity-90 disabled:opacity-60"
             >
-                {(field) => (
-                    <div className="flex flex-col gap-1">
-                        <label
-                            htmlFor={field.name}
-                            className="text-sm font-medium text-text-muted"
-                        >
-                            {t("paymentData.cardNumber")}
-                        </label>
-                        <input
-                            id={field.name}
-                            name={field.name}
-                            inputMode="numeric"
-                            autoComplete="cc-number"
-                            placeholder="0000 0000 0000 0000"
-                            value={formatCardNumber(field.state.value)}
-                            onChange={(e) =>
-                                field.handleChange(formatCardNumber(e.target.value))
-                            }
-                            onBlur={field.handleBlur}
-                            className={`rounded-20 border bg-input px-4 py-2 text-text shadow-input outline-none transition-colors placeholder-text-muted dark:bg-input-dark dark:text-text-dark dark:shadow-input-dark ${field.state.meta.errors.length > 0
-                                ? "border-status-danger"
-                                : "border-border"
-                                }`}
-                        />
-                        {field.state.meta.errors.length > 0 && (
-                            <span className="text-sm text-status-danger">
-                                {field.state.meta.errors.join(", ")}
-                            </span>
-                        )}
-                    </div>
-                )}
-            </form.Field>
-
-            <form.Subscribe selector={(state) => [state.canSubmit, state.isSubmitting]}>
-                {([canSubmit, isSubmitting]) => (
-                    <ButtonGradient
-                        type="submit"
-                        text={
-                            isSubmitting
-                                ? t("paymentData.saving")
-                                : isEditing
-                                    ? t("paymentData.update")
-                                    : t("paymentData.add")
-                        }
-                        disabled={!canSubmit || isSubmitting}
-                        className="w-full rounded-[100px] bg-gradient px-4 py-3 font-medium text-white shadow-md transition-all hover:opacity-95 hover:shadow-lg disabled:cursor-not-allowed disabled:opacity-50"
-                    />
-                )}
-            </form.Subscribe>
-
-            {mutation.isError && (
-                <span className="text-sm text-status-danger">
-                    {t("paymentData.errors.saveFailed")}
-                </span>
-            )}
+                {add.isPending ? t("paymentData.saving") : t("paymentData.add")}
+            </button>
         </form>
     );
 };

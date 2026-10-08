@@ -1,9 +1,7 @@
 import { useId } from "react";
 import type { SVGProps } from "react";
 
-/** Прапор США (для валюти USD). */
 export default function UsFlagIcon(props: SVGProps<SVGSVGElement>) {
-    // унікальний id, щоб кілька прапорів на сторінці не конфліктували
     const clipId = `us-flag-${useId().replace(/:/g, "")}`;
 
     return (

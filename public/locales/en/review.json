@@ -1,0 +1,107 @@
+{
+  "title": "Leave a review",
+  "subtitle": "Share your experience after working on this project. Your feedback helps other clients and freelancers make better decisions.",
+  "rate": {
+    "title": "Rate your experience"
+  },
+  "criteria": {
+    "quality": {
+      "title": "Quality",
+      "description": {
+        "freelancer": "How satisfied are you with the final result?",
+        "client": "How clear and complete were the task and materials?"
+      }
+    },
+    "professionalism": {
+      "title": "Professionalism",
+      "description": {
+        "freelancer": "How professional was the freelancer during the project?",
+        "client": "How professional was the client during the project?"
+      }
+    },
+    "communication": {
+      "title": "Communication",
+      "description": {
+        "freelancer": "How easy was it to discuss details and receive updates?",
+        "client": "How easy was it to discuss details and get feedback?"
+      }
+    },
+    "price": {
+      "title": "Price",
+      "description": {
+        "freelancer": "Was the result worth the agreed budget?",
+        "client": "Was the budget fair for the scope of work?"
+      }
+    },
+    "deadlines": {
+      "title": "Deadlines",
+      "description": {
+        "freelancer": "Was the work completed on time?",
+        "client": "Were the deadlines realistic and responses timely?"
+      }
+    }
+  },
+  "text": {
+    "title": "Your review",
+    "label": "Review*",
+    "placeholder": {
+      "freelancer": "Describe your experience: what went well, what you liked, and whether you would recommend this freelancer.",
+      "client": "Describe your experience: what went well, what you liked, and whether you would recommend this client."
+    },
+    "hint": {
+      "freelancer": "Your review will be visible on the freelancer’s public profile.",
+      "client": "Your review will be visible on the client’s public profile."
+    }
+  },
+  "private": {
+    "label": "Private feedback for WorkZora (optional)",
+    "placeholder": "Share anything you would like the platform team to know.",
+    "hint": "This will not be shown publicly."
+  },
+  "tips": {
+    "title": "Tips for helpful reviews",
+    "items": [
+      "Be specific about what you liked.",
+      "Mention communication, quality, and deadlines.",
+      "Share how the freelancer helped your project.",
+      "Honest reviews help build trust in the community."
+    ]
+  },
+  "actions": {
+    "cancel": "Cancel",
+    "submit": "Submit review",
+    "submitting": "Submitting…",
+    "backToChat": "Back to chat",
+    "openProfile": "Open profile"
+  },
+  "errors": {
+    "ratingRequired": "Rate every criterion from 1 to 5 stars.",
+    "textRequired": "Write a few words about your experience.",
+    "failed": "Could not submit the review. Please try again."
+  },
+  "notices": {
+    "notFound": "Project not found.",
+    "notParticipant": "Only participants of this project can leave a review.",
+    "notCompleted": "You can leave a review once the project is completed.",
+    "alreadyReviewed": "You have already reviewed this project. Thank you!"
+  },
+  "success": "Thank you! Your review has been published.",
+  "clientCriteria": {
+    "sociability": {
+      "title": "Sociability",
+      "description": "How easy was it to talk to the client and get answers?"
+    },
+    "requirements": {
+      "title": "Requirements",
+      "description": "How clear and complete were the task and materials?"
+    },
+    "payment": {
+      "title": "Payment",
+      "description": "Was the budget fair and the payment on time?"
+    },
+    "professionalism": {
+      "title": "Professionalism",
+      "description": "How professional was the client during the project?"
+    }
+  }
+}

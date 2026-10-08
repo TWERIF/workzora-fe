@@ -1,3 +1,4 @@
+import ScrollRow from "@/shared/components/ui/ScrollRow";
 import React, { useEffect, useState } from "react";
 
 interface NavItem {
@@ -42,12 +43,13 @@ export default function StickyNav({ items, offset = 100 }: StickyNavProps) {
   };
 
   return (
-    <div className="sticky top-4 z-40 bg-bg-header/80 dark:bg-bg-modalDark/80 backdrop-blur-md py-3 px-15 rounded-full border border-border flex items-center max-w-fit gap-2 overflow-x-auto no-scrollbar">
+    <ScrollRow wrapperClassName="sticky top-4 z-40 max-w-fit" className="flex items-center gap-2 rounded-full border border-border bg-bg-header/80 px-15 py-3 backdrop-blur-md dark:bg-bg-modalDark/80">
       {items.map((item) => (
         <a
           key={item.id}
           href={`#${item.id}`}
           onClick={(e) => handleClick(e, item.id)}
+          aria-current={activeId === item.id ? "true" : undefined}
           className={`whitespace-nowrap px-15 py-13 rounded-full text-sm font-medium transition-all ${
             activeId === item.id
               ? "bg-success text-text-dark shadow-md"
@@ -57,6 +59,6 @@ export default function StickyNav({ items, offset = 100 }: StickyNavProps) {
           {item.label}
         </a>
       ))}
-    </div>
+    </ScrollRow>
   );
 }

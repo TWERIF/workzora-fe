@@ -19,3 +19,50 @@ export enum ProjectStatus {
   CLOSED = "closed",
 }
 
+
+export interface ChatRoom {
+  id: string;
+  projectId: string;
+}
+
+export interface ChatMessage {
+  id: string;
+  chatId: string;
+  senderId: string | null;
+  receiverId: string | null;
+  content: string;
+  fileUrl?: string | null;
+  isSystemMessage?: boolean;
+  senderName?: string;
+  senderAvatar?: string | null;
+  createdAt: string;
+}
+
+interface ChatParticipant {
+  id: string | null;
+  name: string | null;
+  avatarUrl: string | null;
+}
+
+export interface ChatListItem {
+  id: string;
+  updatedAt: string;
+  projectTitle: string | null;
+  projectId: string;
+  avatarUrl: string | null;
+  userName: string | null;
+  client: ChatParticipant;
+  freelancer: ChatParticipant;
+  topic: string | null;
+  messageCount: number;
+  isUnread: boolean;
+  counterpartId: string | null;
+  counterpartLastSeenAt: string | null;
+  lastMessageFromMe: boolean;
+  lastMessageRead: boolean;
+}
+
+export interface ChatList {
+  data: ChatListItem[];
+  total: number;
+}

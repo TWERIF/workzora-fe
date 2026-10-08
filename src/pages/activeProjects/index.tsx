@@ -1,10 +1,9 @@
-"use client";
-
+import { useUnreadNotifications } from "@/features/notifications/model/useNotifications";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
-import { useAuth } from "@/features/auth/model/useAuth";
+import ProtectedRoute from "@/features/auth/model/protectedRoute";
 
 import { ProjectStatus, type Project } from "@/features/projects/model/types";
 import { useMyProjects } from "@/features/projects/model/useProjects";
@@ -20,8 +19,8 @@ import UserNavigation from "@/shared/components/ui/UserNavigation";
 
 const ITEMS_PER_PAGE = 10;
 
-export default function ChatsPage() {
-  const { user, isLoading: isAuthLoading } = useAuth();
+function ActiveProjectsContent() {
+    const { data: unreadNotifications } = useUnreadNotifications();
   const router = useRouter();
   const locale = router.locale || "en";
   const { t } = useTranslation("additions");
@@ -35,18 +34,6 @@ export default function ChatsPage() {
     currentPage,
     ITEMS_PER_PAGE,
   );
-
-  if (isAuthLoading) {
-    return <Loader />;
-  }
-
-  if (!user) {
-    return (
-      <div className="flex h-[100dvh] items-center justify-center text-text-muted">
-        {t("auth.loading", "Авторизація...")}
-      </div>
-    );
-  }
 
   const isSearching = searchResults !== null;
   const projects = isSearching ? searchResults : data?.items || [];
@@ -64,10 +51,10 @@ export default function ChatsPage() {
         <Breadcrumbs />
 
         <h1 className="mb-6 text-3xl font-bold text-text dark:text-text-dark">
-          {t("chats.title", "Chat")}
+          {t("chats.title")}
         </h1>
 
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1fr_320px]">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1fr)_320px]">
           <div>
             <ProjectSearchBar onResults={setSearchResults} />
 
@@ -107,10 +94,18 @@ export default function ChatsPage() {
           </div>
 
           <aside>
-            <UserNavigation activeHref="/chat" />
+            <UserNavigation activeHref="/activeProjects" notificationsCount={unreadNotifications?.total ?? 0} />
           </aside>
         </div>
       </div>
     </div>
+  );
+}
+
+export default function ActiveProjectsPage() {
+  return (
+    <ProtectedRoute>
+      <ActiveProjectsContent />
+    </ProtectedRoute>
   );
 }

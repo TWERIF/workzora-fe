@@ -10,16 +10,10 @@
   },
   "filters": {
     "title": "Фільтри",
-    "clearAll": "Скинути всі фільтри",
-    "category": "Категорія",
-    "specialization": "Спеціалізація",
-    "showMore": "Показати більше",
-    "showLess": "Згорнути"
+    "clearAll": "Скинути всі фільтри"
   },
   "card": {
-    "goToProfile": "Перейти до профілю",
-    "lastWork": "Остання робота",
-    "outOf": "5,0"
+    "lastWork": "Остання робота"
   },
   "pagination": {
     "prev": "Попередня сторінка",

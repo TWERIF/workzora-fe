@@ -1,28 +1,5 @@
-import { User } from "@/features/auth/model/types";
 import { $api } from "@/shared/components/http";
-
-// Основний інтерфейс (як ви вказали)
-export interface PortfolioItem {
-    id: string;
-    userId: string;
-    title: string;
-    description: string;
-    imageUrl: string;
-    user?: User;
-}
-
-// DTO для створення
-export interface CreatePortfolioDto {
-    title: string;
-    description: string;
-    imageUrl: string;
-    userId: string;
-}
-
-// DTO для оновлення
-export interface UpdatePortfolioDto extends Partial<CreatePortfolioDto> {
-    id: string;
-}
+import type { PortfolioItem } from "./types";
 
 export const getAllPortfolios = async (
     page: number = 1,
@@ -38,12 +15,12 @@ export const getAllPortfolios = async (
     return res.data;
 };
 
-export const getPortfolioByUserId = async (userId: string) => {
-    const res = await $api.get(`/portfolio/${userId}`);
+export const getPortfolioByUserId = async (userId: string): Promise<PortfolioItem[]> => {
+    const res = await $api.get<PortfolioItem[]>(`/portfolio/${userId}`);
     return res.data;
 };
-export const getMyPortfolios = async () => {
-    const res = await $api.get(`/portfolio/me`);
+export const getMyPortfolios = async (): Promise<PortfolioItem[]> => {
+    const res = await $api.get<PortfolioItem[]>(`/portfolio/me`);
     return res.data;
 };
 
@@ -56,9 +33,7 @@ export const createPortfolio = async (data: FormData) => {
     return res.data;
 };
 
-export const updatePortfolio = async (data: FormData) => {
-    const id = data.get("id");
-
+export const updatePortfolio = async ({ id, data }: { id: string; data: FormData }) => {
     const res = await $api.patch(`/portfolio/${id}`, data, {
         headers: {
             "Content-Type": "multipart/form-data",
@@ -69,5 +44,9 @@ export const updatePortfolio = async (data: FormData) => {
 
 export const deletePortfolio = async (id: string) => {
     const res = await $api.delete(`/portfolio/${id}`);
+    return res.data;
+};
+export const addPortfolioView = async (id: string) => {
+    const res = await $api.post<{ success: boolean }>(`/portfolio/${id}/view`);
     return res.data;
 };

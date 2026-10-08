@@ -1,31 +1,29 @@
-"use client";
-
-import { useAuth } from "@/features/auth/model/useAuth";
-import Chat from "@/features/chat/ui/Chat";
+import ProtectedRoute from "@/features/auth/model/protectedRoute";
+import ChatRoom from "@/features/chat/ui/room/ChatRoom";
 import { useProjects } from "@/features/projects/model/useProjects";
+import PageMeta from "@/shared/components/seo/PageMeta";
 import Loader from "@/shared/components/ui/Loader";
 import { useRouter } from "next/router";
+import { useTranslation } from "react-i18next";
+
+function ChatRoomPage() {
+    const router = useRouter();
+    const { t } = useTranslation("chat");
+    const id = router.isReady && typeof router.query.id === "string" ? router.query.id : undefined;
+    const { project, isLoadingProjectData } = useProjects(id);
+
+    if (!id || isLoadingProjectData) return <Loader />;
+    if (!project) {
+        return <main className="mx-auto max-w-[1358px] px-4 pb-[100px] pt-24 text-center text-main-50 lg:pt-[171px]">{t("room.notAvailable")}</main>;
+    }
+    return <ChatRoom project={project} />;
+}
 
 export default function SingleChatPage() {
-  const router = useRouter();
-  const { id } = router.query;
-
-  if (!router.isReady) {
-    return null;
-  }
-
-  const { user, isLoading } = useAuth();
-  const { project, isLoadingProjectData } = useProjects(id as string);
-
-  if (isLoading || isLoadingProjectData) return <Loader />;
-  if (!project || !user) return <div className="p-8">Дані не знайдено</div>;
-
-  const receiverId =
-    user.id === project.clientId ? project.freelancerId : project.clientId;
-
-  return (
-    <div className="animate-fade-in w-full">
-      <Chat project={project} receiverId={receiverId} />
-    </div>
-  );
+    return (
+        <ProtectedRoute>
+            <PageMeta page="chats" noindex />
+            <ChatRoomPage />
+        </ProtectedRoute>
+    );
 }

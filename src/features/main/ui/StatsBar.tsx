@@ -1,7 +1,6 @@
-import { useTheme } from "next-themes";
+import { useTheme } from "@/utils/useTheme";
 import { useTranslation } from "react-i18next";
 
-// TODO: wire these to real, live numbers (an API/hook) instead of hardcoded values.
 const REGISTERED_USERS = "82 741 914+";
 const TOTAL_JOBS_POSTED = "24 897 510+";
 

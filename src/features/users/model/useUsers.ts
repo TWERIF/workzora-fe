@@ -1,7 +1,7 @@
 import { User } from "@/features/auth/model/types";
 import { authKeys } from "@/features/auth/model/useAuth";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { count, findOne, update, uploadAvatar } from "./api";
+import { keepPreviousData, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { blockUser, count, findOne, getBlockedUsers, getClientProjects, getRelation, removeAvatar, unblockUser, update, uploadAvatar } from "./api";
 
 export const useUsers = () => {
   const queryClient = useQueryClient();
@@ -9,6 +9,12 @@ export const useUsers = () => {
   const updateMutaion = useMutation({
     mutationFn: (body: Partial<User>) => update(body),
     mutationKey: authKeys.me,
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: authKeys.me }),
+  });
+
+  const removeAvatarMutation = useMutation({
+    mutationFn: removeAvatar,
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: authKeys.me }),
   });
 
   const uploadAvatarMutation = useMutation({
@@ -24,6 +30,7 @@ export const useUsers = () => {
   return {
     updateMutaion,
     uploadAvatarMutation,
+    removeAvatarMutation,
   };
 };
 
@@ -40,4 +47,35 @@ export const useUser = (id?: string) => {
     queryFn: () => findOne(id!),
     enabled: !!id,
   });
+};
+export const useUserRelation = (id?: string, enabled = true) => {
+  const queryClient = useQueryClient();
+  const key = ["user-relation", id] as const;
+  const relation = useQuery({ queryKey: key, queryFn: () => getRelation(id!), enabled: Boolean(id) && enabled });
+  const toggleBlock = useMutation({
+    mutationFn: (block: boolean) => (block ? blockUser(id!) : unblockUser(id!)),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: key }),
+  });
+  return { relation: relation.data, toggleBlock: toggleBlock.mutate, isToggling: toggleBlock.isPending };
+};
+
+export const useClientProjects = (id: string | undefined, status: "active" | "completed", page = 1, limit = 5) =>
+  useQuery({
+    queryKey: ["client-projects", id, status, page, limit],
+    queryFn: () => getClientProjects(id!, status, page, limit),
+    enabled: Boolean(id),
+    placeholderData: keepPreviousData,
+  });
+
+export const useBlockedUsers = (enabled = true) => {
+  const queryClient = useQueryClient();
+  const list = useQuery({ queryKey: ["blocked-users"], queryFn: getBlockedUsers, enabled });
+  const unblock = useMutation({
+    mutationFn: unblockUser,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["blocked-users"] });
+      queryClient.invalidateQueries({ queryKey: ["user-relation"] });
+    },
+  });
+  return { blocked: list.data ?? [], isLoading: list.isLoading, unblock: unblock.mutate, isUnblocking: unblock.isPending };
 };

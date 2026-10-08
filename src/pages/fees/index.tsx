@@ -2,20 +2,9 @@
 
 import { useMemo, useState, type ReactNode, type SVGProps } from 'react';
 import { useTranslation } from 'react-i18next';
+import PageMeta from "@/shared/components/seo/PageMeta";
 
-/**
- * Fees & Commissions page ("Збори та комісії").
- *
- * Assumes:
- * - Tailwind `darkMode: 'class'` (as configured) — toggling is handled elsewhere
- *   in the app (e.g. a ThemeProvider adding/removing `class="dark"` on <html>).
- * - i18n is wired through `react-i18next` (`useTranslation`). If the project
- *   uses `next-intl` instead, swap `useTranslation('fees')` + `t('key')` for
- *   `useTranslations('fees')` + `t('key')` — the JSON keys are identical.
- * - Translation files: locales/{lng}/fees.json (uk + en provided).
- */
 
-// ---------- Icons (inline, no external icon dep required) ----------
 
 type IconProps = SVGProps<SVGSVGElement>;
 
@@ -88,7 +77,6 @@ const BellIcon = (p: IconProps) => (
     </svg>
 );
 
-// ---------- Section shell ----------
 
 interface SectionProps {
     id: string;
@@ -137,7 +125,6 @@ function Stat({ label, value, note }: { label: string; value: string; note?: str
     );
 }
 
-// ---------- Page ----------
 
 export default function FeesPage() {
     const { t } = useTranslation('fees');
@@ -163,8 +150,8 @@ export default function FeesPage() {
 
     return (
         <div className="min-h-screen bg-bg dark:bg-bg-dark">
+            <PageMeta page="fees" />
             <div className="mx-auto max-w-5xl px-6 py-16 md:px-10">
-                {/* Hero */}
                 <header className="mb-10">
                     <p className="text-xs font-semibold uppercase tracking-widest text-success">
                         {t('fees.hero.eyebrow')}
@@ -177,7 +164,6 @@ export default function FeesPage() {
                     </p>
                 </header>
 
-                {/* Interactive rate strip — the page's one "signature" element */}
                 <div className="mb-10 overflow-hidden rounded-20 bg-gradient p-[1px]">
                     <div className="flex flex-col gap-6 rounded-20 bg-bg-header p-15 py-13 dark:bg-bg-modalDark sm:flex-row sm:items-center sm:justify-between">
                         <div className="flex items-center gap-6">
@@ -216,7 +202,6 @@ export default function FeesPage() {
                 </div>
 
                 <div className="grid grid-cols-1 gap-10 lg:grid-cols-[200px_1fr]">
-                    {/* Sticky in-page nav */}
                     <nav className="hidden lg:block">
                         <ul className="sticky top-8 space-y-1 border-l border-border pl-4 text-sm dark:border-border">
                             {navItems.map((item) => (
@@ -232,7 +217,6 @@ export default function FeesPage() {
                         </ul>
                     </nav>
 
-                    {/* Sections */}
                     <div className="space-y-6">
                         <Section id="how" icon={PercentIcon} title={t('fees.how.title')}>
                             <p>{t('fees.how.body')}</p>
