@@ -13,23 +13,27 @@ concurrency:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    timeout-minutes: 40
+    timeout-minutes: 100
 
     steps:
       - name: Pull, build and restart
         uses: appleboy/ssh-action@v1.0.3
         env:
           PM2_APP: ${{ vars.PM2_APP || '0' }}
+          BUILD_MEMORY_MB: ${{ vars.BUILD_MEMORY_MB || '2048' }}
         with:
           host: ${{ secrets.VPS_HOST }}
           port: ${{ secrets.VPS_PORT || '22' }}
           username: root
           password: ${{ secrets.VPS_PASSWORD }}
-          envs: PM2_APP
+          envs: PM2_APP,BUILD_MEMORY_MB
           timeout: 120s
-          command_timeout: 35m
+          command_timeout: 95m
           script: |
             set -e
+            exec 9>/var/lock/workzora-deploy.lock
+            echo "Waiting for other deploys to finish"
+            flock -w 3600 9
             export NVM_DIR="$HOME/.nvm"
             [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
             cd /var/www/workzora-fe
@@ -49,7 +53,7 @@ jobs:
               cp -a .next .next-previous
             fi
 
-            if ! npm run build; then
+            if ! NODE_OPTIONS="--max-old-space-size=${BUILD_MEMORY_MB:-2048}" npm run build; then
               echo "Build failed, restoring the previous build" >&2
               if [ -d .next-previous ]; then
                 rm -rf .next
