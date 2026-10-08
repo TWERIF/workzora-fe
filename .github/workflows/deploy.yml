@@ -19,7 +19,7 @@ jobs:
       - name: Pull, build and restart
         uses: appleboy/ssh-action@v1.0.3
         env:
-          PM2_APP: ${{ vars.PM2_APP || '0' }}
+          PM2_APP: ${{ vars.PM2_APP || 'workzora-fe' }}
           BUILD_MEMORY_MB: ${{ vars.BUILD_MEMORY_MB || '2048' }}
         with:
           host: ${{ secrets.VPS_HOST }}
@@ -37,6 +37,15 @@ jobs:
             export NVM_DIR="$HOME/.nvm"
             [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
             cd /var/www/workzora-fe
+
+            run_app() {
+              if pm2 describe "$PM2_APP" >/dev/null 2>&1; then
+                pm2 restart "$PM2_APP" --update-env
+              else
+                pm2 start npm --name "$PM2_APP" -- start
+              fi
+              pm2 save
+            }
 
             BEFORE=$(git rev-parse HEAD)
             git checkout main
@@ -58,12 +67,11 @@ jobs:
               if [ -d .next-previous ]; then
                 rm -rf .next
                 mv .next-previous .next
-                pm2 restart "$PM2_APP"
+                run_app
               fi
               exit 1
             fi
 
-            pm2 restart "$PM2_APP" --update-env
-            pm2 save
+            run_app
             rm -rf .next-previous
             pm2 status
