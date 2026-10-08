@@ -10,10 +10,10 @@ import { Post } from "@/features/posts/model/types";
 import { findPostForPage } from "@/features/posts/model/api";
 import type { GetServerSideProps } from "next";
 import Head from "next/head";
+import { SITE_URL } from "@/shared/components/seo/site";
 import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
 
-const SITE_URL = "https://workzora.com";
 
 const stripHtml = (html: string) => html.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
 
@@ -53,14 +53,14 @@ const PostDetailPage = ({ initialPost }: PostDetailPageProps) => {
             {!isLoadingPost && post && (
                 <div className="flex flex-col gap-12">
                     <Head>
-                        <title>{`${post.title} — Workzora`}</title>
-                        <meta name="description" content={description} />
-                        <meta property="og:type" content="article" />
-                        <meta property="og:title" content={post.title} />
-                        <meta property="og:description" content={description} />
-                        {post.imageUrl && <meta property="og:image" content={post.imageUrl} />}
-                        {canonical && <link rel="canonical" href={canonical} />}
-                        {canonical && <meta property="og:url" content={canonical} />}
+                        <title key="title">{`${post.title} | Workzora`}</title>
+                        <meta key="description" name="description" content={description} />
+                        <meta key="og:type" property="og:type" content="article" />
+                        <meta key="og:title" property="og:title" content={post.title} />
+                        <meta key="og:description" property="og:description" content={description} />
+                        {post.imageUrl && <meta key="og:image" property="og:image" content={post.imageUrl} />}
+                        {canonical && <link key="canonical" rel="canonical" href={canonical} />}
+                        {canonical && <meta key="og:url" property="og:url" content={canonical} />}
                     </Head>
                     <PostHero post={post} />
 

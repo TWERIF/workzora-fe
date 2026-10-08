@@ -526,7 +526,8 @@
     "payment-data": "Finances",
     "top-clients": "Top clients",
     "review": "Review",
-    "top-projects": "Top projects"
+    "top-projects": "Top projects",
+    "label": "Breadcrumbs"
   },
   "graphicDesignPage": {
     "hero": {
@@ -574,7 +575,7 @@
           "Ability to interpret and deliver against a brief"
         ],
         "valueAdded": "An operator simply following given instructions to implement a visual outcome is not considered a designer. A quality graphical expert should add incremental value to the creative process and production of effective visual communications, through increased sales, enhanced visual storytelling or eye-catching and memorable branding.",
-        "software": "Many graphic designers readily use traditional design methods such as sketches to explore creative territories or to garner client approval whilst minimizing time investment. Nevertheless, modern design experts are accomplished in a range of software applications, most of which hail from the Adobe Systems suite of products. Adobe Photoshop is a popular choice of photo editing software leveraged by a vast segment of designers. For the creation of vector-based drawings, Adobe Illustrator is a favored choice, and during the final stages of graphic production, Adobe InDesign is one of a number of page layout programs available. It is essential any graphic designer you employ is well versed in several of these design technologies.",
+        "software": "Many graphic designers readily use traditional design methods such as sketches to explore creative territories or to garner client approval whilst minimizing time investment. Nevertheless, modern design experts are accomplished in a range of software applications, most of which hail from the Adobe Systems suite of products. Adobe Photoshop is a popular choice of photo editing software used by many designers. For the creation of vector-based drawings, Adobe Illustrator is a favored choice, and during the final stages of graphic production, Adobe InDesign is one of a number of page layout programs available. It is essential any graphic designer you employ is well versed in several of these design technologies.",
         "decision": "Engaging a high-caliber graphic designer that is smart, creative and responsive is hands-down one of the most important decisions your business will make. A top class designer will ensure your brand, communications or products stand out from the crowd, clearly articulating messaging and imploring your audience to take action.",
         "market": "The market is flooded with graphic designers. Some are highly talented. Some are not. The challenge is sourcing top design talent. At Workzora we make it easy for you. With a community of thousands of experienced graphic designers highly proficient in the popular Adobe product suite, alongside hundreds of other specialist design technologies, finding an expert for your graphic design job couldn't be simpler!",
         "hireNow": "If you need a graphic designer to take your business or visual communications to the next level, then hire them through the community at Workzora. Post a project, and kickstart your next graphic design project today!"
@@ -913,7 +914,7 @@
   "faqPage": {
     "title": "FAQ · FREQUENTLY ASKED QUESTIONS",
     "subtitle": "Answers to common questions",
-    "description": "If you couldn't find the answer — contact us at workzora.partners@gmail.com",
+    "description": "If you couldn't find the answer, contact us at workzora.partners@gmail.com",
     "stats": "28 questions · 7 categories · Updated: June 2026",
     "categories": {
       "general": {
@@ -921,7 +922,7 @@
         "items": [
           {
             "question": "What is WorkZora?",
-            "answer": "WorkZora is a Ukrainian freelance platform that connects clients and freelancers. All transactions are made in US dollars, while funds for each deal are held in an escrow vault — a secure platform account — until the work result is confirmed. Currently, the platform serves users from Ukraine. Expanding to other regions is the next step."
+            "answer": "WorkZora is a Ukrainian freelance platform that connects clients and freelancers. All transactions are made in US dollars, while funds for each deal are held in an escrow vault, a secure platform account, until the work result is confirmed. Currently, the platform serves users from Ukraine. Expanding to other regions is the next step."
           },
           {
             "question": "How is WorkZora different from other freelance marketplaces?",
@@ -929,7 +930,7 @@
           },
           {
             "question": "Is registration on the platform free?",
-            "answer": "Yes. Registration is free for both parties. A commission is charged only for successfully completed deals — see the \"Payments and Fees\" section for details."
+            "answer": "Yes. Registration is free for both parties. A commission is charged only for successfully completed deals. See the \"Payments and Fees\" section for details."
           },
           {
             "question": "Is WorkZora available outside Ukraine?",
@@ -942,7 +943,7 @@
         "items": [
           {
             "question": "How do I register on the platform?",
-            "answer": "Go to workzora.com, click \"Sign Up\", and fill in your details: name, email, and password. After confirming your email, you will gain access to your personal dashboard. To fully use the platform — publish projects, top up your balance, and withdraw funds — account verification is required."
+            "answer": "Go to workzora.com, click \"Sign Up\", and fill in your details: name, email, and password. After confirming your email, you will gain access to your personal dashboard. To publish projects, top up your balance and withdraw funds, verify your account."
           },
           {
             "question": "What is required for verification?",
@@ -963,7 +964,7 @@
         "items": [
           {
             "question": "What is escrow and how does it work on WorkZora?",
-            "answer": "Escrow is a secure platform account where the client's funds are held while the deal is being completed. 1. The client confirms the deal — the funds are locked in the vault. 2. The freelancer sees that the money is reserved and starts working. 3. The client accepts the result — the funds are transferred to the freelancer's balance. Neither party can access the funds without fulfilling the deal terms."
+            "answer": "Escrow is a secure platform account where the client's funds are held while the deal is being completed. 1. The client confirms the deal and the funds are locked in the vault. 2. The freelancer sees that the money is reserved and starts working. 3. The client accepts the result and the funds are transferred to the freelancer's balance. Neither party can access the funds without fulfilling the deal terms."
           },
           {
             "question": "What happens if the client does not confirm the result?",
@@ -975,7 +976,7 @@
           },
           {
             "question": "Is it safe to keep funds on my WorkZora balance?",
-            "answer": "We apply technical security measures and verify platform users. However, we recommend withdrawing earned funds in a timely manner — the platform balance is not a bank deposit."
+            "answer": "We apply technical security measures and verify platform users. However, we recommend withdrawing earned funds in a timely manner: the platform balance is not a bank deposit."
           }
         ]
       },
@@ -1009,7 +1010,7 @@
         "items": [
           {
             "question": "What should I do if I have a misunderstanding with the other party?",
-            "answer": "First, try to resolve the issue directly through chat — most misunderstandings are settled at this stage. If you cannot reach an agreement, you can open a dispute through your personal dashboard."
+            "answer": "First, try to resolve the issue directly in the chat. Most misunderstandings are settled at this stage. If you cannot reach an agreement, you can open a dispute through your personal dashboard."
           },
           {
             "question": "How do I open a dispute?",
@@ -1036,30 +1037,30 @@
     },
     "contactBlock": {
       "title": "COULDN'T FIND AN ANSWER?",
-      "subtitle": "Contact us directly — we'll respond without template replies.",
+      "subtitle": "Contact us directly and we'll reply in person, not with a template.",
       "email": "workzora.partners@gmail.com",
       "legal": "Business activities through the platform are carried out by Sole Proprietor Natalia Bevza. The project owner is Vitalii Bankivskyi (individual)."
     }
   },
   "About": {
-    "heroTitle": "Secure collaboration between clients and freelancers — in US dollars",
+    "heroTitle": "Secure collaboration between clients and freelancers in US dollars",
     "heroDescription": "WorkZora is a Ukrainian freelance platform with escrow protection, transparent fees, and payments in USD. The platform is currently in the MVP stage and is attracting its first users.",
     "heroCardUsdTitle": "USD",
-    "heroCardUsdText": "Balance, deals and payouts — in US dollars",
+    "heroCardUsdText": "Balance, deals and payouts in US dollars",
     "heroCardFeeTitle": "0%",
     "heroCardFeeText": "Client fee for publishing projects",
     "heroCardEscrowTitle": "Escrow",
     "heroCardEscrowText": "Funds are held securely until work is approved",
     "whyTitle": "We know what freelancing looks like without protection",
     "whyP1": "You pay upfront and the freelancer disappears. Or vice versa: the work is delivered, but the client delays payment. This problem remains relevant for most market participants.",
-    "whyP2": "WorkZora is built around escrow: the client's funds are locked until the result is approved. Freelancers see the funds secured before they start working. Clients receive the result first, and only then are the funds released. All transactions are made in USD — no exchange rate dependency and no currency conversion.",
+    "whyP2": "WorkZora is built around escrow: the client's funds are locked until the result is approved. Freelancers see the funds secured before they start working. Clients receive the result first, and only then are the funds released. All transactions are made in USD, with no exchange rate dependency and no currency conversion.",
     "whyP3": "WorkZora is the answer to a specific problem: how to make online collaboration in Ukraine safe and predictable for both sides.",
-    "howTitle": "Simple — no lengthy instructions",
+    "howTitle": "Simple, no lengthy instructions",
     "clientTitle": "For clients",
     "clientStep1Title": "Post a project",
     "clientStep1Text": "Describe the task, set the budget in USD and deadlines. Free of charge.",
     "clientStep2Title": "Choose a freelancer",
-    "clientStep2Text": "Review profiles, ratings and prices — then invite someone to work.",
+    "clientStep2Text": "Review profiles, ratings and prices, then invite someone to work.",
     "clientStep3Title": "Approve the result",
     "clientStep3Text": "Confirm the work and the escrow is released. Fees apply only to successful deals.",
     "freelancerTitle": "For freelancers",
@@ -1081,17 +1082,17 @@
     "benefit5Title": "Dispute resolution",
     "benefit5Text": "If a deal reaches a deadlock, the WorkZora team reviews the case according to platform rules and helps both parties find a solution.",
     "benefit6Title": "Human support",
-    "benefit6Text": "Our support team responds to user requests and helps solve issues without unnecessary bureaucracy. Reach out — you'll get real answers, not templates.",
+    "benefit6Text": "Our support team responds to user requests and helps solve issues without unnecessary bureaucracy. Reach out and you'll get real answers, not templates.",
     "teamTitle": "Who builds WorkZora",
     "founderName": "Vitalii Bankivskyi",
     "founderRole": "Founder, Project Owner",
     "founderDescription": "Responsible for the product, strategy and communication with the audience. WorkZora started with his idea.",
     "developerName": "Danylo Manuliak",
     "developerRole": "Platform Developer",
-    "developerDescription": "Builds WorkZora's technical infrastructure — from backend architecture to the client interface.",
+    "developerDescription": "Builds WorkZora's technical infrastructure, from backend architecture to the client interface.",
     "teamP1": "WorkZora is not a corporation or another startup with a fancy presentation. It is a product created by two people who decided to make freelancing in Ukraine a little safer. We are a small team, but we listen to feedback, react quickly and stay open to dialogue.",
     "teamP2": "WorkZora is currently in the MVP stage.",
-    "teamP3": "Core functionality is already implemented: projects, escrow, balance, profiles, support and dispute resolution. Some features are still under development — we are honest about this and grateful for the trust we receive at this early stage.",
+    "teamP3": "Core functionality is already implemented: projects, escrow, balance, profiles, support and dispute resolution. Some features are still under development. We are honest about this and grateful for the trust we receive at this early stage.",
     "visionTitle": "Why we are building this",
     "missionTitle": "Mission",
     "missionText": "To make freelancing in Ukraine safe and predictable so clients get results and freelancers get paid without fear of being deceived.",
@@ -1158,7 +1159,7 @@
     "subtitle": "Have questions, partnership proposals, or need support? Write to us directly.",
     "emailCard": {
       "title": "Email Address",
-      "description": "Write to us anytime — we reply quickly and without boilerplate templates."
+      "description": "Write to us anytime. We reply quickly and in person."
     },
     "form": {
       "title": "Send a Message",
@@ -1299,5 +1300,15 @@
   "scroll": {
     "left": "Scroll left",
     "right": "Scroll right"
+  },
+  "loader": {
+    "text": "Loading…"
+  },
+  "paginationNav": {
+    "prev": "Previous page",
+    "next": "Next page"
+  },
+  "common": {
+    "noItems": "Nothing here yet"
   }
 }

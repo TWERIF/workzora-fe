@@ -14,11 +14,11 @@ export default function PageMeta({ page, noindex = false, params }: PageMetaProp
 
   return (
     <Head>
-      <title>{title}</title>
-      <meta name="description" content={description} />
-      <meta property="og:title" content={title} />
-      <meta property="og:description" content={description} />
-      {noindex && <meta name="robots" content="noindex" />}
+      <title key="title">{title}</title>
+      <meta key="description" name="description" content={description} />
+      <meta key="og:title" property="og:title" content={title} />
+      <meta key="og:description" property="og:description" content={description} />
+      {noindex && <meta key="robots" name="robots" content="noindex, nofollow" />}
     </Head>
   );
 }

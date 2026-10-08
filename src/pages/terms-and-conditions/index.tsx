@@ -13,10 +13,10 @@ export default function TermsPage() {
 
                 <div className="mb-10 text-center relative pb-6">
                     <h1 className="text-3xl font-extrabold sm:text-4xl tracking-tight">
-                        {t('terms.title', 'Terms of Service для WorkZora.com')}
+                        {t('terms.title')}
                     </h1>
                     <p className="mt-3 text-sm text-text-muted">
-                        {t('terms.lastUpdated', 'Останнє оновлення: [08.06.2026]')}
+                        {t('terms.lastUpdated')}
                     </p>
                     <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient rounded-full" />
                 </div>

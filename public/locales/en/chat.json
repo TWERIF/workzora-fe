@@ -11,7 +11,7 @@
   "completeError": "Could not complete the project. Please try again.",
   "review": {
     "title": "Project completed",
-    "hint": "Share your experience — the review will appear on the profile.",
+    "hint": "Share your experience. The review will appear on the profile.",
     "leave": "Leave a review",
     "done": "Thank you! Your review has been published."
   },

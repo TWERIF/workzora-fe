@@ -3,6 +3,7 @@ import VisitTracker from '@/features/analytics/ui/VisitTracker';
 import Footer from '@/shared/components/ui/Footer/Footer';
 import Header from '@/shared/components/ui/Header/Header';
 import Layout from '@/shared/components/ui/Layout/Layout';
+import SiteSeo from '@/shared/components/seo/SiteSeo';
 import '@/styles/globals.css';
 import ReactQueryProvider from '@/utils/providers/QueryClientProvider';
 import { appWithTranslation } from 'next-i18next';
@@ -60,6 +61,7 @@ function App({ Component, pageProps }: AppProps) {
       <ThemeProvider attribute="class" defaultTheme="light">
         <I18nextProvider i18n={getI18n(locale ?? 'en')}>
           <Layout>
+            <SiteSeo />
             {showChrome && <Header />}
             <div className="font-sans">
               <Component {...pageProps} />

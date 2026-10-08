@@ -27,8 +27,8 @@ export default function HelpCategoryPage() {
     return (
         <div className="mx-auto w-full max-w-[1424px] px-4 pb-24 pt-28 text-main-100 sm:px-8 lg:pt-[130px]">
             <Head>
-                <title>{`${title} — ${t("badge")} — Workzora`}</title>
-                {key && <meta name="description" content={t(`categories.${key}.description`)} />}
+                <title key="title">{`${title} | ${t("badge")} | Workzora`}</title>
+                {key && <meta key="description" name="description" content={t(`categories.${key}.description`)} />}
             </Head>
             <Breadcrumbs customItems={[{ label: t("badge"), href: "/knowledgebase" }, { label: title }]} />
             <HelpHero title={title} subtitle={key ? t(`categories.${key}.description`) : undefined} />

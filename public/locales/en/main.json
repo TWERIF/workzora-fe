@@ -53,7 +53,7 @@
     "createdByLabel": "Created by",
     "search": {
       "title": "What are you looking for?",
-      "placeholder": "Try \u201cwebsite design\u201d, \u201cSEO specialist\u201d, \u201clogo design\u201d, \u201cGoogle Ads\u201d",
+      "placeholder": "Try “website design”, “SEO specialist”, “logo design”, “Google Ads”",
       "button": "Search",
       "popularLabel": "Popular tags",
       "tags": [
@@ -364,7 +364,8 @@
     "rating": "Rating",
     "earned": "Earned",
     "rate": "Rate",
-    "showAll": "Show all"
+    "showAll": "Show all",
+    "verified": "Verified"
   },
   "topProjects": {
     "title": {
@@ -395,11 +396,11 @@
       },
       {
         "question": "Can I work with clients online?",
-        "answer": "Yes, the entire workflow \u2014 messaging, file sharing, milestones, and payments \u2014 happens online through the platform."
+        "answer": "Yes, messaging, file sharing, milestones and payments all happen online on the platform."
       },
       {
         "question": "How do I post a project?",
-        "answer": "Click \u201cPost a Project\u201d, describe your task, set a budget and deadline, and publish it to start receiving proposals."
+        "answer": "Click “Post a Project”, describe your task, set a budget and deadline, and publish it to start receiving proposals."
       },
       {
         "question": "What types of services can I find?",
@@ -412,9 +413,9 @@
     "totalJobsPosted": "Total Jobs Posted"
   },
   "imagine-text": "Imagine you can get AI to answer the phone, make sales, set appointments, and generally make your life way easier. It'll cost you less than building a website, and it's the next big thing for businesses in 2025. Thanks to our extensive global talent network, WorkZora is your best bet for finding AI experts to take your business to the next level.",
-  "ai-text":"Thanks to our extensive global talent network, Workzora is your best bet for finding AI experts to take your business to the next level.",
+  "ai-text": "Thanks to our extensive global talent network, Workzora is your best bet for finding AI experts to take your business to the next level.",
   "footer": {
-    "trademark": "WorkZora \u00ae is a registered Trademark",
+    "trademark": "WorkZora ® is a registered Trademark",
     "copyright": {
       "line1": "WorkZora™",
       "line2": "Find trusted freelancers and clients.",

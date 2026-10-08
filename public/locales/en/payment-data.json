@@ -13,5 +13,6 @@
       "limit": "You can link up to 5 cards"
     },
     "expiry": "Expiry date"
-  }
+  },
+  "expiryPlaceholder": "MM/YY"
 }

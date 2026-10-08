@@ -371,7 +371,7 @@ const CheckoutModal = ({
                     <iframe
                         src={pageUrl}
                         onLoad={() => setIframeLoaded(true)}
-                        title="Monobank checkout"
+                        title={t("checkoutFrame")}
                         className="h-full w-full border-0"
                     />
                 </div>

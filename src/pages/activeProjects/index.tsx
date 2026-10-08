@@ -51,7 +51,7 @@ function ActiveProjectsContent() {
         <Breadcrumbs />
 
         <h1 className="mb-6 text-3xl font-bold text-text dark:text-text-dark">
-          {t("chats.title", "Chat")}
+          {t("chats.title")}
         </h1>
 
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1fr)_320px]">

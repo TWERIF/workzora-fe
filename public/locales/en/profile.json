@@ -91,7 +91,8 @@
     "note": "Rate note (optional)",
     "notePlaceholder": "For example: Final price may depend on project scope and timeline.",
     "tipTitle": "Tip:",
-    "tipText": "Choose a rate that reflects your experience, skill level, and the value you provide. You can update your rate anytime."
+    "tipText": "Choose a rate that reflects your experience, skill level, and the value you provide. You can update your rate anytime.",
+    "usd": "USD, US dollar"
   },
   "portfolio": {
     "title": "Portfolio",
@@ -139,7 +140,7 @@
   "overview": {
     "proBanner": {
       "title": "Make your profile stand out",
-      "description": "Add a cover image, customize your profile, and unlock more opportunities with Pro."
+      "description": "Add a cover image and customize your profile with Pro."
     },
     "cards": {
       "achievements": {

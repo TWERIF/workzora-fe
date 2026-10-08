@@ -34,7 +34,7 @@ export default function ProHero() {
 
             <Image
               src="/images/pro/pro-freelancer.png"
-              alt="WorkZora Pro freelancer"
+              alt={t("hero.imageAlt")}
               fill
               priority
               className="relative z-10 object-contain object-bottom"

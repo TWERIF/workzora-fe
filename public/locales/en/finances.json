@@ -45,7 +45,8 @@
     },
     "card": "Card",
     "removeConfirm": "Remove the card ending in {{last4}}?",
-    "actionFailed": "Could not update the card, try again"
+    "actionFailed": "Could not update the card, try again",
+    "loadFailed": "Could not load your cards. Refresh the page."
   },
   "modal": {
     "addTitle": "Add card",

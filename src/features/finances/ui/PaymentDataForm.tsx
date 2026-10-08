@@ -82,7 +82,7 @@ export const PaymentDataForm = ({ onSuccess }: { onSuccess?: () => void }) => {
                 <input
                     inputMode="numeric"
                     autoComplete="cc-exp"
-                    placeholder="MM/YY"
+                    placeholder={t("expiryPlaceholder")}
                     value={expiry}
                     onChange={(event) => setExpiry(formatExpiry(event.target.value))}
                     className={`${fieldClass} max-w-[140px] ${errors.expiry ? "border-status-danger" : "border-main-10"}`}

@@ -32,7 +32,7 @@ export default function HourlyRateSection({ register, rate, noteLength }: Hourly
                     {...register("rate", { valueAsNumber: true, min: 0 })}
                 />
                 <SelectField label={t("hourlyRate.currencyLabel")} icon={<IconUsa className="h-5 w-5" />} defaultValue="USD">
-                    <option value="USD">USD - US Dollar</option>
+                    <option value="USD">{t("hourlyRate.usd")}</option>
                 </SelectField>
             </div>
 

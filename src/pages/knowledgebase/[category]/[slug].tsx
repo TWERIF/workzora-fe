@@ -41,8 +41,8 @@ export default function HelpArticlePage() {
             ) : (
                 <>
                     <Head>
-                        <title>{`${article.title} — ${t("badge")} — Workzora`}</title>
-                        <meta name="description" content={article.summary} />
+                        <title key="title">{`${article.title} | ${t("badge")} | Workzora`}</title>
+                        <meta key="description" name="description" content={article.summary} />
                     </Head>
                     <Breadcrumbs
                         customItems={[

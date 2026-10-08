@@ -23,10 +23,6 @@
     "title": "Knowledge base",
     "description": "Guides on accounts, projects, payments, escrow and safety on Workzora."
   },
-  "gettingStarted": {
-    "title": "Getting started",
-    "description": "How to create an account, set up your profile and start using Workzora."
-  },
   "faq": {
     "title": "FAQ",
     "description": "Answers to common questions about Workzora."
@@ -106,5 +102,45 @@
   "topProjects": {
     "title": "Top projects",
     "description": "Featured and most viewed open projects on Workzora."
+  },
+  "notFound": {
+    "title": "Page not found",
+    "description": "The page you are looking for does not exist or was moved."
+  },
+  "activeProjects": {
+    "title": "My projects",
+    "description": "Your projects and deals on WorkZora."
+  },
+  "project": {
+    "title": "Project",
+    "description": "Project details and proposals on WorkZora."
+  },
+  "unsubscribe": {
+    "title": "Unsubscribe",
+    "description": "Unsubscribe from new blog articles."
+  },
+  "payment": {
+    "title": "Payment",
+    "description": "Pay for a project to escrow."
+  },
+  "finances": {
+    "title": "Finances",
+    "description": "Wallet, cards and withdrawals."
+  },
+  "payments": {
+    "title": "Payment history",
+    "description": "History of your payments on WorkZora."
+  },
+  "profile": {
+    "title": "My profile",
+    "description": "Your WorkZora profile."
+  },
+  "profileSettings": {
+    "title": "Edit profile",
+    "description": "Profile settings on WorkZora."
+  },
+  "review": {
+    "title": "Leave a review",
+    "description": "Rate your work together on WorkZora."
   }
 }

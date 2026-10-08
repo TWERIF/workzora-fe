@@ -23,10 +23,6 @@
     "title": "База знань",
     "description": "Інструкції щодо акаунта, проєктів, оплат, ескроу та безпеки на Workzora."
   },
-  "gettingStarted": {
-    "title": "Початок роботи",
-    "description": "Як створити акаунт, налаштувати профіль і почати працювати на Workzora."
-  },
   "faq": {
     "title": "Питання та відповіді",
     "description": "Відповіді на поширені питання про Workzora."
@@ -106,5 +102,45 @@
   "topProjects": {
     "title": "Топ проєктів",
     "description": "Рекомендовані та найпопулярніші відкриті проєкти на Workzora."
+  },
+  "notFound": {
+    "title": "Сторінку не знайдено",
+    "description": "Сторінки, яку ви шукаєте, немає або її перенесено."
+  },
+  "activeProjects": {
+    "title": "Мої проєкти",
+    "description": "Ваші проєкти та угоди у WorkZora."
+  },
+  "project": {
+    "title": "Проєкт",
+    "description": "Опис проєкту та пропозиції у WorkZora."
+  },
+  "unsubscribe": {
+    "title": "Відписка",
+    "description": "Відписка від нових статей блогу."
+  },
+  "payment": {
+    "title": "Оплата",
+    "description": "Оплата проєкту в ескроу."
+  },
+  "finances": {
+    "title": "Фінанси",
+    "description": "Гаманець, картки та виведення коштів."
+  },
+  "payments": {
+    "title": "Історія платежів",
+    "description": "Історія ваших платежів у WorkZora."
+  },
+  "profile": {
+    "title": "Мій профіль",
+    "description": "Ваш профіль у WorkZora."
+  },
+  "profileSettings": {
+    "title": "Редагування профілю",
+    "description": "Налаштування профілю у WorkZora."
+  },
+  "review": {
+    "title": "Залишити відгук",
+    "description": "Оцініть спільну роботу у WorkZora."
   }
 }

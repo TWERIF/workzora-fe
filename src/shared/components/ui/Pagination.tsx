@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 interface PaginationProps {
@@ -26,6 +27,7 @@ const getPageList = (page: number, totalPages: number): (number | "...")[] => {
 };
 
 export default function Pagination({ page, totalPages, onPageChange }: PaginationProps) {
+    const { t } = useTranslation("common");
     if (totalPages <= 1) return null;
 
     const pages = getPageList(page, totalPages);
@@ -34,7 +36,7 @@ export default function Pagination({ page, totalPages, onPageChange }: Paginatio
         <div className="flex items-center justify-center gap-3 mt-8">
             <button
                 type="button"
-                aria-label="Previous page"
+                aria-label={t("paginationNav.prev")}
                 disabled={page <= 1}
                 onClick={() => onPageChange(page - 1)}
                 className="w-9 h-9 rounded-full border border-success flex items-center justify-center text-success disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
@@ -65,7 +67,7 @@ export default function Pagination({ page, totalPages, onPageChange }: Paginatio
 
             <button
                 type="button"
-                aria-label="Next page"
+                aria-label={t("paginationNav.next")}
                 disabled={page >= totalPages}
                 onClick={() => onPageChange(page + 1)}
                 className="w-9 h-9 rounded-full bg-success flex items-center justify-center text-white disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
