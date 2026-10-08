@@ -1,0 +1,65 @@
+name: Deploy frontend to VPS
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-frontend
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+
+    steps:
+      - name: Pull, build and restart
+        uses: appleboy/ssh-action@v1.0.3
+        env:
+          PM2_APP: ${{ vars.PM2_APP || '0' }}
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          port: ${{ secrets.VPS_PORT || '22' }}
+          username: root
+          password: ${{ secrets.VPS_PASSWORD }}
+          envs: PM2_APP
+          timeout: 120s
+          command_timeout: 35m
+          script: |
+            set -e
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+            cd /var/www/workzora-fe
+
+            BEFORE=$(git rev-parse HEAD)
+            git checkout main
+            git pull --ff-only origin main
+            AFTER=$(git rev-parse HEAD)
+            echo "Deploying $BEFORE -> $AFTER"
+
+            if [ ! -d node_modules ] || ! git diff --quiet "$BEFORE" "$AFTER" -- package.json package-lock.json; then
+              npm ci
+            fi
+
+            rm -rf .next-previous
+            if [ -d .next ]; then
+              cp -a .next .next-previous
+            fi
+
+            if ! npm run build; then
+              echo "Build failed, restoring the previous build" >&2
+              if [ -d .next-previous ]; then
+                rm -rf .next
+                mv .next-previous .next
+                pm2 restart "$PM2_APP"
+              fi
+              exit 1
+            fi
+
+            pm2 restart "$PM2_APP" --update-env
+            pm2 save
+            rm -rf .next-previous
+            pm2 status
