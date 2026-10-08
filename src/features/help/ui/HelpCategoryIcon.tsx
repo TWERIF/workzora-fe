@@ -21,5 +21,5 @@ const ICONS: Record<HelpCategorySlug, ReactNode> = {
 };
 
 export default function HelpCategoryIcon({ category }: { category: HelpCategorySlug }) {
-    return <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-primary text-white">{ICONS[category]}</span>;
+    return <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-[18px] bg-primary text-white">{ICONS[category]}</span>;
 }

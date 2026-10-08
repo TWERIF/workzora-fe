@@ -12,7 +12,7 @@ export const CategoryTabs = ({ value, onChange }: CategoryTabsProps) => {
     const items = [{ value: null, key: "all" }, ...BLOG_TAGS];
 
     return (
-        <ScrollRow role="tablist" className="flex gap-2 rounded-full bg-main-5 p-2">
+        <ScrollRow role="tablist" className="flex gap-3 rounded-full bg-main-5 p-3">
             {items.map((item) => {
                 const active = item.value === value;
                 return (
@@ -22,7 +22,7 @@ export const CategoryTabs = ({ value, onChange }: CategoryTabsProps) => {
                         role="tab"
                         aria-selected={active}
                         onClick={() => onChange(item.value)}
-                        className={`h-[45px] min-w-[110px] flex-1 shrink-0 whitespace-nowrap rounded-full px-4 text-sm transition-colors ${
+                        className={`h-14 min-w-[120px] flex-1 shrink-0 whitespace-nowrap rounded-full px-6 text-base transition-colors ${
                             active ? "bg-gradient text-white" : "bg-background hover:text-primary"
                         }`}
                     >

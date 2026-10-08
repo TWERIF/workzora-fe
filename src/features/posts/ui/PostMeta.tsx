@@ -6,7 +6,7 @@ import type { Post } from "../model/types";
 export const PostMeta = ({ post, withDate = false }: { post: Post; withDate?: boolean }) => {
     const { t, i18n } = useTranslation("common");
     return (
-        <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-main-50">
+        <div className="flex flex-wrap items-center gap-x-6 gap-y-1 text-[11px] font-medium text-main-50">
             {withDate && (
                 <span className="flex items-center gap-1.5">
                     <CalendarDays size={14} className="text-primary" />

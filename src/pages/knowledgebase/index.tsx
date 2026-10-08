@@ -40,16 +40,16 @@ export default function KnowledgeBasePage() {
                             <Link
                                 key={category.slug}
                                 href={`/knowledgebase/${category.slug}`}
-                                className="group flex flex-col gap-4 rounded-[24px] bg-main-5 p-5 transition-colors hover:bg-primary-10"
+                                className="group flex flex-col gap-6 rounded-[24px] bg-main-5 p-6 transition-colors hover:bg-primary-10"
                             >
                                 <HelpCategoryIcon category={category.slug} />
                                 <span className="flex items-center justify-between gap-2">
-                                    <span className="text-lg font-medium group-hover:text-primary">{t(`categories.${category.key}.title`)}</span>
+                                    <span className="text-xl font-medium leading-[26px] group-hover:text-primary">{t(`categories.${category.key}.title`)}</span>
                                     <span className="shrink-0 text-primary">
                                         <ArrowIcon />
                                     </span>
                                 </span>
-                                <span className="text-xs leading-5 text-main-50">{t(`categories.${category.key}.description`)}</span>
+                                <span className="-mt-4 text-sm leading-[21px]">{t(`categories.${category.key}.description`)}</span>
                                 {count !== undefined && <span className="mt-auto text-xs text-primary">{t("articlesCount", { count })}</span>}
                             </Link>
                         );
