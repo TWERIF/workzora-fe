@@ -2,8 +2,8 @@ import { EyeIcon } from "@/features/freelancerProfile/ui/icons";
 import NoteTextIcon from "@/shared/components/svg/NoteTextIcon";
 import UsdtIcon from "@/shared/components/svg/UsdtIcon";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
+import { stripHtml } from "@/shared/utils";
 import type { TopClient } from "../model/types";
 
 const formatDate = (date: Date | string) => {
@@ -12,11 +12,8 @@ const formatDate = (date: Date | string) => {
     return `${pad(d.getDate())}.${pad(d.getMonth() + 1)}.${d.getFullYear()}`;
 };
 
-const stripHtml = (html: string) => html.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
-
 export const LastActivityBlock = ({ project }: { project: NonNullable<TopClient["lastProject"]> }) => {
     const { t, i18n } = useTranslation("topClients");
-    const locale = useRouter().locale ?? "en";
     const tags = project.tags?.length ? project.tags : project.categories?.map((c) => c.title) ?? [];
 
     return (
@@ -24,7 +21,7 @@ export const LastActivityBlock = ({ project }: { project: NonNullable<TopClient[
             <p className="text-xl font-bold text-text dark:text-text-dark">{t("card.lastActivity")}</p>
 
             <Link
-                href={`/${locale}/activeProjects/discussion/${project.id}`}
+                href={`/activeProjects/discussion/${project.id}`}
                 className="flex min-w-0 flex-col gap-4 rounded-[24px] bg-bg-header p-4 transition-shadow hover:shadow-card dark:bg-input-dark sm:rounded-[28px] sm:p-9"
             >
                 <div className="flex items-start gap-3 sm:gap-6">

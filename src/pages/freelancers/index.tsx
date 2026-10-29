@@ -1,16 +1,26 @@
 import CategoryTreeFilter, { selectionChips, type CategorySelection } from "@/features/categories/ui/CategoryTreeFilter";
 import FilterChip from "@/features/categories/ui/FilterChip";
-import { useFreelancerCategories, useFreelancers } from "@/features/freelancers/model/useFreelancers";
+import type { FreelancersQuery } from "@/features/freelancers/model/types";
+import { freelancerQueries, useFreelancerCategories, useFreelancers } from "@/features/freelancers/model/useFreelancers";
 import FreelancerCard from "@/features/freelancers/ui/FreelancerCard";
 import PageMeta from "@/shared/components/seo/PageMeta";
 import { IconSearch } from "@/shared/components/svg/UiIcons";
 import Breadcrumbs from "@/shared/components/ui/BreadCrumbs";
 import Pagination from "@/shared/components/ui/Pagination";
+import { createServerQueryClient, prefetch, type PrefetchedProps } from "@/shared/utils/prefetch";
+import type { GetServerSideProps } from "next";
 import { useState, type FormEvent } from "react";
 import { useTranslation } from "react-i18next";
 
 const LIMIT = 6;
 const EMPTY: CategorySelection = { category: null, specializations: [] };
+
+const freelancersQuery = (page: number, search: string, selection: CategorySelection): FreelancersQuery => ({
+    page,
+    limit: LIMIT,
+    search,
+    ...selection,
+});
 
 export default function TopFreelancers() {
     const { t } = useTranslation("topFreelancers");
@@ -20,7 +30,7 @@ export default function TopFreelancers() {
     const [page, setPage] = useState(1);
 
     const { data: tree = [] } = useFreelancerCategories();
-    const { data, isLoading, isFetching } = useFreelancers({ page, limit: LIMIT, search, ...selection });
+    const { data, isLoading, isFetching } = useFreelancers(freelancersQuery(page, search, selection));
     const freelancers = data?.data ?? [];
     const chips = selectionChips(tree, selection);
 
@@ -102,3 +112,13 @@ export default function TopFreelancers() {
         </div>
     );
 }
+
+export const getServerSideProps: GetServerSideProps<PrefetchedProps> = async () => {
+    const client = createServerQueryClient();
+    return {
+        props: await prefetch(client, [
+            client.prefetchQuery(freelancerQueries.list(freelancersQuery(1, "", EMPTY))),
+            client.prefetchQuery(freelancerQueries.categories()),
+        ]),
+    };
+};

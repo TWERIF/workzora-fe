@@ -1,5 +1,6 @@
 "use client";
 
+import ProtectedRoute from "@/features/auth/model/protectedRoute";
 import { useAuth } from "@/features/auth/model/useAuth";
 import { ProjectStatus } from "@/features/projects/model/types";
 import { useProjects } from "@/features/projects/model/useProjects";
@@ -14,10 +15,9 @@ import { useTranslation } from "react-i18next";
 
 const REVIEWABLE_STATUSES = [ProjectStatus.COMPLETED, ProjectStatus.CLOSED];
 
-export default function LeaveReviewPage() {
+function LeaveReviewContent() {
     const router = useRouter();
     const { t } = useTranslation("review");
-    const locale = router.locale || "en";
     const projectId = router.isReady ? (router.query.projectId as string | undefined) : undefined;
 
     const { user, isLoading: isUserLoading } = useAuth();
@@ -31,7 +31,7 @@ export default function LeaveReviewPage() {
     const isFreelancer = !!user && !!project?.freelancerId && user.id === project.freelancerId;
     const targetId = isClient ? project?.freelancerId : clientId;
 
-    const chatHref = `/${locale}/chats/${projectId}`;
+    const chatHref = `/chats/${projectId}`;
     const goToChat = () => router.push(chatHref);
 
     let notice: string | null = null;
@@ -65,7 +65,7 @@ export default function LeaveReviewPage() {
                                 {myReview && targetId && (
                                     <ButtonGradient
                                         text={t("actions.openProfile")}
-                                        onClick={() => router.push(`/${locale}/public-profile/${targetId}`)}
+                                        onClick={() => router.push(`/public-profile/${targetId}`)}
                                         className="!rounded-[100px] !px-6 !py-3"
                                     />
                                 )}
@@ -78,7 +78,7 @@ export default function LeaveReviewPage() {
                             onCancel={goToChat}
                             onSuccess={() => {
                                 toast.success(t("success"));
-                                router.push(`/${locale}/public-profile/${targetId}`);
+                                router.push(`/public-profile/${targetId}`);
                             }}
                         />
                     )}
@@ -89,5 +89,13 @@ export default function LeaveReviewPage() {
                 </div>
             </div>
         </div>
+    );
+}
+
+export default function LeaveReviewPage() {
+    return (
+        <ProtectedRoute>
+            <LeaveReviewContent />
+        </ProtectedRoute>
     );
 }

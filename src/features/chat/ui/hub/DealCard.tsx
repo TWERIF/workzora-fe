@@ -1,7 +1,6 @@
 import { type Project, ProjectStatus } from "@/features/projects/model/types";
 import DealTimingInfo from "@/features/projects/ui/DealTimingInfo";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
 
 const STATUS_STYLES: Partial<Record<ProjectStatus, string>> = {
@@ -12,7 +11,6 @@ const STATUS_STYLES: Partial<Record<ProjectStatus, string>> = {
 
 export default function DealCard({ project }: { project: Project }) {
     const { t } = useTranslation("chat");
-    const { locale = "en" } = useRouter();
     return (
         <article className="flex flex-col gap-3 rounded-20 bg-main-5 p-5 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
             <div className="flex min-w-0 flex-col gap-2.5">
@@ -23,7 +21,7 @@ export default function DealCard({ project }: { project: Project }) {
                 <DealTimingInfo project={project} />
             </div>
             <Link
-                href={`/${locale}/chats/${project.id}`}
+                href={`/chats/${project.id}`}
                 className="flex h-[38px] shrink-0 items-center justify-center rounded-full bg-gradient px-5 text-xs text-white transition-opacity hover:opacity-90"
             >
                 {t("hub.workingChat")}

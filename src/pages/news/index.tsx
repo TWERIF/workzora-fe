@@ -1,5 +1,6 @@
 import { Post } from "@/features/posts/model/types";
-import { useLatestPosts, usePostList, useSearchPosts } from "@/features/posts/model/usePosts";
+import type { PostListQuery } from "@/features/posts/model/types-paginated-posts";
+import { postQueries, useLatestPosts, usePostList, useSearchPosts } from "@/features/posts/model/usePosts";
 import { BlogHero } from "@/features/posts/ui/BlogHero";
 import { CategoryTabs } from "@/features/posts/ui/CategoryTabs";
 import { FeaturedArticle } from "@/features/posts/ui/FeaturedArticle";
@@ -8,10 +9,19 @@ import { PopularSidebar } from "@/features/posts/ui/PopularSidebar";
 import { PostCard } from "@/features/posts/ui/PostCard";
 import { SubscribeCard } from "@/features/posts/ui/SubscribeCard";
 import PageMeta from "@/shared/components/seo/PageMeta";
+import { createServerQueryClient, prefetch, withTimeout, type PrefetchedProps } from "@/shared/utils/prefetch";
+import type { GetServerSideProps } from "next";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 const POSTS_PER_PAGE = 9;
+
+const postListQuery = (page: number, tag: string | null, featuredId?: string): PostListQuery => ({
+    page,
+    limit: POSTS_PER_PAGE,
+    tag,
+    exclude: !tag ? featuredId : undefined,
+});
 
 const PostGrid = ({ posts }: { posts: Post[] }) => (
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3">
@@ -29,14 +39,11 @@ export const BlogPage = () => {
 
     const isSearchActive = searchTerm.trim().length > 0;
     const { data: latestPosts, isLoading: isLoadingLatest } = useLatestPosts();
-    const featuredPost = (latestPosts as Post[] | undefined)?.[0];
+    const featuredPost = latestPosts?.[0];
     const showFeatured = !tag && page === 1 && Boolean(featuredPost);
 
     const { data: searchResults, isLoading: isSearching } = useSearchPosts(searchTerm);
-    const { data: postList, isLoading } = usePostList(
-        { page, limit: POSTS_PER_PAGE, tag, exclude: !tag ? featuredPost?.id : undefined },
-        !isLoadingLatest,
-    );
+    const { data: postList, isLoading } = usePostList(postListQuery(page, tag, featuredPost?.id), !isLoadingLatest);
     const posts = postList?.data ?? [];
 
     const changePage = (nextPage: number) => {
@@ -88,6 +95,17 @@ export const BlogPage = () => {
             )}
         </div>
     );
+};
+
+export const getServerSideProps: GetServerSideProps<PrefetchedProps> = async () => {
+    const client = createServerQueryClient();
+    const latest = await withTimeout(client.fetchQuery(postQueries.latest()).catch(() => undefined));
+    return {
+        props: await prefetch(client, [
+            client.prefetchQuery(postQueries.list(postListQuery(1, null, latest?.[0]?.id))),
+            client.prefetchQuery(postQueries.popular()),
+        ]),
+    };
 };
 
 export default BlogPage;

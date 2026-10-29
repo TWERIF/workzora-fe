@@ -33,5 +33,18 @@
   "bid": {
     "rates_one": "{{count}} rating",
     "rates_other": "{{count}} ratings"
+  },
+  "proposals_one": "{{count}} proposal",
+  "proposals_other": "{{count}} proposals",
+  "guest": {
+    "title": "Want to work on this project?",
+    "text": "Log in or sign up to see the proposals and send your own.",
+    "login": "Log in",
+    "signup": "Sign up"
+  },
+  "notFound": {
+    "title": "Project not found",
+    "subtitle": "It may have been removed or the link is incorrect.",
+    "back": "Browse projects"
   }
 }

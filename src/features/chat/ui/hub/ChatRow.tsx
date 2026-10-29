@@ -1,6 +1,5 @@
 import { IconCheck, IconChecks, IconUser } from "@/shared/components/svg/UiIcons";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
 import type { ChatListItem } from "../../model/types";
 
@@ -19,13 +18,12 @@ const formatTime = (value: string, locale: string, yesterday: string) => {
 
 export default function ChatRow({ chat }: { chat: ChatListItem }) {
     const { t, i18n } = useTranslation("chat");
-    const { locale = "en" } = useRouter();
     const isOnline = Boolean(chat.counterpartLastSeenAt && Date.now() - new Date(chat.counterpartLastSeenAt).getTime() < ONLINE_WINDOW_MS);
     const yesterday = new Intl.RelativeTimeFormat(i18n.language, { numeric: "auto" }).format(-1, "day");
 
     return (
         <Link
-            href={`/${locale}/chats/${chat.projectId}`}
+            href={`/chats/${chat.projectId}`}
             className="flex items-center gap-4 rounded-20 bg-main-5 p-4 transition-colors hover:bg-primary-10 sm:px-5"
         >
             <span className="relative shrink-0">

@@ -2,7 +2,6 @@ import { Availability, type User } from "@/features/auth/model/types";
 import { useMyPortfolios } from "@/features/portfolio/model/usePortfolio";
 import { useUsers } from "@/features/users/model/useUsers";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { useMemo } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
@@ -64,7 +63,6 @@ const toPayload = (values: SettingsFormValues, isFreelancer: boolean): Partial<U
 
 export default function ProfileSettings({ user }: { user: User }) {
   const { t } = useTranslation("profile");
-  const { locale = "en" } = useRouter();
   const { updateMutaion } = useUsers();
   const { data: portfolios = [] } = useMyPortfolios();
   const isFreelancer = user.role === "freelancer";
@@ -134,7 +132,7 @@ export default function ProfileSettings({ user }: { user: User }) {
                 {t("completion.action")}
               </button>
               <Link
-                href={`/${locale}/public-profile/${user.id}`}
+                href={`/public-profile/${user.id}`}
                 className="flex h-[45px] w-full items-center justify-center rounded-full border border-primary text-sm text-primary transition-colors hover:bg-primary-10"
               >
                 {t("completion.publicProfile")}

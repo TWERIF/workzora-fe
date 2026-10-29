@@ -1,8 +1,9 @@
+import ProtectedRoute from "@/features/auth/model/protectedRoute";
 import { useAuth } from "@/features/auth/model/useAuth";
 import MyProfile from "@/features/profile/ui/MyProfile";
 import Loader from "@/shared/components/ui/Loader";
 
-export default function ProfilePage() {
+function ProfilePageContent() {
   const { user, isLoading: userLoading } = useAuth();
 
 
@@ -15,4 +16,12 @@ export default function ProfilePage() {
   }
 
   return <MyProfile user={user} />;
+}
+
+export default function ProfilePage() {
+  return (
+    <ProtectedRoute>
+      <ProfilePageContent />
+    </ProtectedRoute>
+  );
 }

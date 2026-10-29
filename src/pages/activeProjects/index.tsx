@@ -1,5 +1,4 @@
 import { useUnreadNotifications } from "@/features/notifications/model/useNotifications";
-import { useRouter } from "next/router";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -21,8 +20,6 @@ const ITEMS_PER_PAGE = 10;
 
 function ActiveProjectsContent() {
     const { data: unreadNotifications } = useUnreadNotifications();
-  const router = useRouter();
-  const locale = router.locale || "en";
   const { t } = useTranslation("additions");
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -77,7 +74,7 @@ function ActiveProjectsContent() {
                     <ProjectListItem
                       key={project.id}
                       project={project}
-                      chatHref={getProjectChatHref(locale, project)}
+                      chatHref={getProjectChatHref(project)}
                     />
                   ))}
                 </div>

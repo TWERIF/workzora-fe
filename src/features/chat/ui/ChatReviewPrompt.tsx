@@ -6,7 +6,6 @@ import { useTranslation } from "react-i18next";
 export const ChatReviewPrompt = ({ projectId }: { projectId: string }) => {
     const { t } = useTranslation("chat");
     const router = useRouter();
-    const locale = router.locale || "en";
     const { data: myReview, isLoading } = useMyProjectReview(projectId);
 
     if (isLoading) return null;
@@ -20,7 +19,7 @@ export const ChatReviewPrompt = ({ projectId }: { projectId: string }) => {
             {!myReview && (
                 <ButtonGradient
                     text={t("review.leave")}
-                    onClick={() => router.push(`/${locale}/review/${projectId}`)}
+                    onClick={() => router.push(`/review/${projectId}`)}
                 />
             )}
         </div>

@@ -1,8 +1,10 @@
 import { helpCategoryKey } from "@/features/help/model/types";
-import { useHelpArticles } from "@/features/help/model/useHelp";
+import { helpLocale, helpQueries, useHelpArticles } from "@/features/help/model/useHelp";
 import HelpArticleCard from "@/features/help/ui/HelpArticleCard";
 import HelpHero from "@/features/help/ui/HelpHero";
 import Breadcrumbs from "@/shared/components/ui/BreadCrumbs";
+import { createServerQueryClient, prefetch, type PrefetchedProps } from "@/shared/utils/prefetch";
+import type { GetServerSideProps } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
@@ -42,3 +44,11 @@ export default function HelpCategoryPage() {
         </div>
     );
 }
+
+export const getServerSideProps: GetServerSideProps<PrefetchedProps> = async ({ locale, params }) => {
+    const category = typeof params?.category === "string" ? params.category : undefined;
+    if (!helpCategoryKey(category)) return { notFound: true };
+
+    const client = createServerQueryClient();
+    return { props: await prefetch(client, [client.prefetchQuery(helpQueries.articles(helpLocale(locale), category))]) };
+};

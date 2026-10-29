@@ -20,9 +20,8 @@ export default function TrustedUsers() {
   const { topFreelancers, topClients } = useUsers();
   const items = tab === "freelancers" ? topFreelancers : topClients;
   const router = useRouter();
-  const locale = router.locale || "en";
   const handleShowAll = () => {
-    router.push(`/${locale}/${tab}`)
+    router.push(`/${tab}`)
   };
 
   return (

@@ -6,7 +6,7 @@ export default function Hotjar() {
   if (!HOTJAR_ID || !/^\d+$/.test(HOTJAR_ID)) return null;
 
   return (
-    <Script id="hotjar" strategy="afterInteractive">
+    <Script id="hotjar" strategy="lazyOnload">
       {`(function(h,o,t,j,a,r){
         h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
         h._hjSettings={hjid:${HOTJAR_ID},hjsv:6};

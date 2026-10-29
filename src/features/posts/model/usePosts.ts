@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { queryOptions, useMutation, useQuery } from "@tanstack/react-query";
 import { useEffect, useRef } from "react";
 import type { PostListQuery } from "./types-paginated-posts";
 import {
@@ -30,6 +30,12 @@ export const postKeys = {
     ],
 };
 
+export const postQueries = {
+    latest: () => queryOptions({ queryKey: postKeys.latest, queryFn: getLatestPosts }),
+    list: (query: PostListQuery) => queryOptions({ queryKey: ["posts", query], queryFn: () => getAllPosts(query) }),
+    popular: () => queryOptions({ queryKey: ["posts", "popular"], queryFn: getPopularPosts, staleTime: 5 * 60 * 1000 }),
+};
+
 
 export const usePost = (idOrSlug?: string, initialPost?: Post) => {
     const {
@@ -55,14 +61,13 @@ export const usePost = (idOrSlug?: string, initialPost?: Post) => {
 
 export const usePostList = (query: PostListQuery, enabled = true) =>
     useQuery({
-        queryFn: () => getAllPosts(query),
-        queryKey: ["posts", query],
+        ...postQueries.list(query),
         placeholderData: (previous) => previous,
         enabled,
     });
 
 export const usePopularPosts = () =>
-    useQuery({ queryFn: getPopularPosts, queryKey: ["posts", "popular"], staleTime: 5 * 60 * 1000 });
+    useQuery(postQueries.popular());
 
 export const usePostView = (id?: string) => {
     const counted = useRef<string | null>(null);
@@ -78,10 +83,7 @@ export const useBlogSubscription = () => useMutation({ mutationFn: subscribeToBl
 export const useUnsubscribe = () => useMutation({ mutationFn: unsubscribeFromBlog });
 
 export const useLatestPosts = () => {
-    return useQuery({
-        queryFn: getLatestPosts,
-        queryKey: postKeys.latest,
-    });
+    return useQuery(postQueries.latest());
 };
 
 

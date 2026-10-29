@@ -24,15 +24,14 @@ const cards: InfoCard[] = [
 ];
 
 export const ProfileInfoCards = () => {
-    const { t, i18n } = useTranslation("profile");
-    const locale = i18n.language;
+    const { t } = useTranslation("profile");
 
     return (
         <section className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {cards.map((card) => (
                 <Link
                     key={card.key}
-                    href={`/${locale}${card.href}`}
+                    href={`${card.href}`}
                     className="group flex flex-col gap-6 rounded-3xl bg-surface p-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-success dark:bg-input-dark"
                 >
                     <span className="flex size-14 items-center justify-center rounded-18 bg-success">

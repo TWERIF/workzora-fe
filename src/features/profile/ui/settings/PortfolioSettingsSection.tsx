@@ -3,6 +3,7 @@ import type { PortfolioItem } from "@/features/portfolio/model/types";
 import { useCreatePortfolio, useDeletePortfolio, useMyPortfolios, useUpdatePortfolio } from "@/features/portfolio/model/usePortfolio";
 import PortfolioModal from "@/features/portfolio/ui/PortfolioModal";
 import { IconPencil, IconTrash, IconUpload } from "@/shared/components/svg/UiIcons";
+import ConfirmModal from "@/shared/components/ui/ConfirmModal";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
@@ -17,6 +18,7 @@ export default function PortfolioSettingsSection() {
 
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [editingItem, setEditingItem] = useState<PortfolioItem | null>(null);
+    const [itemToDelete, setItemToDelete] = useState<PortfolioItem | null>(null);
 
     const open = (item: PortfolioItem | null) => {
         setEditingItem(item);
@@ -33,8 +35,11 @@ export default function PortfolioSettingsSection() {
         else createMutation.mutate(formData, { onSuccess, onError });
     };
 
-    const remove = (item: PortfolioItem) => {
-        if (window.confirm(t("portfolioSection.deleteConfirm"))) deleteMutation.mutate(item.id);
+    const remove = (item: PortfolioItem) => setItemToDelete(item);
+
+    const confirmRemove = () => {
+        if (itemToDelete) deleteMutation.mutate(itemToDelete.id);
+        setItemToDelete(null);
     };
 
     const actionClass = "flex h-9 w-9 items-center justify-center rounded-full bg-background/90 shadow-sm backdrop-blur transition-colors";
@@ -84,6 +89,14 @@ export default function PortfolioSettingsSection() {
                 onSubmit={save}
                 initialData={editingItem}
                 isLoading={createMutation.isPending || updateMutation.isPending}
+            />
+
+            <ConfirmModal
+                isOpen={!!itemToDelete}
+                title={t("portfolioSection.deleteConfirm")}
+                danger
+                onConfirm={confirmRemove}
+                onClose={() => setItemToDelete(null)}
             />
         </SettingsSection>
     );

@@ -22,7 +22,16 @@ export const PRIVATE_PATHS = [
     "/404",
 ];
 
-export const isPrivatePath = (path: string) => PRIVATE_PATHS.some((prefix) => path === prefix || path.startsWith(`${prefix}/`));
+export const PUBLIC_PATHS = ["/activeProjects/discussion"];
+
+const matchesPrefix = (path: string, prefix: string) => path === prefix || path.startsWith(`${prefix}/`);
+
+export const isPrivatePath = (path: string) =>
+    !PUBLIC_PATHS.some((prefix) => matchesPrefix(path, prefix)) && PRIVATE_PATHS.some((prefix) => matchesPrefix(path, prefix));
+
+export type SiteLocale = (typeof LOCALES)[number];
+
+export const detectContentLocale = (text: string): SiteLocale => (/[Ѐ-ӿ]/.test(text) ? "uk" : "en");
 
 export const localizedUrl = (path: string, locale: string) => {
     const clean = path === "/" ? "" : path;

@@ -2,13 +2,11 @@ import type { User } from "@/features/auth/model/types";
 import VerificationBlock from "@/features/kyc/ui/VerificationBlock";
 import { IconLockLine } from "@/shared/components/svg/AuthIcons";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
 import ProfileNavigation from "./ProfileNavigation";
 
 export default function SecurityPage({ user }: { user: User }) {
     const { t } = useTranslation("profile");
-    const { locale = "en" } = useRouter();
 
     return (
         <main className="mx-auto grid w-full max-w-[1358px] grid-cols-1 gap-[30px] px-4 pb-[100px] pt-24 text-main-100 lg:grid-cols-[minmax(0,1fr)_317px] lg:items-start lg:pt-[171px]">
@@ -24,7 +22,7 @@ export default function SecurityPage({ user }: { user: User }) {
                     </h2>
                     <p className="mt-2 text-sm leading-6 text-main-50">{t("security.password.text")}</p>
                     <Link
-                        href={`/${locale}/forgot-password?email=${encodeURIComponent(user.email)}`}
+                        href={`/forgot-password?email=${encodeURIComponent(user.email)}`}
                         className="mt-5 inline-flex h-[45px] items-center rounded-full border border-primary px-8 text-sm text-primary transition-colors hover:bg-primary-10"
                     >
                         {t("security.password.action")}

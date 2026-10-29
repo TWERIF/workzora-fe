@@ -1310,5 +1310,9 @@
   },
   "common": {
     "noItems": "Nothing here yet"
+  },
+  "confirmModal": {
+    "confirm": "Confirm",
+    "cancel": "Cancel"
   }
 }

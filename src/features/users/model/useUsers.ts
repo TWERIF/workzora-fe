@@ -1,6 +1,6 @@
 import { User } from "@/features/auth/model/types";
 import { authKeys } from "@/features/auth/model/useAuth";
-import { keepPreviousData, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { keepPreviousData, queryOptions, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { blockUser, count, findOne, getBlockedUsers, getClientProjects, getRelation, removeAvatar, unblockUser, update, uploadAvatar } from "./api";
 
 export const useUsers = () => {
@@ -41,11 +41,15 @@ export const useCountUsers = () => {
   });
 };
 
+export const userQueries = {
+  one: (id: string) => queryOptions({ queryKey: authKeys.findUser(id), queryFn: () => findOne(id) }),
+};
+
 export const useUser = (id?: string) => {
   return useQuery({
-    queryKey: id ? authKeys.findUser(id) : ["user"],
-    queryFn: () => findOne(id!),
+    ...userQueries.one(id ?? ""),
     enabled: !!id,
+    retry: false,
   });
 };
 export const useUserRelation = (id?: string, enabled = true) => {

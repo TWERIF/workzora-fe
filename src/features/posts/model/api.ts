@@ -26,8 +26,8 @@ export const getPost = async (id: string) => {
 };
 
 
-export const getLatestPosts = async () => {
-    const res = await $api.get("/posts/latest");
+export const getLatestPosts = async (): Promise<Post[]> => {
+    const res = await $api.get<Post[]>("/posts/latest");
 
     return res.data;
 };

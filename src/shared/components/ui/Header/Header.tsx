@@ -130,21 +130,20 @@ export default function Header() {
     return () => router.events.off("routeChangeStart", close);
   }, [router.events]);
 
-  const locale = router.locale || "en";
 
   const forClientsItems: NavDropdownLink[] = [
-    { label: t("profile.headers.topFreelancers"), href: `/${locale}/freelancers` },
-    { label: t("profile.headers.postProject"), href: `/${locale}/create-project` },
-    { label: t("profile.headers.contacts"), href: `/${locale}/contacts` },
-    { label: t("profile.headers.news"), href: `/${locale}/news` },
+    { label: t("profile.headers.topFreelancers"), href: `/freelancers` },
+    { label: t("profile.headers.postProject"), href: `/create-project` },
+    { label: t("profile.headers.contacts"), href: `/contacts` },
+    { label: t("profile.headers.news"), href: `/news` },
   ];
 
   const forFreelancersItems: NavDropdownLink[] = [
-    { label: t("profile.headers.topProjects"), href: `/${locale}/top-projects` },
-    { label: t("profile.headers.topClients"), href: `/${locale}/top-clients` },
-    { label: t("profile.headers.contests"), href: `/${locale}/coming-soon` },
-    { label: t("profile.headers.contacts"), href: `/${locale}/contacts` },
-    { label: t("profile.headers.news"), href: `/${locale}/news` },
+    { label: t("profile.headers.topProjects"), href: `/top-projects` },
+    { label: t("profile.headers.topClients"), href: `/top-clients` },
+    { label: t("profile.headers.contests"), href: `/coming-soon` },
+    { label: t("profile.headers.contacts"), href: `/contacts` },
+    { label: t("profile.headers.news"), href: `/news` },
   ];
 
   const showFreelancerMenu = user?.role !== "client";
@@ -162,7 +161,7 @@ export default function Header() {
 
   const account = (
     <div className="flex gap-1.5 items-center">
-      <Link href={`/${locale}/profile`} aria-label={t("profile.headers.profile")}>
+      <Link href={`/profile`} aria-label={t("profile.headers.profile")}>
         <span className="flex items-center gap-1.5">
           {user?.avatarUrl ? <img className="w-11 h-11 rounded-full object-cover" src={user.avatarUrl} alt="" /> : <UserIcon />}
         </span>
@@ -188,8 +187,8 @@ export default function Header() {
                 account
               ) : (
                 <>
-                  <LinkHeader href={`/${locale}/login`}>{t("profile.headers.login")}</LinkHeader>
-                  <LinkHeader href={`/${locale}/registration`}>{t("profile.headers.signup")}</LinkHeader>
+                  <LinkHeader href={`/login`}>{t("profile.headers.login")}</LinkHeader>
+                  <LinkHeader href={`/registration`}>{t("profile.headers.signup")}</LinkHeader>
                 </>
               )}
             </nav>
@@ -226,7 +225,7 @@ export default function Header() {
               {logo}
 
               <Link
-                href={`/${locale}/${isAuthenticated ? "profile" : "login"}`}
+                href={`/${isAuthenticated ? "profile" : "login"}`}
                 aria-label={t(isAuthenticated ? "profile.headers.profile" : "profile.headers.login")}
                 className="flex-shrink-0 text-success"
               >
@@ -250,7 +249,7 @@ export default function Header() {
                     {account}
                     {(user?.role === "client" || user?.role === "freelancer") && (
                       <Link
-                        href={`/${locale}/${user.role === "client" ? "create-project" : "categories"}`}
+                        href={`/${user.role === "client" ? "create-project" : "categories"}`}
                         className="flex h-[42px] items-center rounded-full bg-gradient px-5 text-sm text-white transition-opacity hover:opacity-90"
                       >
                         {t(user.role === "client" ? "profile.headers.postProject" : "profile.headers.findJob")}
@@ -259,13 +258,13 @@ export default function Header() {
                   </>
                 ) : (
                   <div className="flex items-center gap-4">
-                    <LinkHeader hover={false} className="flex items-center gap-2 hover:fill-success hover:text-success" href={`/${locale}/login`}>
+                    <LinkHeader hover={false} className="flex items-center gap-2 hover:fill-success hover:text-success" href={`/login`}>
                       {t("profile.headers.login")}
                     </LinkHeader>
 
                     <div className="w-[1px] h-[10px] bg-[#E2E2E2] dark:bg-[#444444]" />
 
-                    <LinkHeader hover={false} className="flex items-center gap-2 hover:fill-success hover:text-success" href={`/${locale}/registration`}>
+                    <LinkHeader hover={false} className="flex items-center gap-2 hover:fill-success hover:text-success" href={`/registration`}>
                       {t("profile.headers.signup")}
                     </LinkHeader>
                   </div>

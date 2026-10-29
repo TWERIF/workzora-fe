@@ -1,12 +1,14 @@
 import { AuthorCard } from "@/features/posts/ui/post/AuthorCard";
 import { helpCategoryKey } from "@/features/help/model/types";
-import { useHelpArticle } from "@/features/help/model/useHelp";
+import { helpLocale, helpQueries, useHelpArticle } from "@/features/help/model/useHelp";
 import HelpDetails from "@/features/help/ui/HelpDetails";
 import HelpFeedback from "@/features/help/ui/HelpFeedback";
 import HelpHero from "@/features/help/ui/HelpHero";
 import NeedHelp from "@/features/help/ui/NeedHelp";
 import Breadcrumbs from "@/shared/components/ui/BreadCrumbs";
 import RichContent from "@/shared/components/ui/RichContent/RichContent";
+import { createServerQueryClient, loadOrNotFound, prefetch, type PrefetchedProps } from "@/shared/utils/prefetch";
+import type { GetServerSideProps } from "next";
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -69,3 +71,15 @@ export default function HelpArticlePage() {
         </div>
     );
 }
+
+export const getServerSideProps: GetServerSideProps<PrefetchedProps> = async ({ locale, params }) => {
+    const category = typeof params?.category === "string" ? params.category : undefined;
+    const slug = typeof params?.slug === "string" ? params.slug : undefined;
+    if (!helpCategoryKey(category) || !slug) return { notFound: true };
+
+    const client = createServerQueryClient();
+    const loaded = await loadOrNotFound(client.fetchQuery(helpQueries.article(helpLocale(locale), category, slug)));
+    if (loaded.notFound) return { notFound: true };
+
+    return { props: await prefetch(client) };
+};

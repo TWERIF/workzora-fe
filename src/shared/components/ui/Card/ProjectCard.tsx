@@ -7,19 +7,16 @@ import UsdtIcon from "../../svg/UsdtIcon";
 import SkillPin from "../SkillPin";
 import { Project } from "@/features/projects/model/types";
 import Link from "next/link";
-import { useRouter } from "next/router";
 
 export default function ProjectCard({ project }: { project: Project }) {
   const { t } = useTranslation("common");
   const { theme } = useTheme();
 
-  const router = useRouter();
-  const locale = router.locale ?? "en";
 
   const isDark = theme === "dark";
 
   return (
-    <Link href={`/${locale}/activeProjects/discussion/${project.id}`}>
+    <Link href={`/activeProjects/discussion/${project.id}`}>
       <div
         className={`
             relative rounded-3xl p-6 transition-all duration-300 flex flex-col gap-5 shadow-[0px_10px_30px_rgba(0,0,0,0.05)] hover:shadow-xl

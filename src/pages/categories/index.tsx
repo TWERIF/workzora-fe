@@ -1,16 +1,29 @@
-import { useCategoryTree } from "@/features/categories/model/useData";
-import { useAllProjects } from "@/features/projects/model/useProjects";
+import { categoryQueries, useCategoryTree } from "@/features/categories/model/useData";
+import type { FindProjectsParams } from "@/features/projects/model/types";
+import { projectQueries, useAllProjects } from "@/features/projects/model/useProjects";
 import ProjectCard from "@/features/projects/ui/ProjectCard";
 import ProjectFilters, { EMPTY_FILTERS, type ProjectFilterState } from "@/features/projects/ui/ProjectFilters";
 import Breadcrumbs from "@/shared/components/ui/BreadCrumbs";
 import Pagination from "@/shared/components/ui/Pagination";
+import { createServerQueryClient, prefetch, type PrefetchedProps } from "@/shared/utils/prefetch";
 import { Search } from "lucide-react";
+import type { GetServerSideProps } from "next";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import PageMeta from "@/shared/components/seo/PageMeta";
 
 
 const LIMIT = 10;
+
+const projectParams = (search: string, page: number, filters: ProjectFilterState): FindProjectsParams => ({
+    search,
+    page,
+    limit: LIMIT,
+    categories: filters.specializations.length ? filters.specializations : filters.category ? [filters.category] : [],
+    tags: filters.tags,
+    minPrice: filters.minPrice ? Number(filters.minPrice) : undefined,
+    maxPrice: filters.maxPrice ? Number(filters.maxPrice) : undefined,
+});
 
 export default function FindWorkPage() {
     const { t } = useTranslation("findWork");
@@ -21,17 +34,7 @@ export default function FindWorkPage() {
     const [page, setPage] = useState(1);
 
     const { data: tree = [] } = useCategoryTree();
-    const categoryFilter = filters.specializations.length ? filters.specializations : filters.category ? [filters.category] : [];
-
-    const { data, isLoading, isFetching } = useAllProjects({
-        search,
-        page,
-        limit: LIMIT,
-        categories: categoryFilter,
-        tags: filters.tags,
-        minPrice: filters.minPrice ? Number(filters.minPrice) : undefined,
-        maxPrice: filters.maxPrice ? Number(filters.maxPrice) : undefined,
-    });
+    const { data, isLoading, isFetching } = useAllProjects(projectParams(search, page, filters));
 
     useEffect(() => {
         setPage(1);
@@ -109,3 +112,13 @@ export default function FindWorkPage() {
         </div>
     );
 }
+
+export const getServerSideProps: GetServerSideProps<PrefetchedProps> = async () => {
+    const client = createServerQueryClient();
+    return {
+        props: await prefetch(client, [
+            client.prefetchQuery(projectQueries.allProjects(projectParams("", 1, EMPTY_FILTERS))),
+            client.prefetchQuery(categoryQueries.tree()),
+        ]),
+    };
+};

@@ -67,7 +67,7 @@ export const WithdrawalsTable = ({ records }: { records: WithdrawalRecord[] }) =
                                         {
                                             key: "support",
                                             label: t("history.actions.support"),
-                                            onSelect: () => void router.push(`/${router.locale ?? "en"}/contacts?withdrawal=${record.id}`),
+                                            onSelect: () => void router.push(`/contacts?withdrawal=${record.id}`),
                                         },
                                     ]}
                                 />

@@ -6,6 +6,7 @@ import Layout from '@/shared/components/ui/Layout/Layout';
 import SiteSeo from '@/shared/components/seo/SiteSeo';
 import '@/styles/globals.css';
 import ReactQueryProvider from '@/utils/providers/QueryClientProvider';
+import { HydrationBoundary, type DehydratedState } from '@tanstack/react-query';
 import { appWithTranslation } from 'next-i18next';
 import { ThemeProvider } from 'next-themes';
 import type { AppProps } from 'next/app';
@@ -19,15 +20,13 @@ import i18n from '../i18n';
 
 const poppins = Poppins({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800", "900"],
-  style: ["normal", "italic"],
+  weight: ["400", "500", "600", "700", "800"],
   variable: "--font-poppins",
   display: "swap",
 });
 
 const manrope = Manrope({
-  subsets: ["cyrillic", "latin"],
-  weight: ["400", "500", "600", "700", "800"],
+  subsets: ["cyrillic"],
   variable: "--font-manrope",
   display: "swap",
 });
@@ -36,7 +35,12 @@ const i18nByLocale: Record<string, typeof i18n> = {};
 const getI18n = (locale: string) =>
   (i18nByLocale[locale] ??= i18n.cloneInstance({ lng: locale, initImmediate: false }));
 
-function App({ Component, pageProps }: AppProps) {
+interface AppPageProps {
+  dehydratedState?: DehydratedState;
+  seoLocales?: string[];
+}
+
+function App({ Component, pageProps }: AppProps<AppPageProps>) {
   const router = useRouter();
   const { locale, pathname } = router;
 
@@ -52,27 +56,29 @@ function App({ Component, pageProps }: AppProps) {
 
   return (
     <ReactQueryProvider>
-      <style jsx global>{`
-        :root {
-          --font-poppins: ${poppins.style.fontFamily};
-          --font-manrope: ${manrope.style.fontFamily};
-        }
-      `}</style>
-      <ThemeProvider attribute="class" defaultTheme="light">
-        <I18nextProvider i18n={getI18n(locale ?? 'en')}>
-          <Layout>
-            <SiteSeo />
-            {showChrome && <Header />}
-            <div className="font-sans">
-              <Component {...pageProps} />
-            </div>
-            {showChrome && <Footer />}
-            <Toaster position="top-right" richColors offset={112} style={{ zIndex: 10001 }} />
-            <Hotjar />
-            <VisitTracker />
-          </Layout>
-        </I18nextProvider>
-      </ThemeProvider>
+      <HydrationBoundary state={pageProps.dehydratedState}>
+        <style jsx global>{`
+          :root {
+            --font-poppins: ${poppins.style.fontFamily};
+            --font-manrope: ${manrope.style.fontFamily};
+          }
+        `}</style>
+        <ThemeProvider attribute="class" defaultTheme="light">
+          <I18nextProvider i18n={getI18n(locale ?? 'en')}>
+            <Layout>
+              <SiteSeo locales={pageProps.seoLocales} />
+              {showChrome && <Header />}
+              <div className="font-sans">
+                <Component {...pageProps} />
+              </div>
+              {showChrome && <Footer />}
+              <Toaster position="top-right" richColors offset={112} style={{ zIndex: 10001 }} />
+              <Hotjar />
+              <VisitTracker />
+            </Layout>
+          </I18nextProvider>
+        </ThemeProvider>
+      </HydrationBoundary>
     </ReactQueryProvider>
   );
 }

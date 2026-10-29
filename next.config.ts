@@ -17,6 +17,17 @@ const nextConfig: NextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+  async redirects() {
+    return [
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "www.workzora.com" }],
+        destination: "https://workzora.com/:path*",
+        permanent: true,
+        locale: false,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

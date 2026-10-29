@@ -4,14 +4,19 @@ import BidForm from "@/features/bids/ui/BidForm";
 import { BidList } from "@/features/bids/ui/BidList";
 import CategoryThumb from "@/features/categories/ui/CategoryThumb";
 import { Project } from "@/features/projects/model/types";
-import { useProjects } from "@/features/projects/model/useProjects";
+import { projectQueries, useProjects } from "@/features/projects/model/useProjects";
+import { detectContentLocale, LOCALES } from "@/shared/components/seo/site";
 import Breadcrumbs, { BreadcrumbItem } from "@/shared/components/ui/BreadCrumbs";
 import Can from "@/shared/components/ui/Can";
 import Loader from "@/shared/components/ui/Loader";
 import { ClientSidebar } from "@/shared/components/ui/Project/ProjectClientSidebar";
 import { ProjectHeader } from "@/shared/components/ui/Project/ProjectHeader";
 import { ProjectMeta } from "@/shared/components/ui/Project/ProjectMeta";
-import { getRelativeTime } from "@/shared/utils";
+import { getRelativeTime, stripHtml } from "@/shared/utils";
+import { createServerQueryClient, loadOrNotFound, prefetch, type PrefetchedProps } from "@/shared/utils/prefetch";
+import type { GetServerSideProps } from "next";
+import Head from "next/head";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -52,37 +57,87 @@ const BottomActionBar = ({
     );
 }
 
+const GuestBidsCard = ({ project }: { project: Project }) => {
+    const { t } = useTranslation("discussion");
+    const { asPath } = useRouter();
+    const next = encodeURIComponent(asPath);
+
+    return (
+        <section className="mt-8 flex flex-col gap-4 rounded-20 border border-border bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-bg-modalDark sm:flex-row sm:items-center sm:justify-between">
+            <div>
+                <p className="text-sm font-medium text-success">{t("proposals", { count: project.proposalsCount ?? 0 })}</p>
+                <h2 className="mt-1 text-lg font-semibold text-text dark:text-text-dark">{t("guest.title")}</h2>
+                <p className="mt-1 text-sm text-text-muted">{t("guest.text")}</p>
+            </div>
+            <div className="flex flex-shrink-0 gap-3">
+                <Link href={`/login?next=${next}`} className="rounded-full border border-success px-6 py-2.5 text-sm font-medium text-success transition-colors hover:bg-success hover:text-white">
+                    {t("guest.login")}
+                </Link>
+                <Link href={`/registration?next=${next}`} className="rounded-full bg-success px-6 py-2.5 text-sm font-medium text-white transition-opacity hover:opacity-90">
+                    {t("guest.signup")}
+                </Link>
+            </div>
+        </section>
+    );
+};
+
+const ProjectNotFound = () => {
+    const { t } = useTranslation("discussion");
+
+    return (
+        <div className="flex flex-col items-center gap-4 py-20 text-center">
+            <h1 className="text-2xl font-semibold">{t("notFound.title")}</h1>
+            <p className="text-sm text-text-muted">{t("notFound.subtitle")}</p>
+            <Link href="/categories" className="rounded-full bg-success px-6 py-2.5 text-sm font-medium text-white transition-opacity hover:opacity-90">
+                {t("notFound.back")}
+            </Link>
+        </div>
+    );
+};
+
 export default function Discussion() {
     const router = useRouter();
-    const { id } = router.query;
+    const id = typeof router.query.id === "string" ? router.query.id : undefined;
 
     const [isBidFormOpen, setIsBidFormOpen] = useState(false);
 
-    const locale = router.locale || "en";
     const { t } = useTranslation("common");
-    const { t: td } = useTranslation("discussion");
-    const { user, isLoading } = useAuth();
-    const { project, isLoadingProjectData } = useProjects(id as string);
+    const { user, isLoading: isAuthLoading } = useAuth();
+    const { project, isLoadingProjectData } = useProjects(id);
+    const isGuest = !isAuthLoading && !user;
 
-    if (!router.isReady) {
-        return null;
+    if (isLoadingProjectData) return <Loader />;
+
+    if (!project) {
+        return (
+            <div className="w-full min-h-screen bg-bg dark:bg-bg-dark text-text dark:text-text-dark">
+                <div className="w-[90%] max-w-[1200px] mx-auto pt-28 lg:pt-[130px]">
+                    <ProjectNotFound />
+                </div>
+            </div>
+        );
     }
 
-    if (isLoadingProjectData || !project) return <Loader />;
-
     const breadcrumbs: BreadcrumbItem[] = [
-        { label: t("breadcrumbs.home") || "Home", href: `/${locale}` },
-        { label: t("breadcrumbs.activeProjects") || "Active Projects", href: `/${locale}/activeProjects` },
+        { label: t("breadcrumbs.home"), href: `/` },
+        { label: t("breadcrumbs.categories"), href: `/categories` },
         { label: project.title },
     ];
 
+    const description = stripHtml(project.description).slice(0, 160);
     const time = getRelativeTime(project.createdAt);
     const posted = `${t("projects.singleProject.posted") || "Posted"}: ${time.days ?? ""} ${time.days ? (time.days > 1 ? t("projects.singleProject.days") : t("projects.singleProject.day")) : ""
         } ${time.hours}${t("projects.singleProject.hour") || "h"} ${t("projects.singleProject.ago") || "ago"}`;
 
     return (
         <div className="w-full min-h-screen pb-12 bg-bg dark:bg-bg-dark text-text dark:text-text-dark transition-colors">
-            <div className="w-[90%] max-w-[1200px] mx-auto pt-6">
+            <Head>
+                <title key="title">{`${project.title} | Workzora`}</title>
+                <meta key="description" name="description" content={description} />
+                <meta key="og:title" property="og:title" content={project.title} />
+                <meta key="og:description" property="og:description" content={description} />
+            </Head>
+            <div className="w-[90%] max-w-[1200px] mx-auto pt-28 lg:pt-[130px]">
                 <Breadcrumbs customItems={breadcrumbs} />
 
                 <div className="flex flex-col lg:flex-row gap-8 mt-6">
@@ -110,21 +165,34 @@ export default function Discussion() {
                             />
                         </Can>
 
-                        <BidForm
-                            projectId={project.id}
-                            projectPrice={project.price}
-                            isOpen={isBidFormOpen}
-                            onClose={() => setIsBidFormOpen(false)}
-                        />
+                        {user && (
+                            <BidForm
+                                projectId={project.id}
+                                projectPrice={project.price}
+                                isOpen={isBidFormOpen}
+                                onClose={() => setIsBidFormOpen(false)}
+                            />
+                        )}
+
+                        {isGuest && <GuestBidsCard project={project} />}
                     </article>
 
-                    <ClientSidebar client={project.client} />
+                    {project.client && <ClientSidebar client={project.client} />}
                 </div>
-                <BidList project={project} />
+                {user && <BidList project={project} />}
             </div>
-            <article>
-
-            </article>
         </div>
     );
 }
+
+export const getServerSideProps: GetServerSideProps<PrefetchedProps & { seoLocales: string[] }> = async ({ params }) => {
+    const id = String(params?.id ?? "");
+    const client = createServerQueryClient();
+    const loaded = await loadOrNotFound(client.fetchQuery(projectQueries.one(id)));
+    if (loaded.notFound) return { notFound: true };
+
+    const project = loaded.data;
+    const seoLocales = project ? [detectContentLocale(`${project.title} ${project.description}`)] : [...LOCALES];
+
+    return { props: { ...(await prefetch(client)), seoLocales } };
+};

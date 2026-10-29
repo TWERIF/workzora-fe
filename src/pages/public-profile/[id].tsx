@@ -1,6 +1,8 @@
 import PublicProfile from "@/features/freelancerProfile/ui/PublicProfile";
-import { useUser } from "@/features/users/model/useUsers";
+import { userQueries, useUser } from "@/features/users/model/useUsers";
 import Loader from "@/shared/components/ui/Loader";
+import { createServerQueryClient, loadOrNotFound, prefetch, type PrefetchedProps } from "@/shared/utils/prefetch";
+import type { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
 
@@ -22,3 +24,12 @@ export default function PublicProfilePage() {
 
     return <PublicProfile user={user} />;
 }
+
+export const getServerSideProps: GetServerSideProps<PrefetchedProps> = async ({ params }) => {
+    const id = String(params?.id ?? "");
+    const client = createServerQueryClient();
+    const loaded = await loadOrNotFound(client.fetchQuery(userQueries.one(id)));
+    if (loaded.notFound) return { notFound: true };
+
+    return { props: await prefetch(client) };
+};

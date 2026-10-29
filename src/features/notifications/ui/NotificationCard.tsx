@@ -44,7 +44,7 @@ export default function NotificationCard({ notification, onOpen }: NotificationC
     const { locale = "en" } = useRouter();
     const key = KNOWN_KEYS.has(notification.key) ? notification.key : "unknown";
     const isWelcome = key === "welcome";
-    const href = notification.link ? `/${locale}${notification.link}` : null;
+    const href = notification.link ? `${notification.link}` : null;
     const title = t(`items.${key}.title`, notification.params);
     const text = t(`items.${key}.text`, notification.params);
 

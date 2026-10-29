@@ -1,4 +1,5 @@
 
+import ConfirmModal from "@/shared/components/ui/ConfirmModal";
 import { useState } from "react";
 import { toast } from "sonner";
 import { useCardActions } from "../model/usePaymentData";
@@ -21,6 +22,7 @@ interface LinkedCardsSectionProps {
 export const LinkedCardsSection = ({ cards, isVerified, isLoading, isError }: LinkedCardsSectionProps) => {
     const { t } = useTranslation("finances");
     const [isFormOpen, setIsFormOpen] = useState(false);
+    const [cardToRemove, setCardToRemove] = useState<LinkedCard | null>(null);
     const { makePrimary, remove } = useCardActions();
 
     const isLimitReached = cards.length >= MAX_LINKED_CARDS;
@@ -28,8 +30,13 @@ export const LinkedCardsSection = ({ cards, isVerified, isLoading, isError }: Li
     const closeForm = () => setIsFormOpen(false);
 
     const onRemove = (card: LinkedCard) => {
-        if (!card.id || !window.confirm(t("cards.removeConfirm", { last4: card.last4 }))) return;
-        remove.mutate(card.id, { onError: () => toast.error(t("cards.actionFailed")) });
+        if (card.id) setCardToRemove(card);
+    };
+
+    const confirmRemove = () => {
+        const id = cardToRemove?.id;
+        setCardToRemove(null);
+        if (id) remove.mutate(id, { onError: () => toast.error(t("cards.actionFailed")) });
     };
 
     const onMakePrimary = (card: LinkedCard) => {
@@ -89,6 +96,14 @@ export const LinkedCardsSection = ({ cards, isVerified, isLoading, isError }: Li
             <Modal isOpen={isFormOpen} title={t("modal.addTitle")} closeLabel={t("modal.close")} onClose={closeForm}>
                 <PaymentDataForm onSuccess={closeForm} />
             </Modal>
+
+            <ConfirmModal
+                isOpen={!!cardToRemove}
+                title={t("cards.removeConfirm", { last4: cardToRemove?.last4 ?? "" })}
+                danger
+                onConfirm={confirmRemove}
+                onClose={() => setCardToRemove(null)}
+            />
         </section>
     );
 };

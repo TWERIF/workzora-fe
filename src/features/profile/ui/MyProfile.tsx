@@ -26,8 +26,7 @@ const PORTFOLIO_PAGE_SIZE = 5;
 const sectionId = (tab: ProfileTab) => `profile-${tab}`;
 
 export default function MyProfile({ user }: { user: User }) {
-  const { t, i18n } = useTranslation("profile");
-  const locale = i18n.language;
+  const { t } = useTranslation("profile");
 
   const isFreelancer = user.role === UserRole.FREELANCER;
 
@@ -89,7 +88,7 @@ export default function MyProfile({ user }: { user: User }) {
             <ProBanner
               title={t("overview.proBanner.title")}
               description={t("overview.proBanner.description")}
-              href={`/${locale}/pro`}
+              href={`/pro`}
             />
           )}
 
@@ -141,7 +140,7 @@ export default function MyProfile({ user }: { user: User }) {
           <ProfileNavigation activeHref="/profile" />
           <ProfileCompletionCard
             progress={isFreelancer ? progress : calcClientCompletion(user)}
-            actionHref={`/${locale}/profile/settings`}
+            actionHref={`/profile/settings`}
             variant={isFreelancer ? "freelancer" : "client"}
           />
         </aside>

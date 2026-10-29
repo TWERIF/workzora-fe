@@ -1,10 +1,12 @@
 import { HELP_CATEGORIES, helpCategoryKey } from "@/features/help/model/types";
-import { useHelpArticles, useHelpCategories } from "@/features/help/model/useHelp";
+import { helpLocale, helpQueries, useHelpArticles, useHelpCategories } from "@/features/help/model/useHelp";
 import HelpArticleCard from "@/features/help/ui/HelpArticleCard";
 import HelpCategoryIcon from "@/features/help/ui/HelpCategoryIcon";
 import HelpHero from "@/features/help/ui/HelpHero";
 import PageMeta from "@/shared/components/seo/PageMeta";
 import { ArrowIcon } from "@/shared/components/svg/Knowledgebase/ArrowIcon";
+import { createServerQueryClient, prefetch, type PrefetchedProps } from "@/shared/utils/prefetch";
+import type { GetServerSideProps } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
@@ -59,3 +61,15 @@ export default function KnowledgeBasePage() {
         </div>
     );
 }
+
+export const getServerSideProps: GetServerSideProps<PrefetchedProps> = async ({ locale, query }) => {
+    const client = createServerQueryClient();
+    const lang = helpLocale(locale);
+    const search = typeof query.search === "string" ? query.search.trim() : "";
+    return {
+        props: await prefetch(client, [
+            client.prefetchQuery(helpQueries.categories(lang)),
+            ...(search ? [client.prefetchQuery(helpQueries.articles(lang, undefined, search))] : []),
+        ]),
+    };
+};

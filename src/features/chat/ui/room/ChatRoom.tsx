@@ -9,6 +9,7 @@ import { useContactForm } from "@/features/support/model/useSupport";
 import { API_URL } from "@/shared/components/http";
 import { IconSearch } from "@/shared/components/svg/UiIcons";
 import Breadcrumbs, { type BreadcrumbItem } from "@/shared/components/ui/BreadCrumbs";
+import ConfirmModal from "@/shared/components/ui/ConfirmModal";
 import { useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 import { useEffect, useMemo, useRef, useState, type FormEvent } from "react";
@@ -41,6 +42,7 @@ export default function ChatRoom({ project }: { project: Project }) {
     const [messages, setMessages] = useState<ChatMessage[]>([]);
     const [socket, setSocket] = useState<Socket | null>(null);
     const [sending, setSending] = useState(false);
+    const [isInviteConfirmOpen, setIsInviteConfirmOpen] = useState(false);
     const [draftSearch, setDraftSearch] = useState("");
     const [search, setSearch] = useState("");
     const listRef = useRef<HTMLDivElement>(null);
@@ -92,12 +94,17 @@ export default function ChatRoom({ project }: { project: Project }) {
     };
 
     const inviteSupport = () => {
-        if (!user || !window.confirm(t("room.inviteConfirm"))) return;
+        if (user) setIsInviteConfirmOpen(true);
+    };
+
+    const confirmInviteSupport = () => {
+        if (!user) return;
+        setIsInviteConfirmOpen(false);
         contact.mutate(
             {
                 name: [user.firstName, user.lastName].filter(Boolean).join(" ") || user.email,
                 email: user.email,
-                message: t("room.inviteMessage", { title: project.title, url: `${window.location.origin}/${locale}/chats/${project.id}` }),
+                message: t("room.inviteMessage", { title: project.title, url: `${window.location.origin}${locale === router.defaultLocale ? "" : `/${locale}`}/chats/${project.id}` }),
             },
             { onSuccess: () => toast.success(t("room.invited")), onError: () => toast.error(t("room.inviteError")) },
         );
@@ -121,7 +128,7 @@ export default function ChatRoom({ project }: { project: Project }) {
                 onSuccess: () => {
                     queryClient.invalidateQueries({ queryKey: projectKeys.one(project.id) });
                     queryClient.invalidateQueries({ queryKey: walletKeys.all });
-                    void router.push(`/${locale}/review/${project.id}`);
+                    void router.push(`/review/${project.id}`);
                 },
                 onError: () => toast.error(t("completeError")),
             },
@@ -143,8 +150,8 @@ export default function ChatRoom({ project }: { project: Project }) {
     const isFinished = project.status === ProjectStatus.COMPLETED || project.status === ProjectStatus.CLOSED;
 
     const breadcrumbs: BreadcrumbItem[] = [
-        { label: tCommon("breadcrumbs.home"), href: `/${locale}` },
-        { label: t("hub.title"), href: `/${locale}/chats` },
+        { label: tCommon("breadcrumbs.home"), href: `/` },
+        { label: t("hub.title"), href: `/chats` },
         { label: project.title },
     ];
 
@@ -224,6 +231,13 @@ export default function ChatRoom({ project }: { project: Project }) {
             <aside className="flex flex-col gap-3 lg:sticky lg:top-[112px]">
                 <ProfileNavigation activeHref="/chats" />
             </aside>
+
+            <ConfirmModal
+                isOpen={isInviteConfirmOpen}
+                title={t("room.inviteConfirm")}
+                onConfirm={confirmInviteSupport}
+                onClose={() => setIsInviteConfirmOpen(false)}
+            />
         </main>
     );
 }

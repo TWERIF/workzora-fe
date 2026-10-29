@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { queryOptions, useMutation, useQuery } from "@tanstack/react-query";
 import {
   count,
   create,
@@ -34,6 +34,19 @@ export const projectKeys = {
   allProjects: (params: FindProjectsParams) => ["all-projects", params],
 };
 
+export const projectQueries = {
+  one: (id: string) =>
+    queryOptions({
+      queryKey: projectKeys.one(id),
+      queryFn: () => getOne(id),
+    }),
+  allProjects: (params: FindProjectsParams) =>
+    queryOptions({
+      queryKey: projectKeys.allProjects(params),
+      queryFn: () => findAllProjects(params),
+    }),
+};
+
 export const useProjects = (id?: string) => {
   const createMutation = useMutation({
     mutationFn: (body: CreateProjectDto) => create(body),
@@ -66,16 +79,17 @@ export const useProjects = (id?: string) => {
     queryKey: projectKeys.topProjects,
   });
 
-  const { data: project, isLoading: isLoadingProjectData } = useQuery({
-    queryFn: () => getOne(id!),
+  const { data: project, isLoading: isLoadingProjectData, isError: isProjectError } = useQuery({
+    ...projectQueries.one(id ?? ""),
     enabled: !!id,
-    queryKey: projectKeys.one(id!),
+    retry: false,
   });
 
   return {
     topProjects,
     project,
     isLoadingProjectData,
+    isProjectError,
 
     createMutation,
     updateMutation,
@@ -116,8 +130,7 @@ export const useCountProjects = () => {
 
 export const useAllProjects = (params: FindProjectsParams) => {
   return useQuery({
-    queryFn: () => findAllProjects(params),
-    queryKey: projectKeys.allProjects(params),
+    ...projectQueries.allProjects(params),
     placeholderData: (previousData) => previousData,
   });
 };

@@ -1,4 +1,5 @@
-import { DEFAULT_LOCALE, LOCALES, localizedUrl } from "@/shared/components/seo/site";
+import { API_URL } from "@/shared/components/http";
+import { DEFAULT_LOCALE, detectContentLocale, LOCALES, localizedUrl } from "@/shared/components/seo/site";
 import type { GetServerSideProps } from "next";
 
 const STATIC_PATHS = [
@@ -37,7 +38,7 @@ interface Entry {
     lastmod?: string;
 }
 
-const apiBase = () => (process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "").replace(/\/+$/, "");
+const apiBase = () => (process.env.API_INTERNAL_URL || API_URL).replace(/\/+$/, "");
 
 const getJson = async <T,>(path: string): Promise<T | null> => {
     try {
@@ -48,15 +49,43 @@ const getJson = async <T,>(path: string): Promise<T | null> => {
     }
 };
 
-const blogEntries = async (): Promise<Entry[]> => {
-    const entries: Entry[] = [];
-    for (let page = 1; page <= 20; page++) {
-        const data = await getJson<{ data: { id: string; slug?: string | null; updatedAt: string }[]; totalPages: number }>(`/posts?page=${page}&limit=50`);
+const getAllPages = async <T,>(path: string, maxPages = 20): Promise<T[]> => {
+    const items: T[] = [];
+    const separator = path.includes("?") ? "&" : "?";
+    for (let page = 1; page <= maxPages; page++) {
+        const data = await getJson<{ data: T[]; totalPages: number }>(`${path}${separator}page=${page}&limit=50`);
         if (!data) break;
-        entries.push(...data.data.map((post) => ({ path: `/news/${post.slug || post.id}`, locales: LOCALES, lastmod: post.updatedAt })));
+        items.push(...data.data);
         if (page >= data.totalPages) break;
     }
-    return entries;
+    return items;
+};
+
+const blogEntries = async (): Promise<Entry[]> => {
+    const posts = await getAllPages<{ id: string; slug?: string | null; title: string; teaser?: string; updatedAt: string }>("/posts");
+    return posts.map((post) => ({
+        path: `/news/${post.slug || post.id}`,
+        locales: [detectContentLocale(`${post.title} ${post.teaser ?? ""}`)],
+        lastmod: post.updatedAt,
+    }));
+};
+
+const projectEntries = async (): Promise<Entry[]> => {
+    const projects = await getAllPages<{ id: string; title: string; description: string; updatedAt: string }>("/projects");
+    return projects.map((project) => ({
+        path: `/activeProjects/discussion/${project.id}`,
+        locales: [detectContentLocale(`${project.title} ${project.description}`)],
+        lastmod: project.updatedAt,
+    }));
+};
+
+const profileEntries = async (): Promise<Entry[]> => {
+    const [freelancers, clients] = await Promise.all([
+        getAllPages<{ id: string }>("/users/freelancers"),
+        getAllPages<{ id: string }>("/users/clients/top"),
+    ]);
+    const ids = [...new Set([...freelancers, ...clients].map((user) => user.id))];
+    return ids.map((id) => ({ path: `/public-profile/${id}`, locales: LOCALES }));
 };
 
 const helpEntries = async (): Promise<Entry[]> => {
@@ -84,8 +113,8 @@ const renderEntry = ({ path, locales, lastmod }: Entry) =>
         .join("");
 
 export const getServerSideProps: GetServerSideProps = async ({ res }) => {
-    const [blog, help] = await Promise.all([blogEntries(), helpEntries()]);
-    const entries: Entry[] = [...STATIC_PATHS.map((path) => ({ path, locales: LOCALES })), ...blog, ...help];
+    const [blog, help, projects, profiles] = await Promise.all([blogEntries(), helpEntries(), projectEntries(), profileEntries()]);
+    const entries: Entry[] = [...STATIC_PATHS.map((path) => ({ path, locales: LOCALES })), ...blog, ...help, ...projects, ...profiles];
     const xml = `<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">${entries.map(renderEntry).join("")}</urlset>`;
     res.setHeader("Content-Type", "application/xml; charset=utf-8");
     res.setHeader("Cache-Control", "public, max-age=3600");

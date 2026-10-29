@@ -8,7 +8,6 @@ import { useTranslation } from "react-i18next";
 export default function LookingFor() {
     const { t } = useTranslation("main");
     const router = useRouter();
-    const locale = router.locale || "en";
 
     const { data } = useCategoriesList({
         page: 1,
@@ -17,7 +16,7 @@ export default function LookingFor() {
 
     const categories = data?.items ?? [];
 
-    const toSearch = () => router.push(`/${locale}/categories`);
+    const toSearch = () => router.push(`/categories`);
 
     return (
         <div className="relative bg-white dark:bg-bg-dark text-[#333333] rounded-t-[40px] md:rounded-t-[60px] pt-14 pb-16 mt-4">

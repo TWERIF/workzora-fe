@@ -2,8 +2,9 @@ import { useAuth } from "@/features/auth/model/useAuth";
 import { useSwitchRole } from "@/features/auth/model/useSwitchRole";
 import { useUnreadNotifications } from "@/features/notifications/model/useNotifications";
 import NavIcon, { NavIconName } from "@/shared/components/svg/NavIcon";
+import ConfirmModal from "@/shared/components/ui/ConfirmModal";
 import Link from "next/link";
-import type { ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
 
@@ -60,6 +61,7 @@ export const ProfileNavigation = ({
     const locale = i18n.language;
     const { data: unread } = useUnreadNotifications();
     const unreadCount = unread?.total ?? 0;
+    const [isSwitchConfirmOpen, setIsSwitchConfirmOpen] = useState(false);
 
     const itemClasses = (isActive: boolean, accent?: boolean) =>
         `flex items-center gap-2 rounded-2xl py-[14px] text-sm transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-success ${isActive
@@ -92,13 +94,13 @@ export const ProfileNavigation = ({
             <li key={item.labelKey}>
                 {renderLink ? (
                     renderLink({
-                        href: `/${locale}${item.href}`,
+                        href: `${item.href}`,
                         className,
                         children: content,
                     })
                 ) : (
                     <Link
-                        href={`/${locale}${item.href}`}
+                        href={`${item.href}`}
                         className={className}
                         aria-current={isActive ? "page" : undefined}
                     >
@@ -117,9 +119,11 @@ export const ProfileNavigation = ({
     const targetRoleLabel = t(targetRole === "client" ? "nav.roleClient" : "nav.roleFreelancer");
 
     const handleSwitchRole = () => {
-        if (switchRole.isPending) return;
-        if (!window.confirm(t("nav.switchConfirm", { role: targetRoleLabel }))) return;
+        if (!switchRole.isPending) setIsSwitchConfirmOpen(true);
+    };
 
+    const confirmSwitchRole = () => {
+        setIsSwitchConfirmOpen(false);
         switchRole.mutate(undefined, {
             onSuccess: () => toast.success(t("nav.switchSuccess", { role: targetRoleLabel })),
             onError: (error) => {
@@ -174,6 +178,13 @@ export const ProfileNavigation = ({
 
                 <ul className="flex flex-col gap-0.5">{secondaryItems.map(renderItem)}</ul>
             </div>
+
+            <ConfirmModal
+                isOpen={isSwitchConfirmOpen}
+                title={t("nav.switchConfirm", { role: targetRoleLabel })}
+                onConfirm={confirmSwitchRole}
+                onClose={() => setIsSwitchConfirmOpen(false)}
+            />
         </nav>
     );
 };

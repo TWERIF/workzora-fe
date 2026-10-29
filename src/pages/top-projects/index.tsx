@@ -1,17 +1,28 @@
-import { useCategoryTree } from "@/features/categories/model/useData";
+import { categoryQueries, useCategoryTree } from "@/features/categories/model/useData";
 import CategoryTreeFilter, { selectionChips, type CategorySelection } from "@/features/categories/ui/CategoryTreeFilter";
 import FilterChip from "@/features/categories/ui/FilterChip";
-import { useAllProjects } from "@/features/projects/model/useProjects";
+import type { FindProjectsParams } from "@/features/projects/model/types";
+import { projectQueries, useAllProjects } from "@/features/projects/model/useProjects";
 import ProjectCard from "@/features/projects/ui/ProjectCard";
 import PageMeta from "@/shared/components/seo/PageMeta";
 import { IconSearch } from "@/shared/components/svg/UiIcons";
 import Breadcrumbs from "@/shared/components/ui/BreadCrumbs";
 import Pagination from "@/shared/components/ui/Pagination";
+import { createServerQueryClient, prefetch, type PrefetchedProps } from "@/shared/utils/prefetch";
+import type { GetServerSideProps } from "next";
 import { useState, type FormEvent } from "react";
 import { useTranslation } from "react-i18next";
 
 const LIMIT = 12;
 const EMPTY: CategorySelection = { category: null, specializations: [] };
+
+const projectParams = (page: number, search: string, selection: CategorySelection): FindProjectsParams => ({
+    page,
+    limit: LIMIT,
+    search,
+    categories: selection.specializations.length ? selection.specializations : selection.category ? [selection.category] : [],
+    sort: "top",
+});
 
 export default function TopProjects() {
     const { t } = useTranslation("findWork");
@@ -21,8 +32,7 @@ export default function TopProjects() {
     const [page, setPage] = useState(1);
 
     const { data: tree = [] } = useCategoryTree();
-    const categories = selection.specializations.length ? selection.specializations : selection.category ? [selection.category] : [];
-    const { data, isLoading, isFetching } = useAllProjects({ page, limit: LIMIT, search, categories, sort: "top" });
+    const { data, isLoading, isFetching } = useAllProjects(projectParams(page, search, selection));
     const projects = data?.data ?? [];
     const chips = selectionChips(tree, selection);
 
@@ -104,3 +114,13 @@ export default function TopProjects() {
         </div>
     );
 }
+
+export const getServerSideProps: GetServerSideProps<PrefetchedProps> = async () => {
+    const client = createServerQueryClient();
+    return {
+        props: await prefetch(client, [
+            client.prefetchQuery(projectQueries.allProjects(projectParams(1, "", EMPTY))),
+            client.prefetchQuery(categoryQueries.tree()),
+        ]),
+    };
+};

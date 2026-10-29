@@ -1,17 +1,26 @@
 import { Pagination } from "@/features/freelancerProfile/ui/Pagination";
-import type { RatingStars } from "@/features/topClients/model/types";
-import { useTopClients } from "@/features/topClients/model/useTopClients";
+import type { RatingStars, TopClientsParams } from "@/features/topClients/model/types";
+import { topClientQueries, useTopClients } from "@/features/topClients/model/useTopClients";
 import { ClientCard } from "@/features/topClients/ui/ClientCard";
 import { ClientFilters } from "@/features/topClients/ui/ClientFilters";
 import SearchRoundedIcon from "@/shared/components/svg/SearchRoundedIcon";
 import Breadcrumbs from "@/shared/components/ui/BreadCrumbs";
 import ButtonGradient from "@/shared/components/ui/Button/ButtonGradient";
 import Loader from "@/shared/components/ui/Loader";
+import { createServerQueryClient, prefetch, type PrefetchedProps } from "@/shared/utils/prefetch";
+import type { GetServerSideProps } from "next";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import PageMeta from "@/shared/components/seo/PageMeta";
 
 const ITEMS_PER_PAGE = 8;
+
+const clientsParams = (page: number, search: string, ratings: RatingStars[]): TopClientsParams => ({
+    page,
+    limit: ITEMS_PER_PAGE,
+    search,
+    ratings,
+});
 
 export default function TopClients() {
     const { t } = useTranslation("topClients");
@@ -21,7 +30,7 @@ export default function TopClients() {
     const [ratings, setRatings] = useState<RatingStars[]>([]);
     const [page, setPage] = useState(1);
 
-    const { data, isLoading, isError } = useTopClients({ page, limit: ITEMS_PER_PAGE, search, ratings });
+    const { data, isLoading, isError } = useTopClients(clientsParams(page, search, ratings));
 
     const toggleRating = (stars: RatingStars) => {
         setRatings((prev) =>
@@ -107,3 +116,10 @@ export default function TopClients() {
         </div>
     );
 }
+
+export const getServerSideProps: GetServerSideProps<PrefetchedProps> = async () => {
+    const client = createServerQueryClient();
+    return {
+        props: await prefetch(client, [client.prefetchQuery(topClientQueries.list(clientsParams(1, "", [])))]),
+    };
+};

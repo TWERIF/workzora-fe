@@ -20,7 +20,7 @@ function SupportContent() {
             <h1 className="text-3xl font-bold">{t("supportPage.title")}</h1>
             <p className="mt-2 text-sm text-text-light">{t("supportPage.subtitle")}</p>
           </div>
-          <Link href={`/${i18n.language}/contacts`} className="rounded-20 bg-gradient px-15 py-13 text-sm font-semibold text-white">
+          <Link href={`/contacts`} className="rounded-20 bg-gradient px-15 py-13 text-sm font-semibold text-white">
             {t("supportPage.newRequest")}
           </Link>
         </div>

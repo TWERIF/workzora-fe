@@ -37,8 +37,7 @@ export const UserNavigation = ({
     notificationsCount = 0,
     renderLink,
 }: UserNavigationProps) => {
-    const { t, i18n } = useTranslation("finances");
-    const locale = i18n.language;
+    const { t } = useTranslation("finances");
 
     const itemClasses = (isActive: boolean) =>
         `flex items-center gap-3 rounded-20 px-4 py-3 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-success ${isActive
@@ -71,13 +70,13 @@ export const UserNavigation = ({
             <li key={item.key}>
                 {renderLink ? (
                     renderLink({
-                        href: `/${locale}${item.href}`,
+                        href: `${item.href}`,
                         className,
                         children: content,
                     })
                 ) : (
                     <Link
-                        href={`/${locale}${item.href}`}
+                        href={`${item.href}`}
                         className={className}
                         aria-current={isActive ? "page" : undefined}
                     >

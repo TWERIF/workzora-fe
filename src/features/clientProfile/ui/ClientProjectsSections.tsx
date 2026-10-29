@@ -3,7 +3,6 @@ import { Pagination } from "@/features/freelancerProfile/ui/Pagination";
 import UsdtIcon from "@/shared/components/svg/UsdtIcon";
 import { IconEye } from "@/shared/components/svg/UiIcons";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
 
 const formatDate = (value: string) => {
@@ -21,14 +20,13 @@ const Price = ({ value }: { value: number }) => (
 
 function ActiveProjectCard({ project }: { project: ClientProject }) {
     const { t } = useTranslation("common");
-    const { locale = "en" } = useRouter();
     const tags = project.tags.length ? project.tags : project.categories.map((category) => category.title);
 
     return (
         <article className="rounded-[24px] bg-main-5 p-5 sm:p-6">
             <div className="flex flex-wrap items-start justify-between gap-3">
                 <div className="flex min-w-0 flex-wrap items-center gap-3">
-                    <Link href={`/${locale}/activeProjects/discussion/${project.id}`} className="break-words text-lg font-semibold hover:text-primary">
+                    <Link href={`/activeProjects/discussion/${project.id}`} className="break-words text-lg font-semibold hover:text-primary">
                         {project.title}
                     </Link>
                     <span className="rounded-full border border-primary/30 bg-primary-10 px-3 py-0.5 text-xs text-primary">{t("profile.client.statusActive")}</span>

@@ -2,7 +2,8 @@ import { useAuth } from "@/features/auth/model/useAuth";
 import { useUserRelation } from "@/features/users/model/useUsers";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import type { ReactNode } from "react";
+import ConfirmModal from "@/shared/components/ui/ConfirmModal";
+import { useState, type ReactNode } from "react";
 import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
 import { BlockIcon, MessageIcon, ReportIcon } from "./icons";
@@ -10,7 +11,7 @@ import { BlockIcon, MessageIcon, ReportIcon } from "./icons";
 interface QuickActionsCardProps {
     profileId: string;
     profileRole: string;
-    primary?: { label: string; href: string };
+    primary?: { label: string; href: string } | null;
 }
 
 const tileClass = "flex h-[50px] w-full items-center justify-center rounded-[10px] border transition-colors";
@@ -43,36 +44,42 @@ function Tile({ label, icon, tone, href, onClick, disabled, title }: {
 
 export const QuickActionsCard = ({ profileId, profileRole, primary }: QuickActionsCardProps) => {
     const { t } = useTranslation("common");
-    const { locale = "en", asPath } = useRouter();
+    const { asPath } = useRouter();
     const { user, isAuthenticated } = useAuth();
     const { relation, toggleBlock, isToggling } = useUserRelation(profileId, isAuthenticated);
+    const [isBlockConfirmOpen, setIsBlockConfirmOpen] = useState(false);
 
     if (user?.id === profileId) return null;
 
-    const loginHref = `/${locale}/login?next=${encodeURIComponent(asPath)}`;
+    const loginHref = `/login?next=${encodeURIComponent(asPath)}`;
     const blocked = relation?.blockedByMe ?? false;
-    const chatHref = relation?.sharedProjectId ? `/${locale}/chats/${relation.sharedProjectId}` : undefined;
+    const chatHref = relation?.sharedProjectId ? `/chats/${relation.sharedProjectId}` : undefined;
     const defaultPrimary =
         profileRole === "freelancer"
-            ? { label: t("profile.header.offerJob"), href: `/${locale}/create-project` }
+            ? { label: t("profile.header.offerJob"), href: `/create-project` }
             : { label: t("profile.header.viewProjects"), href: "#profile-active" };
-    const action = primary ?? defaultPrimary;
+    const action = primary === null ? null : primary ?? defaultPrimary;
     const canUsePrimary = profileRole !== "freelancer" || !user || user.role === "client";
 
-    const onBlock = () => {
-        if (!isAuthenticated) return;
-        if (!blocked && !window.confirm(t("profile.header.blockConfirm"))) return;
+    const runToggleBlock = () => {
         toggleBlock(!blocked, {
             onSuccess: () => toast.success(t(blocked ? "profile.header.unblocked" : "profile.header.blocked")),
             onError: () => toast.error(t("profile.header.actionError")),
+            onSettled: () => setIsBlockConfirmOpen(false),
         });
+    };
+
+    const onBlock = () => {
+        if (!isAuthenticated) return;
+        if (blocked) runToggleBlock();
+        else setIsBlockConfirmOpen(true);
     };
 
     return (
         <aside className="rounded-22 bg-main-5 p-6 text-main-100">
             <h2 className="text-lg font-medium">{t("profile.header.quickActions")}</h2>
 
-            {canUsePrimary && (
+            {action && canUsePrimary && (
                 <Link
                     href={isAuthenticated || action.href.startsWith("#") ? action.href : loginHref}
                     className="mt-4 flex h-[45px] w-full items-center justify-center rounded-full bg-gradient text-sm text-white transition-opacity hover:opacity-90"
@@ -102,9 +109,20 @@ export const QuickActionsCard = ({ profileId, profileRole, primary }: QuickActio
                     label={t("profile.header.report")}
                     icon={<ReportIcon className="h-5 w-5" />}
                     tone="border-star/20 bg-star/5 text-star hover:border-star/50"
-                    href={`/${locale}/contacts?report=${profileId}`}
+                    href={`/contacts?report=${profileId}`}
                 />
             </div>
+
+            <ConfirmModal
+                isOpen={isBlockConfirmOpen}
+                title={t("profile.header.block")}
+                description={t("profile.header.blockConfirm")}
+                confirmLabel={t("profile.header.block")}
+                danger
+                isLoading={isToggling}
+                onConfirm={runToggleBlock}
+                onClose={() => setIsBlockConfirmOpen(false)}
+            />
         </aside>
     );
 };

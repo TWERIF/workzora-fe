@@ -12,14 +12,13 @@ export default function TrustedFreelancers({ handleReg }: TrustedFreelancersProp
     const { theme } = useTheme();
     const isDark = theme === "dark";
     const router = useRouter();
-    const locale = router.locale || "en";
 
     const goToFreelancers = () => {
         if (handleReg) {
             handleReg();
             return;
         }
-        router.push(`/${locale}/freelancers`);
+        router.push(`/freelancers`);
     };
 
     return (

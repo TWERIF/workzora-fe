@@ -8,7 +8,6 @@ const OG_LOCALE: Record<string, string> = { en: "en_US", uk: "uk_UA" };
 const ROUTE_KEYS: Record<string, string> = {
     "/404": "notFound",
     "/activeProjects": "activeProjects",
-    "/activeProjects/discussion/[id]": "project",
     "/newsletter/unsubscribe": "unsubscribe",
     "/payment": "payment",
     "/payment-data": "finances",
@@ -18,12 +17,15 @@ const ROUTE_KEYS: Record<string, string> = {
     "/review/[projectId]": "review",
 };
 
-export default function SiteSeo() {
+export default function SiteSeo({ locales }: { locales?: string[] }) {
     const { t } = useTranslation("seo");
     const { asPath, pathname, locale = DEFAULT_LOCALE } = useRouter();
     const routeKey = ROUTE_KEYS[pathname];
     const path = asPath.split(/[?#]/)[0] || "/";
-    const canonical = localizedUrl(path, locale);
+    const pageLocales = locales?.length ? locales : [...LOCALES];
+    const canonicalLocale = pageLocales.includes(locale) ? locale : pageLocales[0];
+    const defaultLocale = pageLocales.includes(DEFAULT_LOCALE) ? DEFAULT_LOCALE : pageLocales[0];
+    const canonical = localizedUrl(path, canonicalLocale);
     const hidden = isPrivatePath(path) || pathname === "/404" || pathname === "/_error";
 
     return (
@@ -36,10 +38,10 @@ export default function SiteSeo() {
             ) : (
                 <>
                     <link key="canonical" rel="canonical" href={canonical} />
-                    {LOCALES.map((item) => (
+                    {pageLocales.map((item) => (
                         <link key={`alternate-${item}`} rel="alternate" hrefLang={item} href={localizedUrl(path, item)} />
                     ))}
-                    <link key="alternate-default" rel="alternate" hrefLang="x-default" href={localizedUrl(path, DEFAULT_LOCALE)} />
+                    <link key="alternate-default" rel="alternate" hrefLang="x-default" href={localizedUrl(path, defaultLocale)} />
                 </>
             )}
             <meta key="og:site_name" property="og:site_name" content="WorkZora" />

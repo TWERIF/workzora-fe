@@ -10,15 +10,15 @@ import { Post } from "@/features/posts/model/types";
 import { findPostForPage } from "@/features/posts/model/api";
 import type { GetServerSideProps } from "next";
 import Head from "next/head";
-import { SITE_URL } from "@/shared/components/seo/site";
+import { detectContentLocale } from "@/shared/components/seo/site";
+import { stripHtml } from "@/shared/utils";
 import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
 
 
-const stripHtml = (html: string) => html.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
-
 interface PostDetailPageProps {
     initialPost: Post | null;
+    seoLocales?: string[];
 }
 
 
@@ -30,8 +30,6 @@ const PostDetailPage = ({ initialPost }: PostDetailPageProps) => {
     const { post, isLoadingPost } = usePost(slug, initialPost ?? undefined);
     usePostView(post?.id);
     const description = post ? stripHtml(post.teaser).slice(0, 160) : "";
-    const localePrefix = router.locale && router.locale !== router.defaultLocale ? `/${router.locale}` : "";
-    const canonical = post?.slug ? `${SITE_URL}${localePrefix}/news/${post.slug}` : undefined;
 
     return (
         <div className="mx-auto w-full max-w-[1424px] px-4 pb-24 pt-28 text-main-100 sm:px-8 lg:pt-[130px]">
@@ -59,8 +57,6 @@ const PostDetailPage = ({ initialPost }: PostDetailPageProps) => {
                         <meta key="og:title" property="og:title" content={post.title} />
                         <meta key="og:description" property="og:description" content={description} />
                         {post.imageUrl && <meta key="og:image" property="og:image" content={post.imageUrl} />}
-                        {canonical && <link key="canonical" rel="canonical" href={canonical} />}
-                        {canonical && <meta key="og:url" property="og:url" content={canonical} />}
                     </Head>
                     <PostHero post={post} />
 
@@ -99,7 +95,7 @@ export const getServerSideProps: GetServerSideProps<PostDetailPageProps> = async
         return { redirect: { destination: `${prefix}/news/${post.slug}`, permanent: true } };
     }
 
-    return { props: { initialPost: post } };
+    return { props: { initialPost: post, seoLocales: [detectContentLocale(`${post.title} ${post.teaser}`)] } };
 };
 
 export default PostDetailPage;

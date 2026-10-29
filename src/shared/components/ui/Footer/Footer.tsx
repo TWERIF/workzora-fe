@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { useRouter } from "next/router";
 import type { TFunction } from "i18next";
 import { useTranslation } from "react-i18next";
 import { LogoGreen } from "../../svg/LogoGreen";
@@ -9,30 +8,29 @@ type ColumnKey = "freelancer" | "about" | "terms";
 
 export default function Footer() {
   const { t } = useTranslation("footer");
-  const { locale } = useRouter();
 
   const hrefsByColumn: Record<ColumnKey, string[]> = {
     freelancer: [
-      `/${locale}/categories`,
-      `/${locale}/coming-soon`,
-      `/${locale}/freelancers`,
-      `/${locale}/news`,
+      `/categories`,
+      `/coming-soon`,
+      `/freelancers`,
+      `/news`,
     ],
     about: [
-      `/${locale}/about-us`,
-      `/${locale}/about-us#how-it-works`,
-      `/${locale}/about-us#benefits`,
-      `/${locale}/about-us#team`,
-      `/${locale}/about-us#vision`,
-      `/${locale}/about-us#contacts`,
-      `/${locale}/knowledgebase`,
+      `/about-us`,
+      `/about-us#how-it-works`,
+      `/about-us#benefits`,
+      `/about-us#team`,
+      `/about-us#vision`,
+      `/about-us#contacts`,
+      `/knowledgebase`,
     ],
     terms: [
-      `/${locale}/privacy-policy`,
-      `/${locale}/terms-and-conditions`,
-      `/${locale}/copyright-policy`,
-      `/${locale}/code-of-conduct`,
-      `/${locale}/fees`,
+      `/privacy-policy`,
+      `/terms-and-conditions`,
+      `/copyright-policy`,
+      `/code-of-conduct`,
+      `/fees`,
     ],
   };
 
@@ -122,12 +120,12 @@ const FooterColumn = ({
       <ul className="flex flex-col gap-2 md:gap-3">
         {links.map((link, idx) => (
           <li key={idx} className="leading-tight">
-            <a
+            <Link
               href={hrefs[idx] ?? `/${columnKey}`}
               className="text-sm text-text-muted hover:text-success transition-all block w-full break-words whitespace-normal"
             >
               {link}
-            </a>
+            </Link>
           </li>
         ))}
       </ul>

@@ -2,12 +2,10 @@ import { useBlockedUsers } from "@/features/users/model/useUsers";
 import { IconUser } from "@/shared/components/svg/UiIcons";
 import Loader from "@/shared/components/ui/Loader";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
 
 export default function BlockedList({ search }: { search: string }) {
     const { t, i18n } = useTranslation("chat");
-    const { locale = "en" } = useRouter();
     const { blocked, isLoading, unblock, isUnblocking } = useBlockedUsers();
     const needle = search.trim().toLowerCase();
     const visible = needle
@@ -23,7 +21,7 @@ export default function BlockedList({ search }: { search: string }) {
         <ul className="flex flex-col gap-2.5">
             {visible.map(({ user, blockedAt }) => (
                 <li key={user.id} className="flex items-center gap-4 rounded-20 bg-main-5 p-4 sm:px-5">
-                    <Link href={`/${locale}/public-profile/${user.id}`} className="flex min-w-0 flex-1 items-center gap-4">
+                    <Link href={`/public-profile/${user.id}`} className="flex min-w-0 flex-1 items-center gap-4">
                         <span className="flex h-[50px] w-[50px] shrink-0 items-center justify-center overflow-hidden rounded-full bg-main-10 text-main-50">
                             {user.avatarUrl ? <img src={user.avatarUrl} alt="" className="h-full w-full object-cover" /> : <IconUser size={24} />}
                         </span>
