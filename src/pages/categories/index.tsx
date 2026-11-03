@@ -56,9 +56,11 @@ export default function FindWorkPage() {
                 <h1 className="font-bold text-4xl text-text dark:text-text-dark">
                     {t("findWork.title")}
                 </h1>
-                <span className="font-bold text-xl text-success">
-                    ({data?.total ?? 0})
-                </span>
+                {data && (
+                    <span className="font-bold text-xl text-success">
+                        ({data.total})
+                    </span>
+                )}
             </div>
 
             <div className="mt-8 flex flex-col lg:flex-row gap-6 items-start">

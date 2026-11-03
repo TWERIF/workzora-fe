@@ -1,6 +1,6 @@
+import { retryUnlessNotFound } from "@/shared/utils/prefetch";
 import { queryOptions, useMutation, useQuery } from "@tanstack/react-query";
 import {
-  count,
   create,
   deleteProject,
   findAllProjects,
@@ -30,7 +30,6 @@ export const projectKeys = {
   search: (searchTerm: string) => ["projects-search", searchTerm],
   myProjects: (status: string, page: number, limit: number) =>
     ["my-projects", status, page, limit],
-  countProjects: () => ["countProjects"],
   allProjects: (params: FindProjectsParams) => ["all-projects", params],
 };
 
@@ -82,7 +81,7 @@ export const useProjects = (id?: string) => {
   const { data: project, isLoading: isLoadingProjectData, isError: isProjectError } = useQuery({
     ...projectQueries.one(id ?? ""),
     enabled: !!id,
-    retry: false,
+    retry: retryUnlessNotFound,
   });
 
   return {
@@ -119,12 +118,6 @@ export const useSearchProjects = (searchTerm: string) => {
     queryFn: () => searchProjects(searchTerm),
     queryKey: projectKeys.search(searchTerm),
     enabled: !!searchTerm.trim(),
-  });
-};
-export const useCountProjects = () => {
-  return useQuery({
-    queryFn: () => count(),
-    queryKey: projectKeys.countProjects(),
   });
 };
 

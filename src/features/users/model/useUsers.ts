@@ -1,7 +1,8 @@
 import { User } from "@/features/auth/model/types";
 import { authKeys } from "@/features/auth/model/useAuth";
+import { retryUnlessNotFound } from "@/shared/utils/prefetch";
 import { keepPreviousData, queryOptions, useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { blockUser, count, findOne, getBlockedUsers, getClientProjects, getRelation, removeAvatar, unblockUser, update, uploadAvatar } from "./api";
+import { blockUser, findOne, getBlockedUsers, getClientProjects, getRelation, removeAvatar, unblockUser, update, uploadAvatar } from "./api";
 
 export const useUsers = () => {
   const queryClient = useQueryClient();
@@ -34,12 +35,6 @@ export const useUsers = () => {
   };
 };
 
-export const useCountUsers = () => {
-  return useQuery({
-    queryFn: () => count(),
-    queryKey: authKeys.countUsers(),
-  });
-};
 
 export const userQueries = {
   one: (id: string) => queryOptions({ queryKey: authKeys.findUser(id), queryFn: () => findOne(id) }),
@@ -49,7 +44,7 @@ export const useUser = (id?: string) => {
   return useQuery({
     ...userQueries.one(id ?? ""),
     enabled: !!id,
-    retry: false,
+    retry: retryUnlessNotFound,
   });
 };
 export const useUserRelation = (id?: string, enabled = true) => {

@@ -1,6 +1,7 @@
 import { queryOptions, useMutation, useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { retryUnlessNotFound } from "@/shared/utils/prefetch";
 import { getHelpArticle, getHelpArticles, getHelpCategories, sendHelpFeedback } from "./api";
 import type { HelpReaction } from "./types";
 
@@ -24,6 +25,7 @@ export const helpQueries = {
         queryOptions({
             queryKey: ["help", "article", locale, category, slug],
             queryFn: () => getHelpArticle({ locale, category: category ?? "", slug: slug ?? "" }),
+            staleTime: 5 * 60 * 1000,
         }),
 };
 
@@ -42,7 +44,7 @@ export const useHelpArticle = (category?: string, slug?: string) => {
     return useQuery({
         ...helpQueries.article(locale, category, slug),
         enabled: Boolean(category && slug),
-        retry: false,
+        retry: retryUnlessNotFound,
     });
 };
 

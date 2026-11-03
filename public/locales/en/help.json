@@ -70,6 +70,8 @@
     "needHelpText": "If something is still not clear,",
     "contactSupport": "contact the WorkZora support team.",
     "notFound": "We could not find this article",
+    "loadError": "We could not load this article",
+    "retry": "Try again",
     "back": "Back to the knowledge base"
   }
 }

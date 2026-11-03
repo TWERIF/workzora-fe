@@ -7,7 +7,7 @@ import HelpHero from "@/features/help/ui/HelpHero";
 import NeedHelp from "@/features/help/ui/NeedHelp";
 import Breadcrumbs from "@/shared/components/ui/BreadCrumbs";
 import RichContent from "@/shared/components/ui/RichContent/RichContent";
-import { createServerQueryClient, loadOrNotFound, prefetch, type PrefetchedProps } from "@/shared/utils/prefetch";
+import { createServerQueryClient, isNotFoundError, loadOrNotFound, prefetch, type PrefetchedProps } from "@/shared/utils/prefetch";
 import type { GetServerSideProps } from "next";
 import Head from "next/head";
 import Link from "next/link";
@@ -20,15 +20,27 @@ export default function HelpArticlePage() {
     const category = typeof router.query.category === "string" ? router.query.category : undefined;
     const slug = typeof router.query.slug === "string" ? router.query.slug : undefined;
     const key = helpCategoryKey(category);
-    const { data: article, isLoading, isError } = useHelpArticle(key ? category : undefined, slug);
+    const { data: article, isLoading, isError, error, refetch, isFetching } = useHelpArticle(key ? category : undefined, slug);
+    const notFound = (router.isReady && !key) || (isError && isNotFoundError(error));
 
-    if (isError || (router.isReady && !key)) {
+    if (notFound || (isError && !article)) {
         return (
             <div className="mx-auto flex min-h-[60vh] max-w-xl flex-col items-center justify-center gap-4 px-4 pt-28 text-center">
-                <h1 className="text-2xl font-semibold">{t("article.notFound")}</h1>
-                <Link href="/knowledgebase" className="rounded-full bg-gradient px-6 py-3 text-sm text-white">
-                    {t("article.back")}
-                </Link>
+                <h1 className="text-2xl font-semibold">{t(notFound ? "article.notFound" : "article.loadError")}</h1>
+                {notFound ? (
+                    <Link href="/knowledgebase" className="rounded-full bg-gradient px-6 py-3 text-sm text-white">
+                        {t("article.back")}
+                    </Link>
+                ) : (
+                    <button
+                        type="button"
+                        disabled={isFetching}
+                        onClick={() => void refetch()}
+                        className="rounded-full bg-gradient px-6 py-3 text-sm text-white disabled:opacity-60"
+                    >
+                        {t("article.retry")}
+                    </button>
+                )}
             </div>
         );
     }

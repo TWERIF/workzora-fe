@@ -1,3 +1,4 @@
+import { useSiteStats } from "@/features/stats/model/useSiteStats";
 import { useTheme } from "@/utils/useTheme";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -19,6 +20,8 @@ export default function TrustedUsers() {
 
   const { topFreelancers, topClients } = useUsers();
   const items = tab === "freelancers" ? topFreelancers : topClients;
+  const { data: stats } = useSiteStats();
+  const total = tab === "freelancers" ? stats?.freelancers : stats?.clients;
   const router = useRouter();
   const handleShowAll = () => {
     router.push(`/${tab}`)
@@ -53,7 +56,7 @@ export default function TrustedUsers() {
           {items?.slice(0, 3).map((user) => <UserCard key={user.id} user={user} />)}
 
           <UsersCountCard
-            count={items?.length ?? 0}
+            count={total ?? items?.length ?? 0}
             labelKey={
               tab === "freelancers"
                 ? "community.freelancersCountSuffix"

@@ -1,23 +1,15 @@
-import { useCountProjects } from "@/features/projects/model/useProjects";
-import { useCountUsers } from "@/features/users/model/useUsers";
+import { useFormatCount, useSiteStats } from "@/features/stats/model/useSiteStats";
 import { useTranslation } from "react-i18next";
-
-function formatCount(value?: number | string) {
-  if (value === undefined || value === null) return "—";
-  const num = typeof value === "string" ? Number(value) : value;
-  if (Number.isNaN(num)) return String(value);
-  return `${num.toLocaleString("uk-UA")}+`;
-}
 
 export default function FooterMeta() {
   const { t } = useTranslation("footer");
-  const { data: users } = useCountUsers();
-  const { data: projects } = useCountProjects();
+  const { data: stats } = useSiteStats();
+  const formatCount = useFormatCount();
 
   return (
     <div className="flex flex-row lg:flex-col gap-4 w-full lg:w-auto">
-      <StatCard value={formatCount(users)} label={t("stats.registeredUsers")} />
-      <StatCard value={formatCount(projects)} label={t("stats.totalJobs")} />
+      <StatCard value={formatCount(stats?.users)} label={t("stats.registeredUsers")} />
+      <StatCard value={formatCount(stats?.projects)} label={t("stats.totalJobs")} />
     </div>
   );
 }

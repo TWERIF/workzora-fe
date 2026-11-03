@@ -40,10 +40,6 @@ export const toCompleted = async (data: { id: string; }) => {
   const res = await $api.patch(`/projects/${data.id}/completed`);
   return res.data;
 };
-export const count = async (): Promise<number> => {
-  const res = await $api.get("/projects/count");
-  return res.data;
-};
 
 export const findAllProjects = async (
   params: FindProjectsParams,

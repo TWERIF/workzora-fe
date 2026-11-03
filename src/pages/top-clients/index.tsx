@@ -60,7 +60,7 @@ export default function TopClients() {
                     <Breadcrumbs />
                     <div className="flex items-center justify-between gap-4">
                         <h1 className="text-3xl font-bold leading-[55px] md:text-[40px]">{t("title")}</h1>
-                        <span className="text-xl font-semibold text-success">({data?.total ?? 0})</span>
+                        {data && <span className="text-xl font-semibold text-success">({data.total})</span>}
                     </div>
                 </div>
 

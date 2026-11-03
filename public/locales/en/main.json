@@ -13,7 +13,7 @@
   "featureCards": {
     "qualityWork": {
       "title": "Quality work",
-      "description": "With WorkZora's talent pool of over 60 million professionals at your fingertips, you'll find quality talent to get what you need done."
+      "description": "Browse WorkZora freelancer profiles, portfolios and client reviews, and pick the person who will do the job well."
     },
     "beInControl": {
       "title": "Be in control",
@@ -25,7 +25,7 @@
     },
     "fastBids": {
       "title": "Fast bids",
-      "description": "Get quick, no-obligation quotes from skilled freelancers. 80% of jobs receive bids within 60 seconds. Your idea is just moments from reality."
+      "description": "Post your project for free and get proposals from freelancers interested in your task. Compare prices, timelines and experience, then choose the best one."
     },
     "banner": {
       "titleLine1": "Make it real",
@@ -43,7 +43,7 @@
     "title-list": [
       "Verified profiles",
       "Free registration",
-      "Fast bids within 60 seconds",
+      "Fast proposals from freelancers",
       "24/7 support"
     ],
     "HireFreelancerBtn1": "Find a freelancer",
@@ -65,24 +65,12 @@
         "Business support"
       ]
     },
-    "stats": [
-      {
-        "value": "2,700+",
-        "label": "Service categories"
-      },
-      {
-        "value": "1,000+",
-        "label": "Freelancer profiles"
-      },
-      {
-        "value": "500+",
-        "label": "Active projects"
-      },
-      {
-        "value": "24/7",
-        "label": "Online access"
-      }
-    ]
+    "stats": {
+      "categories": "Service categories",
+      "freelancers": "Freelancers",
+      "activeProjects": "Open projects",
+      "online": "Online access"
+    }
   },
   "trustedFreelancers": {
     "title": {
@@ -90,31 +78,6 @@
       "line2": "you can trust"
     },
     "description": "Explore freelancer profiles, review their experience, check completed projects, and see what other clients say before making a decision."
-  },
-  "makeItReal": {
-    "title": {
-      "1": "Make it real",
-      "2": "with WorkZora"
-    },
-    "makeDreamsReality": "Get started now",
-    "grid": [
-      {
-        "title": "The best talent",
-        "content": "Discover reliable professionals by exploring their portfolios and immersing yourself in the feedback shared on their profiles."
-      },
-      {
-        "title": "Fast bids",
-        "content": "Get quick, no obligation quotes from skilled freelancers. 80% of jobs receive bids within 60 seconds. Your idea is just moments from reality."
-      },
-      {
-        "title": "Quality work",
-        "content": "With a talent pool of over 60 million professionals at your fingertips, you'll find quality talent to get what you need done."
-      },
-      {
-        "title": "Be in control",
-        "content": "Stay in the loop while on the move. Chat with your freelancers and get real time updates with our mobile app. Anytime, anywhere."
-      }
-    ]
   },
   "getStarted": "Get started now",
   "howItWorks": {
@@ -171,188 +134,9 @@
   "categories": {
     "title": {
       "1": "Get work done in",
-      "2": "over 2700",
       "3": "different categories"
     },
-    "viewAllBtn": "View All",
-    "groups": [
-      {
-        "number": "01",
-        "title": "Programming",
-        "items": [
-          {
-            "name": "AI and machine learning",
-            "count": 2254
-          },
-          {
-            "name": "CMS",
-            "count": 429
-          },
-          {
-            "name": "AR and VR development",
-            "count": 481
-          },
-          {
-            "name": "HTML and CSS",
-            "count": 3183
-          },
-          {
-            "name": "Java",
-            "count": 1312
-          },
-          {
-            "name": "PHP",
-            "count": 812
-          },
-          {
-            "name": "C and C++",
-            "count": 1010
-          },
-          {
-            "name": "C#",
-            "count": 1327
-          },
-          {
-            "name": "JavaScript and TypeScript",
-            "count": 926
-          },
-          {
-            "name": "Python",
-            "count": 193
-          }
-        ]
-      },
-      {
-        "number": "02",
-        "title": "Design and Art",
-        "items": [
-          {
-            "name": "3D Modeling and Visualization",
-            "count": 837
-          },
-          {
-            "name": "AI Design",
-            "count": 721
-          },
-          {
-            "name": "VR and AR design",
-            "count": 321
-          },
-          {
-            "name": "Icons and pixel graphics",
-            "count": 1437
-          },
-          {
-            "name": "Illustrations and drawings",
-            "count": 3671
-          },
-          {
-            "name": "Infographics",
-            "count": 2986
-          },
-          {
-            "name": "Banners",
-            "count": 592
-          },
-          {
-            "name": "Vector graphics",
-            "count": 932
-          },
-          {
-            "name": "UI/UX Design",
-            "count": 1209
-          }
-        ]
-      },
-      {
-        "number": "03",
-        "title": "Services",
-        "items": [
-          {
-            "name": "Payment System Integration",
-            "count": 837
-          },
-          {
-            "name": "Enterprise Management Automation",
-            "count": 452
-          },
-          {
-            "name": "Cybersecurity and Data Protection",
-            "count": 2752
-          },
-          {
-            "name": "Online stores and e-commerce",
-            "count": 1326
-          },
-          {
-            "name": "AI Consultation",
-            "count": 943
-          },
-          {
-            "name": "Information gathering",
-            "count": 1876
-          },
-          {
-            "name": "Content Manager",
-            "count": 932
-          },
-          {
-            "name": "Learning",
-            "count": 1341
-          },
-          {
-            "name": "Data processing",
-            "count": 673
-          }
-        ]
-      },
-      {
-        "number": "04",
-        "title": "Working with texts",
-        "items": [
-          {
-            "name": "AI text processing",
-            "count": 936
-          },
-          {
-            "name": "Screenwriting",
-            "count": 136
-          },
-          {
-            "name": "Poems, songs, prose",
-            "count": 732
-          },
-          {
-            "name": "Naming and slogans",
-            "count": 820
-          },
-          {
-            "name": "Editing and proofreading",
-            "count": 1278
-          },
-          {
-            "name": "Copywriting",
-            "count": 1095
-          },
-          {
-            "name": "Article Writing",
-            "count": 1654
-          },
-          {
-            "name": "Advertisements",
-            "count": 943
-          },
-          {
-            "name": "Rewriting",
-            "count": 1209
-          },
-          {
-            "name": "Technical documentation",
-            "count": 936
-          }
-        ]
-      }
-    ]
+    "viewAllBtn": "View All"
   },
   "community": {
     "title": "Discover trusted users",
@@ -404,13 +188,9 @@
       },
       {
         "question": "What types of services can I find?",
-        "answer": "Over 2700 categories are available, from programming and design to marketing, copywriting, and business support."
+        "answer": "Categories cover programming, design, marketing, copywriting, business support and more. The full list is on the Categories page."
       }
     ]
-  },
-  "statsBar": {
-    "registeredUsers": "Registered Users",
-    "totalJobsPosted": "Total Jobs Posted"
   },
   "imagine-text": "Imagine you can get AI to answer the phone, make sales, set appointments, and generally make your life way easier. It'll cost you less than building a website, and it's the next big thing for businesses in 2025. Thanks to our extensive global talent network, WorkZora is your best bet for finding AI experts to take your business to the next level.",
   "ai-text": "Thanks to our extensive global talent network, Workzora is your best bet for finding AI experts to take your business to the next level.",

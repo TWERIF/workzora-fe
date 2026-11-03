@@ -5,7 +5,6 @@ import { LoginCredentials, UserCreate } from "./types";
 
 export const authKeys = {
   me: ["me"] as const,
-  countUsers: () => ["countUsers"] as const,
   findUser: (id: string) => ["user", id] as const,
 };
 

@@ -9,10 +9,6 @@ export const update = async (body: Partial<User>): Promise<User> => {
   const res = await $api.put("/users/update", body);
   return res.data;
 };
-export const count = async (): Promise<number> => {
-  const res = await $api.get("/users/count");
-  return res.data;
-};
 export const uploadAvatar = async (file: File): Promise<User> => {
   const formData = new FormData();
   formData.append("file", file);

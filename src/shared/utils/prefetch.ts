@@ -21,6 +21,9 @@ export const createServerQueryClient = () =>
 export const isNotFoundError = (error: unknown) =>
     isAxiosError(error) && (error.response?.status === 404 || error.response?.status === 400);
 
+export const retryUnlessNotFound = (failureCount: number, error: unknown) =>
+    !isNotFoundError(error) && failureCount < 3;
+
 export type Loaded<T> = { notFound: true } | { notFound: false; data: T | undefined };
 
 export const loadOrNotFound = async <T,>(promise: Promise<T>): Promise<Loaded<T>> => {

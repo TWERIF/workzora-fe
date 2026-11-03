@@ -1,16 +1,12 @@
 import { Fade } from "@/shared/components/svg/Fade";
 import { Vector } from "@/shared/components/svg/Vector";
 import ButtonGradient from "@/shared/components/ui/Button/ButtonGradient";
+import { useFormatCount, useSiteStats } from "@/features/stats/model/useSiteStats";
 import { useTheme } from "@/utils/useTheme";
 import { useTranslation } from "react-i18next";
 
 interface HeroProps {
   handleReg: () => void;
-}
-
-interface StatItem {
-  value: string;
-  label: string;
 }
 
 export default function Hero({ handleReg }: HeroProps) {
@@ -19,7 +15,14 @@ export default function Hero({ handleReg }: HeroProps) {
   const isDark = theme === "dark";
 
   const badges = t("hero.title-list", { returnObjects: true }) as string[];
-  const stats = t("hero.stats", { returnObjects: true }) as StatItem[];
+  const { data: siteStats } = useSiteStats();
+  const formatCount = useFormatCount();
+  const stats = [
+    { value: formatCount(siteStats?.categories), label: t("hero.stats.categories") },
+    { value: formatCount(siteStats?.freelancers), label: t("hero.stats.freelancers") },
+    { value: formatCount(siteStats?.activeProjects), label: t("hero.stats.activeProjects") },
+    { value: "24/7", label: t("hero.stats.online") },
+  ];
 
   return (
     <section className="relative text-text bg-bg dark:text-text-dark dark:bg-bg-dark overflow-hidden pt-24 md:pt-28">
@@ -67,10 +70,10 @@ export default function Hero({ handleReg }: HeroProps) {
 
       <div className="relative mt-16 bg-[#3E3E3E]">
         <div className="container mx-auto md:px-16 sm:px-8 px-4 py-8 grid grid-cols-2 md:grid-cols-4 gap-6 text-white">
-          {stats?.map((stat, i) => (
-            <div className="bg-[#333333] p-6 sm:rounded-6 rounded-[18px]" key={i}>
+          {stats.map((stat) => (
+            <div className="bg-[#333333] p-6 sm:rounded-6 rounded-[18px]" key={stat.label}>
               <div className="text-2xl md:text-3xl font-bold text-success">{stat.value}</div>
-              <div className="text-sm opacity-70">{stat.label}</div>  
+              <div className="text-sm opacity-70">{stat.label}</div>
             </div>
           ))}
         </div>
